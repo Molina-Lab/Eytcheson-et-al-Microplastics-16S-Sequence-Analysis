@@ -1,0 +1,181 @@
+---
+title: "Analysis"
+author: "Sarah Brown"
+date: "2023-04-28"
+output: github_document
+always_allow_html: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Load Packages and Import Data
+
+Here, we import the .qza files exported from QIIME2 using the qqiime2R package. The final object is a phyloseq object called MPphyseq.
+
+```{r load}
+#Load libraries
+library(ggplot2)
+library(vegan)
+library(plyr)
+library(dplyr)
+library(scales)
+library(grid)
+library(reshape2)
+library(phyloseq)
+library(picante)
+library(tidyr)
+library(viridis)
+library(qiime2R)
+library(DESeq2)
+library(patchwork)
+library(RColorBrewer)
+
+set.seed(13289)
+
+#Create a phyloseq object from the .qza files exported from qiime2 using 
+#the qiime2R package
+MPphyseq <- qza_to_phyloseq(
+  features="Qiime output/dada2-table.qza",
+  tree="Qiime output/rooted-tree.qza",
+  taxonomy="Qiime output/MP-taxonomy.qza",
+  metadata = "Qiime output/MP-metadata.tsv"
+)
+```
+
+## Preparing the Data
+
+```{r preliminary analysis}
+
+#Check the rank names to make sure they are accurate
+rank_names(MPphyseq)
+
+#Correct output:[1] "Kingdom" "Phylum"  "Class"   "Order"   "Family"  
+#                   "Genus"   "Species"
+
+#Check sample variables
+sample_variables(MPphyseq)
+
+#Remove chloroplast sequences and any contaminant sequences
+MPphyseq <- subset_taxa(MPphyseq, Kingdom != "d__Eukaryota")
+MPphyseq <- subset_taxa(MPphyseq, Kingdom != "d__Archaea")
+MPphyseq <- subset_taxa(MPphyseq, Order != "o__Chloroplast")
+MPphyseq <- subset_taxa(MPphyseq, Order != "Chloroplast")
+MPphyseq <- subset_taxa(MPphyseq, Family != "f__Mitochondria")
+MPphyseq <- subset_taxa(MPphyseq, Family != "Mitochondria")
+
+#Check that contaminant sequences are removed (easiest to save as data frame and search)
+taxtabl <- as.data.frame(tax_table(MPphyseq))
+
+#At this point, blanks and positive controls should also be removed
+MPphyseq = subset_samples(MPphyseq, effluent != "FB")
+
+```
+
+```{r asv plot}
+#Examining the total number of reads and ASV's
+readsumsdf = data.frame(nreads = sort(taxa_sums(MPphyseq), TRUE), 
+                        sorted = 1:ntaxa(MPphyseq), type = "ASVs")
+readsumsdf = rbind(readsumsdf, data.frame(nreads = sort(sample_sums(MPphyseq), 
+                        TRUE), sorted = 1:nsamples(MPphyseq), type = "Samples"))
+title = "Total number of reads"
+p = ggplot(readsumsdf, aes(x = sorted, y = nreads)) + geom_bar(stat = "identity")
+p + ggtitle(title) + scale_y_log10() + facet_wrap(~type, 1, scales = "free")
+
+```
+
+```{r rarefaction curve}
+#Rarefaction curve using vegan
+#From: https://micca.readthedocs.io/en/latest/phyloseq.html
+taxa_are_rows(MPphyseq)
+
+mat <- t(otu_table(MPphyseq))
+class(mat) <- "matrix"
+class(mat)
+
+mat <- as(t(otu_table(MPphyseq)), "matrix")
+class(mat)
+
+raremax <- min(rowSums(mat))
+
+system.time(rarecurve(mat, step = 100, sample = raremax, col = "blue", label = FALSE))
+```
+
+```{r transform}
+#Transform to relative abundance. Save as new object.
+MPphyseqRA = transform_sample_counts(MPphyseq, function(x){x / sum(x)})
+
+#Re-label the variables; if you type in MPphyseq you will see that sample_data 
+#is the matrix that holds the information that we want to change, so we need to 
+#include sample_data in our code here
+
+#Order factors
+sample_data(MPphyseqRA)$effluent <- factor(sample_data(MPphyseqRA)$effluent, 
+                                     levels = c("CON", "TWW"),
+                                     labels = c("CON", "TWW"))
+
+sample_data(MPphyseqRA)$polymer_type <- factor(sample_data(MPphyseqRA)$polymer_type, 
+                                     levels = c("Glass", "HDPE", "LDPE", "PP", "PS", "water"),
+                                     labels = c("Glass", "HDPE", "LDPE", "PP", "PS", "Water"))
+
+sample_data(MPphyseqRA)$week <- factor(sample_data(MPphyseqRA)$week, 
+                                               levels = c("0", "2", "6", "10"),
+                                               labels = c("0", "2", "6", "10"))
+
+sample_data(MPphyseqRA)$sample_type <- factor(sample_data(MPphyseqRA)$sample_type, 
+                                       levels = c("Particle", "water"),
+                                       labels = c("Particle", "Water"))
+
+sample_data(MPphyseqRA)$particle_type <- factor(sample_data(MPphyseqRA)$particle_type, 
+                                              levels = c("MP", "Glass", "water"),
+                                              labels = c("MP", "Glass", "Water"))
+
+#Subset samples into groups
+sample_data(MPphyseqRA)
+
+mp.con <- subset_samples(MPphyseqRA, effluent == "CON")
+sample_data(mp.con)
+
+mp.tww <- subset_samples(MPphyseqRA, effluent == "TWW")
+sample_data(mp.tww)
+```
+
+## Alpha Diversity
+
+Note that these data are not rarefied. We'll use the Shannon diversity index (based on richness AND evenness; examines how many different taxa are present and how evenly they're distributed within a sample) to analyze alpha diversity between variable types. This means it considers both the number of species and the inequality between species abundances.
+
+### Calculate Shannon Diversity per Sample
+
+Using the estimate_richness function in the phyloseq package to calculate Shannon diversity. The estimate_richness function can also take measures "Chao1" "ACE" "Simpson" and "Fisher".
+
+```{r shannon calc}
+#Calculating richness - Shannon diversity in a new dataframe
+richness <- data.frame(estimate_richness(MPphyseqRA, measures = c("Shannon")))
+richness <- setNames(cbind(rownames(richness), richness, row.names = NULL), 
+                     c("sample-id", "Shannon"))
+
+#Add the sample metadata to the dataframe
+s <- data.frame(sample_data(MPphyseqRA))
+s <- setNames(cbind(rownames(s), s, row.names = NULL), 
+              c("sample-id", "effluent", "week", "polymer_type", 
+                "bead_diameter", "Channel", "sample_type", "particle_type"))
+
+alphadiv <- merge(s, richness, by = "sample-id")
+
+#Order factors
+alphadiv$polymer_type <- factor(alphadiv$polymer_type, 
+                        levels = c("Glass", "HDPE", "LDPE", "PP", "PS", "Water"),
+                        labels = c("Glass", "HDPE", "LDPE", "PP", "PS", "Water")) 
+#Shows the calculated indices
+knitr::kable(head(alphadiv)) %>% 
+  kableExtra::kable_styling("striped", 
+                            latex_options="scale_down") %>% 
+  kableExtra::scroll_box(width = "100%")
+```
+
+## Session Info
+
+```{r output session info}
+devtools::session_info()
+```
