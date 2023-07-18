@@ -18,7 +18,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 Here, we import the .qza files exported from QIIME2 using the qiime2R package. The final object is a phyloseq object called MPphyseq.
 
-```{r libraries, warning=FALSE}
+```{r libraries, warning=FALSE, message=FALSE}
 
 
 library(ggplot2)
@@ -491,6 +491,7 @@ ggsave(filename="Microplastics_NMDS_all_Bray.svg", plot=all_combo, width=12, hei
 ## NMDS of particles (glass and MPs) only, no water, Bray-Curtis dissimilarity
 
 ```{r NMDS2}
+
 #Subset phyloseq object
 sample_data(MPphyseqRA)
 
@@ -1627,16 +1628,120 @@ knitr::kable(head(tax_table(MPphyseq))) %>%
 
 # Differential abundance with DESeq2
 
+## Examining filtration cutoff
+
+Before we filter the phyloseq object in preparation for importing it into DESeq2, we'll check to see how many ASV's we'd end up filtering out at each cutoff level. In the first part of this code, we calculate in how many samples each ASV is not present, and then we divide by the total number of samples to get the proportion of samples in which each ASV is not present. The bar plot we produce here includes a dashed blue line at 0.9, to show how many ASV's would be removed if we filtered samples that contained 0's in more than 90% of the samples.
+
+```{r filt test}
+
+#For each ASV, find the number of samples in which each ASV is 0, then divide by the total number of samples
+test_filter_method4 <- as.data.frame(rowSums(otu_table(MPphyseq) == 0)/ncol(otu_table(MPphyseq))) 
+
+#Change the name of the column in the test_filter_method4 dataframe; this column contains the proportion of samples in which each ASV is 0
+colnames(test_filter_method4) <- c('samplew0')
+
+#Create a bar plot
+ggplot(data = test_filter_method4) +
+  geom_bar(mapping = aes(x= samplew0)) + 
+  geom_vline(xintercept = 0.9, linetype="dotted", color = "blue", size=1.5) +
+  labs(x = "Proportion of samples in which ASV = 0", y = "# of ASV's") +
+  theme(text = element_text(size = 18), 
+        axis.title = element_text(size = 15),
+        panel.spacing = unit(1, "lines"), 
+        panel.border = element_rect(colour = "black", fill = NA, size = 0.5), 
+        panel.background = element_blank())
+
+
+```
+
+Now trying to graph the relative abundance of the ASV's that would be filtered out if the cutoff was 90%. Here, I'm mostly interested in seeing if any of the ASV's that would be filtered out had a high relative abundance in one or more of the samples they were present in.
+
+```{r 90 percent 0 abundance}
+
+#Find relative abundance first
+MPphyseqRA_cutoff = transform_sample_counts(MPphyseq, function(x){x / sum(x)})
+
+#Creating a phyloseq object that contains only those ASV's that have 0's in more than 90% of samples
+ps.taxa.90 <- prune_taxa(rowSums(otu_table(MPphyseqRA_cutoff) == 0) > ncol(otu_table(MPphyseq)) * 0.9, MPphyseqRA_cutoff)
+
+#Turning this phyloseq object into a dataframe
+ps.taxa.90.df <- as.data.frame(otu_table(ps.taxa.90))
+
+#Find maximum value in each row - this will give us the max value for each ASV
+ps.taxa.90.df$max <- apply(ps.taxa.90.df[1:151], 1, max)
+
+#Finding the column name that the max value came from
+ps.taxa.90.df$max_name <- (colnames(ps.taxa.90.df)[max.col(ps.taxa.90.df[1:151])])
+
+#Making the row names into a column called ASV
+library(tibble)
+ps.taxa.90.df <- tibble::rownames_to_column(ps.taxa.90.df, "ASV")
+
+
+#Now we can finally create a graph that shows how many of these ASV's have high relative abundances
+raretax_max <- ggplot(data = ps.taxa.90.df) +
+   geom_point(mapping = aes(y= max, x=ASV)) + 
+    geom_hline(yintercept = 0.01, linetype="solid", color = "blue", size=1.5) +
+   #scale_y_continuous(limits = c(0, 20)) +
+   labs(x = "ASV", y = "Maximum relative abundance") +
+   theme(text = element_text(size = 18), 
+        axis.title = element_text(size = 15),
+        panel.spacing = unit(1, "lines"), 
+        panel.border = element_rect(colour = "black", fill = NA, size = 0.5), 
+        panel.background = element_blank(),
+        axis.text.x=element_blank())
+
+print(raretax_max)
+
+
+```
+
+Table time! Here, I'll just print out a table that contains all the ASV's with a maximum relative abundance value over 1%.
+
+```{r 90 percent}
+
+#Filter the dataframe above to contain only samples with a max relative abundance value greater than 0.01 and keep only selected columns
+top_vals <- ps.taxa.90.df %>% 
+  select(c(ASV, max, max_name)) %>%
+  filter(max >= 0.01)
+
+#Add sample meta data to see which samples contained these ASV's
+
+#First, create a dataframe from the phyloseq metadata
+s <- data.frame(sample_data(MPphyseqRA_cutoff))
+
+#Now create a max_name column to match the one in top_vals so that they can be merged
+s <- tibble::rownames_to_column(s, "max_name")
+
+#Merge based on the max_name columns
+top_vals <- merge(s, top_vals, by = "max_name")
+
+#Remove unecessary columns for easy display as a table
+top_vals <- top_vals %>% 
+  select(!c(bead_diameter, Channel, particle_effluent, particle_effluent_time)) 
+
+#View the last few rows of the table
+knitr::kable(tail(top_vals)) %>% 
+  kableExtra::kable_styling("striped") %>% 
+  kableExtra::scroll_box(width = "100%")
+
+#View the whole table
+knitr::kable(top_vals) %>% 
+  kableExtra::kable_styling("striped") %>% 
+  kableExtra::scroll_box(width = "100%")
+
+```
+
 ## Filtering the phyloseq object
 
-Before importing the data into DESeq2, we'll filter the full phyloseq object, removing sparse features with \>90% zeros.
+Now that we've examined how many ASV's we'd be filtering out at each cutoff level, we'll choose a cutoff level that will allow us to remove sparse features within the data set. The cutoff level we've chosen here is 90% (i.e., samples that contained 0 in more than 90% of the samples will be filtered out).
 
 ```{r filter}
 
 ps.taxa.all.filt <- prune_taxa(rowSums(otu_table(MPphyseq) == 0) < ncol(otu_table(MPphyseq)) * 0.9, MPphyseq)
 ```
 
-## TWW vs Water, MP Only, all timepoints
+## MP in TWW vs MP in River Water, all timepoints
 
 ```{r deseq2}
 #Need to use the count data here, not the relative abundance data
@@ -1854,6 +1959,108 @@ print(mp_effluent_barplot)
 
 ```
 
+## MP vs glass, all timepoints, both water sources
+
+```{r finding plastisphere}
+
+#Convert phyloseq object from above to a deseq object with the correct category
+mp_v_glass_deseq = phyloseq_to_deseq2(ps.taxa.all.filt, ~ particle_type)
+
+#Estimate the size factors
+mp_v_glass_deseq <- estimateSizeFactors(mp_v_glass_deseq, type = "poscounts")
+
+#Make sure that the control is the first level in the sample_type group so that 
+#the default log2 changes are calculated as treatment vs. control instead of 
+#vice versa
+mp_v_glass_deseq$particle_type <- relevel(factor(mp_v_glass_deseq$particle_type), "Water")
+
+#Now we can run DESeq
+mp_v_glass_deseq = DESeq(mp_v_glass_deseq, test="Wald", fitType="parametric")
+
+#Check which comparisons are contained in the deseq object:
+resultsNames(mp_v_glass_deseq)
+
+#We just want to look at the difference between microplastics and water and glass and water
+#Creating results tables with the information we're interested in
+res_glass <- results(mp_v_glass_deseq, contrast=c("particle_type","Glass","Water"), alpha=0.05)
+res_mp <- results(mp_v_glass_deseq, contrast=c("particle_type","MP","Water"), alpha=0.05)
+
+#Show results summary
+summary(res_glass)
+summary(res_mp)
+
+#Log fold change shrinkage on each comparison
+resLFC_glass <- lfcShrink(mp_v_glass_deseq, coef="particle_type_Glass_vs_Water", type="apeglm")
+resLFC_glass
+
+resLFC_mp <- lfcShrink(mp_v_glass_deseq, coef="particle_type_MP_vs_Water", type="apeglm")
+resLFC_mp
+
+#"It is more useful visualize the MA-plot for the shrunken log2 fold changes, 
+#which remove the noise associated with log2 fold changes from low count genes 
+#without requiring arbitrary filtering thresholds."
+#https://www.bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html#why-un-normalized-counts
+plotMA(resLFC_glass)
+plotMA(resLFC_mp)
+
+#Add taxonomic information
+sigtab_glass = cbind(as(res_glass, "data.frame"), as(tax_table(MPphyseq)[rownames(res_glass), ], "matrix"))
+sigtab_mp = cbind(as(res_mp, "data.frame"), as(tax_table(MPphyseq)[rownames(res_mp), ], "matrix"))
+
+#Convert to dataframe
+df_glass_deseq <- as.data.frame(sigtab_glass)
+df_mp_deseq <- as.data.frame(sigtab_mp)
+
+
+#Filter based on adj p-value, removing non-significant values (p>0.05)
+#This also removes p-values that are NA; NA p-values exist because when p-values do not pass the filter threshold (p-values less than 0.1) they are set to NA 
+#More information in vignette("DESeq2") under "Note on p-values set to NA"
+df_glass_deseq_filt <- filter(df_glass_deseq, padj <= 0.05)
+df_mp_deseq_filt <- filter(df_mp_deseq, padj <= 0.05)
+
+#Order by adjusted p-value
+df_glass_deseq_filt = df_glass_deseq_filt[order(df_glass_deseq_filt$padj, na.last=NA), ]
+df_mp_deseq_filt = df_mp_deseq_filt[order(df_mp_deseq_filt$padj, na.last=NA), ]
+
+```
+
+### Venn Diagrams
+
+```{r venn plastisphere}
+
+#Filter the TWW glass dataframes
+df_glass_deseq_filt <- filter(df_glass_deseq_filt, 
+                                     log2FoldChange > 0)
+df_mp_deseq_filt <- filter(df_mp_deseq_filt, 
+                                     log2FoldChange > 0)
+
+#Create a column with the filtered deseq dataframe rownames and then filter to contain only ASV's
+taxa_glass <- data.frame(df_glass_deseq_filt) %>%
+  tibble::rownames_to_column(var = "Glass") %>%
+  select(Glass)
+
+taxa_mp <- data.frame(df_mp_deseq_filt) %>%
+  tibble::rownames_to_column(var = "MP") %>%
+  select(MP)
+
+#Make each dataframe into a list
+list_glass <- list(taxa_glass$Glass)
+list_mp <- list(taxa_mp$MP)
+
+#Change to characters
+list_glass_chr <- as.character(list_glass[[1]])
+list_mp_chr <- as.character(list_mp[[1]])
+
+#Make list for ggVennDiagram
+mp_v_glass_compare <- list(list_glass_chr, list_mp_chr) %>%
+  setNames(c("Glass", "MP"))
+
+#Make Venn Diagram - all comparisons
+ggVennDiagram(mp_v_glass_compare) + scale_fill_gradient(low="blue",high = "red")
+
+
+```
+
 ## Examining changes in bacterial communities on glass beads over time
 
 ### Contrasts - 2w, 6w, 10w river water glass only, vs river water
@@ -2003,6 +2210,96 @@ df_mp_glass_deseq_TWW10_filt = df_mp_glass_deseq_TWW10_filt[order(df_mp_glass_de
 
 ```
 
+### Venn Diagrams
+
+This section includes the preparation of the DESeq2 glass bead results for plotting with the ggVennDiagram package. First, we'll filter the DESeq dataframes so that they only include ASV's with positive log2foldchanges - the point here is to keep only ASV's that were higher in abundance on glass then in the water. Then, we'll create 3 venn diagrams - 1) a comparison of 2, 6, and 10 week glass bead communities in river water, 2) a comparison of 2, 6, and 10 week glass bead communities in TWW, and 3) a comparison of the communities on glass beads during all timepoints and across water sources.
+
+```{r venn glass}
+
+#Filter the river water glass dataframes
+df_mp_glass_deseq_CON2_filt <- filter(df_mp_glass_deseq_CON2_filt, 
+                                     log2FoldChange > 0)
+df_mp_glass_deseq_CON6_filt <- filter(df_mp_glass_deseq_CON6_filt, 
+                                     log2FoldChange > 0)
+df_mp_glass_deseq_CON10_filt <- filter(df_mp_glass_deseq_CON10_filt, 
+                                      log2FoldChange > 0)
+
+#Filter the TWW glass dataframes
+df_mp_glass_deseq_TWW2_filt <- filter(df_mp_glass_deseq_TWW2_filt, 
+                                     log2FoldChange > 0)
+df_mp_glass_deseq_TWW6_filt <- filter(df_mp_glass_deseq_TWW6_filt, 
+                                     log2FoldChange > 0)
+df_mp_glass_deseq_TWW10_filt <- filter(df_mp_glass_deseq_TWW10_filt, 
+                                      log2FoldChange > 0)
+
+#Create a column with the filtered deseq dataframe rownames and then filter to contain only ASV's
+taxa_glass_CON2 <- data.frame(df_mp_glass_deseq_CON2_filt) %>%
+  tibble::rownames_to_column(var = "Glass_CON_2") %>%
+  select(Glass_CON_2)
+
+taxa_glass_CON6 <- data.frame(df_mp_glass_deseq_CON6_filt) %>%
+  tibble::rownames_to_column(var = "Glass_CON_6") %>%
+  select(Glass_CON_6)
+
+taxa_glass_CON10 <- data.frame(df_mp_glass_deseq_CON10_filt) %>%
+  tibble::rownames_to_column(var = "Glass_CON_10") %>%
+  select(Glass_CON_10)
+
+
+taxa_glass_TWW2 <- data.frame(df_mp_glass_deseq_TWW2_filt) %>%
+  tibble::rownames_to_column(var = "Glass_TWW_2") %>%
+  select(Glass_TWW_2)
+
+taxa_glass_TWW6 <- data.frame(df_mp_glass_deseq_TWW6_filt) %>%
+  tibble::rownames_to_column(var = "Glass_TWW_6") %>%
+  select(Glass_TWW_6)
+
+taxa_glass_TWW10 <- data.frame(df_mp_glass_deseq_TWW10_filt) %>%
+  tibble::rownames_to_column(var = "Glass_TWW_10") %>%
+  select(Glass_TWW_10)
+
+#Make each dataframe into a list
+list_G_CON_2 <- list(taxa_glass_CON2$Glass_CON_2)
+list_G_CON_6 <- list(taxa_glass_CON6$Glass_CON_6)
+list_G_CON_10 <- list(taxa_glass_CON10$Glass_CON_10)
+
+list_G_TWW_2 <- list(taxa_glass_TWW2$Glass_TWW_2)
+list_G_TWW_6 <- list(taxa_glass_TWW6$Glass_TWW_6)
+list_G_TWW_10 <- list(taxa_glass_TWW10$Glass_TWW_10)
+
+#Change to characters
+taxa_glass_CON2_chr <- as.character(list_G_CON_2[[1]])
+taxa_glass_CON6_chr <- as.character(list_G_CON_6[[1]])
+taxa_glass_CON10_chr <- as.character(list_G_CON_10[[1]])
+
+taxa_glass_TWW2_chr <- as.character(list_G_TWW_2[[1]])
+taxa_glass_TWW6_chr <- as.character(list_G_TWW_6[[1]])
+taxa_glass_TWW10_chr <- as.character(list_G_TWW_10[[1]])
+
+#Make list for ggVennDiagram
+glass_time_comparisons <- list(taxa_glass_CON2_chr, taxa_glass_CON6_chr, taxa_glass_CON10_chr, taxa_glass_TWW2_chr, taxa_glass_TWW6_chr, taxa_glass_TWW10_chr) %>%
+  setNames(c("Glass_CON_2", "Glass_CON_6", "Glass_CON_10", "Glass_TWW_2", "Glass_TWW_6", "Glass_TWW_10"))
+
+
+#Another test of ggVennDiagram - Only the river water comparisons
+glass_time_comparisons_river <- list(taxa_glass_CON2_chr, taxa_glass_CON6_chr, taxa_glass_CON10_chr) %>%
+  setNames(c("River Week 2", "River Week 6", "River Week 10"))
+
+#Make Venn Diagram
+ggVennDiagram(glass_time_comparisons_river, label_alpha = 0) + scale_fill_gradient(low="blue",high = "red") +
+  theme(legend.position = "bottom", legend.direction = "horizontal")
+
+
+#Another test of ggVennDiagram - only the TWW comparisons
+glass_time_comparisons_tww <- list(taxa_glass_TWW2_chr, taxa_glass_TWW6_chr, taxa_glass_TWW10_chr) %>%
+  setNames(c("TWW Week 2", "TWW Week 6", "TWW Week 10"))
+
+#Make Venn Diagram
+ggVennDiagram(glass_time_comparisons_tww, label_alpha = 0) + scale_fill_gradient(low="blue",high = "red") +
+  theme(legend.position = "bottom", legend.direction = "horizontal")
+
+```
+
 ## Examining changes in bacterial communities on microplastics over time
 
 ### Contrasts - 2w, 6w, 10w river water MP's only, vs river water
@@ -2080,7 +2377,7 @@ df_mp_time_deseq_CON10_filt = df_mp_time_deseq_CON10_filt[order(df_mp_time_deseq
 
 ```
 
-### Contrasts - 2w, 6w, 10w TWW MP's only, vs TWW 
+### Contrasts - 2w, 6w, 10w TWW MP's only, vs TWW
 
 ```{r deseq time tww}
 #Estimate the size factors
@@ -2153,14 +2450,11 @@ df_mp_time_deseq_TWW10_filt = df_mp_time_deseq_TWW10_filt[order(df_mp_time_deseq
 
 ### Venn Diagrams
 
+This section includes the preparation of the DESeq2 MP results for plotting with the ggVennDiagram package. First, we'll filter the DESeq dataframes so that they only include ASV's with positive log2foldchanges - the point here is to keep only ASV's that were higher in abundance on MP than in the water. Then, we'll create 3 venn diagrams - 1) a comparison of 2, 6, and 10 week MP communities in river water, 2) a comparison of 2, 6, and 10 week MP communities in TWW, and 3) a comparison of the communities on MP during all timepoints and across water sources.
+
 ```{r venn MP time}
 
-#Using the method used above (prepping the data for plots) to prep
-#the deseq output for plotting with ggVennDiagram
-
-#Filter deseq dataframes so that they only include ASV's with positive 
-#log2foldchanges - the point here is to keep only ASV's that were higher in abundance on MP
-#then in the water
+#Filter the river water MP dataframes
 df_mp_time_deseq_CON2_filt <- filter(df_mp_time_deseq_CON2_filt, 
                                      log2FoldChange > 0)
 df_mp_time_deseq_CON6_filt <- filter(df_mp_time_deseq_CON6_filt, 
@@ -2168,6 +2462,7 @@ df_mp_time_deseq_CON6_filt <- filter(df_mp_time_deseq_CON6_filt,
 df_mp_time_deseq_CON10_filt <- filter(df_mp_time_deseq_CON10_filt, 
                                       log2FoldChange > 0)
 
+#Filter the TWW MP dataframes
 df_mp_time_deseq_TWW2_filt <- filter(df_mp_time_deseq_TWW2_filt, 
                                      log2FoldChange > 0)
 df_mp_time_deseq_TWW6_filt <- filter(df_mp_time_deseq_TWW6_filt, 
@@ -2203,22 +2498,22 @@ taxa_MP_TWW10 <- data.frame(df_mp_time_deseq_TWW10_filt) %>%
   select(MP_TWW_10)
 
 #Make each dataframe into a list
-lista <- list(taxa_MP_CON2$MP_CON_2)
-listb <- list(taxa_MP_CON6$MP_CON_6)
-listc <- list(taxa_MP_CON10$MP_CON_10)
+list_MP_CON_2 <- list(taxa_MP_CON2$MP_CON_2)
+list_MP_CON_6 <- list(taxa_MP_CON6$MP_CON_6)
+list_MP_CON_10 <- list(taxa_MP_CON10$MP_CON_10)
 
-listd <- list(taxa_MP_TWW2$MP_TWW_2)
-liste <- list(taxa_MP_TWW6$MP_TWW_6)
-listf <- list(taxa_MP_TWW10$MP_TWW_10)
+list_MP_TWW_2 <- list(taxa_MP_TWW2$MP_TWW_2)
+list_MP_TWW_6 <- list(taxa_MP_TWW6$MP_TWW_6)
+list_MP_TWW_10 <- list(taxa_MP_TWW10$MP_TWW_10)
 
 #Change to characters
-taxa_MP_CON2_chr <- as.character(lista[[1]])
-taxa_MP_CON6_chr <- as.character(listb[[1]])
-taxa_MP_CON10_chr <- as.character(listc[[1]])
+taxa_MP_CON2_chr <- as.character(list_MP_CON_2[[1]])
+taxa_MP_CON6_chr <- as.character(list_MP_CON_6[[1]])
+taxa_MP_CON10_chr <- as.character(list_MP_CON_10[[1]])
 
-taxa_MP_TWW2_chr <- as.character(listd[[1]])
-taxa_MP_TWW6_chr <- as.character(liste[[1]])
-taxa_MP_TWW10_chr <- as.character(listf[[1]])
+taxa_MP_TWW2_chr <- as.character(list_MP_TWW_2[[1]])
+taxa_MP_TWW6_chr <- as.character(list_MP_TWW_6[[1]])
+taxa_MP_TWW10_chr <- as.character(list_MP_TWW_10[[1]])
 
 
 #Make list for ggVennDiagram
@@ -2243,25 +2538,15 @@ MP_time_comparisons3 <- list(taxa_MP_TWW2_chr, taxa_MP_TWW6_chr, taxa_MP_TWW10_c
   setNames(c("Week 2", "Week 6", "Week 10"))
 
 #Make Venn Diagram
-ggVennDiagram(MP_time_comparisons3, label_alpha = 0) + scale_fill_gradient(low="blue",high = "red") +
+TWW_Venn <- ggVennDiagram(MP_time_comparisons3, label_alpha = 0) + scale_fill_gradient(low="blue",high = "red") +
   theme(legend.position = "bottom", legend.direction = "horizontal")
-
-
-#Testing out the nVennR package as an alternative way to create Venn Diagrams
-#River water
-nVennR_plot_test <- plotVenn(list(taxa_MP_CON2_chr, taxa_MP_CON6_chr, taxa_MP_CON10_chr), sNames=c("Week 2", "Week 6", "Week 10"))
-showSVG(nVennR_plot_test, opacity=0.2)
-
-#Testing out the nVennR package as an alternative way to create Venn Diagrams
-#River water
-nVennR_plot_test_2 <- plotVenn(list(taxa_MP_TWW2_chr, taxa_MP_TWW6_chr, taxa_MP_TWW10_chr), sNames=c("Week 2", "Week 6", "Week 10"))
-showSVG(nVennR_plot_test_2, opacity=0.2)
 
 ```
 
 ### SuperExactTest
 
 ```{r SuperExactTest}
+
 #Using the list MP_time_comparisons from ggVennDiagram above 
 
 #Run the super exact test; n is the total number in the deseq datasets from above
@@ -2273,191 +2558,728 @@ plot(res, sort.by="size", margin=c(2,2,2,2), color.scale.pos=c(0.85,1), legend.p
 #Another plot - bar plot,  only intersections among 4 to 6 sets
 plot(res, Layout="landscape", degree=4:6, sort.by="size", margin=c(0.5,5,1,2))
 
-#Plot 
+#Plotting all intersections as a bar chart 
 plot(res, Layout="landscape", sort.by="size", margin=c(0.5,5,1,2))
+
+#Plotting only intersections among 1-3 sets
+plot(res, Layout="landscape", degree=1:3, sort.by="size", margin=c(0.5,5,1,2))
 
 
 #View a summary of the SuperExactTest results
 summary(res)
 ```
 
-## Comparing bacterial community composition between glass and microplastics 
+### Heatmap
+
+This section creates a heatmap of the DESeq2 results for all particle_effluent_time categories (MP_CON_2, MP_CON_6, MP_CON_10, MP_TWW_2, MP_TWW_6, MP_TWW_10). The heatmap is based on the normalized relative abundance data calculated by DESeq2, and only the ASV's with positive log2FoldChanges (i.e., those that were higher in abundance on MP than in the water in each of the six groups) are included in the final heatmap dataset. The first part of this code goes through combining all of the data necessary for creating the heatmap, while the second section includes the actual heatmap creation.
+
+```{r MP heatmap data}
+
+#Find normalized counts of the ASV's from the deseq object
+mp_time_deseq_norm_counts <- as.data.frame(counts(mp_time_deseq, normalize = TRUE))
+
+#Make the rownames a column
+sig_norm_counts_time <- tibble::rownames_to_column(mp_time_deseq_norm_counts, var = "ASV")
+
+#Gathering the normalized counts into 2 columns
+sig_norm_counts_time_long <- gather(sig_norm_counts_time, key = "samplename",
+                                value = "normalized_counts", -ASV)
+
+#Create dataframe out of the phyloseq metadata so that we can ID these samples
+meta_time_heatmap <- data.frame(sample_data(MPphyseq)) %>%
+  tibble::rownames_to_column(var = "samplename")
+
+#Merge metadata with sig_norm_counts_time_long so that it includes metadata
+sig_norm_counts_time_long <- sig_norm_counts_time_long %>%
+  left_join(meta_time_heatmap, by = "samplename")
+
+#Filter: Remove columns that aren't relevant for the following graph, and filter the particle_effluent_time column so that the dataset includes only the samples contrasted in deseq. The last two lines of the code below calculate the average abundance of each ASV for each of the six particle_effluent_time categories (MP_CON_2, MP_CON_6, MP_CON_10, MP_TWW_2, MP_TWW_6, MP_TWW_10).
+sig_norm_counts_time_long_2 <- sig_norm_counts_time_long %>% 
+  filter(particle_effluent_time %in% c("MP_CON_2", "MP_CON_6", "MP_CON_10",
+                                       "MP_TWW_2", "MP_TWW_6", "MP_TWW_10")) %>%
+  group_by(ASV, particle_effluent_time) %>%
+    dplyr::summarize(Mean = mean(normalized_counts, na.rm=TRUE))
+
+#Add 1 to the averaged normalized count data to account for 0's and then log transform the count data
+sig_norm_counts_time_long_2$log_normalized_counts <- log(sig_norm_counts_time_long_2$Mean+1)
+
+
+
+#Grab ASV's from the filtered DESeq2 lists (which contain only positive log2FoldChanges). Make sure the new columns created for each of the six sets have the same label for the ASV column so that they can be merged into one dataset later.
+taxa_MP_CON2_heatmap <- data.frame(df_mp_time_deseq_CON2_filt) %>%
+  tibble::rownames_to_column(var = "ASV") %>%
+  select(ASV)
+
+taxa_MP_CON6_heatmap <- data.frame(df_mp_time_deseq_CON6_filt) %>%
+  tibble::rownames_to_column(var = "ASV") %>%
+  select(ASV)
+
+taxa_MP_CON10_heatmap <- data.frame(df_mp_time_deseq_CON10_filt) %>%
+  tibble::rownames_to_column(var = "ASV") %>%
+  select(ASV)
+
+
+taxa_MP_TWW2_heatmap <- data.frame(df_mp_time_deseq_TWW2_filt) %>%
+  tibble::rownames_to_column(var = "ASV") %>%
+  select(ASV)
+
+taxa_MP_TWW6_heatmap <- data.frame(df_mp_time_deseq_TWW6_filt) %>%
+  tibble::rownames_to_column(var = "ASV") %>%
+  select(ASV)
+
+taxa_MP_TWW10_heatmap <- data.frame(df_mp_time_deseq_TWW10_filt) %>%
+  tibble::rownames_to_column(var = "ASV") %>%
+  select(ASV)
+
+#Merge these dataframes; note that "all=TRUE" keeps all values from the ASV column, even those that don't match across all dataframes
+DESeq_sig_taxa_MP <- merge(taxa_MP_CON2_heatmap, taxa_MP_CON6_heatmap, by = "ASV", all=TRUE)
+
+DESeq_sig_taxa_MP <- merge(DESeq_sig_taxa_MP, taxa_MP_CON10_heatmap, by = "ASV", all=TRUE)
+
+DESeq_sig_taxa_MP <- merge(DESeq_sig_taxa_MP, taxa_MP_TWW2_heatmap, by = "ASV", all=TRUE)
+
+DESeq_sig_taxa_MP <- merge(DESeq_sig_taxa_MP, taxa_MP_TWW6_heatmap, by = "ASV", all=TRUE)
+
+DESeq_sig_taxa_MP <- merge(DESeq_sig_taxa_MP, taxa_MP_TWW10_heatmap, by = "ASV", all=TRUE)
+
+
+
+#Now we can filter the sig_norm_counts_time_long_2 dataframe (which includes the log normalized count data that we need) based on these ASV's; here we use left_join, which will only include the row names listed in DESeq_sig_taxa_MP.
+sig_norm_counts_time_long_filt <- DESeq_sig_taxa_MP %>%
+  left_join(sig_norm_counts_time_long_2, by = "ASV") 
+
+#Now we can restructure this dataframe so that each group in the particle_effluent_time column is a separate column
+sig_norm_counts_heatmap_format <- sig_norm_counts_time_long_filt %>%
+  select(-Mean) %>% 
+  pivot_wider(names_from = particle_effluent_time, values_from = log_normalized_counts)  
+
+#This dataframe now contains the average log normalized counts (extracted from DESeq2) for each significant ASV in each treatment category. We also need to add taxonomic information to each ASV so that we can ID these ASV's. First, create a dataframe containing the taxonomic information for each ASV:
+tax_tab_df <- data.frame((tax_table(MPphyseq))) %>%
+  tibble::rownames_to_column(var = "ASV")
+
+#And then left_join that taxonomic information with the dataframe containing the DESeq ASV's with log normalized counts:
+sig_norm_counts_time_long_filt_tax <- sig_norm_counts_heatmap_format %>%
+  left_join(tax_tab_df, by = "ASV")
+
+#Finally, order alphabetically by Class:
+sig_norm_counts_time_long_filt_tax <- sig_norm_counts_time_long_filt_tax[order(sig_norm_counts_time_long_filt_tax$Class),]
+
+```
+
+```{r MP heatmap creation, warning=FALSE, error=TRUE}
+
+#Pheatmap only takes a matrix that contains numeric values as input - 
+#grab only the columns with the numeric values we want to examine
+matrix_sig_ASVs <- as.matrix(sig_norm_counts_time_long_filt_tax[2:7])
+
+#Make sure the sig_norm_counts_time_long_filt_tax data is a dataframe
+sig_norm_counts_time_long_filt_tax <- as.data.frame(sig_norm_counts_time_long_filt_tax)
+class(sig_norm_counts_time_long_filt_tax)
+
+#Add the Species level names to the rows
+rownames(matrix_sig_ASVs) <- as.character(sig_norm_counts_time_long_filt_tax[, "Species"])
+
+#Create a dataframe containing metadata; be sure to label the rows using row.names with the same names as the columns in matrix_2w
+metadata_sig_ASVs <- data.frame(
+  effluent = c("River", "River", "River", "TWW", "TWW", "TWW"),
+  week = c("10", "2", "6", "10", "2", "6")
+)
+
+row.names(metadata_sig_ASVs) <- c("MP_CON_10", "MP_CON_2", "MP_CON_6", 
+                                  "MP_TWW_10", "MP_TWW_2", "MP_TWW_6") 
+   
+#Define the annotation color for columns and rows
+annotation_col = data.frame(
+  effluent = as.factor(metadata_sig_ASVs$effluent), 
+  week = as.factor(metadata_sig_ASVs$week),
+  check.names = FALSE)
+
+rownames(annotation_col) = rownames(metadata_sig_ASVs)
+
+annotation_row = data.frame(
+  Class = as.factor(sig_norm_counts_time_long_filt_tax[, "Class"]))
+
+rownames(annotation_row) = rownames(matrix_sig_ASVs)
+
+#Choose and assign colors
+#ann_color should be named vectors
+class_col = colorRampPalette(brewer.pal(9,"RdYlBu"))(31)
+names(class_col) = levels(annotation_row$Class)
+ann_colors = list(
+  effluent = c(River = "red", TWW = "blue"),
+  week = c('2' = "red", '6' = "blue", '10' = "yellow"),
+  Class = class_col)
+
+#Plot heatmap; the scale = "column" function normalizes the values of the 
+#matrix by column; could also normalize by row instead
+#If you want to view the relative abundance data without a normalization, remove
+#the scale function from the code entirely 
+abundant_heatmap_all_sig_ASVs <- ComplexHeatmap::pheatmap(matrix_sig_ASVs, 
+                         annotation_col = annotation_col, 
+                         annotation_row = annotation_row, 
+                         annotation_colors = ann_colors,
+                         cluster_rows = FALSE)
+
+print(abundant_heatmap_all_sig_ASVs)
+
+```
+
+### Heatmap at genus level
+
+Same heatmap as above, but concatenated by genus level so that trends can be more easily discerned.
+
+```{r MP heatmap genus, warning=FALSE, error=TRUE}
+
+#First, left_join that taxonomic information with the dataframe containing the DESeq ASV's with log normalized counts:
+sig_norm_counts_tax_genus <- sig_norm_counts_time_long_filt %>%
+  left_join(tax_tab_df, by = "ASV")
+
+#Group by genus
+sig_norm_counts_time_long_filt_genus <- sig_norm_counts_tax_genus %>% 
+  group_by(particle_effluent_time, 
+           Kingdom, Phylum, Class, Order, Family, Genus) %>%
+  dplyr::summarize(log_normalized_counts = mean(log_normalized_counts, na.rm=TRUE)) %>%
+  arrange(Class)
+
+#Now we can restructure this dataframe so that each group in the particle_effluent_time column is a separate column
+sig_norm_counts_heatmap_format_genus <- sig_norm_counts_time_long_filt_genus %>%
+    pivot_wider(names_from = particle_effluent_time, values_from = log_normalized_counts) 
+
+#Now create the heatmap
+
+#Pheatmap only takes a matrix that contains numeric values as input - 
+#grab only the columns with the numeric values we want to examine
+matrix_sig_ASVs_genus <- as.matrix(sig_norm_counts_heatmap_format_genus[7:12])
+
+#Make sure the sig_norm_counts_time_long_filt_tax data is a dataframe
+sig_norm_counts_heatmap_format_genus <- as.data.frame(sig_norm_counts_heatmap_format_genus)
+class(sig_norm_counts_heatmap_format_genus)
+
+#Add the Species level names to the rows
+rownames(matrix_sig_ASVs_genus) <- as.character(sig_norm_counts_heatmap_format_genus[, "Genus"])
+
+#Create a dataframe containing metadata; be sure to label the rows using row.names with the same names as the columns in matrix_sig_ASVs_genus
+metadata_sig_ASVs_genus <- data.frame(
+  effluent = c("River", "River", "River", "TWW", "TWW", "TWW"),
+  week = c("10", "2", "6", "10", "2", "6")
+)
+
+row.names(metadata_sig_ASVs_genus) <- c("MP_CON_10", "MP_CON_2", "MP_CON_6", 
+                                  "MP_TWW_10", "MP_TWW_2", "MP_TWW_6") 
+   
+#Define the annotation color for columns and rows
+annotation_col_genus = data.frame(
+  effluent = as.factor(metadata_sig_ASVs_genus$effluent), 
+  week = as.factor(metadata_sig_ASVs_genus$week),
+  check.names = FALSE)
+
+rownames(annotation_col_genus) = rownames(metadata_sig_ASVs_genus)
+
+annotation_row = data.frame(
+  Class = as.factor(sig_norm_counts_heatmap_format_genus[, "Class"]))
+
+rownames(annotation_row) = rownames(matrix_sig_ASVs_genus)
+
+#Choose and assign colors
+#ann_color should be named vectors
+class_col = colorRampPalette(brewer.pal(9,"RdYlBu"))(31)
+names(class_col) = levels(annotation_row$Class)
+ann_colors = list(
+  effluent = c(River = "red", TWW = "blue"),
+  week = c('2' = "red", '6' = "blue", '10' = "yellow"),
+  Class = class_col)
+
+#Plot heatmap; the scale = "column" function normalizes the values of the 
+#matrix by column; could also normalize by row instead
+#If you want to view the relative abundance data without a normalization, remove
+#the scale function from the code entirely 
+heatmap_sig_ASVs_genus <- ComplexHeatmap::pheatmap(matrix_sig_ASVs_genus, 
+                         annotation_col = annotation_col, 
+                         annotation_row = annotation_row, 
+                         annotation_colors = ann_colors,
+                         cluster_rows = FALSE)
+
+print(heatmap_sig_ASVs_genus)
+
+#Save as an svg file
+ggsave(filename="Microplastics_sig_ASVs_genus.pdf", plot=heatmap_sig_ASVs_genus, width=12, height=10, device=pdf)
+
+png("Microplastics_sig_ASVs_genus.png")
+dev.off()
+```
+
+### Finding ASV's unique to TWW MP communities
+
+```{r unique TWW}
+
+#Combine all river water MP timepoints. To do this, we'll use the dataframes created from the filtered DESeq2 lists above. Note that "all=TRUE" keeps all values from the ASV column, even those that don't match across all dataframes
+DESeq_sig_taxa_MP_CON <- merge(taxa_MP_CON2_heatmap, taxa_MP_CON6_heatmap, by = "ASV", all=TRUE)
+
+DESeq_sig_taxa_MP_CON <- merge(DESeq_sig_taxa_MP_CON, taxa_MP_CON10_heatmap, by = "ASV", all=TRUE)
+
+#Now combine all TWW MP timepoints.
+DESeq_sig_taxa_MP_TWW <- merge(taxa_MP_TWW2_heatmap, taxa_MP_TWW6_heatmap, by = "ASV", all=TRUE)
+
+DESeq_sig_taxa_MP_TWW <- merge(DESeq_sig_taxa_MP_TWW, taxa_MP_TWW10_heatmap, by = "ASV", all=TRUE)
+
+#Make each dataframe into a list
+list_MP_CON_all <- list(DESeq_sig_taxa_MP_CON$ASV)
+list_MP_TWW_all <- list(DESeq_sig_taxa_MP_TWW$ASV)
+
+#Change to characters
+taxa_MP_CON_chr <- as.character(list_MP_CON_all[[1]])
+taxa_MP_TWW_chr <- as.character(list_MP_TWW_all[[1]])
+
+#Make list for ggVennDiagram
+MP_TWW_CON_comparison <- list(taxa_MP_CON_chr, taxa_MP_TWW_chr) %>%
+  setNames(c("CON", "TWW"))
+
+#Make Venn Diagram - TWW vs CON comparison
+ggVennDiagram(MP_TWW_CON_comparison) + scale_fill_gradient(low="blue",high = "red")
+
+
+#Now finding unique TWW ASV's using nVennR; for some reason, you can't extract the intersections from ggVennDiagram plots, but you can easily do it with nVennR plots, so we'll use nVennR here to get the ASV's that we're interested in (the ones only present on TWW MP). 
+nVennR_plot_test_TWW <- plotVenn(list(DESeq_sig_taxa_MP_TWW, DESeq_sig_taxa_MP_CON), sNames=c("TWW", "CON"))
+
+#Grab the list of ASV's comprising each region from nVennR plot objects
+TWW_Venn_categories <- nVennR_plot_test_TWW[["reg"]]
+
+#Within this new list is a list of ASV's for each Venn diagram region. We have to compare the number of characters in each list in TWW_Venn_categories to the Venn diagrams in order to determine which list (numbered as 1-3) is each region of the Venn diagram. Then, we can create individual dataframes containing the ASV's for each Venn diagram region.
+Venn_TWW_only <- data.frame(TWW_Venn_categories[[1]])
+
+#Rename column as ASV
+Venn_TWW_only <- Venn_TWW_only %>% rename_at('TWW_Venn_categories..1..', ~'ASV')
+
+
+
+
+listVennRegions(nVennR_plot_test_TWW)
+tww_only_2 <- as.data.frame(getVennRegion(nVennR_plot_test_TWW, c(1, 0)))
+
+
+
+```
+
+Now that we have a dataframe containing the ASV's that are unique to the TWW MP's, we'll add the normalized count data to this dataframe and rearrage it in order to get it into a format suitable for graphing.
+
+```{r TWW ASV only data}
+
+#Now we can filter the sig_norm_counts_time_long_2 dataframe (which includes the log normalized count data that we need) based on these ASV's; here we use left_join, which will only include the row names listed in Venn_TWW_only.
+Venn_TWW_only_counts <- Venn_TWW_only %>%
+  left_join(sig_norm_counts_time_long_2, by = "ASV")
+
+#This dataframe now contains the average log normalized counts (extracted from DESeq2) for each significant ASV in each treatment category. We also need to add taxonomic information to each ASV so that we can ID these ASV's. First, create a dataframe containing the taxonomic information for each ASV:
+tax_tab_df <- data.frame((tax_table(MPphyseq))) %>%
+  tibble::rownames_to_column(var = "ASV")
+
+#And then left_join that taxonomic information with the dataframe containing the DESeq ASV's with log normalized counts:
+Venn_TWW_only_tax <- Venn_TWW_only_counts %>%
+  left_join(tax_tab_df, by = "ASV")
+
+#Now we can restructure this dataframe so that each group in the particle_effluent_time column is a separate column
+Venn_TWW_only_tax <- Venn_TWW_only_tax %>%
+  select(-Mean) %>% 
+  pivot_wider(names_from = particle_effluent_time, values_from = log_normalized_counts)
+
+#Finally, order alphabetically by Class:
+Venn_TWW_only_tax <- Venn_TWW_only_tax[order(Venn_TWW_only_tax$Class),]
+```
+
+### Finding ASV's for each set from the Venn diagrams
+
+In this section I'm going to extract the specific ASV's from each section of the Venn diagrams above, label them with taxonomic information, and then create bar charts so that we can determine who these ASV's are. Although I used the ggVennDiagram package to create the Venn diagrams in the section above, ggVennDiagram doesn't have a function that allows me to extract the values from each Venn diagram category. Instead, here I'll find those same Venn diagram intersections using the nVennR package, which includes a function called getVennRegion that allows for the elements from each region to be extracted easily.
+
+```{r MP sig ASV bars}
+
+#Testing out the nVennR package as an alternative way to create Venn Diagrams
+#River water
+nVennR_plot_test_CON <- plotVenn(list(taxa_MP_CON2_chr, taxa_MP_CON6_chr, taxa_MP_CON10_chr), sNames=c("Week 2", "Week 6", "Week 10"))
+#showSVG(nVennR_plot_test_CON, opacity=0.2)
+
+#TWW
+nVennR_plot_test_TWW <- plotVenn(list(taxa_MP_TWW2_chr, taxa_MP_TWW6_chr, taxa_MP_TWW10_chr), sNames=c("Week 2", "Week 6", "Week 10"))
+#showSVG(nVennR_plot_test_TWW, opacity=0.2)
+
+#Grab the list of ASV's comprising each region from nVennR plot objects
+TWW_Venn_categories <- nVennR_plot_test_TWW[["reg"]]
+
+#With in this new list is a list of ASV's for each Venn diagram region. Have to compare the number of characters in each list in TWW_Venn_categories to the Venn diagrams in order to determine which list (numbered as 1-7) is each region of the Venn diagram. Then, we can create 7 individual dataframes containing the ASV's for each Venn diagram region.
+TWW_Venn_2w <- data.frame(TWW_Venn_categories[[4]])
+
+#Rename column as ASV
+TWW_Venn_2w <- TWW_Venn_2w %>% rename_at('TWW_Venn_categories..4..', ~'ASV')
+
+#Extracting the ASV's from each region
+#getVennRegion(nVennR_plot_test_CON, region)
+#getVennRegion(nVennR_plot_test_TWW, region)
+
+#Add taxonomic information and log normalized count data
+TWW_Venn_2w_tax <- TWW_Venn_2w %>%
+  left_join(sig_norm_counts_time_long_filt_tax, by = "ASV") %>%
+  select(-c(MP_CON_10, MP_CON_2, MP_CON_6, MP_TWW_10, MP_TWW_6))
+
+#Plot!!
+
+```
+
+## Comparing bacterial community composition between glass and microplastics
+
+The following section examines the similarities between microbial communities present on glass beads and those present on MP's, split by effluent type (i.e., river water vs TWW). To do this, we'll be using the results from the DESeq2 tests above.
 
 ### Venn Diagram, river water
 
+We can use the filtered dataframes created above containing the DESeq2 results to create a Venn diagram displaying the overlap between the taxa present on glass beads at different timepoints. To compare MP communities at different timepoints to glass bead communities at different timepoints, we then create an additional Venn diagram displaying the overlap in taxa between these six data points.
+
 ```{r venn glass v plastic river}
 
-#Using the method from above (prepping the data for plots) to prep the deseq output for plotting with ggVennDiagram
-
-#Filter deseq dataframes so that they only include ASV's with positive 
-#log2foldchanges - the point here is to keep only ASV's that were higher in abundance on microplastics then in the water
-
-#Filter the MP dataframes
-df_mp_time_deseq_CON2_filt <- filter(df_mp_time_deseq_CON2_filt, 
-                                     log2FoldChange > 0)
-df_mp_time_deseq_CON6_filt <- filter(df_mp_time_deseq_CON6_filt, 
-                                     log2FoldChange > 0)
-df_mp_time_deseq_CON10_filt <- filter(df_mp_time_deseq_CON10_filt, 
-                                      log2FoldChange > 0)
-
-#Filter the glass dataframes
-df_mp_glass_deseq_CON2_filt <- filter(df_mp_glass_deseq_CON2_filt, 
-                                     log2FoldChange > 0)
-df_mp_glass_deseq_CON6_filt <- filter(df_mp_glass_deseq_CON6_filt, 
-                                     log2FoldChange > 0)
-df_mp_glass_deseq_CON10_filt <- filter(df_mp_glass_deseq_CON10_filt, 
-                                      log2FoldChange > 0)
-
-#Create a column with the filtered deseq dataframe rownames and then filter to 
-#contain only ASV's
-taxa_MP_CON2 <- data.frame(df_mp_time_deseq_CON2_filt) %>%
-  tibble::rownames_to_column(var = "MP_CON_2") %>%
-  select(MP_CON_2)
-
-taxa_MP_CON6 <- data.frame(df_mp_time_deseq_CON6_filt) %>%
-  tibble::rownames_to_column(var = "MP_CON_6") %>%
-  select(MP_CON_6)
-
-taxa_MP_CON10 <- data.frame(df_mp_time_deseq_CON10_filt) %>%
-  tibble::rownames_to_column(var = "MP_CON_10") %>%
-  select(MP_CON_10)
-
-
-taxa_glass_CON2 <- data.frame(df_mp_glass_deseq_CON2_filt) %>%
-  tibble::rownames_to_column(var = "Glass_CON_2") %>%
-  select(Glass_CON_2)
-
-taxa_glass_CON6 <- data.frame(df_mp_glass_deseq_CON6_filt) %>%
-  tibble::rownames_to_column(var = "Glass_CON_6") %>%
-  select(Glass_CON_6)
-
-taxa_glass_CON10 <- data.frame(df_mp_glass_deseq_CON10_filt) %>%
-  tibble::rownames_to_column(var = "Glass_CON_10") %>%
-  select(Glass_CON_10)
-
-#Make each dataframe into a list
-lista <- list(taxa_MP_CON2$MP_CON_2)
-listb <- list(taxa_MP_CON6$MP_CON_6)
-listc <- list(taxa_MP_CON10$MP_CON_10)
-
-listd <- list(taxa_glass_CON2$Glass_CON_2)
-liste <- list(taxa_glass_CON6$Glass_CON_6)
-listf <- list(taxa_glass_CON10$Glass_CON_10)
-
-#Change to characters
-taxa_MP_CON2_chr <- as.character(lista[[1]])
-taxa_MP_CON6_chr <- as.character(listb[[1]])
-taxa_MP_CON10_chr <- as.character(listc[[1]])
-
-taxa_glass_CON2_chr <- as.character(listd[[1]])
-taxa_glass_CON6_chr <- as.character(liste[[1]])
-taxa_glass_CON10_chr <- as.character(listf[[1]])
-
-
-#Make Venn Diagram - all comparisons
+#Make Venn Diagram - glass and MP in river water comparisons
 CON_MP_glass_comparisons <- list(taxa_MP_CON2_chr, taxa_MP_CON6_chr, taxa_MP_CON10_chr, taxa_glass_CON2_chr, taxa_glass_CON6_chr, taxa_glass_CON10_chr) %>%
   setNames(c("MP_CON_2", "MP_CON_6", "MP_CON_10", "Glass_CON_2", "Glass_CON_6", "Glass_CON_10"))
 
 ggVennDiagram(CON_MP_glass_comparisons) + scale_fill_gradient(low="blue",high = "red")
 
-
-#Make Venn Diagram - only the glass comparisons
-CON_glass_comparisons <- list(taxa_glass_CON2_chr, taxa_glass_CON6_chr, taxa_glass_CON10_chr) %>%
-  setNames(c("Week 2", "Week 6", "Week 10"))
-
-ggVennDiagram(CON_glass_comparisons, label_alpha = 0) + scale_fill_gradient(low="blue",high = "red") +
-  theme(legend.position = "bottom", legend.direction = "horizontal")
-
-
 ```
 
 ### Venn Diagram, TWW
 
+Now we'll apply the same methods as above to compare TWW glass bead communties to TWW MP communities.
+
 ```{r venn glass v plastic TWW}
 
-#Using the method from above (prepping the data for plots) to prep the deseq output for plotting with ggVennDiagram
-
-#Filter deseq dataframes so that they only include ASV's with positive 
-#log2foldchanges - the point here is to keep only ASV's that were higher in abundance on microplastics then in the water
-
-#Filter the MP dataframes
-df_mp_time_deseq_TWW2_filt <- filter(df_mp_time_deseq_TWW2_filt, 
-                                     log2FoldChange > 0)
-df_mp_time_deseq_TWW6_filt <- filter(df_mp_time_deseq_TWW6_filt, 
-                                     log2FoldChange > 0)
-df_mp_time_deseq_TWW10_filt <- filter(df_mp_time_deseq_TWW10_filt, 
-                                      log2FoldChange > 0)
-
-#Filter the glass dataframes
-df_mp_glass_deseq_TWW2_filt <- filter(df_mp_glass_deseq_TWW2_filt, 
-                                     log2FoldChange > 0)
-df_mp_glass_deseq_TWW6_filt <- filter(df_mp_glass_deseq_TWW6_filt, 
-                                     log2FoldChange > 0)
-df_mp_glass_deseq_TWW10_filt <- filter(df_mp_glass_deseq_TWW10_filt, 
-                                      log2FoldChange > 0)
-
-#Create a column with the filtered deseq dataframe rownames and then filter to 
-#contain only ASV's
-taxa_MP_TWW2 <- data.frame(df_mp_time_deseq_TWW2_filt) %>%
-  tibble::rownames_to_column(var = "MP_TWW_2") %>%
-  select(MP_TWW_2)
-
-taxa_MP_TWW6 <- data.frame(df_mp_time_deseq_TWW6_filt) %>%
-  tibble::rownames_to_column(var = "MP_TWW_6") %>%
-  select(MP_TWW_6)
-
-taxa_MP_TWW10 <- data.frame(df_mp_time_deseq_TWW10_filt) %>%
-  tibble::rownames_to_column(var = "MP_TWW_10") %>%
-  select(MP_TWW_10)
-
-
-taxa_glass_TWW2 <- data.frame(df_mp_glass_deseq_TWW2_filt) %>%
-  tibble::rownames_to_column(var = "Glass_TWW_2") %>%
-  select(Glass_TWW_2)
-
-taxa_glass_TWW6 <- data.frame(df_mp_glass_deseq_TWW6_filt) %>%
-  tibble::rownames_to_column(var = "Glass_TWW_6") %>%
-  select(Glass_TWW_6)
-
-taxa_glass_TWW10 <- data.frame(df_mp_glass_deseq_TWW10_filt) %>%
-  tibble::rownames_to_column(var = "Glass_TWW_10") %>%
-  select(Glass_TWW_10)
-
-#Make each dataframe into a list
-lista <- list(taxa_MP_TWW2$MP_TWW_2)
-listb <- list(taxa_MP_TWW6$MP_TWW_6)
-listc <- list(taxa_MP_TWW10$MP_TWW_10)
-
-listd <- list(taxa_glass_TWW2$Glass_TWW_2)
-liste <- list(taxa_glass_TWW6$Glass_TWW_6)
-listf <- list(taxa_glass_TWW10$Glass_TWW_10)
-
-#Change to characters
-taxa_MP_TWW2_chr <- as.character(lista[[1]])
-taxa_MP_TWW6_chr <- as.character(listb[[1]])
-taxa_MP_TWW10_chr <- as.character(listc[[1]])
-
-taxa_glass_TWW2_chr <- as.character(listd[[1]])
-taxa_glass_TWW6_chr <- as.character(liste[[1]])
-taxa_glass_TWW10_chr <- as.character(listf[[1]])
-
-
-#Make Venn Diagram - all comparisons
+#Make Venn Diagram - glass and MP in TWW comparisons
 TWW_MP_glass_comparisons <- list(taxa_MP_TWW2_chr, taxa_MP_TWW6_chr, taxa_MP_TWW10_chr, taxa_glass_TWW2_chr, taxa_glass_TWW6_chr, taxa_glass_TWW10_chr) %>%
   setNames(c("MP_TWW_2", "MP_TWW_6", "MP_TWW_10", "Glass_TWW_2", "Glass_TWW_6", "Glass_TWW_10"))
 
 ggVennDiagram(TWW_MP_glass_comparisons) + scale_fill_gradient(low="blue",high = "red")
+ 
+```
+
+### SuperExactTest
+
+```{r SuperExactTest glass v MP}
+
+#Grabbing lists from the Venn diagram sections for MP and glass beads, above in order to create a list with all MP and glass comparisons across water types
+all_effluent_MP_glass_comparisons <- list(
+          taxa_MP_CON2_chr, taxa_MP_CON6_chr, taxa_MP_CON10_chr, 
+          taxa_MP_TWW2_chr, taxa_MP_TWW6_chr, taxa_MP_TWW10_chr, 
+          taxa_glass_CON2_chr, taxa_glass_CON6_chr, taxa_glass_CON10_chr,        
+          taxa_glass_TWW2_chr, taxa_glass_TWW6_chr, taxa_glass_TWW10_chr) %>%
+  setNames(c(
+          "MP_CON_2", "MP_CON_6", "MP_CON_10",
+          "MP_TWW_2", "MP_TWW_6", "MP_TWW_10", 
+          "Glass_CON_2", "Glass_CON_6", "Glass_CON_10",
+          "Glass_TWW_2", "Glass_TWW_6", "Glass_TWW_10"))
 
 
-#Make Venn Diagram - only the glass comparisons
-TWW_glass_comparisons <- list(taxa_glass_TWW2_chr, taxa_glass_TWW6_chr, taxa_glass_TWW10_chr) %>%
-  setNames(c("Week 2", "Week 6", "Week 10"))
+#Run the super exact test; n is the total number in the deseq datasets from above
+res_all_glass_mp=supertest(all_effluent_MP_glass_comparisons, n=994)
 
-ggVennDiagram(TWW_glass_comparisons, label_alpha = 0) + scale_fill_gradient(low="blue",high = "red") +
-  theme(legend.position = "bottom", legend.direction = "horizontal")
+#Plot SuperExactTest results - circular plot
+plot(res_all_glass_mp, sort.by="size", margin=c(2,2,2,2), color.scale.pos=c(0.85,1), legend.pos=c(0.9,0.15))
+
+#Another plot - bar plot,  only intersections among 6 sets
+plot(res_all_glass_mp, Layout="landscape", degree=6, sort.by="size", margin=c(0.5,5,1,2))
+
+
+```
+
+The plots produced above are very crowded, making it difficult to actually see the results.
+
+```{r glass v plastic superexacttest}
+
+#Create a dataframe out of the SuperExactTest results
+res_all_glass_mp_df <- summary(res_all_glass_mp)$Table
+
+
 ```
 
 # NMDS plots - filtered dataset
+
+The NMDS analyses completed above were run on the full phyloseq object, which contained all ASV's, including those with very low abundance and minimal presence in the samples. Now we'll re-run the NMDS analyses on the filtered phyloseq object that we imported into DESeq2.
+
+## Preparing the data
+
+Before we can create NMDS plots, we need to transform the filtered phyloseq object from counts to relative abundance and then make the variables factors.
+
+```{r}
+
+#Transform to relative abundance. Save as new object.
+MPfiltRA = transform_sample_counts(ps.taxa.all.filt, function(x){x / sum(x)})
+
+#Order factors
+sample_data(MPfiltRA)$effluent <- factor(sample_data(MPfiltRA)$effluent, 
+                                           levels = c("CON", "TWW"),
+                                           labels = c("CON", "TWW"))
+
+sample_data(MPfiltRA)$polymer_type <- factor(sample_data(MPfiltRA)$polymer_type, 
+                        levels = c("Glass", "HDPE", "LDPE", "PP", "PS", "Water"),
+                        labels = c("Glass", "HDPE", "LDPE", "PP", "PS", "Water"))
+
+sample_data(MPfiltRA)$week <- factor(sample_data(MPfiltRA)$week, 
+                                       levels = c("0", "2", "6", "10"),
+                                       labels = c("0", "2", "6", "10"))
+
+sample_data(MPfiltRA)$sample_type <- factor(sample_data(MPfiltRA)$sample_type, 
+                                              levels = c("Particle", "Water"),
+                                              labels = c("Particle", "Water"))
+
+sample_data(MPfiltRA)$particle_type <- factor(sample_data(MPfiltRA)$particle_type, 
+                                              levels = c("MP", "Glass", "Water"),
+                                              labels = c("MP", "Glass", "Water"))
+```
+
+## NMDS of all data
+
+Now we can create an NMDS plot using the filtered data that plots all sample variables (i.e., effluent type, polymer type, time point, etc.).
+
+```{r NMDS 994}
+
+filt.nmds.source.ord <- ordinate(
+  physeq = MPfiltRA, 
+  method = "NMDS", 
+  distance = "bray"
+)
+
+#Plot, color coding by particle type
+filt.nmds.particle_type <- plot_ordination(
+  physeq = MPfiltRA,
+  ordination = filt.nmds.source.ord) + 
+  scale_fill_manual(values = plot.colors, "Particle Type") +
+  scale_shape_manual(values = c("MP" = 21, "Glass" = 21, "Water" = 21), name = "Particle Type") +
+  geom_point(mapping = aes(fill = factor(particle_type), shape = particle_type, size = 5)) +
+  guides(size=FALSE) +
+  guides(shape = guide_legend(override.aes = list(size = 3))) +
+  theme(plot.title = element_text(size = 18),
+        text = element_text(size = 18), 
+        axis.title = element_text(size = 15),
+        panel.spacing = unit(1, "lines"), 
+        panel.border = element_rect(colour = "black", fill = NA, size = 0.5), 
+        panel.background = element_blank(), 
+        legend.text = element_text(size = 15),
+        legend.title = element_text(size = 15),
+        legend.position = c(.99, .99),
+        legend.justification = c("right", "top"),
+        legend.box.just = "right",
+        legend.margin = margin(6, 6, 6, 6)) +
+  stat_ellipse(aes(group=particle_type))
+
+print(filt.nmds.particle_type)
+
+#Plot, color coding by water source
+filt.nmds.source <- plot_ordination(
+  physeq = MPfiltRA,
+  ordination = filt.nmds.source.ord) + 
+  scale_fill_manual(values = plot.colors, "Water Source") +
+  scale_shape_manual(values = c("TWW" = 21, "CON" = 21), name = "Water Source") +
+  geom_point(mapping = aes(fill = factor(effluent), shape = effluent, size = 5)) +
+  guides(size=FALSE) +
+  guides(shape = guide_legend(override.aes = list(size = 3))) +
+  theme(plot.title = element_text(size = 18),
+        text = element_text(size = 18), 
+        axis.title = element_text(size = 15),
+        panel.spacing = unit(1, "lines"), 
+        panel.border = element_rect(colour = "black", fill = NA, size = 0.5), 
+        panel.background = element_blank(), 
+        legend.text = element_text(size = 15),
+        legend.title = element_text(size = 15),
+        legend.position = c(.99, .99),
+        legend.justification = c("right", "top"),
+        legend.box.just = "right",
+        legend.margin = margin(6, 6, 6, 6)) +
+  stat_ellipse(aes(group=effluent))
+
+print(filt.nmds.source)
+
+#Plot, color coding by week
+filt.nmds.week <- plot_ordination(
+  physeq = MPfiltRA,
+  ordination = filt.nmds.source.ord) + 
+  scale_fill_manual(values = plot.colors, "Week") +
+  scale_shape_manual(values = c("0" = 21, "2" = 21, "6" = 21, "10" = 21), name = "Week") +
+  geom_point(mapping = aes(fill = factor(week), shape = week, size = 5)) +
+  guides(size=FALSE) +
+  guides(shape = guide_legend(override.aes = list(size = 3))) +
+  theme(plot.title = element_text(size = 18),
+        text = element_text(size = 18), 
+        axis.title = element_text(size = 15),
+        panel.spacing = unit(1, "lines"), 
+        panel.border = element_rect(colour = "black", fill = NA, size = 0.5), 
+        panel.background = element_blank(), 
+        legend.text = element_text(size = 15),
+        legend.title = element_text(size = 15),
+        legend.position = c(.99, .99),
+        legend.justification = c("right", "top"),
+        legend.box.just = "right",
+        legend.margin = margin(6, 6, 6, 6)) +
+  stat_ellipse(aes(group=week))
+
+print(filt.nmds.week)
+
+#Plot, color coding by sample type
+filt.nmds.sample.type <- plot_ordination(
+  physeq = MPfiltRA,
+  ordination = filt.nmds.source.ord) + 
+  scale_fill_manual(values = plot.colors, "Sample Type") +
+  scale_shape_manual(values = c("Particle" = 21, "Water" = 21), name = "Sample Type") +
+  geom_point(mapping = aes(fill = factor(sample_type), shape = sample_type, size = 5)) +
+  guides(size=FALSE) +
+  guides(shape = guide_legend(override.aes = list(size = 3))) +
+  theme(plot.title = element_text(size = 18),
+        text = element_text(size = 18), 
+        axis.title = element_text(size = 15),
+        panel.spacing = unit(1, "lines"), 
+        panel.border = element_rect(colour = "black", fill = NA, size = 0.5), 
+        panel.background = element_blank(), 
+        legend.text = element_text(size = 15),
+        legend.title = element_text(size = 15),
+        legend.position = c(.99, .99),
+        legend.justification = c("right", "top"),
+        legend.box.just = "right",
+        legend.margin = margin(6, 6, 6, 6)) +
+  stat_ellipse(aes(group=sample_type))
+
+print(filt.nmds.sample.type)
+
+#Use patchwork to combine these 4 plots
+all_combo <- (filt.nmds.particle_type | filt.nmds.source)/(filt.nmds.week | filt.nmds.sample.type)
+
+#Save as an svg file
+ggsave(filename="Microplastics_NMDS_all_Bray.svg", plot=all_combo, width=12, height=10, device=svg)
+
+```
+
+## NMDS of particles (glass and MPs) only, no water, Bray-Curtis dissimilarity
+
+```{r NMDS 994 2}
+
+#Subset phyloseq object
+sample_data(MPfiltRA)
+
+mp.filt.particle <- subset_samples(MPfiltRA, sample_type == "Particle")
+sample_data(MPfiltRA)
+
+#Create NMDS
+mp.filt.particle.nmds.ord <- ordinate(
+  physeq = mp.filt.particle, 
+  method = "NMDS", 
+  distance = "bray"
+)
+
+#Plot, color coding by particle type
+particle.nmds.type <- plot_ordination(
+  physeq = mp.filt.particle,
+  ordination = mp.filt.particle.nmds.ord) + 
+  scale_fill_manual(values = plot.colors, "Particle Type") +
+  scale_shape_manual(values = c("MP" = 21, "Glass" = 21), name = "Particle Type") +
+  geom_point(mapping = aes(fill = factor(particle_type), shape = particle_type, size = 5)) +
+  guides(size=FALSE) +
+  guides(shape = guide_legend(override.aes = list(size = 3))) +
+  theme(plot.title = element_text(size = 18),
+        text = element_text(size = 18), 
+        axis.title = element_text(size = 15),
+        panel.spacing = unit(1, "lines"), 
+        panel.border = element_rect(colour = "black", fill = NA, size = 0.5), 
+        panel.background = element_blank(), 
+        legend.text = element_text(size = 12),
+        legend.title = element_text(size = 13),
+        legend.position = c(.25, .23),
+        legend.justification = c("right", "top"),
+        legend.box.just = "right",
+        legend.margin = margin(6, 6, 6, 6)) +
+  stat_ellipse(aes(group=particle_type))
+
+print(particle.nmds.type)
+
+#Plot, color coding by water source
+particle.nmds.source <- plot_ordination(
+  physeq = mp.filt.particle,
+  ordination = mp.filt.particle.nmds.ord) + 
+  scale_fill_manual(values = plot.colors, "Water Source") +
+  scale_shape_manual(values = c("CON" = 21, "TWW" = 21), name = "Water Source") +
+  geom_point(mapping = aes(fill = factor(effluent), shape = effluent, size = 5)) +
+  guides(size=FALSE) +
+  guides(shape = guide_legend(override.aes = list(size = 3))) +
+  theme(plot.title = element_text(size = 18),
+        text = element_text(size = 18), 
+        axis.title = element_text(size = 15),
+        panel.spacing = unit(1, "lines"), 
+        panel.border = element_rect(colour = "black", fill = NA, size = 0.5), 
+        panel.background = element_blank(), 
+        legend.text = element_text(size = 12),
+        legend.title = element_text(size = 13),
+        legend.position = c(.25, .23),
+        legend.justification = c("right", "top"),
+        legend.box.just = "right",
+        legend.margin = margin(6, 6, 6, 6)) +
+  stat_ellipse(aes(group=effluent))
+
+print(particle.nmds.source)
+
+#Plot, color coding by week
+particle.nmds.week <- plot_ordination(
+  physeq = mp.filt.particle,
+  ordination = mp.filt.particle.nmds.ord) + 
+  scale_fill_manual(values = plot.colors, "Week") +
+  scale_shape_manual(values = c("2" = 21, "6" = 21, "10" = 21), name = "Week") +
+  geom_point(mapping = aes(fill = factor(week), shape = week, size = 5)) +
+  guides(size=FALSE) +
+  guides(shape = guide_legend(override.aes = list(size = 3))) +
+  theme(plot.title = element_text(size = 18),
+        text = element_text(size = 18), 
+        axis.title = element_text(size = 15),
+        panel.spacing = unit(1, "lines"), 
+        panel.border = element_rect(colour = "black", fill = NA, size = 0.5), 
+        panel.background = element_blank(), 
+        legend.text = element_text(size = 12),
+        legend.title = element_text(size = 13),
+        legend.position = c(.14, .27),
+        legend.justification = c("right", "top"),
+        legend.box.just = "right",
+        legend.margin = margin(6, 6, 6, 6)) +
+  stat_ellipse(aes(group=week))
+
+print(particle.nmds.week)
+
+#Plot, color coding by polymer type
+particle.nmds.polymer <- plot_ordination(
+  physeq = mp.filt.particle,
+  ordination = mp.filt.particle.nmds.ord) + 
+  scale_fill_manual(values = plot.colors, "Polymer Type") +
+  scale_shape_manual(values = c("Glass" = 21, "HDPE" = 21, "LDPE" = 21, "PP" = 21,
+                                "PS" = 21), name = "Polymer Type") +
+  geom_point(mapping = aes(fill = factor(polymer_type), shape = polymer_type, size = 5)) +
+  guides(size=FALSE) +
+  guides(shape = guide_legend(override.aes = list(size = 3))) +
+  theme(plot.title = element_text(size = 18),
+        text = element_text(size = 18), 
+        axis.title = element_text(size = 15),
+        panel.spacing = unit(1, "lines"), 
+        panel.border = element_rect(colour = "black", fill = NA, size = 0.5), 
+        panel.background = element_blank(), 
+        legend.text = element_text(size = 12),
+        legend.title = element_text(size = 13),
+        legend.position = c(.25, .4),
+        legend.justification = c("right", "top"),
+        legend.box.just = "right",
+        legend.margin = margin(6, 6, 6, 6)) + 
+  stat_ellipse(aes(group=polymer_type))
+
+print(particle.nmds.polymer)
+
+#Use patchwork to combine these 4 plots
+particle_combo <- (particle.nmds.type | particle.nmds.source)/(particle.nmds.week | particle.nmds.polymer)
+
+#Save as an svg file
+ggsave(filename="Microplastics_NMDS_particle.svg", plot=particle_combo, width=12, height=10, device=svg)
+
+```
+
+## NMDS of particles (glass and MPs) only, no water, at 2 weeks, Bray-Curtis dissimilarity
+
+```{r NMDS 994 3}
+
+
+```
 
 # Session Info
 

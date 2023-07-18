@@ -117,54 +117,89 @@ Sarah Brown
 -   <a href="#8-differential-abundance-with-deseq2"
     id="toc-8-differential-abundance-with-deseq2">8 Differential abundance
     with DESeq2</a>
-    -   <a href="#81-filtering-the-phyloseq-object"
-        id="toc-81-filtering-the-phyloseq-object">8.1 Filtering the phyloseq
+    -   <a href="#81-examining-filtration-cutoff"
+        id="toc-81-examining-filtration-cutoff">8.1 Examining filtration
+        cutoff</a>
+    -   <a href="#82-filtering-the-phyloseq-object"
+        id="toc-82-filtering-the-phyloseq-object">8.2 Filtering the phyloseq
         object</a>
-    -   <a href="#82-tww-vs-water-mp-only-all-timepoints"
-        id="toc-82-tww-vs-water-mp-only-all-timepoints">8.2 TWW vs Water, MP
-        Only, all timepoints</a>
-        -   <a href="#821-create-dot-plot-of-results---log-normalized-counts"
-            id="toc-821-create-dot-plot-of-results---log-normalized-counts">8.2.1
+    -   <a href="#83-mp-in-tww-vs-mp-in-river-water-all-timepoints"
+        id="toc-83-mp-in-tww-vs-mp-in-river-water-all-timepoints">8.3 MP in TWW
+        vs MP in River Water, all timepoints</a>
+        -   <a href="#831-create-dot-plot-of-results---log-normalized-counts"
+            id="toc-831-create-dot-plot-of-results---log-normalized-counts">8.3.1
             Create dot plot of results - log normalized counts</a>
+    -   <a href="#84-mp-vs-glass-all-timepoints-both-water-sources"
+        id="toc-84-mp-vs-glass-all-timepoints-both-water-sources">8.4 MP vs
+        glass, all timepoints, both water sources</a>
+        -   <a href="#841-venn-diagrams" id="toc-841-venn-diagrams">8.4.1 Venn
+            Diagrams</a>
     -   <a
-        href="#83-examining-changes-in-bacterial-communities-on-glass-beads-over-time"
-        id="toc-83-examining-changes-in-bacterial-communities-on-glass-beads-over-time">8.3
+        href="#85-examining-changes-in-bacterial-communities-on-glass-beads-over-time"
+        id="toc-85-examining-changes-in-bacterial-communities-on-glass-beads-over-time">8.5
         Examining changes in bacterial communities on glass beads over time</a>
         -   <a
-            href="#831-contrasts---2w-6w-10w-river-water-glass-only-vs-river-water"
-            id="toc-831-contrasts---2w-6w-10w-river-water-glass-only-vs-river-water">8.3.1
+            href="#851-contrasts---2w-6w-10w-river-water-glass-only-vs-river-water"
+            id="toc-851-contrasts---2w-6w-10w-river-water-glass-only-vs-river-water">8.5.1
             Contrasts - 2w, 6w, 10w river water glass only, vs river water</a>
-        -   <a href="#832-contrasts---2w-6w-10w-tww-glass-only-vs-tww"
-            id="toc-832-contrasts---2w-6w-10w-tww-glass-only-vs-tww">8.3.2 Contrasts
+        -   <a href="#852-contrasts---2w-6w-10w-tww-glass-only-vs-tww"
+            id="toc-852-contrasts---2w-6w-10w-tww-glass-only-vs-tww">8.5.2 Contrasts
             - 2w, 6w, 10w TWW Glass only, vs TWW</a>
+        -   <a href="#853-venn-diagrams" id="toc-853-venn-diagrams">8.5.3 Venn
+            Diagrams</a>
     -   <a
-        href="#84-examining-changes-in-bacterial-communities-on-microplastics-over-time"
-        id="toc-84-examining-changes-in-bacterial-communities-on-microplastics-over-time">8.4
+        href="#86-examining-changes-in-bacterial-communities-on-microplastics-over-time"
+        id="toc-86-examining-changes-in-bacterial-communities-on-microplastics-over-time">8.6
         Examining changes in bacterial communities on microplastics over
         time</a>
-        -   <a href="#841-contrasts---2w-6w-10w-river-water-mps-only-vs-river-water"
-            id="toc-841-contrasts---2w-6w-10w-river-water-mps-only-vs-river-water">8.4.1
+        -   <a href="#861-contrasts---2w-6w-10w-river-water-mps-only-vs-river-water"
+            id="toc-861-contrasts---2w-6w-10w-river-water-mps-only-vs-river-water">8.6.1
             Contrasts - 2w, 6w, 10w river water MP’s only, vs river water</a>
-        -   <a href="#842-contrasts---2w-6w-10w-tww-mps-only-vs-tww"
-            id="toc-842-contrasts---2w-6w-10w-tww-mps-only-vs-tww">8.4.2 Contrasts -
+        -   <a href="#862-contrasts---2w-6w-10w-tww-mps-only-vs-tww"
+            id="toc-862-contrasts---2w-6w-10w-tww-mps-only-vs-tww">8.6.2 Contrasts -
             2w, 6w, 10w TWW MP’s only, vs TWW</a>
-        -   <a href="#843-venn-diagrams" id="toc-843-venn-diagrams">8.4.3 Venn
+        -   <a href="#863-venn-diagrams" id="toc-863-venn-diagrams">8.6.3 Venn
             Diagrams</a>
-        -   <a href="#844-superexacttest" id="toc-844-superexacttest">8.4.4
+        -   <a href="#864-superexacttest" id="toc-864-superexacttest">8.6.4
             SuperExactTest</a>
+        -   <a href="#865-heatmap" id="toc-865-heatmap">8.6.5 Heatmap</a>
+        -   <a href="#866-heatmap-at-genus-level"
+            id="toc-866-heatmap-at-genus-level">8.6.6 Heatmap at genus level</a>
+        -   <a href="#867-finding-asvs-unique-to-tww-mp-communities"
+            id="toc-867-finding-asvs-unique-to-tww-mp-communities">8.6.7 Finding
+            ASV’s unique to TWW MP communities</a>
+        -   <a href="#868-finding-asvs-for-each-set-from-the-venn-diagrams"
+            id="toc-868-finding-asvs-for-each-set-from-the-venn-diagrams">8.6.8
+            Finding ASV’s for each set from the Venn diagrams</a>
     -   <a
-        href="#85-comparing-bacterial-community-composition-between-glass-and-microplastics"
-        id="toc-85-comparing-bacterial-community-composition-between-glass-and-microplastics">8.5
+        href="#87-comparing-bacterial-community-composition-between-glass-and-microplastics"
+        id="toc-87-comparing-bacterial-community-composition-between-glass-and-microplastics">8.7
         Comparing bacterial community composition between glass and
         microplastics</a>
-        -   <a href="#851-venn-diagram-river-water"
-            id="toc-851-venn-diagram-river-water">8.5.1 Venn Diagram, river
+        -   <a href="#871-venn-diagram-river-water"
+            id="toc-871-venn-diagram-river-water">8.7.1 Venn Diagram, river
             water</a>
-        -   <a href="#852-venn-diagram-tww" id="toc-852-venn-diagram-tww">8.5.2 Venn
+        -   <a href="#872-venn-diagram-tww" id="toc-872-venn-diagram-tww">8.7.2 Venn
             Diagram, TWW</a>
+        -   <a href="#873-superexacttest" id="toc-873-superexacttest">8.7.3
+            SuperExactTest</a>
 -   <a href="#9-nmds-plots---filtered-dataset"
     id="toc-9-nmds-plots---filtered-dataset">9 NMDS plots - filtered
     dataset</a>
+    -   <a href="#91-preparing-the-data" id="toc-91-preparing-the-data">9.1
+        Preparing the data</a>
+    -   <a href="#92-nmds-of-all-data" id="toc-92-nmds-of-all-data">9.2 NMDS of
+        all data</a>
+    -   <a
+        href="#93-nmds-of-particles-glass-and-mps-only-no-water-bray-curtis-dissimilarity"
+        id="toc-93-nmds-of-particles-glass-and-mps-only-no-water-bray-curtis-dissimilarity">9.3
+        NMDS of particles (glass and MPs) only, no water, Bray-Curtis
+        dissimilarity</a>
+    -   <a
+        href="#94-nmds-of-particles-glass-and-mps-only-no-water-at-2-weeks-bray-curtis-dissimilarity"
+        id="toc-94-nmds-of-particles-glass-and-mps-only-no-water-at-2-weeks-bray-curtis-dissimilarity">9.4
+        NMDS of particles (glass and MPs) only, no water, at 2 weeks,
+        Bray-Curtis dissimilarity</a>
 -   <a href="#10-session-info" id="toc-10-session-info">10 Session Info</a>
 
 # 1 Load Packages and Import Data
@@ -175,308 +210,24 @@ package. The final object is a phyloseq object called MPphyseq.
 ``` r
 library(ggplot2)
 library(vegan)
-```
-
-    ## Loading required package: permute
-
-    ## Loading required package: lattice
-
-    ## This is vegan 2.6-4
-
-``` r
 library(plyr)
 library(dplyr)
-```
-
-    ## 
-    ## Attaching package: 'dplyr'
-
-    ## The following objects are masked from 'package:plyr':
-    ## 
-    ##     arrange, count, desc, failwith, id, mutate, rename, summarise,
-    ##     summarize
-
-    ## The following objects are masked from 'package:stats':
-    ## 
-    ##     filter, lag
-
-    ## The following objects are masked from 'package:base':
-    ## 
-    ##     intersect, setdiff, setequal, union
-
-``` r
 library(scales)
 library(grid)
 library(reshape2)
 library(phyloseq)
 library(picante)
-```
-
-    ## Loading required package: ape
-
-    ## 
-    ## Attaching package: 'ape'
-
-    ## The following object is masked from 'package:dplyr':
-    ## 
-    ##     where
-
-    ## Loading required package: nlme
-
-    ## 
-    ## Attaching package: 'nlme'
-
-    ## The following object is masked from 'package:dplyr':
-    ## 
-    ##     collapse
-
-``` r
 library(tidyr)
-```
-
-    ## 
-    ## Attaching package: 'tidyr'
-
-    ## The following object is masked from 'package:reshape2':
-    ## 
-    ##     smiths
-
-``` r
 library(viridis)
-```
-
-    ## Loading required package: viridisLite
-
-    ## 
-    ## Attaching package: 'viridis'
-
-    ## The following object is masked from 'package:scales':
-    ## 
-    ##     viridis_pal
-
-``` r
 library(qiime2R)
 library(DESeq2)
-```
-
-    ## Loading required package: S4Vectors
-
-    ## Loading required package: stats4
-
-    ## Loading required package: BiocGenerics
-
-    ## 
-    ## Attaching package: 'BiocGenerics'
-
-    ## The following objects are masked from 'package:dplyr':
-    ## 
-    ##     combine, intersect, setdiff, union
-
-    ## The following objects are masked from 'package:stats':
-    ## 
-    ##     IQR, mad, sd, var, xtabs
-
-    ## The following objects are masked from 'package:base':
-    ## 
-    ##     anyDuplicated, aperm, append, as.data.frame, basename, cbind,
-    ##     colnames, dirname, do.call, duplicated, eval, evalq, Filter, Find,
-    ##     get, grep, grepl, intersect, is.unsorted, lapply, Map, mapply,
-    ##     match, mget, order, paste, pmax, pmax.int, pmin, pmin.int,
-    ##     Position, rank, rbind, Reduce, rownames, sapply, setdiff, sort,
-    ##     table, tapply, union, unique, unsplit, which.max, which.min
-
-    ## 
-    ## Attaching package: 'S4Vectors'
-
-    ## The following object is masked from 'package:tidyr':
-    ## 
-    ##     expand
-
-    ## The following objects are masked from 'package:dplyr':
-    ## 
-    ##     first, rename
-
-    ## The following object is masked from 'package:plyr':
-    ## 
-    ##     rename
-
-    ## The following objects are masked from 'package:base':
-    ## 
-    ##     expand.grid, I, unname
-
-    ## Loading required package: IRanges
-
-    ## 
-    ## Attaching package: 'IRanges'
-
-    ## The following object is masked from 'package:nlme':
-    ## 
-    ##     collapse
-
-    ## The following object is masked from 'package:phyloseq':
-    ## 
-    ##     distance
-
-    ## The following objects are masked from 'package:dplyr':
-    ## 
-    ##     collapse, desc, slice
-
-    ## The following object is masked from 'package:plyr':
-    ## 
-    ##     desc
-
-    ## The following object is masked from 'package:grDevices':
-    ## 
-    ##     windows
-
-    ## Loading required package: GenomicRanges
-
-    ## Loading required package: GenomeInfoDb
-
-    ## Loading required package: SummarizedExperiment
-
-    ## Loading required package: MatrixGenerics
-
-    ## Loading required package: matrixStats
-
-    ## 
-    ## Attaching package: 'matrixStats'
-
-    ## The following object is masked from 'package:dplyr':
-    ## 
-    ##     count
-
-    ## The following object is masked from 'package:plyr':
-    ## 
-    ##     count
-
-    ## 
-    ## Attaching package: 'MatrixGenerics'
-
-    ## The following objects are masked from 'package:matrixStats':
-    ## 
-    ##     colAlls, colAnyNAs, colAnys, colAvgsPerRowSet, colCollapse,
-    ##     colCounts, colCummaxs, colCummins, colCumprods, colCumsums,
-    ##     colDiffs, colIQRDiffs, colIQRs, colLogSumExps, colMadDiffs,
-    ##     colMads, colMaxs, colMeans2, colMedians, colMins, colOrderStats,
-    ##     colProds, colQuantiles, colRanges, colRanks, colSdDiffs, colSds,
-    ##     colSums2, colTabulates, colVarDiffs, colVars, colWeightedMads,
-    ##     colWeightedMeans, colWeightedMedians, colWeightedSds,
-    ##     colWeightedVars, rowAlls, rowAnyNAs, rowAnys, rowAvgsPerColSet,
-    ##     rowCollapse, rowCounts, rowCummaxs, rowCummins, rowCumprods,
-    ##     rowCumsums, rowDiffs, rowIQRDiffs, rowIQRs, rowLogSumExps,
-    ##     rowMadDiffs, rowMads, rowMaxs, rowMeans2, rowMedians, rowMins,
-    ##     rowOrderStats, rowProds, rowQuantiles, rowRanges, rowRanks,
-    ##     rowSdDiffs, rowSds, rowSums2, rowTabulates, rowVarDiffs, rowVars,
-    ##     rowWeightedMads, rowWeightedMeans, rowWeightedMedians,
-    ##     rowWeightedSds, rowWeightedVars
-
-    ## Loading required package: Biobase
-
-    ## Welcome to Bioconductor
-    ## 
-    ##     Vignettes contain introductory material; view with
-    ##     'browseVignettes()'. To cite Bioconductor, see
-    ##     'citation("Biobase")', and for packages 'citation("pkgname")'.
-
-    ## 
-    ## Attaching package: 'Biobase'
-
-    ## The following object is masked from 'package:MatrixGenerics':
-    ## 
-    ##     rowMedians
-
-    ## The following objects are masked from 'package:matrixStats':
-    ## 
-    ##     anyMissing, rowMedians
-
-    ## The following object is masked from 'package:phyloseq':
-    ## 
-    ##     sampleNames
-
-``` r
 library(patchwork)
 library(RColorBrewer)
 library(microViz)
-```
-
-    ## microViz version 0.10.8 - Copyright (C) 2022 David Barnett
-    ## ! Website: https://david-barnett.github.io/microViz
-    ## ✔ Useful?  For citation details, run: `citation("microViz")`
-    ## ✖ Silence? `suppressPackageStartupMessages(library(microViz))`
-
-``` r
 library(speedyseq)
-```
-
-    ## 
-    ## Attaching package: 'speedyseq'
-
-    ## The following objects are masked from 'package:phyloseq':
-    ## 
-    ##     filter_taxa, plot_bar, plot_heatmap, plot_tree, psmelt, tax_glom,
-    ##     tip_glom, transform_sample_counts
-
-``` r
 library(ComplexHeatmap)
-```
-
-    ## ========================================
-    ## ComplexHeatmap version 2.14.0
-    ## Bioconductor page: http://bioconductor.org/packages/ComplexHeatmap/
-    ## Github page: https://github.com/jokergoo/ComplexHeatmap
-    ## Documentation: http://jokergoo.github.io/ComplexHeatmap-reference
-    ## 
-    ## If you use it in published research, please cite either one:
-    ## - Gu, Z. Complex Heatmap Visualization. iMeta 2022.
-    ## - Gu, Z. Complex heatmaps reveal patterns and correlations in multidimensional 
-    ##     genomic data. Bioinformatics 2016.
-    ## 
-    ## 
-    ## The new InteractiveComplexHeatmap package can directly export static 
-    ## complex heatmaps into an interactive Shiny app with zero effort. Have a try!
-    ## 
-    ## This message can be suppressed by:
-    ##   suppressPackageStartupMessages(library(ComplexHeatmap))
-    ## ========================================
-
-``` r
 library(ggVennDiagram)
 library(SuperExactTest)
-```
-
-    ## 
-    ## Attaching package: 'SuperExactTest'
-
-    ## The following objects are masked from 'package:GenomicRanges':
-    ## 
-    ##     intersect, union
-
-    ## The following object is masked from 'package:GenomeInfoDb':
-    ## 
-    ##     intersect
-
-    ## The following objects are masked from 'package:IRanges':
-    ## 
-    ##     intersect, union
-
-    ## The following objects are masked from 'package:S4Vectors':
-    ## 
-    ##     intersect, union
-
-    ## The following objects are masked from 'package:BiocGenerics':
-    ## 
-    ##     intersect, union
-
-    ## The following objects are masked from 'package:dplyr':
-    ## 
-    ##     intersect, union
-
-    ## The following objects are masked from 'package:base':
-    ## 
-    ##     intersect, union
-
-``` r
 library(nVennR)
 
 set.seed(13289)
@@ -585,7 +336,7 @@ system.time(rarecurve(mat, step = 100, sample = raremax, col = "blue", label = F
 ![](Analysis_files/figure-gfm/rarefaction%20curve-1.png)<!-- -->
 
     ##    user  system elapsed 
-    ##   23.69    1.72   25.63
+    ##   46.17    3.39   52.09
 
 ``` r
 #Re-label the variables; if you type in MPphyseq you will see that sample_data 
@@ -8055,16 +7806,3391 @@ uncultured_bacterium
 
 # 8 Differential abundance with DESeq2
 
-## 8.1 Filtering the phyloseq object
+## 8.1 Examining filtration cutoff
 
-Before importing the data into DESeq2, we’ll filter the full phyloseq
-object, removing sparse features with \>90% zeros.
+Before we filter the phyloseq object in preparation for importing it
+into DESeq2, we’ll check to see how many ASV’s we’d end up filtering out
+at each cutoff level. In the first part of this code, we calculate in
+how many samples each ASV is not present, and then we divide by the
+total number of samples to get the proportion of samples in which each
+ASV is not present. The bar plot we produce here includes a dashed blue
+line at 0.9, to show how many ASV’s would be removed if we filtered
+samples that contained 0’s in more than 90% of the samples.
+
+``` r
+#For each ASV, find the number of samples in which each ASV is 0, then divide by the total number of samples
+test_filter_method4 <- as.data.frame(rowSums(otu_table(MPphyseq) == 0)/ncol(otu_table(MPphyseq))) 
+
+#Change the name of the column in the test_filter_method4 dataframe; this column contains the proportion of samples in which each ASV is 0
+colnames(test_filter_method4) <- c('samplew0')
+
+#Create a bar plot
+ggplot(data = test_filter_method4) +
+  geom_bar(mapping = aes(x= samplew0)) + 
+  geom_vline(xintercept = 0.9, linetype="dotted", color = "blue", size=1.5) +
+  labs(x = "Proportion of samples in which ASV = 0", y = "# of ASV's") +
+  theme(text = element_text(size = 18), 
+        axis.title = element_text(size = 15),
+        panel.spacing = unit(1, "lines"), 
+        panel.border = element_rect(colour = "black", fill = NA, size = 0.5), 
+        panel.background = element_blank())
+```
+
+    ## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+    ## ℹ Please use `linewidth` instead.
+    ## This warning is displayed once every 8 hours.
+    ## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+    ## generated.
+
+![](Analysis_files/figure-gfm/filt%20test-1.png)<!-- -->
+
+Now trying to graph the relative abundance of the ASV’s that would be
+filtered out if the cutoff was 90%. Here, I’m mostly interested in
+seeing if any of the ASV’s that would be filtered out had a high
+relative abundance in one or more of the samples they were present in.
+
+``` r
+#Find relative abundance first
+MPphyseqRA_cutoff = transform_sample_counts(MPphyseq, function(x){x / sum(x)})
+
+#Creating a phyloseq object that contains only those ASV's that have 0's in more than 90% of samples
+ps.taxa.90 <- prune_taxa(rowSums(otu_table(MPphyseqRA_cutoff) == 0) > ncol(otu_table(MPphyseq)) * 0.9, MPphyseqRA_cutoff)
+
+#Turning this phyloseq object into a dataframe
+ps.taxa.90.df <- as.data.frame(otu_table(ps.taxa.90))
+
+#Find maximum value in each row - this will give us the max value for each ASV
+ps.taxa.90.df$max <- apply(ps.taxa.90.df[1:151], 1, max)
+
+#Finding the column name that the max value came from
+ps.taxa.90.df$max_name <- (colnames(ps.taxa.90.df)[max.col(ps.taxa.90.df[1:151])])
+
+#Making the row names into a column called ASV
+library(tibble)
+```
+
+    ## Warning: package 'tibble' was built under R version 4.2.3
+
+``` r
+ps.taxa.90.df <- tibble::rownames_to_column(ps.taxa.90.df, "ASV")
+
+
+#Now we can finally create a graph that shows how many of these ASV's have high relative abundances
+raretax_max <- ggplot(data = ps.taxa.90.df) +
+   geom_point(mapping = aes(y= max, x=ASV)) + 
+    geom_hline(yintercept = 0.01, linetype="solid", color = "blue", size=1.5) +
+   #scale_y_continuous(limits = c(0, 20)) +
+   labs(x = "ASV", y = "Maximum relative abundance") +
+   theme(text = element_text(size = 18), 
+        axis.title = element_text(size = 15),
+        panel.spacing = unit(1, "lines"), 
+        panel.border = element_rect(colour = "black", fill = NA, size = 0.5), 
+        panel.background = element_blank(),
+        axis.text.x=element_blank())
+
+print(raretax_max)
+```
+
+![](Analysis_files/figure-gfm/90%20percent%200%20abundance-1.png)<!-- -->
+
+Table time! Here, I’ll just print out a table that contains all the
+ASV’s with a maximum relative abundance value over 1%.
+
+``` r
+#Filter the dataframe above to contain only samples with a max relative abundance value greater than 0.01 and keep only selected columns
+top_vals <- ps.taxa.90.df %>% 
+  select(c(ASV, max, max_name)) %>%
+  filter(max >= 0.01)
+
+#Add sample meta data to see which samples contained these ASV's
+
+#First, create a dataframe from the phyloseq metadata
+s <- data.frame(sample_data(MPphyseqRA_cutoff))
+
+#Now create a max_name column to match the one in top_vals so that they can be merged
+s <- tibble::rownames_to_column(s, "max_name")
+
+#Merge based on the max_name columns
+top_vals <- merge(s, top_vals, by = "max_name")
+
+#Remove unecessary columns for easy display as a table
+top_vals <- top_vals %>% 
+  select(!c(bead_diameter, Channel, particle_effluent, particle_effluent_time)) 
+
+#View the last few rows of the table
+knitr::kable(tail(top_vals)) %>% 
+  kableExtra::kable_styling("striped") %>% 
+  kableExtra::scroll_box(width = "100%")
+```
+
+<div
+style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; ">
+
+<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:left;">
+
+max_name
+
+</th>
+<th style="text-align:left;">
+
+effluent
+
+</th>
+<th style="text-align:left;">
+
+week
+
+</th>
+<th style="text-align:left;">
+
+polymer_type
+
+</th>
+<th style="text-align:left;">
+
+sample_type
+
+</th>
+<th style="text-align:left;">
+
+particle_type
+
+</th>
+<th style="text-align:left;">
+
+ASV
+
+</th>
+<th style="text-align:right;">
+
+max
+
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+
+63
+
+</td>
+<td style="text-align:left;">
+
+ESF21MP-93
+
+</td>
+<td style="text-align:left;">
+
+TWW
+
+</td>
+<td style="text-align:left;">
+
+6
+
+</td>
+<td style="text-align:left;">
+
+PP
+
+</td>
+<td style="text-align:left;">
+
+Particle
+
+</td>
+<td style="text-align:left;">
+
+MP
+
+</td>
+<td style="text-align:left;">
+
+171f9a324f97f1cfd82dfc97297b654e
+
+</td>
+<td style="text-align:right;">
+
+0.0167921
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+64
+
+</td>
+<td style="text-align:left;">
+
+ESF21MP-95
+
+</td>
+<td style="text-align:left;">
+
+CON
+
+</td>
+<td style="text-align:left;">
+
+6
+
+</td>
+<td style="text-align:left;">
+
+Glass
+
+</td>
+<td style="text-align:left;">
+
+Particle
+
+</td>
+<td style="text-align:left;">
+
+Glass
+
+</td>
+<td style="text-align:left;">
+
+61cd58eb0632b57766bb21715729fb17
+
+</td>
+<td style="text-align:right;">
+
+0.0579493
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+65
+
+</td>
+<td style="text-align:left;">
+
+ESF21MP-95
+
+</td>
+<td style="text-align:left;">
+
+CON
+
+</td>
+<td style="text-align:left;">
+
+6
+
+</td>
+<td style="text-align:left;">
+
+Glass
+
+</td>
+<td style="text-align:left;">
+
+Particle
+
+</td>
+<td style="text-align:left;">
+
+Glass
+
+</td>
+<td style="text-align:left;">
+
+4286301788a9a7aee943827696d24de5
+
+</td>
+<td style="text-align:right;">
+
+0.0112494
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+66
+
+</td>
+<td style="text-align:left;">
+
+ESF21MP-95
+
+</td>
+<td style="text-align:left;">
+
+CON
+
+</td>
+<td style="text-align:left;">
+
+6
+
+</td>
+<td style="text-align:left;">
+
+Glass
+
+</td>
+<td style="text-align:left;">
+
+Particle
+
+</td>
+<td style="text-align:left;">
+
+Glass
+
+</td>
+<td style="text-align:left;">
+
+3b8a42c16aa5159f7b5f6ccd60079e36
+
+</td>
+<td style="text-align:right;">
+
+0.0129057
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+67
+
+</td>
+<td style="text-align:left;">
+
+ESF21MP-96
+
+</td>
+<td style="text-align:left;">
+
+CON
+
+</td>
+<td style="text-align:left;">
+
+10
+
+</td>
+<td style="text-align:left;">
+
+PP
+
+</td>
+<td style="text-align:left;">
+
+Particle
+
+</td>
+<td style="text-align:left;">
+
+MP
+
+</td>
+<td style="text-align:left;">
+
+630afe4e854c06f7ed5d7c13415e73a5
+
+</td>
+<td style="text-align:right;">
+
+0.0134555
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+68
+
+</td>
+<td style="text-align:left;">
+
+ESF21MP-96
+
+</td>
+<td style="text-align:left;">
+
+CON
+
+</td>
+<td style="text-align:left;">
+
+10
+
+</td>
+<td style="text-align:left;">
+
+PP
+
+</td>
+<td style="text-align:left;">
+
+Particle
+
+</td>
+<td style="text-align:left;">
+
+MP
+
+</td>
+<td style="text-align:left;">
+
+977df7b088d2941ca3d67d06a5aa557a
+
+</td>
+<td style="text-align:right;">
+
+0.0107964
+
+</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+``` r
+#View the whole table
+knitr::kable(top_vals) %>% 
+  kableExtra::kable_styling("striped") %>% 
+  kableExtra::scroll_box(width = "100%")
+```
+
+<div
+style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; ">
+
+<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+
+max_name
+
+</th>
+<th style="text-align:left;">
+
+effluent
+
+</th>
+<th style="text-align:left;">
+
+week
+
+</th>
+<th style="text-align:left;">
+
+polymer_type
+
+</th>
+<th style="text-align:left;">
+
+sample_type
+
+</th>
+<th style="text-align:left;">
+
+particle_type
+
+</th>
+<th style="text-align:left;">
+
+ASV
+
+</th>
+<th style="text-align:right;">
+
+max
+
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-102
+
+</td>
+<td style="text-align:left;">
+
+CON
+
+</td>
+<td style="text-align:left;">
+
+10
+
+</td>
+<td style="text-align:left;">
+
+LDPE
+
+</td>
+<td style="text-align:left;">
+
+Particle
+
+</td>
+<td style="text-align:left;">
+
+MP
+
+</td>
+<td style="text-align:left;">
+
+992f92cb5a2f42daad3b19eb2f4c8209
+
+</td>
+<td style="text-align:right;">
+
+0.0165046
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-106
+
+</td>
+<td style="text-align:left;">
+
+CON
+
+</td>
+<td style="text-align:left;">
+
+10
+
+</td>
+<td style="text-align:left;">
+
+LDPE
+
+</td>
+<td style="text-align:left;">
+
+Particle
+
+</td>
+<td style="text-align:left;">
+
+MP
+
+</td>
+<td style="text-align:left;">
+
+db37c64ea9d7439548921c6e7b95203e
+
+</td>
+<td style="text-align:right;">
+
+0.0164020
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-108
+
+</td>
+<td style="text-align:left;">
+
+CON
+
+</td>
+<td style="text-align:left;">
+
+10
+
+</td>
+<td style="text-align:left;">
+
+LDPE
+
+</td>
+<td style="text-align:left;">
+
+Particle
+
+</td>
+<td style="text-align:left;">
+
+MP
+
+</td>
+<td style="text-align:left;">
+
+478319a37837a95da812aa085f0beab4
+
+</td>
+<td style="text-align:right;">
+
+0.0109148
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-111
+
+</td>
+<td style="text-align:left;">
+
+CON
+
+</td>
+<td style="text-align:left;">
+
+10
+
+</td>
+<td style="text-align:left;">
+
+HDPE
+
+</td>
+<td style="text-align:left;">
+
+Particle
+
+</td>
+<td style="text-align:left;">
+
+MP
+
+</td>
+<td style="text-align:left;">
+
+65658b4b511f848caf5a38db1f4f372c
+
+</td>
+<td style="text-align:right;">
+
+0.0100621
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-111
+
+</td>
+<td style="text-align:left;">
+
+CON
+
+</td>
+<td style="text-align:left;">
+
+10
+
+</td>
+<td style="text-align:left;">
+
+HDPE
+
+</td>
+<td style="text-align:left;">
+
+Particle
+
+</td>
+<td style="text-align:left;">
+
+MP
+
+</td>
+<td style="text-align:left;">
+
+013765eb8af0bb53409e9322f28f56f4
+
+</td>
+<td style="text-align:right;">
+
+0.0229073
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-113
+
+</td>
+<td style="text-align:left;">
+
+TWW
+
+</td>
+<td style="text-align:left;">
+
+10
+
+</td>
+<td style="text-align:left;">
+
+LDPE
+
+</td>
+<td style="text-align:left;">
+
+Particle
+
+</td>
+<td style="text-align:left;">
+
+MP
+
+</td>
+<td style="text-align:left;">
+
+eda97271c29a0d3d78ce5939e2cd25db
+
+</td>
+<td style="text-align:right;">
+
+0.0222859
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-115
+
+</td>
+<td style="text-align:left;">
+
+TWW
+
+</td>
+<td style="text-align:left;">
+
+10
+
+</td>
+<td style="text-align:left;">
+
+Glass
+
+</td>
+<td style="text-align:left;">
+
+Particle
+
+</td>
+<td style="text-align:left;">
+
+Glass
+
+</td>
+<td style="text-align:left;">
+
+49c9fbf40300a6bef20f486b87620b62
+
+</td>
+<td style="text-align:right;">
+
+0.0148013
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-115
+
+</td>
+<td style="text-align:left;">
+
+TWW
+
+</td>
+<td style="text-align:left;">
+
+10
+
+</td>
+<td style="text-align:left;">
+
+Glass
+
+</td>
+<td style="text-align:left;">
+
+Particle
+
+</td>
+<td style="text-align:left;">
+
+Glass
+
+</td>
+<td style="text-align:left;">
+
+be517b868f55e680a8487ab9c9c50746
+
+</td>
+<td style="text-align:right;">
+
+0.0892715
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-117
+
+</td>
+<td style="text-align:left;">
+
+CON
+
+</td>
+<td style="text-align:left;">
+
+10
+
+</td>
+<td style="text-align:left;">
+
+Glass
+
+</td>
+<td style="text-align:left;">
+
+Particle
+
+</td>
+<td style="text-align:left;">
+
+Glass
+
+</td>
+<td style="text-align:left;">
+
+175224a7e06f1a9996c765e0280c41fc
+
+</td>
+<td style="text-align:right;">
+
+0.0640986
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-121
+
+</td>
+<td style="text-align:left;">
+
+CON
+
+</td>
+<td style="text-align:left;">
+
+10
+
+</td>
+<td style="text-align:left;">
+
+HDPE
+
+</td>
+<td style="text-align:left;">
+
+Particle
+
+</td>
+<td style="text-align:left;">
+
+MP
+
+</td>
+<td style="text-align:left;">
+
+1b8e607e3799ad95b613ccf269cfd24e
+
+</td>
+<td style="text-align:right;">
+
+0.0885157
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-122
+
+</td>
+<td style="text-align:left;">
+
+CON
+
+</td>
+<td style="text-align:left;">
+
+10
+
+</td>
+<td style="text-align:left;">
+
+LDPE
+
+</td>
+<td style="text-align:left;">
+
+Particle
+
+</td>
+<td style="text-align:left;">
+
+MP
+
+</td>
+<td style="text-align:left;">
+
+5eb0f8f819d5ac287c2de0b4ec395565
+
+</td>
+<td style="text-align:right;">
+
+0.0179173
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-122
+
+</td>
+<td style="text-align:left;">
+
+CON
+
+</td>
+<td style="text-align:left;">
+
+10
+
+</td>
+<td style="text-align:left;">
+
+LDPE
+
+</td>
+<td style="text-align:left;">
+
+Particle
+
+</td>
+<td style="text-align:left;">
+
+MP
+
+</td>
+<td style="text-align:left;">
+
+5bed12a7494ec97e297b5b792fecda13
+
+</td>
+<td style="text-align:right;">
+
+0.0559464
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-127
+
+</td>
+<td style="text-align:left;">
+
+TWW
+
+</td>
+<td style="text-align:left;">
+
+10
+
+</td>
+<td style="text-align:left;">
+
+PS
+
+</td>
+<td style="text-align:left;">
+
+Particle
+
+</td>
+<td style="text-align:left;">
+
+MP
+
+</td>
+<td style="text-align:left;">
+
+092195296cefcf51fc3a6d0a74bf9f1b
+
+</td>
+<td style="text-align:right;">
+
+0.0278323
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-132
+
+</td>
+<td style="text-align:left;">
+
+TWW
+
+</td>
+<td style="text-align:left;">
+
+10
+
+</td>
+<td style="text-align:left;">
+
+PS
+
+</td>
+<td style="text-align:left;">
+
+Particle
+
+</td>
+<td style="text-align:left;">
+
+MP
+
+</td>
+<td style="text-align:left;">
+
+d9c0e3f307a4c08813fa6b653d5cc3c2
+
+</td>
+<td style="text-align:right;">
+
+0.0216998
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-14
+
+</td>
+<td style="text-align:left;">
+
+CON
+
+</td>
+<td style="text-align:left;">
+
+2
+
+</td>
+<td style="text-align:left;">
+
+PP
+
+</td>
+<td style="text-align:left;">
+
+Particle
+
+</td>
+<td style="text-align:left;">
+
+MP
+
+</td>
+<td style="text-align:left;">
+
+090cb114c19429a593ff79dad37c757f
+
+</td>
+<td style="text-align:right;">
+
+0.0104795
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-21
+
+</td>
+<td style="text-align:left;">
+
+TWW
+
+</td>
+<td style="text-align:left;">
+
+2
+
+</td>
+<td style="text-align:left;">
+
+Glass
+
+</td>
+<td style="text-align:left;">
+
+Particle
+
+</td>
+<td style="text-align:left;">
+
+Glass
+
+</td>
+<td style="text-align:left;">
+
+7f30a3bd5dbeb6fe15774acfd742de9f
+
+</td>
+<td style="text-align:right;">
+
+0.0101674
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-31
+
+</td>
+<td style="text-align:left;">
+
+CON
+
+</td>
+<td style="text-align:left;">
+
+2
+
+</td>
+<td style="text-align:left;">
+
+LDPE
+
+</td>
+<td style="text-align:left;">
+
+Particle
+
+</td>
+<td style="text-align:left;">
+
+MP
+
+</td>
+<td style="text-align:left;">
+
+d8f59fc91500172a095b68c52be074dd
+
+</td>
+<td style="text-align:right;">
+
+0.0105549
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-40
+
+</td>
+<td style="text-align:left;">
+
+CON
+
+</td>
+<td style="text-align:left;">
+
+2
+
+</td>
+<td style="text-align:left;">
+
+LDPE
+
+</td>
+<td style="text-align:left;">
+
+Particle
+
+</td>
+<td style="text-align:left;">
+
+MP
+
+</td>
+<td style="text-align:left;">
+
+ca636ffbcc8128dab6cb27758336a60a
+
+</td>
+<td style="text-align:right;">
+
+0.0121716
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-43
+
+</td>
+<td style="text-align:left;">
+
+TWW
+
+</td>
+<td style="text-align:left;">
+
+2
+
+</td>
+<td style="text-align:left;">
+
+PP
+
+</td>
+<td style="text-align:left;">
+
+Particle
+
+</td>
+<td style="text-align:left;">
+
+MP
+
+</td>
+<td style="text-align:left;">
+
+87a27092690fb0d09ac04cc990dbbcb9
+
+</td>
+<td style="text-align:right;">
+
+0.0315661
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-48
+
+</td>
+<td style="text-align:left;">
+
+TWW
+
+</td>
+<td style="text-align:left;">
+
+2
+
+</td>
+<td style="text-align:left;">
+
+Glass
+
+</td>
+<td style="text-align:left;">
+
+Particle
+
+</td>
+<td style="text-align:left;">
+
+Glass
+
+</td>
+<td style="text-align:left;">
+
+58a74f0521d7e47b39f901fa259a8a6e
+
+</td>
+<td style="text-align:right;">
+
+0.0263120
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-48
+
+</td>
+<td style="text-align:left;">
+
+TWW
+
+</td>
+<td style="text-align:left;">
+
+2
+
+</td>
+<td style="text-align:left;">
+
+Glass
+
+</td>
+<td style="text-align:left;">
+
+Particle
+
+</td>
+<td style="text-align:left;">
+
+Glass
+
+</td>
+<td style="text-align:left;">
+
+0a10dcd33d0fc8e71cfad355128766e4
+
+</td>
+<td style="text-align:right;">
+
+0.0121309
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-5-1-0
+
+</td>
+<td style="text-align:left;">
+
+TWW
+
+</td>
+<td style="text-align:left;">
+
+0
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+460b5576527744dc3f91d5ba11cb3a1f
+
+</td>
+<td style="text-align:right;">
+
+0.0175895
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-5-1-2
+
+</td>
+<td style="text-align:left;">
+
+TWW
+
+</td>
+<td style="text-align:left;">
+
+2
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+906008b3029dde6e57b0854c40e1dd4e
+
+</td>
+<td style="text-align:right;">
+
+0.0195895
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-5-1-2
+
+</td>
+<td style="text-align:left;">
+
+TWW
+
+</td>
+<td style="text-align:left;">
+
+2
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+5e8ad17b4c179064a29c319abda296af
+
+</td>
+<td style="text-align:right;">
+
+0.0239843
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-5-1-6
+
+</td>
+<td style="text-align:left;">
+
+TWW
+
+</td>
+<td style="text-align:left;">
+
+6
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+e08b92658da23d9750619a769961afa6
+
+</td>
+<td style="text-align:right;">
+
+0.0107765
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-5-2-2
+
+</td>
+<td style="text-align:left;">
+
+TWW
+
+</td>
+<td style="text-align:left;">
+
+2
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+494083f852e83cc63c86bcc245660768
+
+</td>
+<td style="text-align:right;">
+
+0.0213834
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-5-2-6
+
+</td>
+<td style="text-align:left;">
+
+TWW
+
+</td>
+<td style="text-align:left;">
+
+6
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+477c3787c0dc4cf6c08dda5845068002
+
+</td>
+<td style="text-align:right;">
+
+0.0192352
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-5-2-6
+
+</td>
+<td style="text-align:left;">
+
+TWW
+
+</td>
+<td style="text-align:left;">
+
+6
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+3dd55ccb1cf8e054b12b225c563e5529
+
+</td>
+<td style="text-align:right;">
+
+0.0100357
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-5-2-6
+
+</td>
+<td style="text-align:left;">
+
+TWW
+
+</td>
+<td style="text-align:left;">
+
+6
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+96711874f49a15fc3d29367a380e487f
+
+</td>
+<td style="text-align:right;">
+
+0.0215920
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-5-2-6
+
+</td>
+<td style="text-align:left;">
+
+TWW
+
+</td>
+<td style="text-align:left;">
+
+6
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+2a3e2234e257f6b5cfffe8c9b6d202dd
+
+</td>
+<td style="text-align:right;">
+
+0.0153577
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-54
+
+</td>
+<td style="text-align:left;">
+
+CON
+
+</td>
+<td style="text-align:left;">
+
+2
+
+</td>
+<td style="text-align:left;">
+
+Glass
+
+</td>
+<td style="text-align:left;">
+
+Particle
+
+</td>
+<td style="text-align:left;">
+
+Glass
+
+</td>
+<td style="text-align:left;">
+
+7a10b72fe25d955964de15c96e844b44
+
+</td>
+<td style="text-align:right;">
+
+0.0115753
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-54
+
+</td>
+<td style="text-align:left;">
+
+CON
+
+</td>
+<td style="text-align:left;">
+
+2
+
+</td>
+<td style="text-align:left;">
+
+Glass
+
+</td>
+<td style="text-align:left;">
+
+Particle
+
+</td>
+<td style="text-align:left;">
+
+Glass
+
+</td>
+<td style="text-align:left;">
+
+68dd3ad6f96b97182118d1641e267d61
+
+</td>
+<td style="text-align:right;">
+
+0.0121649
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-54
+
+</td>
+<td style="text-align:left;">
+
+CON
+
+</td>
+<td style="text-align:left;">
+
+2
+
+</td>
+<td style="text-align:left;">
+
+Glass
+
+</td>
+<td style="text-align:left;">
+
+Particle
+
+</td>
+<td style="text-align:left;">
+
+Glass
+
+</td>
+<td style="text-align:left;">
+
+f8edc1711d2394e648ef34e8f557956d
+
+</td>
+<td style="text-align:right;">
+
+0.0107303
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-54
+
+</td>
+<td style="text-align:left;">
+
+CON
+
+</td>
+<td style="text-align:left;">
+
+2
+
+</td>
+<td style="text-align:left;">
+
+Glass
+
+</td>
+<td style="text-align:left;">
+
+Particle
+
+</td>
+<td style="text-align:left;">
+
+Glass
+
+</td>
+<td style="text-align:left;">
+
+c3c6b35a7e7fd0a56aab3c29bd47737b
+
+</td>
+<td style="text-align:right;">
+
+0.0210872
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-6-1-0
+
+</td>
+<td style="text-align:left;">
+
+CON
+
+</td>
+<td style="text-align:left;">
+
+0
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+36bae15cdc976a84ac6aed89237851f4
+
+</td>
+<td style="text-align:right;">
+
+0.0216569
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-6-1-10
+
+</td>
+<td style="text-align:left;">
+
+CON
+
+</td>
+<td style="text-align:left;">
+
+10
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+cb3fd4e524abe49fbdfa06ab31c76cb2
+
+</td>
+<td style="text-align:right;">
+
+0.0143423
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-6-2-0
+
+</td>
+<td style="text-align:left;">
+
+TWW
+
+</td>
+<td style="text-align:left;">
+
+0
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+a0cf1d2f3ec13c5ae57db76c4eeb9fe7
+
+</td>
+<td style="text-align:right;">
+
+0.0132243
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-6-2-6
+
+</td>
+<td style="text-align:left;">
+
+TWW
+
+</td>
+<td style="text-align:left;">
+
+6
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+2304112e9b871e05b0e8a85224fd468c
+
+</td>
+<td style="text-align:right;">
+
+0.0109977
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-6-2-6
+
+</td>
+<td style="text-align:left;">
+
+TWW
+
+</td>
+<td style="text-align:left;">
+
+6
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+2e7876e95891482b942691381b80679f
+
+</td>
+<td style="text-align:right;">
+
+0.0484030
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-60
+
+</td>
+<td style="text-align:left;">
+
+CON
+
+</td>
+<td style="text-align:left;">
+
+6
+
+</td>
+<td style="text-align:left;">
+
+PP
+
+</td>
+<td style="text-align:left;">
+
+Particle
+
+</td>
+<td style="text-align:left;">
+
+MP
+
+</td>
+<td style="text-align:left;">
+
+fd5b3997d928b185c4d30a836c4c3bff
+
+</td>
+<td style="text-align:right;">
+
+0.0116345
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-60
+
+</td>
+<td style="text-align:left;">
+
+CON
+
+</td>
+<td style="text-align:left;">
+
+6
+
+</td>
+<td style="text-align:left;">
+
+PP
+
+</td>
+<td style="text-align:left;">
+
+Particle
+
+</td>
+<td style="text-align:left;">
+
+MP
+
+</td>
+<td style="text-align:left;">
+
+3c5c9befccfd9033b71507e3c0b85b69
+
+</td>
+<td style="text-align:right;">
+
+0.0413424
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-65
+
+</td>
+<td style="text-align:left;">
+
+TWW
+
+</td>
+<td style="text-align:left;">
+
+6
+
+</td>
+<td style="text-align:left;">
+
+Glass
+
+</td>
+<td style="text-align:left;">
+
+Particle
+
+</td>
+<td style="text-align:left;">
+
+Glass
+
+</td>
+<td style="text-align:left;">
+
+d1a3da918723d0765ca375cf72e2b803
+
+</td>
+<td style="text-align:right;">
+
+0.1132501
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-7-1-10
+
+</td>
+<td style="text-align:left;">
+
+CON
+
+</td>
+<td style="text-align:left;">
+
+10
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+e0375868cadb65bf58e81efc25200e9e
+
+</td>
+<td style="text-align:right;">
+
+0.0125200
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-7-2-0
+
+</td>
+<td style="text-align:left;">
+
+CON
+
+</td>
+<td style="text-align:left;">
+
+0
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+8b2279803a49bcb9f005630c9967d4f6
+
+</td>
+<td style="text-align:right;">
+
+0.0188028
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-7-2-0
+
+</td>
+<td style="text-align:left;">
+
+CON
+
+</td>
+<td style="text-align:left;">
+
+0
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+e6992ff9f89cd40af16e14b402ab2a84
+
+</td>
+<td style="text-align:right;">
+
+0.0127652
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-7-2-0
+
+</td>
+<td style="text-align:left;">
+
+CON
+
+</td>
+<td style="text-align:left;">
+
+0
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+dda9375e51479ea5e751005d287d9e46
+
+</td>
+<td style="text-align:right;">
+
+0.0182853
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-7-2-0
+
+</td>
+<td style="text-align:left;">
+
+CON
+
+</td>
+<td style="text-align:left;">
+
+0
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+a6a3cc27bcef74ba30bf444743a25d97
+
+</td>
+<td style="text-align:right;">
+
+0.0119372
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-7-2-2
+
+</td>
+<td style="text-align:left;">
+
+CON
+
+</td>
+<td style="text-align:left;">
+
+2
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+71e972284209ad012527608478c001df
+
+</td>
+<td style="text-align:right;">
+
+0.0218429
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-7-2-2
+
+</td>
+<td style="text-align:left;">
+
+CON
+
+</td>
+<td style="text-align:left;">
+
+2
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+5eb77094f1d796f138c49742300eaeaa
+
+</td>
+<td style="text-align:right;">
+
+0.0184388
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-70
+
+</td>
+<td style="text-align:left;">
+
+CON
+
+</td>
+<td style="text-align:left;">
+
+6
+
+</td>
+<td style="text-align:left;">
+
+PP
+
+</td>
+<td style="text-align:left;">
+
+Particle
+
+</td>
+<td style="text-align:left;">
+
+MP
+
+</td>
+<td style="text-align:left;">
+
+7b36db944473d3283a03335cc5f1a4f3
+
+</td>
+<td style="text-align:right;">
+
+0.0111249
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-75
+
+</td>
+<td style="text-align:left;">
+
+CON
+
+</td>
+<td style="text-align:left;">
+
+6
+
+</td>
+<td style="text-align:left;">
+
+LDPE
+
+</td>
+<td style="text-align:left;">
+
+Particle
+
+</td>
+<td style="text-align:left;">
+
+MP
+
+</td>
+<td style="text-align:left;">
+
+26de62814b4b2992eef4d45b4fd9bc00
+
+</td>
+<td style="text-align:right;">
+
+0.0346941
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-75
+
+</td>
+<td style="text-align:left;">
+
+CON
+
+</td>
+<td style="text-align:left;">
+
+6
+
+</td>
+<td style="text-align:left;">
+
+LDPE
+
+</td>
+<td style="text-align:left;">
+
+Particle
+
+</td>
+<td style="text-align:left;">
+
+MP
+
+</td>
+<td style="text-align:left;">
+
+645c59a8229f5f3e345532d5044786ca
+
+</td>
+<td style="text-align:right;">
+
+0.0289338
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-77
+
+</td>
+<td style="text-align:left;">
+
+TWW
+
+</td>
+<td style="text-align:left;">
+
+6
+
+</td>
+<td style="text-align:left;">
+
+LDPE
+
+</td>
+<td style="text-align:left;">
+
+Particle
+
+</td>
+<td style="text-align:left;">
+
+MP
+
+</td>
+<td style="text-align:left;">
+
+343e35e45202d295f68789456657fc22
+
+</td>
+<td style="text-align:right;">
+
+0.0132329
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-77
+
+</td>
+<td style="text-align:left;">
+
+TWW
+
+</td>
+<td style="text-align:left;">
+
+6
+
+</td>
+<td style="text-align:left;">
+
+LDPE
+
+</td>
+<td style="text-align:left;">
+
+Particle
+
+</td>
+<td style="text-align:left;">
+
+MP
+
+</td>
+<td style="text-align:left;">
+
+479c62bea7e5a57466cccad98bf72e58
+
+</td>
+<td style="text-align:right;">
+
+0.0122877
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-79
+
+</td>
+<td style="text-align:left;">
+
+CON
+
+</td>
+<td style="text-align:left;">
+
+6
+
+</td>
+<td style="text-align:left;">
+
+HDPE
+
+</td>
+<td style="text-align:left;">
+
+Particle
+
+</td>
+<td style="text-align:left;">
+
+MP
+
+</td>
+<td style="text-align:left;">
+
+027136cd9b80cd4468ba40145f707976
+
+</td>
+<td style="text-align:right;">
+
+0.0131485
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-8-1-10
+
+</td>
+<td style="text-align:left;">
+
+TWW
+
+</td>
+<td style="text-align:left;">
+
+10
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+9d9b0f8488f01f1ded32bc2e0b57f953
+
+</td>
+<td style="text-align:right;">
+
+0.0196617
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-8-1-2
+
+</td>
+<td style="text-align:left;">
+
+TWW
+
+</td>
+<td style="text-align:left;">
+
+2
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+cac437b21699b062ebabd990ee1f6413
+
+</td>
+<td style="text-align:right;">
+
+0.0135325
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-8-1-6
+
+</td>
+<td style="text-align:left;">
+
+TWW
+
+</td>
+<td style="text-align:left;">
+
+6
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+7353aad27634c36c96d733127f4dbdc2
+
+</td>
+<td style="text-align:right;">
+
+0.0325447
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-8-2-10
+
+</td>
+<td style="text-align:left;">
+
+CON
+
+</td>
+<td style="text-align:left;">
+
+10
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+9886c91d619ee130594094cd7189ddc4
+
+</td>
+<td style="text-align:right;">
+
+0.0923820
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-8-2-2
+
+</td>
+<td style="text-align:left;">
+
+CON
+
+</td>
+<td style="text-align:left;">
+
+2
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:left;">
+
+3c17a27e5f5efc271e2c5b8139155d27
+
+</td>
+<td style="text-align:right;">
+
+0.0311607
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-80
+
+</td>
+<td style="text-align:left;">
+
+TWW
+
+</td>
+<td style="text-align:left;">
+
+6
+
+</td>
+<td style="text-align:left;">
+
+PS
+
+</td>
+<td style="text-align:left;">
+
+Particle
+
+</td>
+<td style="text-align:left;">
+
+MP
+
+</td>
+<td style="text-align:left;">
+
+b91926660fdbdb14704ca9be178eae4e
+
+</td>
+<td style="text-align:right;">
+
+0.0121635
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-92
+
+</td>
+<td style="text-align:left;">
+
+CON
+
+</td>
+<td style="text-align:left;">
+
+6
+
+</td>
+<td style="text-align:left;">
+
+PS
+
+</td>
+<td style="text-align:left;">
+
+Particle
+
+</td>
+<td style="text-align:left;">
+
+MP
+
+</td>
+<td style="text-align:left;">
+
+54ecf83cb907aa38ea47d819b4bcc946
+
+</td>
+<td style="text-align:right;">
+
+0.0808535
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-93
+
+</td>
+<td style="text-align:left;">
+
+TWW
+
+</td>
+<td style="text-align:left;">
+
+6
+
+</td>
+<td style="text-align:left;">
+
+PP
+
+</td>
+<td style="text-align:left;">
+
+Particle
+
+</td>
+<td style="text-align:left;">
+
+MP
+
+</td>
+<td style="text-align:left;">
+
+171f9a324f97f1cfd82dfc97297b654e
+
+</td>
+<td style="text-align:right;">
+
+0.0167921
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-95
+
+</td>
+<td style="text-align:left;">
+
+CON
+
+</td>
+<td style="text-align:left;">
+
+6
+
+</td>
+<td style="text-align:left;">
+
+Glass
+
+</td>
+<td style="text-align:left;">
+
+Particle
+
+</td>
+<td style="text-align:left;">
+
+Glass
+
+</td>
+<td style="text-align:left;">
+
+61cd58eb0632b57766bb21715729fb17
+
+</td>
+<td style="text-align:right;">
+
+0.0579493
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-95
+
+</td>
+<td style="text-align:left;">
+
+CON
+
+</td>
+<td style="text-align:left;">
+
+6
+
+</td>
+<td style="text-align:left;">
+
+Glass
+
+</td>
+<td style="text-align:left;">
+
+Particle
+
+</td>
+<td style="text-align:left;">
+
+Glass
+
+</td>
+<td style="text-align:left;">
+
+4286301788a9a7aee943827696d24de5
+
+</td>
+<td style="text-align:right;">
+
+0.0112494
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-95
+
+</td>
+<td style="text-align:left;">
+
+CON
+
+</td>
+<td style="text-align:left;">
+
+6
+
+</td>
+<td style="text-align:left;">
+
+Glass
+
+</td>
+<td style="text-align:left;">
+
+Particle
+
+</td>
+<td style="text-align:left;">
+
+Glass
+
+</td>
+<td style="text-align:left;">
+
+3b8a42c16aa5159f7b5f6ccd60079e36
+
+</td>
+<td style="text-align:right;">
+
+0.0129057
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-96
+
+</td>
+<td style="text-align:left;">
+
+CON
+
+</td>
+<td style="text-align:left;">
+
+10
+
+</td>
+<td style="text-align:left;">
+
+PP
+
+</td>
+<td style="text-align:left;">
+
+Particle
+
+</td>
+<td style="text-align:left;">
+
+MP
+
+</td>
+<td style="text-align:left;">
+
+630afe4e854c06f7ed5d7c13415e73a5
+
+</td>
+<td style="text-align:right;">
+
+0.0134555
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-96
+
+</td>
+<td style="text-align:left;">
+
+CON
+
+</td>
+<td style="text-align:left;">
+
+10
+
+</td>
+<td style="text-align:left;">
+
+PP
+
+</td>
+<td style="text-align:left;">
+
+Particle
+
+</td>
+<td style="text-align:left;">
+
+MP
+
+</td>
+<td style="text-align:left;">
+
+977df7b088d2941ca3d67d06a5aa557a
+
+</td>
+<td style="text-align:right;">
+
+0.0107964
+
+</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+## 8.2 Filtering the phyloseq object
+
+Now that we’ve examined how many ASV’s we’d be filtering out at each
+cutoff level, we’ll choose a cutoff level that will allow us to remove
+sparse features within the data set. The cutoff level we’ve chosen here
+is 90% (i.e., samples that contained 0 in more than 90% of the samples
+will be filtered out).
 
 ``` r
 ps.taxa.all.filt <- prune_taxa(rowSums(otu_table(MPphyseq) == 0) < ncol(otu_table(MPphyseq)) * 0.9, MPphyseq)
 ```
 
-## 8.2 TWW vs Water, MP Only, all timepoints
+## 8.3 MP in TWW vs MP in River Water, all timepoints
 
 ``` r
 #Need to use the count data here, not the relative abundance data
@@ -8269,7 +11395,7 @@ df_mp_effluent_deseq_filt <- filter(df_mp_effluent_deseq, padj <= 0.05)
 df_mp_effluent_deseq_filt = df_mp_effluent_deseq_filt[order(df_mp_effluent_deseq_filt$padj, na.last=NA), ]
 ```
 
-### 8.2.1 Create dot plot of results - log normalized counts
+### 8.3.1 Create dot plot of results - log normalized counts
 
 ``` r
 #Find normalized counts
@@ -8397,9 +11523,259 @@ print(mp_effluent_barplot)
 
 ![](Analysis_files/figure-gfm/deseq2%20plots-3.png)<!-- -->
 
-## 8.3 Examining changes in bacterial communities on glass beads over time
+## 8.4 MP vs glass, all timepoints, both water sources
 
-### 8.3.1 Contrasts - 2w, 6w, 10w river water glass only, vs river water
+``` r
+#Convert phyloseq object from above to a deseq object with the correct category
+mp_v_glass_deseq = phyloseq_to_deseq2(ps.taxa.all.filt, ~ particle_type)
+```
+
+    ## converting counts to integer mode
+
+``` r
+#Estimate the size factors
+mp_v_glass_deseq <- estimateSizeFactors(mp_v_glass_deseq, type = "poscounts")
+
+#Make sure that the control is the first level in the sample_type group so that 
+#the default log2 changes are calculated as treatment vs. control instead of 
+#vice versa
+mp_v_glass_deseq$particle_type <- relevel(factor(mp_v_glass_deseq$particle_type), "Water")
+
+#Now we can run DESeq
+mp_v_glass_deseq = DESeq(mp_v_glass_deseq, test="Wald", fitType="parametric")
+```
+
+    ## using pre-existing size factors
+
+    ## estimating dispersions
+
+    ## gene-wise dispersion estimates
+
+    ## mean-dispersion relationship
+
+    ## -- note: fitType='parametric', but the dispersion trend was not well captured by the
+    ##    function: y = a/x + b, and a local regression fit was automatically substituted.
+    ##    specify fitType='local' or 'mean' to avoid this message next time.
+
+    ## final dispersion estimates
+
+    ## fitting model and testing
+
+    ## -- replacing outliers and refitting for 113 genes
+    ## -- DESeq argument 'minReplicatesForReplace' = 7 
+    ## -- original counts are preserved in counts(dds)
+
+    ## estimating dispersions
+
+    ## fitting model and testing
+
+``` r
+#Check which comparisons are contained in the deseq object:
+resultsNames(mp_v_glass_deseq)
+```
+
+    ## [1] "Intercept"                    "particle_type_MP_vs_Water"   
+    ## [3] "particle_type_Glass_vs_Water"
+
+``` r
+#We just want to look at the difference between microplastics and water and glass and water
+#Creating results tables with the information we're interested in
+res_glass <- results(mp_v_glass_deseq, contrast=c("particle_type","Glass","Water"), alpha=0.05)
+res_mp <- results(mp_v_glass_deseq, contrast=c("particle_type","MP","Water"), alpha=0.05)
+
+#Show results summary
+summary(res_glass)
+```
+
+    ## 
+    ## out of 994 with nonzero total read count
+    ## adjusted p-value < 0.05
+    ## LFC > 0 (up)       : 356, 36%
+    ## LFC < 0 (down)     : 64, 6.4%
+    ## outliers [1]       : 0, 0%
+    ## low counts [2]     : 0, 0%
+    ## (mean count < 1)
+    ## [1] see 'cooksCutoff' argument of ?results
+    ## [2] see 'independentFiltering' argument of ?results
+
+``` r
+summary(res_mp)
+```
+
+    ## 
+    ## out of 994 with nonzero total read count
+    ## adjusted p-value < 0.05
+    ## LFC > 0 (up)       : 564, 57%
+    ## LFC < 0 (down)     : 67, 6.7%
+    ## outliers [1]       : 0, 0%
+    ## low counts [2]     : 0, 0%
+    ## (mean count < 1)
+    ## [1] see 'cooksCutoff' argument of ?results
+    ## [2] see 'independentFiltering' argument of ?results
+
+``` r
+#Log fold change shrinkage on each comparison
+resLFC_glass <- lfcShrink(mp_v_glass_deseq, coef="particle_type_Glass_vs_Water", type="apeglm")
+```
+
+    ## using 'apeglm' for LFC shrinkage. If used in published research, please cite:
+    ##     Zhu, A., Ibrahim, J.G., Love, M.I. (2018) Heavy-tailed prior distributions for
+    ##     sequence count data: removing the noise and preserving large differences.
+    ##     Bioinformatics. https://doi.org/10.1093/bioinformatics/bty895
+
+``` r
+resLFC_glass
+```
+
+    ## log2 fold change (MAP): particle type Glass vs Water 
+    ## Wald test p-value: particle type Glass vs Water 
+    ## DataFrame with 994 rows and 5 columns
+    ##                                   baseMean log2FoldChange     lfcSE      pvalue
+    ##                                  <numeric>      <numeric> <numeric>   <numeric>
+    ## 76986812e0cdb639a25c936952004967  43.84147       -9.58820   1.04666 1.25380e-22
+    ## 143eedc0b2cf4ff8f1ca0448594d1191   8.39989      -11.58432   3.88074 1.76043e-05
+    ## cdc12d12977ac7193527fac20a6c8711   1.72097        6.36723   3.07367 3.01049e-02
+    ## 0e8d660cbd4a72352ad4109b2440286e   8.97585        1.54314   3.42335 2.66096e-02
+    ## a94d8fee872266a54b1e5706d6bcfbac  20.51734        2.48669   1.03201 1.79500e-03
+    ## ...                                    ...            ...       ...         ...
+    ## 3c0d84f8bf9a3a8ea5cc05ad9b99c209   7.92815       1.834700  1.445235 2.14120e-02
+    ## 2b0dbc8ca8b74471b0029ee9d61a4c60  41.23416       0.308764  0.825155 5.48465e-01
+    ## 15456227e48f1103584e352c6ba34637  36.36373       0.952812  0.962392 1.18984e-01
+    ## 6c0bf239702859ae989d886f1985b1e4 440.45002       3.201266  1.047418 1.96108e-04
+    ## 84bc6ce045f212f439b979e3862bb33e 178.19931       6.966159  1.466595 7.24459e-08
+    ##                                         padj
+    ##                                    <numeric>
+    ## 76986812e0cdb639a25c936952004967 1.63984e-21
+    ## 143eedc0b2cf4ff8f1ca0448594d1191 9.30779e-05
+    ## cdc12d12977ac7193527fac20a6c8711 6.63510e-02
+    ## 0e8d660cbd4a72352ad4109b2440286e 5.97065e-02
+    ## a94d8fee872266a54b1e5706d6bcfbac 6.17379e-03
+    ## ...                                      ...
+    ## 3c0d84f8bf9a3a8ea5cc05ad9b99c209 5.01969e-02
+    ## 2b0dbc8ca8b74471b0029ee9d61a4c60 6.41381e-01
+    ## 15456227e48f1103584e352c6ba34637 1.93568e-01
+    ## 6c0bf239702859ae989d886f1985b1e4 8.25980e-04
+    ## 84bc6ce045f212f439b979e3862bb33e 5.07121e-07
+
+``` r
+resLFC_mp <- lfcShrink(mp_v_glass_deseq, coef="particle_type_MP_vs_Water", type="apeglm")
+```
+
+    ## using 'apeglm' for LFC shrinkage. If used in published research, please cite:
+    ##     Zhu, A., Ibrahim, J.G., Love, M.I. (2018) Heavy-tailed prior distributions for
+    ##     sequence count data: removing the noise and preserving large differences.
+    ##     Bioinformatics. https://doi.org/10.1093/bioinformatics/bty895
+
+``` r
+resLFC_mp
+```
+
+    ## log2 fold change (MAP): particle type MP vs Water 
+    ## Wald test p-value: particle type MP vs Water 
+    ## DataFrame with 994 rows and 5 columns
+    ##                                   baseMean log2FoldChange     lfcSE      pvalue
+    ##                                  <numeric>      <numeric> <numeric>   <numeric>
+    ## 76986812e0cdb639a25c936952004967  43.84147      -11.53543  0.884782 2.32007e-45
+    ## 143eedc0b2cf4ff8f1ca0448594d1191   8.39989      -13.88496  3.674058 2.55034e-08
+    ## cdc12d12977ac7193527fac20a6c8711   1.72097        6.99936  2.873164 2.82393e-03
+    ## 0e8d660cbd4a72352ad4109b2440286e   8.97585        5.04099  2.149543 2.87939e-04
+    ## a94d8fee872266a54b1e5706d6bcfbac  20.51734        1.85340  0.833990 2.71570e-03
+    ## ...                                    ...            ...       ...         ...
+    ## 3c0d84f8bf9a3a8ea5cc05ad9b99c209   7.92815        1.80466  1.230221 9.65221e-03
+    ## 2b0dbc8ca8b74471b0029ee9d61a4c60  41.23416        1.91473  1.193312 6.96036e-03
+    ## 15456227e48f1103584e352c6ba34637  36.36373        1.70655  0.967141 8.10102e-03
+    ## 6c0bf239702859ae989d886f1985b1e4 440.45002        4.46958  0.818924 7.05946e-10
+    ## 84bc6ce045f212f439b979e3862bb33e 178.19931        8.57101  1.186775 4.41325e-16
+    ##                                         padj
+    ##                                    <numeric>
+    ## 76986812e0cdb639a25c936952004967 3.20299e-44
+    ## 143eedc0b2cf4ff8f1ca0448594d1191 1.22466e-07
+    ## cdc12d12977ac7193527fac20a6c8711 6.22392e-03
+    ## 0e8d660cbd4a72352ad4109b2440286e 8.03964e-04
+    ## a94d8fee872266a54b1e5706d6bcfbac 5.99867e-03
+    ## ...                                      ...
+    ## 3c0d84f8bf9a3a8ea5cc05ad9b99c209 1.79333e-02
+    ## 2b0dbc8ca8b74471b0029ee9d61a4c60 1.37002e-02
+    ## 15456227e48f1103584e352c6ba34637 1.55153e-02
+    ## 6c0bf239702859ae989d886f1985b1e4 3.85555e-09
+    ## 84bc6ce045f212f439b979e3862bb33e 3.42716e-15
+
+``` r
+#"It is more useful visualize the MA-plot for the shrunken log2 fold changes, 
+#which remove the noise associated with log2 fold changes from low count genes 
+#without requiring arbitrary filtering thresholds."
+#https://www.bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html#why-un-normalized-counts
+plotMA(resLFC_glass)
+```
+
+![](Analysis_files/figure-gfm/finding%20plastisphere-1.png)<!-- -->
+
+``` r
+plotMA(resLFC_mp)
+```
+
+![](Analysis_files/figure-gfm/finding%20plastisphere-2.png)<!-- -->
+
+``` r
+#Add taxonomic information
+sigtab_glass = cbind(as(res_glass, "data.frame"), as(tax_table(MPphyseq)[rownames(res_glass), ], "matrix"))
+sigtab_mp = cbind(as(res_mp, "data.frame"), as(tax_table(MPphyseq)[rownames(res_mp), ], "matrix"))
+
+#Convert to dataframe
+df_glass_deseq <- as.data.frame(sigtab_glass)
+df_mp_deseq <- as.data.frame(sigtab_mp)
+
+
+#Filter based on adj p-value, removing non-significant values (p>0.05)
+#This also removes p-values that are NA; NA p-values exist because when p-values do not pass the filter threshold (p-values less than 0.1) they are set to NA 
+#More information in vignette("DESeq2") under "Note on p-values set to NA"
+df_glass_deseq_filt <- filter(df_glass_deseq, padj <= 0.05)
+df_mp_deseq_filt <- filter(df_mp_deseq, padj <= 0.05)
+
+#Order by adjusted p-value
+df_glass_deseq_filt = df_glass_deseq_filt[order(df_glass_deseq_filt$padj, na.last=NA), ]
+df_mp_deseq_filt = df_mp_deseq_filt[order(df_mp_deseq_filt$padj, na.last=NA), ]
+```
+
+### 8.4.1 Venn Diagrams
+
+``` r
+#Filter the TWW glass dataframes
+df_glass_deseq_filt <- filter(df_glass_deseq_filt, 
+                                     log2FoldChange > 0)
+df_mp_deseq_filt <- filter(df_mp_deseq_filt, 
+                                     log2FoldChange > 0)
+
+#Create a column with the filtered deseq dataframe rownames and then filter to contain only ASV's
+taxa_glass <- data.frame(df_glass_deseq_filt) %>%
+  tibble::rownames_to_column(var = "Glass") %>%
+  select(Glass)
+
+taxa_mp <- data.frame(df_mp_deseq_filt) %>%
+  tibble::rownames_to_column(var = "MP") %>%
+  select(MP)
+
+#Make each dataframe into a list
+list_glass <- list(taxa_glass$Glass)
+list_mp <- list(taxa_mp$MP)
+
+#Change to characters
+list_glass_chr <- as.character(list_glass[[1]])
+list_mp_chr <- as.character(list_mp[[1]])
+
+#Make list for ggVennDiagram
+mp_v_glass_compare <- list(list_glass_chr, list_mp_chr) %>%
+  setNames(c("Glass", "MP"))
+
+#Make Venn Diagram - all comparisons
+ggVennDiagram(mp_v_glass_compare) + scale_fill_gradient(low="blue",high = "red")
+```
+
+![](Analysis_files/figure-gfm/venn%20plastisphere-1.png)<!-- -->
+
+## 8.5 Examining changes in bacterial communities on glass beads over time
+
+### 8.5.1 Contrasts - 2w, 6w, 10w river water glass only, vs river water
 
 ``` r
 #Convert phyloseq object from above to deseq object with the correct category
@@ -8689,7 +12065,7 @@ df_mp_glass_deseq_CON6_filt = df_mp_glass_deseq_CON6_filt[order(df_mp_glass_dese
 df_mp_glass_deseq_CON10_filt = df_mp_glass_deseq_CON10_filt[order(df_mp_glass_deseq_CON10_filt$padj, na.last=NA), ]
 ```
 
-### 8.3.2 Contrasts - 2w, 6w, 10w TWW Glass only, vs TWW
+### 8.5.2 Contrasts - 2w, 6w, 10w TWW Glass only, vs TWW
 
 ``` r
 #Convert phyloseq object from above to deseq object with the correct category
@@ -8979,9 +12355,110 @@ df_mp_glass_deseq_TWW6_filt = df_mp_glass_deseq_TWW6_filt[order(df_mp_glass_dese
 df_mp_glass_deseq_TWW10_filt = df_mp_glass_deseq_TWW10_filt[order(df_mp_glass_deseq_TWW10_filt$padj, na.last=NA), ]
 ```
 
-## 8.4 Examining changes in bacterial communities on microplastics over time
+### 8.5.3 Venn Diagrams
 
-### 8.4.1 Contrasts - 2w, 6w, 10w river water MP’s only, vs river water
+This section includes the preparation of the DESeq2 glass bead results
+for plotting with the ggVennDiagram package. First, we’ll filter the
+DESeq dataframes so that they only include ASV’s with positive
+log2foldchanges - the point here is to keep only ASV’s that were higher
+in abundance on glass then in the water. Then, we’ll create 3 venn
+diagrams - 1) a comparison of 2, 6, and 10 week glass bead communities
+in river water, 2) a comparison of 2, 6, and 10 week glass bead
+communities in TWW, and 3) a comparison of the communities on glass
+beads during all timepoints and across water sources.
+
+``` r
+#Filter the river water glass dataframes
+df_mp_glass_deseq_CON2_filt <- filter(df_mp_glass_deseq_CON2_filt, 
+                                     log2FoldChange > 0)
+df_mp_glass_deseq_CON6_filt <- filter(df_mp_glass_deseq_CON6_filt, 
+                                     log2FoldChange > 0)
+df_mp_glass_deseq_CON10_filt <- filter(df_mp_glass_deseq_CON10_filt, 
+                                      log2FoldChange > 0)
+
+#Filter the TWW glass dataframes
+df_mp_glass_deseq_TWW2_filt <- filter(df_mp_glass_deseq_TWW2_filt, 
+                                     log2FoldChange > 0)
+df_mp_glass_deseq_TWW6_filt <- filter(df_mp_glass_deseq_TWW6_filt, 
+                                     log2FoldChange > 0)
+df_mp_glass_deseq_TWW10_filt <- filter(df_mp_glass_deseq_TWW10_filt, 
+                                      log2FoldChange > 0)
+
+#Create a column with the filtered deseq dataframe rownames and then filter to contain only ASV's
+taxa_glass_CON2 <- data.frame(df_mp_glass_deseq_CON2_filt) %>%
+  tibble::rownames_to_column(var = "Glass_CON_2") %>%
+  select(Glass_CON_2)
+
+taxa_glass_CON6 <- data.frame(df_mp_glass_deseq_CON6_filt) %>%
+  tibble::rownames_to_column(var = "Glass_CON_6") %>%
+  select(Glass_CON_6)
+
+taxa_glass_CON10 <- data.frame(df_mp_glass_deseq_CON10_filt) %>%
+  tibble::rownames_to_column(var = "Glass_CON_10") %>%
+  select(Glass_CON_10)
+
+
+taxa_glass_TWW2 <- data.frame(df_mp_glass_deseq_TWW2_filt) %>%
+  tibble::rownames_to_column(var = "Glass_TWW_2") %>%
+  select(Glass_TWW_2)
+
+taxa_glass_TWW6 <- data.frame(df_mp_glass_deseq_TWW6_filt) %>%
+  tibble::rownames_to_column(var = "Glass_TWW_6") %>%
+  select(Glass_TWW_6)
+
+taxa_glass_TWW10 <- data.frame(df_mp_glass_deseq_TWW10_filt) %>%
+  tibble::rownames_to_column(var = "Glass_TWW_10") %>%
+  select(Glass_TWW_10)
+
+#Make each dataframe into a list
+list_G_CON_2 <- list(taxa_glass_CON2$Glass_CON_2)
+list_G_CON_6 <- list(taxa_glass_CON6$Glass_CON_6)
+list_G_CON_10 <- list(taxa_glass_CON10$Glass_CON_10)
+
+list_G_TWW_2 <- list(taxa_glass_TWW2$Glass_TWW_2)
+list_G_TWW_6 <- list(taxa_glass_TWW6$Glass_TWW_6)
+list_G_TWW_10 <- list(taxa_glass_TWW10$Glass_TWW_10)
+
+#Change to characters
+taxa_glass_CON2_chr <- as.character(list_G_CON_2[[1]])
+taxa_glass_CON6_chr <- as.character(list_G_CON_6[[1]])
+taxa_glass_CON10_chr <- as.character(list_G_CON_10[[1]])
+
+taxa_glass_TWW2_chr <- as.character(list_G_TWW_2[[1]])
+taxa_glass_TWW6_chr <- as.character(list_G_TWW_6[[1]])
+taxa_glass_TWW10_chr <- as.character(list_G_TWW_10[[1]])
+
+#Make list for ggVennDiagram
+glass_time_comparisons <- list(taxa_glass_CON2_chr, taxa_glass_CON6_chr, taxa_glass_CON10_chr, taxa_glass_TWW2_chr, taxa_glass_TWW6_chr, taxa_glass_TWW10_chr) %>%
+  setNames(c("Glass_CON_2", "Glass_CON_6", "Glass_CON_10", "Glass_TWW_2", "Glass_TWW_6", "Glass_TWW_10"))
+
+
+#Another test of ggVennDiagram - Only the river water comparisons
+glass_time_comparisons_river <- list(taxa_glass_CON2_chr, taxa_glass_CON6_chr, taxa_glass_CON10_chr) %>%
+  setNames(c("River Week 2", "River Week 6", "River Week 10"))
+
+#Make Venn Diagram
+ggVennDiagram(glass_time_comparisons_river, label_alpha = 0) + scale_fill_gradient(low="blue",high = "red") +
+  theme(legend.position = "bottom", legend.direction = "horizontal")
+```
+
+![](Analysis_files/figure-gfm/venn%20glass-1.png)<!-- -->
+
+``` r
+#Another test of ggVennDiagram - only the TWW comparisons
+glass_time_comparisons_tww <- list(taxa_glass_TWW2_chr, taxa_glass_TWW6_chr, taxa_glass_TWW10_chr) %>%
+  setNames(c("TWW Week 2", "TWW Week 6", "TWW Week 10"))
+
+#Make Venn Diagram
+ggVennDiagram(glass_time_comparisons_tww, label_alpha = 0) + scale_fill_gradient(low="blue",high = "red") +
+  theme(legend.position = "bottom", legend.direction = "horizontal")
+```
+
+![](Analysis_files/figure-gfm/venn%20glass-2.png)<!-- -->
+
+## 8.6 Examining changes in bacterial communities on microplastics over time
+
+### 8.6.1 Contrasts - 2w, 6w, 10w river water MP’s only, vs river water
 
 ``` r
 #Convert phyloseq object from above to deseq object with the correct category
@@ -9272,7 +12749,7 @@ df_mp_time_deseq_CON6_filt = df_mp_time_deseq_CON6_filt[order(df_mp_time_deseq_C
 df_mp_time_deseq_CON10_filt = df_mp_time_deseq_CON10_filt[order(df_mp_time_deseq_CON10_filt$padj, na.last=NA), ]
 ```
 
-### 8.4.2 Contrasts - 2w, 6w, 10w TWW MP’s only, vs TWW
+### 8.6.2 Contrasts - 2w, 6w, 10w TWW MP’s only, vs TWW
 
 ``` r
 #Estimate the size factors
@@ -9558,15 +13035,20 @@ df_mp_time_deseq_TWW6_filt = df_mp_time_deseq_TWW6_filt[order(df_mp_time_deseq_T
 df_mp_time_deseq_TWW10_filt = df_mp_time_deseq_TWW10_filt[order(df_mp_time_deseq_TWW10_filt$padj, na.last=NA), ]
 ```
 
-### 8.4.3 Venn Diagrams
+### 8.6.3 Venn Diagrams
+
+This section includes the preparation of the DESeq2 MP results for
+plotting with the ggVennDiagram package. First, we’ll filter the DESeq
+dataframes so that they only include ASV’s with positive
+log2foldchanges - the point here is to keep only ASV’s that were higher
+in abundance on MP than in the water. Then, we’ll create 3 venn
+diagrams - 1) a comparison of 2, 6, and 10 week MP communities in river
+water, 2) a comparison of 2, 6, and 10 week MP communities in TWW, and
+3) a comparison of the communities on MP during all timepoints and
+across water sources.
 
 ``` r
-#Using the method used above (prepping the data for plots) to prep
-#the deseq output for plotting with ggVennDiagram
-
-#Filter deseq dataframes so that they only include ASV's with positive 
-#log2foldchanges - the point here is to keep only ASV's that were higher in abundance on MP
-#then in the water
+#Filter the river water MP dataframes
 df_mp_time_deseq_CON2_filt <- filter(df_mp_time_deseq_CON2_filt, 
                                      log2FoldChange > 0)
 df_mp_time_deseq_CON6_filt <- filter(df_mp_time_deseq_CON6_filt, 
@@ -9574,6 +13056,7 @@ df_mp_time_deseq_CON6_filt <- filter(df_mp_time_deseq_CON6_filt,
 df_mp_time_deseq_CON10_filt <- filter(df_mp_time_deseq_CON10_filt, 
                                       log2FoldChange > 0)
 
+#Filter the TWW MP dataframes
 df_mp_time_deseq_TWW2_filt <- filter(df_mp_time_deseq_TWW2_filt, 
                                      log2FoldChange > 0)
 df_mp_time_deseq_TWW6_filt <- filter(df_mp_time_deseq_TWW6_filt, 
@@ -9609,22 +13092,22 @@ taxa_MP_TWW10 <- data.frame(df_mp_time_deseq_TWW10_filt) %>%
   select(MP_TWW_10)
 
 #Make each dataframe into a list
-lista <- list(taxa_MP_CON2$MP_CON_2)
-listb <- list(taxa_MP_CON6$MP_CON_6)
-listc <- list(taxa_MP_CON10$MP_CON_10)
+list_MP_CON_2 <- list(taxa_MP_CON2$MP_CON_2)
+list_MP_CON_6 <- list(taxa_MP_CON6$MP_CON_6)
+list_MP_CON_10 <- list(taxa_MP_CON10$MP_CON_10)
 
-listd <- list(taxa_MP_TWW2$MP_TWW_2)
-liste <- list(taxa_MP_TWW6$MP_TWW_6)
-listf <- list(taxa_MP_TWW10$MP_TWW_10)
+list_MP_TWW_2 <- list(taxa_MP_TWW2$MP_TWW_2)
+list_MP_TWW_6 <- list(taxa_MP_TWW6$MP_TWW_6)
+list_MP_TWW_10 <- list(taxa_MP_TWW10$MP_TWW_10)
 
 #Change to characters
-taxa_MP_CON2_chr <- as.character(lista[[1]])
-taxa_MP_CON6_chr <- as.character(listb[[1]])
-taxa_MP_CON10_chr <- as.character(listc[[1]])
+taxa_MP_CON2_chr <- as.character(list_MP_CON_2[[1]])
+taxa_MP_CON6_chr <- as.character(list_MP_CON_6[[1]])
+taxa_MP_CON10_chr <- as.character(list_MP_CON_10[[1]])
 
-taxa_MP_TWW2_chr <- as.character(listd[[1]])
-taxa_MP_TWW6_chr <- as.character(liste[[1]])
-taxa_MP_TWW10_chr <- as.character(listf[[1]])
+taxa_MP_TWW2_chr <- as.character(list_MP_TWW_2[[1]])
+taxa_MP_TWW6_chr <- as.character(list_MP_TWW_6[[1]])
+taxa_MP_TWW10_chr <- as.character(list_MP_TWW_10[[1]])
 
 
 #Make list for ggVennDiagram
@@ -9655,1309 +13138,11 @@ MP_time_comparisons3 <- list(taxa_MP_TWW2_chr, taxa_MP_TWW6_chr, taxa_MP_TWW10_c
   setNames(c("Week 2", "Week 6", "Week 10"))
 
 #Make Venn Diagram
-ggVennDiagram(MP_time_comparisons3, label_alpha = 0) + scale_fill_gradient(low="blue",high = "red") +
+TWW_Venn <- ggVennDiagram(MP_time_comparisons3, label_alpha = 0) + scale_fill_gradient(low="blue",high = "red") +
   theme(legend.position = "bottom", legend.direction = "horizontal")
-
-
-#Testing out the nVennR package as an alternative way to create Venn Diagrams
-#River water
-nVennR_plot_test <- plotVenn(list(taxa_MP_CON2_chr, taxa_MP_CON6_chr, taxa_MP_CON10_chr), sNames=c("Week 2", "Week 6", "Week 10"))
-showSVG(nVennR_plot_test, opacity=0.2)
 ```
 
-    ## $def
-    ##  [1] "nVenn1.2" "3"        "Week 2"   "Week 6"   "Week 10"  "0"       
-    ##  [7] "75"       "41"       "119"      "58"       "4"        "39"      
-    ## [13] "88"      
-    ## 
-    ## $set
-    ## [1] "_F\n0\n_L\n7.7875\n23.8513\n7.48487\n24.0785\n7.18233\n24.3054\n6.87927\n24.5326\n6.49288\n24.6955\n6.14361\n24.4615\n5.93345\n24.1583\n5.72299\n23.8551\n5.51273\n23.5521\n5.30217\n23.2493\n5.09201\n22.9461\n4.88211\n22.6429\n4.6713\n22.339\n4.46084\n22.0357\n4.25052\n21.7326\n4.04013\n21.4295\n3.8296\n21.1264\n3.619\n20.823\n3.43074\n20.5024\n3.32769\n20.1446\n3.31806\n19.7727\n3.40238\n19.4103\n3.57501\n19.0811\n3.82501\n18.8057\n4.13637\n18.602\n4.48894\n18.4826\n4.85389\n18.4267\n5.21883\n18.3708\n5.58375\n18.3146\n5.94855\n18.2586\n6.31363\n18.2024\n6.67864\n18.146\n7.04354\n18.09\n7.41471\n18.0595\n7.77861\n18.1414\n8.10017\n18.3295\n8.34973\n18.6064\n8.49931\n18.9489\n8.54033\n19.4066\n8.58966\n19.8151\n8.63907\n20.2236\n8.6887\n20.632\n8.7382\n21.0408\n8.78746\n21.449\n8.8368\n21.8577\n8.84741\n22.4323\n8.77389\n22.7942\n8.61587\n23.1257\n8.39337\n23.418\n8.11529\n23.6576\n_L\n12.1593\n23.7513\n11.7553\n23.9993\n11.3057\n24.1487\n10.8336\n24.1921\n10.3643\n24.1269\n9.92202\n23.9561\n9.52328\n23.6855\n9.08305\n23.5397\n8.61998\n23.5229\n8.17035\n23.6349\n7.76323\n23.8504\n7.31564\n23.9678\n6.85282\n23.9667\n6.39538\n23.843\n5.98688\n23.6037\n5.65556\n23.2658\n5.42438\n22.8526\n5.3096\n22.3937\n5.31924\n21.9202\n5.45282\n21.4658\n5.70065\n21.0619\n6.01384\n20.7067\n6.1999\n20.2705\n6.23662\n19.7979\n6.12181\n19.3321\n6.19262\n18.8586\n6.44093\n18.4496\n6.82782\n18.1685\n7.29234\n18.0565\n7.75922\n18.01\n8.226\n17.9636\n8.69289\n17.9171\n9.16006\n17.8706\n9.62701\n17.8242\n10.1024\n17.8767\n10.5237\n18.1035\n10.8303\n18.4707\n11.1025\n18.8567\n11.375\n19.2422\n11.6472\n19.628\n11.9193\n20.0138\n12.1917\n20.3995\n12.464\n20.7856\n12.7249\n21.1812\n12.8908\n21.6254\n12.9513\n22.0959\n12.9031\n22.5677\n12.7488\n23.0161\n12.4965\n23.4176\n_L\n11.6441\n24.4045\n11.3646\n24.7278\n11.0847\n25.051\n10.8047\n25.3738\n10.525\n25.6967\n10.2454\n26.0196\n9.96569\n26.3428\n9.62436\n26.6049\n9.22745\n26.7706\n8.80124\n26.8286\n8.37468\n26.7752\n7.97634\n26.6139\n7.63238\n26.3551\n7.36563\n26.0186\n7.10607\n25.6772\n6.84621\n25.3356\n6.58676\n24.9945\n6.32764\n24.653\n6.09547\n24.26\n5.90794\n23.8676\n5.7207\n23.4759\n5.5334\n23.0838\n5.36569\n22.6809\n5.29887\n22.2489\n5.33852\n21.8138\n5.48271\n21.4011\n5.72566\n21.0372\n6.06878\n20.7221\n6.48269\n20.509\n6.9397\n20.4161\n7.53816\n20.464\n8.01321\n20.4298\n8.48826\n20.3955\n8.9632\n20.3613\n9.43823\n20.3268\n9.91333\n20.2926\n10.3923\n20.1162\n10.8179\n20.0536\n11.2466\n20.085\n11.6594\n20.2042\n12.0387\n20.4061\n12.3683\n20.6821\n12.6336\n21.0199\n12.8236\n21.4055\n12.9299\n21.8223\n12.9478\n22.2518\n12.8767\n22.6754\n12.7196\n23.0758\n12.4834\n23.4354\n12.2036\n23.7584\n11.9239\n24.0813\n_C\n0\n4.29497e+09\n0\n4.77698\n19.9211\n1.39627\n7.3334\n19.2715\n1.14496\n7.08769\n22.1929\n1.71988\n9.73527\n19.0635\n1.17395\n10.8816\n22.1227\n2\n8.79248\n25.1712\n1.58777\n6.53319\n24.2669\n0.366679\n"
-    ## 
-    ## $reg
-    ## $reg[[1]]
-    ##  [1] "49e1ac2aaf103304e7737e0560c1d291" "68986c579b02ae70f0c94723348f67e3"
-    ##  [3] "9ec9e77a8f648020b9abcdbd083f380c" "7267a3df6ecca94716a20572b8ffdd92"
-    ##  [5] "61aabbeb06c2f40348c40c8053c86b18" "508119d31073fad177cedcecbdffb2b1"
-    ##  [7] "4f615576acf981faa27f65216ef54deb" "84f295cc0efa62d8ce1058b303fc7d16"
-    ##  [9] "eb90fdefb558eac480b5681a5be0e135" "6d4a790c521c7d0abe28dee8a3bbe1be"
-    ## [11] "0a3934f0cdc5625b3234370dd0ad64ad" "4f6e06d73dbccc2816111750e66d0dac"
-    ## [13] "87dfdcb2a28aa5ff3a581f1676e6c83a" "223fabe32320a7e61015aa8bdb9b34b7"
-    ## [15] "d445c17d3507ef68861f392e8d3d6fa8" "b11a5c7f35001268287e9da14796c658"
-    ## [17] "e95ca0a460e7864c7f081d48d2ac7b3f" "5db69e722c78d247c014ef7eda35a466"
-    ## [19] "992a506a4d165db5630b66e8558fa0db" "eda9038d76e3d187bb533a3bf9c69572"
-    ## [21] "5d5bcb362ab303007970ea2a66ca6a4f" "1f84c994ed76a681244635129d45afb1"
-    ## [23] "a082d61432f1376c81ce1a300684607c" "15456227e48f1103584e352c6ba34637"
-    ## [25] "ac983c4999b994f8cc0d50899930208d" "6e14f3b73a7b23f80af1b20da1879073"
-    ## [27] "d459a221d49830ff0ac9b7ca7c7e74b8" "ad944660c5dc1fe4f8ec42e82dac3586"
-    ## [29] "e38aad168c4c83e152902aa20c4d606b" "f258bdb4cf46614a407aa9e510bbe7e2"
-    ## [31] "bc712a9cdc707bad53d6f5bc304f77bf" "21446eeb931ab4982671848a625427c3"
-    ## [33] "ad7717fbac45c22b7eaee1837eb7890a" "3d5d667586c613318405c652f7da6189"
-    ## [35] "eb000f29c8de866f4f00c2f9f8b936f1" "024d1530bde785a3d09c57992d1c32d9"
-    ## [37] "4521afd72e0101b30d46c8c5192731ab" "b1c1744a2e9d6e9a3a0b76e6363a81aa"
-    ## [39] "019979c656994aff8fc4f0ac7cc76f26" "a2202910eb63129ff1bc2671b0f1e97f"
-    ## [41] "bbc64e2e9a820a461c9110996a550476" "3a45645fc53551a3e90908f39c80ea88"
-    ## [43] "e50ae72ff30f9926f2c3a67785e0da4d" "8fae55cee0eca1189a65b2b220858bb2"
-    ## [45] "1cde23872dfe6fbe0be46acfb05e97f4" "03ade159ea72e5ce832aeabce7b1ee10"
-    ## [47] "f513f17828d5fb1a8a8f372dd0196b20" "b32c0acc84b61034def60552ffbc45b3"
-    ## [49] "aca5a198d98a6f08022edf5c9d9afc48" "10ddc3e327033f12a05e18ad0c00dc7a"
-    ## [51] "9fd28cac88e776acb1d31f291c210bf8" "bc3a435fb31a51f9704cd8ee46d6a39b"
-    ## [53] "db8504b88caf12ec4d4439a8eff576b0" "596a9ea28ef4a1ddcd05615d3cc79f8e"
-    ## [55] "45183dcc4ae37290a6a7a1baca5fa7dd" "05dea4e3cf93c880e10e0b9ba3380de3"
-    ## [57] "ef77ae02d2fc7305b4f8a9ae13725131" "2e443e898dc4bc5a287aa6491d69d932"
-    ## [59] "759981bd9dff0f5c9b0c6d5675d78dbb" "bea3672886376020539cbd24ae559916"
-    ## [61] "7e3ca0d5c105a87f4d7f79720d505380" "71712885a6cc11367f2f55fb285e7cb2"
-    ## [63] "83202425ed2c33e124962cee68358427" "a3094802b0fef5b8f1e65f1ebd0a6057"
-    ## [65] "c503136f017a999fc8489f1235d7ec42" "af96fa42263c875e8046672192f627a2"
-    ## [67] "a95e1ac9cc3cb387894d32a12fe26029" "785dbbe7ed389648b1d0522284d87e53"
-    ## [69] "f7a0c0329f5ecaca02fccd2c338f59fa" "874ca34eeb8bbff4ac3aa9de7108f0e3"
-    ## [71] "74b0c0dd904bbb32cff008bc513b74d2" "6bdc85134a0192d99709599fdc12b448"
-    ## [73] "89c589e18239553d989e1f6ed8f4ee9a" "5bef8ba85b7ab8a4b48ca401e97513a6"
-    ## [75] "cfd0cd17c85fc790b5bf730245653b50"
-    ## 
-    ## $reg[[2]]
-    ##  [1] "bcac6add792dd24ab3bf3f6ffbb04fb4" "3c7e95f662321ce2f815e078166c202c"
-    ##  [3] "33ceaa3fed98090d535496959104c75a" "63c998b1becea41ebc5ff3157947ec0c"
-    ##  [5] "8e41c8dcbd322ea1fb44b4c6fc2509b5" "906b324e809f8b6c27ad0fda85b72ab4"
-    ##  [7] "1662a5811fd6fb27159d4e5a4a61cfbc" "cac60cec0955acc359ab0ef9171dd831"
-    ##  [9] "01d4b6911d831a55b64e5e2ead78f9d9" "c3613eb623a08774cb561781585a41d1"
-    ## [11] "0af1aa8027504f8e262c813f1a105956" "d4fad67eb706ab86122fb36afee869c7"
-    ## [13] "5c703d95db653db1a4c5c0f47d5b2246" "dbe3dbcc928bdef85b910d5665b08cf2"
-    ## [15] "25a958acb77cd495c521b56ae500fb64" "30ccf290598808febd1eaaed90f4a68a"
-    ## [17] "09b63638bd517482cd1f7988e4e6462a" "a2c81eed46456e502a81027ffbf8ca12"
-    ## [19] "166dc8037be4288c063dc88655428add" "d98b02d9e03f0ebb0f00a0147d720d93"
-    ## [21] "9e4644e245da272a465302d892652f65" "0bcc0f508a93d83c972032c7c1bd6589"
-    ## [23] "e5fda54e0a8c8c07a8f5ac34c5a76458" "753ec501f392b0cd16e3e04ea95f9ad4"
-    ## [25] "71a5c37154de935fff94761ce59ac82c" "ac0e7cdc059f2055d79572a61d20c715"
-    ## [27] "2d37ffca47fe5824a470909338fec905" "af4978e1f3e54ec981950df431ef50df"
-    ## [29] "e83a6a8619fb9176c8c7bfd276835e7c" "e2544f90a411cb4b935d40c83b01c933"
-    ## [31] "d76ba0b7aed0394a548ad1e5ccb8d0fe" "135a9589da9553e6d0e36c2a504be20d"
-    ## [33] "929d0d883b2a6cd9957536ae4d22215a" "4fe733484d5eada5a294908ac21f0188"
-    ## [35] "1bf834043265c0accda0413d393b1611" "49cab62dbe6dadb1d4e978d72919a351"
-    ## [37] "8be5171abe1df417e0f5078942b9999f" "d61e95adec762ae421115179a2e2e57a"
-    ## [39] "28e2b56220974c5a80d2715b29d11dc4" "511edfdaaa000431a2ef4608cb899c9b"
-    ## [41] "6bc5a89b396e66cddcaf085d71133cbb"
-    ## 
-    ## $reg[[3]]
-    ##   [1] "ebea36365777bd01f7a2392732d898bd" "84bc6ce045f212f439b979e3862bb33e"
-    ##   [3] "dd0b81b53dfcca016c3a67c0e5c6c48e" "e54de549032a1326d6a55c2a269250aa"
-    ##   [5] "7300b96b40471e6129a659d2418a7907" "21e99fe5c4f938c48c2f7069ab9f610a"
-    ##   [7] "5dacb579663156dad6205a9fe3256377" "cc761a4f31e6771b929aac7cc817f1d1"
-    ##   [9] "e4763bb938478b368fd72e9a60aff0a5" "fa9f727d57fa4f41d697cd46038bf64c"
-    ##  [11] "addab92b984c30ca70eb5c24dba68b9d" "2e70f4b0292118bb79e04f97e0fbf2c9"
-    ##  [13] "1dcb2212cc9d9cf41a609f9a5b37ff60" "b54768b69d5232c811022985c5f87ba1"
-    ##  [15] "aa0ee917a8dc36eaf78efb83fba77ed5" "7fa49741de083ef7b236562545599e33"
-    ##  [17] "9943198d8600ba3300ddd2a55a23ea03" "7d3e36bd1b7de8f400d1c6fcd708d640"
-    ##  [19] "903cd9171aadd27179fb51786c7170d2" "291a6c9f0f851992bf926dbf9a38b686"
-    ##  [21] "574e3638b2a0734d17cf4677544db213" "9158ad9569910f7f5d5da4ae41a18887"
-    ##  [23] "d27f40408b64515d72da95423d68b0b8" "d921f18656f3701ba8073d0c3dee85c8"
-    ##  [25] "fee66e230fa30c21bc9c5b04c59be954" "ee58be4d62175c6016d804c963f873fa"
-    ##  [27] "660b9068bde159e796065089f1a02c8d" "698efa3367bdfade818ea2c90c4bf0ca"
-    ##  [29] "ce9a1772a026edb18c13e9bc12ee5f8e" "be41a03722589632d727a128cc9c4167"
-    ##  [31] "ebb384b9749d0cddc4db50edf42fc930" "6239f9b05b4d67add0e16120725b698f"
-    ##  [33] "004ee5606a47f51fcc6bc734cd3208a9" "9efc4fc95e6bb6462e24fc527a71c2c3"
-    ##  [35] "e808e1c5642115b737ecb921304fefc1" "d40b62cc96be2f2e83efd4412fed82e3"
-    ##  [37] "3fad284dcba1c58a6949eeaf7ea44bf4" "a45dc0cdbe32e3a32fa6bdb0a7db8f10"
-    ##  [39] "0117867a9ba93735abe1d3efa8fa8955" "12d8b8ed493ae5149f6f598da0d5df53"
-    ##  [41] "c2ad9f1e151e1131c6e4460f9bbfcbe8" "0bde8a25e6f2ff4a3b30ff5e78a7290b"
-    ##  [43] "628baedc604a9b4c9711819b7184ec32" "f3c0b7307fa3a0f3e72ddb28e8b6aaf4"
-    ##  [45] "0a3a25fe271fa3dbb0951048645fa9a1" "3d9dadd9f06cabeb9a241ac07e1f0b67"
-    ##  [47] "3d530dada2c6e5f710013bb4833ca876" "74d69fd27ce98e30efe3080a35b93f1a"
-    ##  [49] "c7182f5b04146de5f14f442b2b5d62b2" "6016955f71bd982363040e8921f0f5e3"
-    ##  [51] "e582b6e0d5066cbec5e4a9dcadc6f2a9" "5e3237bab61c077efa7ff7de3da973c0"
-    ##  [53] "9b9586f4ee971734202c21eb49e48b39" "f5fb5183a6a846e7cd74cc7263484793"
-    ##  [55] "c422ab6a332c8b3d4352f9918b0121f9" "cbc9c4c32b4cb83e040a059f0efbc264"
-    ##  [57] "31faddb3b5b7176c5b9898671082de18" "4d18e6d6e0039a7075756f1ceb852049"
-    ##  [59] "e41a12b513ff11bb3ae47220a0dda390" "ac14e7880e293f51174b794d5a030107"
-    ##  [61] "6c8d662cbe8111257a463827b60ecfea" "b6b30df14a74be386d793a655e5c3f5a"
-    ##  [63] "ae3fb80642ecc01c124115e63a705835" "b42325272b4c9abd14d3cd816b31e4ee"
-    ##  [65] "cac4ece48472d33e180eef98093b6b6c" "e1cdc45d861ab6a0f13152b84d6fc229"
-    ##  [67] "f461fb25a69dcc1a1e80c8ceb11dbbe2" "370949f510f881d19bc60de1d83e4ead"
-    ##  [69] "82b6e9ac3cb2816eef0942342ac93846" "cd1debf4a8d99381146c78b455ce4cfc"
-    ##  [71] "2db93eec92e9f257357b4602132cd244" "a0ffff106699f3e3ce0f94968a7163bb"
-    ##  [73] "6c0bf239702859ae989d886f1985b1e4" "8797ea3440904a0d42f950150b92f4e1"
-    ##  [75] "d917306c4c8d0ea86cbc8696c91d037b" "7e4cbef8b21a8f0ed39eda834bfac75f"
-    ##  [77] "abd0fbdd7476bd431022c83b9996b932" "8439d0f0d485b88cb830aa006a94775e"
-    ##  [79] "b1a8935489e7797b00fabf970e8375eb" "02647c4d438e5d5d85d9c60a8e091d08"
-    ##  [81] "02680fb27de40537190da374721a1753" "6bfcb65c060ad1b5ffa6a38d74077d3e"
-    ##  [83] "08cb2baa9252356b194c8ffa99ff388f" "8f2833a34dc99cf9662ff3fbf66700a8"
-    ##  [85] "d1c36eab2d59a64805ab7d08ed43a812" "03c8cea8f166e10c919f86287b029108"
-    ##  [87] "421aa959fd23fcedb89ed8d8e63efc9f" "96048083eb3777f81f272b91f5b301a6"
-    ##  [89] "0e5d0956dbf7e8a582543a0e48749f23" "29468914cfd0458997db92c2d12f6ea1"
-    ##  [91] "ec646d93f7eb22c0e713efc48c25db8b" "c08f974f6714b91a799d8df094c5eac1"
-    ##  [93] "69d4ebdd6032c7a9be54ad84b0d2e362" "c49477a4c4e26cd506cccecfc13b2eb9"
-    ##  [95] "396d8c5e388cd6370d19d5095ccfaaec" "dad247830785d0420ee254e0694769e6"
-    ##  [97] "72c659c5151b43410bfced46533303f4" "40b435e5674c6078b9d5f8060d88e771"
-    ##  [99] "46818903d787927ae5525ec67d66d2bc" "76e06e178cf790167ac7685cd99f62fa"
-    ## [101] "0295cbe666314a27f251a26b521091ce" "e19ffd09ddcd963ec97b1f87061daa3d"
-    ## [103] "1d946a3133fec4b7567cc21f626d7756" "4a0972f5318ca24d8ec9bdf5131cff99"
-    ## [105] "35e669f29c648b7198710753d58430c4" "3d59dfb3780680fccc9440e16fdf3370"
-    ## [107] "cc6e9a08ef43af24d1c092c913a7f29b" "f42e78dbbd0f72b18b83a5704a5efa6b"
-    ## [109] "c0a6b6bf73297a8fd766ca7793112f64" "ed091ed6e1210b8a5f867ae5a2ec8c1b"
-    ## [111] "14cbc8ea821822d4096c19aa6062bf67" "008ee034f582ba974f046e6b56bff504"
-    ## [113] "03d603f406e50b013b7d0645b72bc507" "01169913773c94596b60157a154a6401"
-    ## [115] "245006be6cb03b28d9c2f84033f79cbc" "a91e1037bb22ad2cf89dff794df117aa"
-    ## [117] "2a935f852276a0fa465afad4aef1526d" "0c6671ebf3dec2215f8da62a80b6cf18"
-    ## [119] "c3dbf41ed1b8e2e51e190cddb6f60e45"
-    ## 
-    ## $reg[[4]]
-    ##  [1] "777802441241504d1fed2b77daa4fef5" "8665a3597d4d4a91d6d740410703140c"
-    ##  [3] "1906cb6358f38d0ae5aa315ef00a0a71" "9f8b3118e08bc92b20dccf1a0f0ef018"
-    ##  [5] "9e00e2e85b7a4d5dedca001cda062af9" "7ebc360a7d9e6bf6d09f5c861cf77eaa"
-    ##  [7] "0e8d660cbd4a72352ad4109b2440286e" "43bb4040fcebc6f5b5b3bbf9351d1b79"
-    ##  [9] "7552e27f8054c16a9d78e32787c2a27d" "cffb21d28a9912629dbeb0231a15145b"
-    ## [11] "c03960dd2503185574bd3a3e4d4a98a3" "30b314d93b23928c68e0c8da410b03e7"
-    ## [13] "70525e61f8896a5eaf837858d677458d" "38d29ddd1fb248645f80ba68e2e7e62f"
-    ## [15] "1668c2c9b8d56257977288479d75c290" "003af54128f08f88f4cc7f3d30c22bc7"
-    ## [17] "cff8112900c93927bd5a685201e2d902" "6e678220347dfaff5e6949fa73dce40b"
-    ## [19] "7b8e2178f80169722ad87575a3b70f2f" "96bbfac18d1f7f13c4572ff34481c337"
-    ## [21] "04fe639fd136e8365d18a092529648eb" "22abbf44268e9ed6c8fc970b8414f6c7"
-    ## [23] "f8367e2b20da5a27a9a4bba9beacd01e" "0c18b85116708d55b6cbea237b96525b"
-    ## [25] "9761d928d5de6a325502f15050f9b961" "0a3ccb90245c8f84bfbda3c58f3eacc5"
-    ## [27] "9e1fd6a6141200e5610a0ea3911d6006" "ebfbc7b35234a42a899f633d1ebd0485"
-    ## [29] "d18be0ed6a08bb48c01d46fbe3b7ab9e" "2041c7ff34b21552a0af72753974d2bf"
-    ## [31] "fa6510c9e980eaa30617c672e90ad082" "2b0dbc8ca8b74471b0029ee9d61a4c60"
-    ## [33] "fa0218d20cc873b75d9f44d0cf83b289" "f7f5baacba98d73f745d7a6b02c54cdb"
-    ## [35] "4fe873352f09745cce4b1b014cac1eed" "ed8b535aed5997b3b266e0ea9d898136"
-    ## [37] "9f46abfb938487f0aa711df28f4f0412" "7cf1fe0262bdd789a550c1b9a418ffdf"
-    ## [39] "3ac5a519014ada35464c1299daf000d2" "bd10c1c9dfe866a3e568941d39361d5f"
-    ## [41] "1088ef9a6107c7269bb30393d3f3db41" "078f499e4fcb5690f47accb10b3b4f2d"
-    ## [43] "854aba6e257399a8c03c5324bda9c990" "97f0707f0565cf3c4a3d1e77cedd5aa3"
-    ## [45] "b8119da8e2feaf69fba6b39159823d3b" "d12afb35d31c7d7e3c581249f11985e7"
-    ## [47] "b644212b82eca6c12c76ef975069e278" "3ad6059cf09768d3ce5e70b438da0f10"
-    ## [49] "fd5f3f199153ef09acfd2f1347cf2771" "6fa74a2dd7a1a7594d88ac26e06758c5"
-    ## [51] "0f856893d22bc27834d83f861a9ee614" "9b5ba30c2f8aae257690a556bba1a295"
-    ## [53] "030dbbb00fc8b67d161ce83113d5e125" "1f2b82832cf70122f61da691993af785"
-    ## [55] "e91b53dc74978289576c73257d218974" "80dfc7a01e7f1a59030cc7009ce644c4"
-    ## [57] "5bd5cf8447f372b7da1789807bf31056" "141e907da9c585151e08c5b9811b7723"
-    ## 
-    ## $reg[[5]]
-    ## [1] "c255450be9edddca124eed4a6c0d81cc" "b27b16c6c33fea7155ed51d440624370"
-    ## [3] "a09a44b4f12b35b7d2f3b6355ffab2eb" "56530b6128d8756ae7861edae0e9d721"
-    ## 
-    ## $reg[[6]]
-    ##  [1] "1284d0cd1f496848851b63197c931a12" "b214ae87c66eade48767078ed14f564f"
-    ##  [3] "74ad381e9372fd1db6ac76aa766e1d43" "585b0935354ab5352daba1259605c26f"
-    ##  [5] "f9bd449cffe24a59560af012e7f138e9" "4b9ec1e85d49003e97f518a4dca29882"
-    ##  [7] "c2aab74e136fb634b1af41d20eeb7f8a" "1205b1ceb6bc665ee9c9ff7777702229"
-    ##  [9] "47d1a216e45b781c3502fd2859efd875" "d53e8d3d5e370ac1a993f48eaf24567b"
-    ## [11] "c05c3925f1ed194a8cada4faed0d0239" "b6153c6f0918e711e23dd7ab752974cf"
-    ## [13] "d5d450d02f6aedb908030d49f999d3fe" "9df517b3f6356b68cdff3bd4c1a5f68e"
-    ## [15] "a5146a2f02a75661dddcde0b55d011ff" "e1aff31c92bea9be3ad6857d9fdcbfc4"
-    ## [17] "e782f6bfe9343f586c431a75aab548ea" "43e7785fcfd6a38e1b2eca6b90c1d55a"
-    ## [19] "7ecbf406dc3f6f333a519ce74b301023" "e976584396be1aaf289a043643fef02d"
-    ## [21] "1fc38e467d309ae2119780e63150843e" "9e8b6fe0f83968bb3f6e83b5480ccfc7"
-    ## [23] "6dc71e1a6b132d3e7b7d9cc1819f86d7" "5dc375716659a1f435f14a8187d63e1c"
-    ## [25] "385f98df359e91790e07c2cb748d3dde" "2431cd23bb22a066752b0565a00e7c72"
-    ## [27] "e797350616765ebc353f7db9202f7ed5" "e028f45f70441498cf9422ed19a45c4f"
-    ## [29] "d25c5394c5c8b8371fe4bef69c14cbe2" "81febb4c432de5a4419d54dde0747ddc"
-    ## [31] "9a40244307e335d1e9b88f1a32153bf0" "a94d8fee872266a54b1e5706d6bcfbac"
-    ## [33] "0ddee29dbce212f1e552515e33a03daa" "83c1a35def56c6aa91c75d114b788856"
-    ## [35] "5862e04f024f2a3a3ab86980c93bbd84" "71c53c6a37053e7d434496143599861e"
-    ## [37] "0132278ac2aa36023994ebf3d99874c8" "82f604781f0a733f3cadde378f654c64"
-    ## [39] "0836b1890d1fb5eaa54f48ccc4542828"
-    ## 
-    ## $reg[[7]]
-    ##  [1] "e9d595ecb807790e60534c0cae55b9ae" "054e74172c4bfa7b3f17a2621b23ec46"
-    ##  [3] "801ac70bd97e0acf24d78757bc0c4a63" "e60e6623788897e5665e14807bbdaeb9"
-    ##  [5] "bd17406aa68a2af93f87df0e45b7368d" "c436dc67b676f98d091ac4c0ad7c340d"
-    ##  [7] "c6a1db334b738c55bc3460b5aabffa07" "5bb0d9c1b42e96a7095bc4d686e38363"
-    ##  [9] "8369c51b146d25f46cfc9bcecec81a1d" "63b7bee3b253e9e92fe81667f0728235"
-    ## [11] "281fc6085c84205551e126fe2e99bd11" "f8845f54634ff554437b29a5116a748c"
-    ## [13] "212b0396860f119d035b5964aad3b498" "7fc48e52eb254b37318c41821d0094f7"
-    ## [15] "0dd0282527f32d7534e8b25bd8070e05" "0b79218c40c2157254c6b3e792ec3c2d"
-    ## [17] "2ddb3fbdfd9ab21d2f063bb428628ad2" "642ba0fce2b417d95bd2e5d4a53b7f17"
-    ## [19] "8c4cec6e98cea9bde7e38c90077ae964" "30659e41fa4b2f628db60ae54d7fa031"
-    ## [21] "f89a3f319aee4abfc2e002e63b9a0a7c" "dafdc5719dd9462554f050696d57a897"
-    ## [23] "87ec06a7e891bc5c6e8efa0eeced342b" "6c86f7748b5b1c8f46558c78ee7c1b55"
-    ## [25] "61dc6caa907f3120c32c648b6118ac9c" "cc07410e0bcaa30936fd5cce14b4ca66"
-    ## [27] "e83d3a9ae4b566edc8ec920cc3e8f0f8" "1af605105d06b8b23dbda027b7f56516"
-    ## [29] "af336b9ff59d0cc43097a16e4dabebc1" "ba21b0881bf7f1be9b96c67633f7c782"
-    ## [31] "e4bd78ea6c8dbdc8a7b6b5fa3b5145ad" "f29b7d44e1eee8fb456e135e369f884b"
-    ## [33] "5b5adb9e7226d029b43de63086a14f52" "ef6264405ac7d445c9c6cbfb2433182b"
-    ## [35] "21132e5c0d7987e05c879573ce44d29e" "2f552815996dfc27273632a1d226abe1"
-    ## [37] "ab6263b5c92afe21d3ceee8b555383b3" "0f95836a0dff166e4a57fc9eae0c4148"
-    ## [39] "66535460961286c9481cc4c1122b467e" "f3f6c4d101813bad866b9a7e79468934"
-    ## [41] "383c0dd41e3275cce2f82dea5f6a17c6" "acafcd8c3b29657a0898eef798fa1130"
-    ## [43] "6e3f7a4e5285c4c17f3138be5a91d0ff" "98feeb7c5de77b4910f4315ad42371f1"
-    ## [45] "4e3f676699e9e82c2c857f0f512f6e8e" "4187a2441b4caa03144a8126d4576615"
-    ## [47] "4551fa93b93912e430376b39d3a7ab66" "e787389f8bbfabef66615e5e72558118"
-    ## [49] "bf49809769af933f740df88d9b4b8cf0" "c0824e391ee2243112234404d1fc3fe5"
-    ## [51] "6fc06167882ae179ab7c577bade962a9" "d3d1e84295033baefd6a1e89d8723635"
-    ## [53] "a761e859355039395824c375d161e32e" "8aaf7109cebfa92679a49880ebfd80a4"
-    ## [55] "4d9149ccd9bba7f1b5afeb88d0604a60" "f19a6fdb3e559e5bcf0d514fc0f97d33"
-    ## [57] "35733b4629d96dbaa97fa17a3a5fc133" "9bbceca2e8d18f3aec56a00b448892b8"
-    ## [59] "e916bc8b4b153d3d0103159b941ee071" "62c0c4fd52961e0a06cad686e55cd4e8"
-    ## [61] "7b1b46921a2d2b57a78a84f243e5fc9c" "566dcce23831f01974d7faa119d1a04b"
-    ## [63] "b3024ead76a455bee792deeaa8f99e67" "6d91f11bb1ee51e78c6a71668f27cd51"
-    ## [65] "565ad82315a8a7ac1e10b5f688547ece" "d75502deb38927d3ef6d2468b6739bdf"
-    ## [67] "12f255e4729fa1e28527bebdbd01b665" "dec54c185f0d58bdbaa59936dd7306af"
-    ## [69] "105c8c20b86e93ee958d1e2a76e39c1a" "b4b40b4843572fc1248373762f4141af"
-    ## [71] "6b215ea81a2cfb52147c93e3d0ac73eb" "e6eb78585d7fd46ab8cc28481c0a17bf"
-    ## [73] "c13ad8b0c5600fea448e6259170acc95" "6c929215c17f0fd84f034a9d95dce8ce"
-    ## [75] "145442a98875f8e1c901b57132e3f2b8" "26b1b7c2cf6645c09628164d8a151cc3"
-    ## [77] "9b3474bd2148382712c8e93ff8971ef3" "2b8958aca7b054643c3aaa383fb339ee"
-    ## [79] "2f7862c3c7a03a873cf524a2d9cb12ee" "403ca22e6c6abcdc7c4cd2a9b200d3ec"
-    ## [81] "dece12de754bd71facf31dd631e4e365" "b49591c0c7a246ddb594baeefbae62b9"
-    ## [83] "17bb4907c8c278121e08bd58c65689a1" "366e866734c792c9cd90d1b74227127a"
-    ## [85] "98d31549e02be1d0545d751e5f065343" "cbfcd314ba0e663377fdbbcc777c904d"
-    ## [87] "fac89bef8aba259524236d1cddd0186e" "9937fe5099010b99e563efdc75914997"
-    ## 
-    ## 
-    ## $orig
-    ## $orig$`Week 2`
-    ##   [1] "e9d595ecb807790e60534c0cae55b9ae" "054e74172c4bfa7b3f17a2621b23ec46"
-    ##   [3] "801ac70bd97e0acf24d78757bc0c4a63" "e60e6623788897e5665e14807bbdaeb9"
-    ##   [5] "bd17406aa68a2af93f87df0e45b7368d" "c436dc67b676f98d091ac4c0ad7c340d"
-    ##   [7] "c6a1db334b738c55bc3460b5aabffa07" "5bb0d9c1b42e96a7095bc4d686e38363"
-    ##   [9] "8369c51b146d25f46cfc9bcecec81a1d" "1284d0cd1f496848851b63197c931a12"
-    ##  [11] "63b7bee3b253e9e92fe81667f0728235" "b214ae87c66eade48767078ed14f564f"
-    ##  [13] "281fc6085c84205551e126fe2e99bd11" "f8845f54634ff554437b29a5116a748c"
-    ##  [15] "212b0396860f119d035b5964aad3b498" "7fc48e52eb254b37318c41821d0094f7"
-    ##  [17] "777802441241504d1fed2b77daa4fef5" "74ad381e9372fd1db6ac76aa766e1d43"
-    ##  [19] "0dd0282527f32d7534e8b25bd8070e05" "0b79218c40c2157254c6b3e792ec3c2d"
-    ##  [21] "585b0935354ab5352daba1259605c26f" "f9bd449cffe24a59560af012e7f138e9"
-    ##  [23] "2ddb3fbdfd9ab21d2f063bb428628ad2" "642ba0fce2b417d95bd2e5d4a53b7f17"
-    ##  [25] "4b9ec1e85d49003e97f518a4dca29882" "8c4cec6e98cea9bde7e38c90077ae964"
-    ##  [27] "30659e41fa4b2f628db60ae54d7fa031" "8665a3597d4d4a91d6d740410703140c"
-    ##  [29] "f89a3f319aee4abfc2e002e63b9a0a7c" "c2aab74e136fb634b1af41d20eeb7f8a"
-    ##  [31] "dafdc5719dd9462554f050696d57a897" "87ec06a7e891bc5c6e8efa0eeced342b"
-    ##  [33] "1205b1ceb6bc665ee9c9ff7777702229" "6c86f7748b5b1c8f46558c78ee7c1b55"
-    ##  [35] "61dc6caa907f3120c32c648b6118ac9c" "cc07410e0bcaa30936fd5cce14b4ca66"
-    ##  [37] "e83d3a9ae4b566edc8ec920cc3e8f0f8" "1af605105d06b8b23dbda027b7f56516"
-    ##  [39] "af336b9ff59d0cc43097a16e4dabebc1" "ba21b0881bf7f1be9b96c67633f7c782"
-    ##  [41] "1906cb6358f38d0ae5aa315ef00a0a71" "e4bd78ea6c8dbdc8a7b6b5fa3b5145ad"
-    ##  [43] "f29b7d44e1eee8fb456e135e369f884b" "5b5adb9e7226d029b43de63086a14f52"
-    ##  [45] "ef6264405ac7d445c9c6cbfb2433182b" "47d1a216e45b781c3502fd2859efd875"
-    ##  [47] "d53e8d3d5e370ac1a993f48eaf24567b" "c255450be9edddca124eed4a6c0d81cc"
-    ##  [49] "21132e5c0d7987e05c879573ce44d29e" "2f552815996dfc27273632a1d226abe1"
-    ##  [51] "ab6263b5c92afe21d3ceee8b555383b3" "9f8b3118e08bc92b20dccf1a0f0ef018"
-    ##  [53] "0f95836a0dff166e4a57fc9eae0c4148" "9e00e2e85b7a4d5dedca001cda062af9"
-    ##  [55] "66535460961286c9481cc4c1122b467e" "c05c3925f1ed194a8cada4faed0d0239"
-    ##  [57] "f3f6c4d101813bad866b9a7e79468934" "b6153c6f0918e711e23dd7ab752974cf"
-    ##  [59] "7ebc360a7d9e6bf6d09f5c861cf77eaa" "383c0dd41e3275cce2f82dea5f6a17c6"
-    ##  [61] "acafcd8c3b29657a0898eef798fa1130" "0e8d660cbd4a72352ad4109b2440286e"
-    ##  [63] "6e3f7a4e5285c4c17f3138be5a91d0ff" "98feeb7c5de77b4910f4315ad42371f1"
-    ##  [65] "d5d450d02f6aedb908030d49f999d3fe" "4e3f676699e9e82c2c857f0f512f6e8e"
-    ##  [67] "9df517b3f6356b68cdff3bd4c1a5f68e" "a5146a2f02a75661dddcde0b55d011ff"
-    ##  [69] "43bb4040fcebc6f5b5b3bbf9351d1b79" "4187a2441b4caa03144a8126d4576615"
-    ##  [71] "4551fa93b93912e430376b39d3a7ab66" "b27b16c6c33fea7155ed51d440624370"
-    ##  [73] "e787389f8bbfabef66615e5e72558118" "7552e27f8054c16a9d78e32787c2a27d"
-    ##  [75] "e1aff31c92bea9be3ad6857d9fdcbfc4" "cffb21d28a9912629dbeb0231a15145b"
-    ##  [77] "bf49809769af933f740df88d9b4b8cf0" "c0824e391ee2243112234404d1fc3fe5"
-    ##  [79] "e782f6bfe9343f586c431a75aab548ea" "43e7785fcfd6a38e1b2eca6b90c1d55a"
-    ##  [81] "6fc06167882ae179ab7c577bade962a9" "7ecbf406dc3f6f333a519ce74b301023"
-    ##  [83] "e976584396be1aaf289a043643fef02d" "d3d1e84295033baefd6a1e89d8723635"
-    ##  [85] "c03960dd2503185574bd3a3e4d4a98a3" "a761e859355039395824c375d161e32e"
-    ##  [87] "30b314d93b23928c68e0c8da410b03e7" "1fc38e467d309ae2119780e63150843e"
-    ##  [89] "70525e61f8896a5eaf837858d677458d" "8aaf7109cebfa92679a49880ebfd80a4"
-    ##  [91] "4d9149ccd9bba7f1b5afeb88d0604a60" "f19a6fdb3e559e5bcf0d514fc0f97d33"
-    ##  [93] "35733b4629d96dbaa97fa17a3a5fc133" "9bbceca2e8d18f3aec56a00b448892b8"
-    ##  [95] "9e8b6fe0f83968bb3f6e83b5480ccfc7" "e916bc8b4b153d3d0103159b941ee071"
-    ##  [97] "38d29ddd1fb248645f80ba68e2e7e62f" "1668c2c9b8d56257977288479d75c290"
-    ##  [99] "003af54128f08f88f4cc7f3d30c22bc7" "62c0c4fd52961e0a06cad686e55cd4e8"
-    ## [101] "6dc71e1a6b132d3e7b7d9cc1819f86d7" "7b1b46921a2d2b57a78a84f243e5fc9c"
-    ## [103] "cff8112900c93927bd5a685201e2d902" "566dcce23831f01974d7faa119d1a04b"
-    ## [105] "6e678220347dfaff5e6949fa73dce40b" "b3024ead76a455bee792deeaa8f99e67"
-    ## [107] "6d91f11bb1ee51e78c6a71668f27cd51" "7b8e2178f80169722ad87575a3b70f2f"
-    ## [109] "565ad82315a8a7ac1e10b5f688547ece" "96bbfac18d1f7f13c4572ff34481c337"
-    ## [111] "5dc375716659a1f435f14a8187d63e1c" "04fe639fd136e8365d18a092529648eb"
-    ## [113] "d75502deb38927d3ef6d2468b6739bdf" "12f255e4729fa1e28527bebdbd01b665"
-    ## [115] "dec54c185f0d58bdbaa59936dd7306af" "385f98df359e91790e07c2cb748d3dde"
-    ## [117] "105c8c20b86e93ee958d1e2a76e39c1a" "22abbf44268e9ed6c8fc970b8414f6c7"
-    ## [119] "f8367e2b20da5a27a9a4bba9beacd01e" "2431cd23bb22a066752b0565a00e7c72"
-    ## [121] "e797350616765ebc353f7db9202f7ed5" "e028f45f70441498cf9422ed19a45c4f"
-    ## [123] "d25c5394c5c8b8371fe4bef69c14cbe2" "b4b40b4843572fc1248373762f4141af"
-    ## [125] "0c18b85116708d55b6cbea237b96525b" "9761d928d5de6a325502f15050f9b961"
-    ## [127] "81febb4c432de5a4419d54dde0747ddc" "6b215ea81a2cfb52147c93e3d0ac73eb"
-    ## [129] "e6eb78585d7fd46ab8cc28481c0a17bf" "0a3ccb90245c8f84bfbda3c58f3eacc5"
-    ## [131] "9e1fd6a6141200e5610a0ea3911d6006" "ebfbc7b35234a42a899f633d1ebd0485"
-    ## [133] "d18be0ed6a08bb48c01d46fbe3b7ab9e" "c13ad8b0c5600fea448e6259170acc95"
-    ## [135] "6c929215c17f0fd84f034a9d95dce8ce" "2041c7ff34b21552a0af72753974d2bf"
-    ## [137] "145442a98875f8e1c901b57132e3f2b8" "9a40244307e335d1e9b88f1a32153bf0"
-    ## [139] "26b1b7c2cf6645c09628164d8a151cc3" "9b3474bd2148382712c8e93ff8971ef3"
-    ## [141] "fa6510c9e980eaa30617c672e90ad082" "2b0dbc8ca8b74471b0029ee9d61a4c60"
-    ## [143] "2b8958aca7b054643c3aaa383fb339ee" "fa0218d20cc873b75d9f44d0cf83b289"
-    ## [145] "f7f5baacba98d73f745d7a6b02c54cdb" "a09a44b4f12b35b7d2f3b6355ffab2eb"
-    ## [147] "4fe873352f09745cce4b1b014cac1eed" "2f7862c3c7a03a873cf524a2d9cb12ee"
-    ## [149] "ed8b535aed5997b3b266e0ea9d898136" "9f46abfb938487f0aa711df28f4f0412"
-    ## [151] "7cf1fe0262bdd789a550c1b9a418ffdf" "403ca22e6c6abcdc7c4cd2a9b200d3ec"
-    ## [153] "56530b6128d8756ae7861edae0e9d721" "3ac5a519014ada35464c1299daf000d2"
-    ## [155] "bd10c1c9dfe866a3e568941d39361d5f" "1088ef9a6107c7269bb30393d3f3db41"
-    ## [157] "078f499e4fcb5690f47accb10b3b4f2d" "dece12de754bd71facf31dd631e4e365"
-    ## [159] "854aba6e257399a8c03c5324bda9c990" "a94d8fee872266a54b1e5706d6bcfbac"
-    ## [161] "b49591c0c7a246ddb594baeefbae62b9" "17bb4907c8c278121e08bd58c65689a1"
-    ## [163] "97f0707f0565cf3c4a3d1e77cedd5aa3" "b8119da8e2feaf69fba6b39159823d3b"
-    ## [165] "d12afb35d31c7d7e3c581249f11985e7" "366e866734c792c9cd90d1b74227127a"
-    ## [167] "98d31549e02be1d0545d751e5f065343" "b644212b82eca6c12c76ef975069e278"
-    ## [169] "3ad6059cf09768d3ce5e70b438da0f10" "fd5f3f199153ef09acfd2f1347cf2771"
-    ## [171] "0ddee29dbce212f1e552515e33a03daa" "83c1a35def56c6aa91c75d114b788856"
-    ## [173] "5862e04f024f2a3a3ab86980c93bbd84" "71c53c6a37053e7d434496143599861e"
-    ## [175] "6fa74a2dd7a1a7594d88ac26e06758c5" "cbfcd314ba0e663377fdbbcc777c904d"
-    ## [177] "0f856893d22bc27834d83f861a9ee614" "9b5ba30c2f8aae257690a556bba1a295"
-    ## [179] "0132278ac2aa36023994ebf3d99874c8" "030dbbb00fc8b67d161ce83113d5e125"
-    ## [181] "1f2b82832cf70122f61da691993af785" "e91b53dc74978289576c73257d218974"
-    ## [183] "82f604781f0a733f3cadde378f654c64" "fac89bef8aba259524236d1cddd0186e"
-    ## [185] "80dfc7a01e7f1a59030cc7009ce644c4" "0836b1890d1fb5eaa54f48ccc4542828"
-    ## [187] "5bd5cf8447f372b7da1789807bf31056" "9937fe5099010b99e563efdc75914997"
-    ## [189] "141e907da9c585151e08c5b9811b7723"
-    ## 
-    ## $orig$`Week 6`
-    ##   [1] "054e74172c4bfa7b3f17a2621b23ec46" "e9d595ecb807790e60534c0cae55b9ae"
-    ##   [3] "e60e6623788897e5665e14807bbdaeb9" "801ac70bd97e0acf24d78757bc0c4a63"
-    ##   [5] "c436dc67b676f98d091ac4c0ad7c340d" "8369c51b146d25f46cfc9bcecec81a1d"
-    ##   [7] "63b7bee3b253e9e92fe81667f0728235" "c6a1db334b738c55bc3460b5aabffa07"
-    ##   [9] "ebea36365777bd01f7a2392732d898bd" "bd17406aa68a2af93f87df0e45b7368d"
-    ##  [11] "84bc6ce045f212f439b979e3862bb33e" "f8845f54634ff554437b29a5116a748c"
-    ##  [13] "dd0b81b53dfcca016c3a67c0e5c6c48e" "e54de549032a1326d6a55c2a269250aa"
-    ##  [15] "1284d0cd1f496848851b63197c931a12" "7300b96b40471e6129a659d2418a7907"
-    ##  [17] "212b0396860f119d035b5964aad3b498" "5bb0d9c1b42e96a7095bc4d686e38363"
-    ##  [19] "0dd0282527f32d7534e8b25bd8070e05" "21e99fe5c4f938c48c2f7069ab9f610a"
-    ##  [21] "2ddb3fbdfd9ab21d2f063bb428628ad2" "30659e41fa4b2f628db60ae54d7fa031"
-    ##  [23] "b214ae87c66eade48767078ed14f564f" "61dc6caa907f3120c32c648b6118ac9c"
-    ##  [25] "5dacb579663156dad6205a9fe3256377" "7fc48e52eb254b37318c41821d0094f7"
-    ##  [27] "d53e8d3d5e370ac1a993f48eaf24567b" "66535460961286c9481cc4c1122b467e"
-    ##  [29] "cc761a4f31e6771b929aac7cc817f1d1" "e4763bb938478b368fd72e9a60aff0a5"
-    ##  [31] "74ad381e9372fd1db6ac76aa766e1d43" "87ec06a7e891bc5c6e8efa0eeced342b"
-    ##  [33] "1af605105d06b8b23dbda027b7f56516" "fa9f727d57fa4f41d697cd46038bf64c"
-    ##  [35] "addab92b984c30ca70eb5c24dba68b9d" "2f552815996dfc27273632a1d226abe1"
-    ##  [37] "ba21b0881bf7f1be9b96c67633f7c782" "8c4cec6e98cea9bde7e38c90077ae964"
-    ##  [39] "dafdc5719dd9462554f050696d57a897" "6c86f7748b5b1c8f46558c78ee7c1b55"
-    ##  [41] "2e70f4b0292118bb79e04f97e0fbf2c9" "642ba0fce2b417d95bd2e5d4a53b7f17"
-    ##  [43] "281fc6085c84205551e126fe2e99bd11" "1205b1ceb6bc665ee9c9ff7777702229"
-    ##  [45] "e4bd78ea6c8dbdc8a7b6b5fa3b5145ad" "4551fa93b93912e430376b39d3a7ab66"
-    ##  [47] "585b0935354ab5352daba1259605c26f" "f9bd449cffe24a59560af012e7f138e9"
-    ##  [49] "f89a3f319aee4abfc2e002e63b9a0a7c" "ab6263b5c92afe21d3ceee8b555383b3"
-    ##  [51] "1dcb2212cc9d9cf41a609f9a5b37ff60" "af336b9ff59d0cc43097a16e4dabebc1"
-    ##  [53] "c0824e391ee2243112234404d1fc3fe5" "4b9ec1e85d49003e97f518a4dca29882"
-    ##  [55] "b54768b69d5232c811022985c5f87ba1" "aa0ee917a8dc36eaf78efb83fba77ed5"
-    ##  [57] "bcac6add792dd24ab3bf3f6ffbb04fb4" "6c929215c17f0fd84f034a9d95dce8ce"
-    ##  [59] "ef6264405ac7d445c9c6cbfb2433182b" "0b79218c40c2157254c6b3e792ec3c2d"
-    ##  [61] "cc07410e0bcaa30936fd5cce14b4ca66" "f3f6c4d101813bad866b9a7e79468934"
-    ##  [63] "7b1b46921a2d2b57a78a84f243e5fc9c" "6fc06167882ae179ab7c577bade962a9"
-    ##  [65] "7fa49741de083ef7b236562545599e33" "9943198d8600ba3300ddd2a55a23ea03"
-    ##  [67] "383c0dd41e3275cce2f82dea5f6a17c6" "7d3e36bd1b7de8f400d1c6fcd708d640"
-    ##  [69] "0f95836a0dff166e4a57fc9eae0c4148" "f29b7d44e1eee8fb456e135e369f884b"
-    ##  [71] "e83d3a9ae4b566edc8ec920cc3e8f0f8" "acafcd8c3b29657a0898eef798fa1130"
-    ##  [73] "21132e5c0d7987e05c879573ce44d29e" "62c0c4fd52961e0a06cad686e55cd4e8"
-    ##  [75] "3c7e95f662321ce2f815e078166c202c" "c2aab74e136fb634b1af41d20eeb7f8a"
-    ##  [77] "903cd9171aadd27179fb51786c7170d2" "98feeb7c5de77b4910f4315ad42371f1"
-    ##  [79] "2f7862c3c7a03a873cf524a2d9cb12ee" "47d1a216e45b781c3502fd2859efd875"
-    ##  [81] "291a6c9f0f851992bf926dbf9a38b686" "574e3638b2a0734d17cf4677544db213"
-    ##  [83] "9158ad9569910f7f5d5da4ae41a18887" "d27f40408b64515d72da95423d68b0b8"
-    ##  [85] "566dcce23831f01974d7faa119d1a04b" "d921f18656f3701ba8073d0c3dee85c8"
-    ##  [87] "4187a2441b4caa03144a8126d4576615" "33ceaa3fed98090d535496959104c75a"
-    ##  [89] "f19a6fdb3e559e5bcf0d514fc0f97d33" "fee66e230fa30c21bc9c5b04c59be954"
-    ##  [91] "d5d450d02f6aedb908030d49f999d3fe" "ee58be4d62175c6016d804c963f873fa"
-    ##  [93] "e787389f8bbfabef66615e5e72558118" "105c8c20b86e93ee958d1e2a76e39c1a"
-    ##  [95] "660b9068bde159e796065089f1a02c8d" "698efa3367bdfade818ea2c90c4bf0ca"
-    ##  [97] "d3d1e84295033baefd6a1e89d8723635" "a761e859355039395824c375d161e32e"
-    ##  [99] "ce9a1772a026edb18c13e9bc12ee5f8e" "63c998b1becea41ebc5ff3157947ec0c"
-    ## [101] "dece12de754bd71facf31dd631e4e365" "4e3f676699e9e82c2c857f0f512f6e8e"
-    ## [103] "be41a03722589632d727a128cc9c4167" "ebb384b9749d0cddc4db50edf42fc930"
-    ## [105] "9df517b3f6356b68cdff3bd4c1a5f68e" "6239f9b05b4d67add0e16120725b698f"
-    ## [107] "cbfcd314ba0e663377fdbbcc777c904d" "35733b4629d96dbaa97fa17a3a5fc133"
-    ## [109] "004ee5606a47f51fcc6bc734cd3208a9" "8e41c8dcbd322ea1fb44b4c6fc2509b5"
-    ## [111] "c05c3925f1ed194a8cada4faed0d0239" "6e3f7a4e5285c4c17f3138be5a91d0ff"
-    ## [113] "9efc4fc95e6bb6462e24fc527a71c2c3" "e808e1c5642115b737ecb921304fefc1"
-    ## [115] "c13ad8b0c5600fea448e6259170acc95" "1fc38e467d309ae2119780e63150843e"
-    ## [117] "a5146a2f02a75661dddcde0b55d011ff" "9bbceca2e8d18f3aec56a00b448892b8"
-    ## [119] "8aaf7109cebfa92679a49880ebfd80a4" "d40b62cc96be2f2e83efd4412fed82e3"
-    ## [121] "3fad284dcba1c58a6949eeaf7ea44bf4" "a45dc0cdbe32e3a32fa6bdb0a7db8f10"
-    ## [123] "0117867a9ba93735abe1d3efa8fa8955" "12d8b8ed493ae5149f6f598da0d5df53"
-    ## [125] "c2ad9f1e151e1131c6e4460f9bbfcbe8" "0bde8a25e6f2ff4a3b30ff5e78a7290b"
-    ## [127] "628baedc604a9b4c9711819b7184ec32" "98d31549e02be1d0545d751e5f065343"
-    ## [129] "f3c0b7307fa3a0f3e72ddb28e8b6aaf4" "565ad82315a8a7ac1e10b5f688547ece"
-    ## [131] "0a3a25fe271fa3dbb0951048645fa9a1" "5b5adb9e7226d029b43de63086a14f52"
-    ## [133] "3d9dadd9f06cabeb9a241ac07e1f0b67" "b49591c0c7a246ddb594baeefbae62b9"
-    ## [135] "3d530dada2c6e5f710013bb4833ca876" "74d69fd27ce98e30efe3080a35b93f1a"
-    ## [137] "e916bc8b4b153d3d0103159b941ee071" "c7182f5b04146de5f14f442b2b5d62b2"
-    ## [139] "906b324e809f8b6c27ad0fda85b72ab4" "6016955f71bd982363040e8921f0f5e3"
-    ## [141] "e582b6e0d5066cbec5e4a9dcadc6f2a9" "e1aff31c92bea9be3ad6857d9fdcbfc4"
-    ## [143] "5e3237bab61c077efa7ff7de3da973c0" "b4b40b4843572fc1248373762f4141af"
-    ## [145] "9b9586f4ee971734202c21eb49e48b39" "f5fb5183a6a846e7cd74cc7263484793"
-    ## [147] "366e866734c792c9cd90d1b74227127a" "c422ab6a332c8b3d4352f9918b0121f9"
-    ## [149] "cbc9c4c32b4cb83e040a059f0efbc264" "31faddb3b5b7176c5b9898671082de18"
-    ## [151] "6d91f11bb1ee51e78c6a71668f27cd51" "4d18e6d6e0039a7075756f1ceb852049"
-    ## [153] "e782f6bfe9343f586c431a75aab548ea" "e41a12b513ff11bb3ae47220a0dda390"
-    ## [155] "ac14e7880e293f51174b794d5a030107" "dec54c185f0d58bdbaa59936dd7306af"
-    ## [157] "6c8d662cbe8111257a463827b60ecfea" "b6b30df14a74be386d793a655e5c3f5a"
-    ## [159] "ae3fb80642ecc01c124115e63a705835" "fac89bef8aba259524236d1cddd0186e"
-    ## [161] "1662a5811fd6fb27159d4e5a4a61cfbc" "2b8958aca7b054643c3aaa383fb339ee"
-    ## [163] "cac60cec0955acc359ab0ef9171dd831" "b42325272b4c9abd14d3cd816b31e4ee"
-    ## [165] "cac4ece48472d33e180eef98093b6b6c" "5862e04f024f2a3a3ab86980c93bbd84"
-    ## [167] "01d4b6911d831a55b64e5e2ead78f9d9" "c3613eb623a08774cb561781585a41d1"
-    ## [169] "81febb4c432de5a4419d54dde0747ddc" "e1cdc45d861ab6a0f13152b84d6fc229"
-    ## [171] "f461fb25a69dcc1a1e80c8ceb11dbbe2" "b6153c6f0918e711e23dd7ab752974cf"
-    ## [173] "0836b1890d1fb5eaa54f48ccc4542828" "17bb4907c8c278121e08bd58c65689a1"
-    ## [175] "0132278ac2aa36023994ebf3d99874c8" "bf49809769af933f740df88d9b4b8cf0"
-    ## [177] "370949f510f881d19bc60de1d83e4ead" "6b215ea81a2cfb52147c93e3d0ac73eb"
-    ## [179] "d75502deb38927d3ef6d2468b6739bdf" "82b6e9ac3cb2816eef0942342ac93846"
-    ## [181] "cd1debf4a8d99381146c78b455ce4cfc" "e6eb78585d7fd46ab8cc28481c0a17bf"
-    ## [183] "4d9149ccd9bba7f1b5afeb88d0604a60" "26b1b7c2cf6645c09628164d8a151cc3"
-    ## [185] "2db93eec92e9f257357b4602132cd244" "a0ffff106699f3e3ce0f94968a7163bb"
-    ## [187] "145442a98875f8e1c901b57132e3f2b8" "6c0bf239702859ae989d886f1985b1e4"
-    ## [189] "8797ea3440904a0d42f950150b92f4e1" "0af1aa8027504f8e262c813f1a105956"
-    ## [191] "d917306c4c8d0ea86cbc8696c91d037b" "e028f45f70441498cf9422ed19a45c4f"
-    ## [193] "7e4cbef8b21a8f0ed39eda834bfac75f" "d4fad67eb706ab86122fb36afee869c7"
-    ## [195] "5c703d95db653db1a4c5c0f47d5b2246" "abd0fbdd7476bd431022c83b9996b932"
-    ## [197] "dbe3dbcc928bdef85b910d5665b08cf2" "385f98df359e91790e07c2cb748d3dde"
-    ## [199] "9937fe5099010b99e563efdc75914997" "25a958acb77cd495c521b56ae500fb64"
-    ## [201] "30ccf290598808febd1eaaed90f4a68a" "8439d0f0d485b88cb830aa006a94775e"
-    ## [203] "e797350616765ebc353f7db9202f7ed5" "09b63638bd517482cd1f7988e4e6462a"
-    ## [205] "5dc375716659a1f435f14a8187d63e1c" "a2c81eed46456e502a81027ffbf8ca12"
-    ## [207] "b1a8935489e7797b00fabf970e8375eb" "02647c4d438e5d5d85d9c60a8e091d08"
-    ## [209] "02680fb27de40537190da374721a1753" "166dc8037be4288c063dc88655428add"
-    ## [211] "7ecbf406dc3f6f333a519ce74b301023" "6bfcb65c060ad1b5ffa6a38d74077d3e"
-    ## [213] "d98b02d9e03f0ebb0f00a0147d720d93" "08cb2baa9252356b194c8ffa99ff388f"
-    ## [215] "403ca22e6c6abcdc7c4cd2a9b200d3ec" "8f2833a34dc99cf9662ff3fbf66700a8"
-    ## [217] "d1c36eab2d59a64805ab7d08ed43a812" "71c53c6a37053e7d434496143599861e"
-    ## [219] "03c8cea8f166e10c919f86287b029108" "2431cd23bb22a066752b0565a00e7c72"
-    ## [221] "421aa959fd23fcedb89ed8d8e63efc9f" "96048083eb3777f81f272b91f5b301a6"
-    ## [223] "b3024ead76a455bee792deeaa8f99e67" "0e5d0956dbf7e8a582543a0e48749f23"
-    ## [225] "9e4644e245da272a465302d892652f65" "0bcc0f508a93d83c972032c7c1bd6589"
-    ## [227] "e5fda54e0a8c8c07a8f5ac34c5a76458" "753ec501f392b0cd16e3e04ea95f9ad4"
-    ## [229] "71a5c37154de935fff94761ce59ac82c" "43e7785fcfd6a38e1b2eca6b90c1d55a"
-    ## [231] "29468914cfd0458997db92c2d12f6ea1" "ec646d93f7eb22c0e713efc48c25db8b"
-    ## [233] "6dc71e1a6b132d3e7b7d9cc1819f86d7" "c08f974f6714b91a799d8df094c5eac1"
-    ## [235] "69d4ebdd6032c7a9be54ad84b0d2e362" "c49477a4c4e26cd506cccecfc13b2eb9"
-    ## [237] "396d8c5e388cd6370d19d5095ccfaaec" "82f604781f0a733f3cadde378f654c64"
-    ## [239] "dad247830785d0420ee254e0694769e6" "72c659c5151b43410bfced46533303f4"
-    ## [241] "ac0e7cdc059f2055d79572a61d20c715" "2d37ffca47fe5824a470909338fec905"
-    ## [243] "af4978e1f3e54ec981950df431ef50df" "e83a6a8619fb9176c8c7bfd276835e7c"
-    ## [245] "e2544f90a411cb4b935d40c83b01c933" "40b435e5674c6078b9d5f8060d88e771"
-    ## [247] "46818903d787927ae5525ec67d66d2bc" "d76ba0b7aed0394a548ad1e5ccb8d0fe"
-    ## [249] "76e06e178cf790167ac7685cd99f62fa" "0295cbe666314a27f251a26b521091ce"
-    ## [251] "135a9589da9553e6d0e36c2a504be20d" "e19ffd09ddcd963ec97b1f87061daa3d"
-    ## [253] "929d0d883b2a6cd9957536ae4d22215a" "1d946a3133fec4b7567cc21f626d7756"
-    ## [255] "83c1a35def56c6aa91c75d114b788856" "4a0972f5318ca24d8ec9bdf5131cff99"
-    ## [257] "d25c5394c5c8b8371fe4bef69c14cbe2" "35e669f29c648b7198710753d58430c4"
-    ## [259] "3d59dfb3780680fccc9440e16fdf3370" "cc6e9a08ef43af24d1c092c913a7f29b"
-    ## [261] "4fe733484d5eada5a294908ac21f0188" "1bf834043265c0accda0413d393b1611"
-    ## [263] "49cab62dbe6dadb1d4e978d72919a351" "f42e78dbbd0f72b18b83a5704a5efa6b"
-    ## [265] "c0a6b6bf73297a8fd766ca7793112f64" "8be5171abe1df417e0f5078942b9999f"
-    ## [267] "ed091ed6e1210b8a5f867ae5a2ec8c1b" "14cbc8ea821822d4096c19aa6062bf67"
-    ## [269] "9b3474bd2148382712c8e93ff8971ef3" "d61e95adec762ae421115179a2e2e57a"
-    ## [271] "12f255e4729fa1e28527bebdbd01b665" "e976584396be1aaf289a043643fef02d"
-    ## [273] "008ee034f582ba974f046e6b56bff504" "03d603f406e50b013b7d0645b72bc507"
-    ## [275] "01169913773c94596b60157a154a6401" "9e8b6fe0f83968bb3f6e83b5480ccfc7"
-    ## [277] "28e2b56220974c5a80d2715b29d11dc4" "245006be6cb03b28d9c2f84033f79cbc"
-    ## [279] "511edfdaaa000431a2ef4608cb899c9b" "0ddee29dbce212f1e552515e33a03daa"
-    ## [281] "a91e1037bb22ad2cf89dff794df117aa" "9a40244307e335d1e9b88f1a32153bf0"
-    ## [283] "2a935f852276a0fa465afad4aef1526d" "a94d8fee872266a54b1e5706d6bcfbac"
-    ## [285] "0c6671ebf3dec2215f8da62a80b6cf18" "c3dbf41ed1b8e2e51e190cddb6f60e45"
-    ## [287] "6bc5a89b396e66cddcaf085d71133cbb"
-    ## 
-    ## $orig$`Week 10`
-    ##   [1] "054e74172c4bfa7b3f17a2621b23ec46" "8369c51b146d25f46cfc9bcecec81a1d"
-    ##   [3] "e9d595ecb807790e60534c0cae55b9ae" "c436dc67b676f98d091ac4c0ad7c340d"
-    ##   [5] "ebea36365777bd01f7a2392732d898bd" "e60e6623788897e5665e14807bbdaeb9"
-    ##   [7] "63b7bee3b253e9e92fe81667f0728235" "84bc6ce045f212f439b979e3862bb33e"
-    ##   [9] "801ac70bd97e0acf24d78757bc0c4a63" "c6a1db334b738c55bc3460b5aabffa07"
-    ##  [11] "dd0b81b53dfcca016c3a67c0e5c6c48e" "bd17406aa68a2af93f87df0e45b7368d"
-    ##  [13] "21e99fe5c4f938c48c2f7069ab9f610a" "7300b96b40471e6129a659d2418a7907"
-    ##  [15] "f8845f54634ff554437b29a5116a748c" "2ddb3fbdfd9ab21d2f063bb428628ad2"
-    ##  [17] "30659e41fa4b2f628db60ae54d7fa031" "0dd0282527f32d7534e8b25bd8070e05"
-    ##  [19] "e54de549032a1326d6a55c2a269250aa" "5bb0d9c1b42e96a7095bc4d686e38363"
-    ##  [21] "cc761a4f31e6771b929aac7cc817f1d1" "5dacb579663156dad6205a9fe3256377"
-    ##  [23] "aa0ee917a8dc36eaf78efb83fba77ed5" "e4763bb938478b368fd72e9a60aff0a5"
-    ##  [25] "66535460961286c9481cc4c1122b467e" "ba21b0881bf7f1be9b96c67633f7c782"
-    ##  [27] "1dcb2212cc9d9cf41a609f9a5b37ff60" "49e1ac2aaf103304e7737e0560c1d291"
-    ##  [29] "1af605105d06b8b23dbda027b7f56516" "6c929215c17f0fd84f034a9d95dce8ce"
-    ##  [31] "61dc6caa907f3120c32c648b6118ac9c" "212b0396860f119d035b5964aad3b498"
-    ##  [33] "2e70f4b0292118bb79e04f97e0fbf2c9" "8c4cec6e98cea9bde7e38c90077ae964"
-    ##  [35] "addab92b984c30ca70eb5c24dba68b9d" "dafdc5719dd9462554f050696d57a897"
-    ##  [37] "281fc6085c84205551e126fe2e99bd11" "f89a3f319aee4abfc2e002e63b9a0a7c"
-    ##  [39] "c255450be9edddca124eed4a6c0d81cc" "b54768b69d5232c811022985c5f87ba1"
-    ##  [41] "c0824e391ee2243112234404d1fc3fe5" "af336b9ff59d0cc43097a16e4dabebc1"
-    ##  [43] "62c0c4fd52961e0a06cad686e55cd4e8" "6fc06167882ae179ab7c577bade962a9"
-    ##  [45] "7fc48e52eb254b37318c41821d0094f7" "21132e5c0d7987e05c879573ce44d29e"
-    ##  [47] "2f552815996dfc27273632a1d226abe1" "fa9f727d57fa4f41d697cd46038bf64c"
-    ##  [49] "87ec06a7e891bc5c6e8efa0eeced342b" "574e3638b2a0734d17cf4677544db213"
-    ##  [51] "ab6263b5c92afe21d3ceee8b555383b3" "6c86f7748b5b1c8f46558c78ee7c1b55"
-    ##  [53] "642ba0fce2b417d95bd2e5d4a53b7f17" "7b1b46921a2d2b57a78a84f243e5fc9c"
-    ##  [55] "9943198d8600ba3300ddd2a55a23ea03" "383c0dd41e3275cce2f82dea5f6a17c6"
-    ##  [57] "dece12de754bd71facf31dd631e4e365" "f29b7d44e1eee8fb456e135e369f884b"
-    ##  [59] "903cd9171aadd27179fb51786c7170d2" "4551fa93b93912e430376b39d3a7ab66"
-    ##  [61] "e4bd78ea6c8dbdc8a7b6b5fa3b5145ad" "7d3e36bd1b7de8f400d1c6fcd708d640"
-    ##  [63] "9158ad9569910f7f5d5da4ae41a18887" "68986c579b02ae70f0c94723348f67e3"
-    ##  [65] "ce9a1772a026edb18c13e9bc12ee5f8e" "d921f18656f3701ba8073d0c3dee85c8"
-    ##  [67] "d27f40408b64515d72da95423d68b0b8" "acafcd8c3b29657a0898eef798fa1130"
-    ##  [69] "e582b6e0d5066cbec5e4a9dcadc6f2a9" "f3f6c4d101813bad866b9a7e79468934"
-    ##  [71] "ef6264405ac7d445c9c6cbfb2433182b" "fee66e230fa30c21bc9c5b04c59be954"
-    ##  [73] "cc07410e0bcaa30936fd5cce14b4ca66" "6016955f71bd982363040e8921f0f5e3"
-    ##  [75] "7fa49741de083ef7b236562545599e33" "f19a6fdb3e559e5bcf0d514fc0f97d33"
-    ##  [77] "a761e859355039395824c375d161e32e" "6c0bf239702859ae989d886f1985b1e4"
-    ##  [79] "6239f9b05b4d67add0e16120725b698f" "8797ea3440904a0d42f950150b92f4e1"
-    ##  [81] "e83d3a9ae4b566edc8ec920cc3e8f0f8" "8aaf7109cebfa92679a49880ebfd80a4"
-    ##  [83] "291a6c9f0f851992bf926dbf9a38b686" "105c8c20b86e93ee958d1e2a76e39c1a"
-    ##  [85] "98feeb7c5de77b4910f4315ad42371f1" "ae3fb80642ecc01c124115e63a705835"
-    ##  [87] "35733b4629d96dbaa97fa17a3a5fc133" "4187a2441b4caa03144a8126d4576615"
-    ##  [89] "698efa3367bdfade818ea2c90c4bf0ca" "0117867a9ba93735abe1d3efa8fa8955"
-    ##  [91] "ebb384b9749d0cddc4db50edf42fc930" "ac14e7880e293f51174b794d5a030107"
-    ##  [93] "c2ad9f1e151e1131c6e4460f9bbfcbe8" "004ee5606a47f51fcc6bc734cd3208a9"
-    ##  [95] "0a3a25fe271fa3dbb0951048645fa9a1" "74d69fd27ce98e30efe3080a35b93f1a"
-    ##  [97] "4e3f676699e9e82c2c857f0f512f6e8e" "f3c0b7307fa3a0f3e72ddb28e8b6aaf4"
-    ##  [99] "628baedc604a9b4c9711819b7184ec32" "565ad82315a8a7ac1e10b5f688547ece"
-    ## [101] "9ec9e77a8f648020b9abcdbd083f380c" "cbfcd314ba0e663377fdbbcc777c904d"
-    ## [103] "ee58be4d62175c6016d804c963f873fa" "0bde8a25e6f2ff4a3b30ff5e78a7290b"
-    ## [105] "31faddb3b5b7176c5b9898671082de18" "c7182f5b04146de5f14f442b2b5d62b2"
-    ## [107] "c422ab6a332c8b3d4352f9918b0121f9" "17bb4907c8c278121e08bd58c65689a1"
-    ## [109] "7267a3df6ecca94716a20572b8ffdd92" "d40b62cc96be2f2e83efd4412fed82e3"
-    ## [111] "2f7862c3c7a03a873cf524a2d9cb12ee" "12d8b8ed493ae5149f6f598da0d5df53"
-    ## [113] "3fad284dcba1c58a6949eeaf7ea44bf4" "5b5adb9e7226d029b43de63086a14f52"
-    ## [115] "e808e1c5642115b737ecb921304fefc1" "3d530dada2c6e5f710013bb4833ca876"
-    ## [117] "a45dc0cdbe32e3a32fa6bdb0a7db8f10" "660b9068bde159e796065089f1a02c8d"
-    ## [119] "dad247830785d0420ee254e0694769e6" "9b9586f4ee971734202c21eb49e48b39"
-    ## [121] "e916bc8b4b153d3d0103159b941ee071" "2db93eec92e9f257357b4602132cd244"
-    ## [123] "b27b16c6c33fea7155ed51d440624370" "6c8d662cbe8111257a463827b60ecfea"
-    ## [125] "9bbceca2e8d18f3aec56a00b448892b8" "6e3f7a4e5285c4c17f3138be5a91d0ff"
-    ## [127] "d3d1e84295033baefd6a1e89d8723635" "4d9149ccd9bba7f1b5afeb88d0604a60"
-    ## [129] "cac4ece48472d33e180eef98093b6b6c" "4d18e6d6e0039a7075756f1ceb852049"
-    ## [131] "26b1b7c2cf6645c09628164d8a151cc3" "566dcce23831f01974d7faa119d1a04b"
-    ## [133] "d75502deb38927d3ef6d2468b6739bdf" "69d4ebdd6032c7a9be54ad84b0d2e362"
-    ## [135] "b49591c0c7a246ddb594baeefbae62b9" "fac89bef8aba259524236d1cddd0186e"
-    ## [137] "403ca22e6c6abcdc7c4cd2a9b200d3ec" "be41a03722589632d727a128cc9c4167"
-    ## [139] "cbc9c4c32b4cb83e040a059f0efbc264" "9efc4fc95e6bb6462e24fc527a71c2c3"
-    ## [141] "5e3237bab61c077efa7ff7de3da973c0" "f461fb25a69dcc1a1e80c8ceb11dbbe2"
-    ## [143] "370949f510f881d19bc60de1d83e4ead" "c13ad8b0c5600fea448e6259170acc95"
-    ## [145] "61aabbeb06c2f40348c40c8053c86b18" "cd1debf4a8d99381146c78b455ce4cfc"
-    ## [147] "3d9dadd9f06cabeb9a241ac07e1f0b67" "7e4cbef8b21a8f0ed39eda834bfac75f"
-    ## [149] "dec54c185f0d58bdbaa59936dd7306af" "b3024ead76a455bee792deeaa8f99e67"
-    ## [151] "2b8958aca7b054643c3aaa383fb339ee" "abd0fbdd7476bd431022c83b9996b932"
-    ## [153] "8439d0f0d485b88cb830aa006a94775e" "35e669f29c648b7198710753d58430c4"
-    ## [155] "82b6e9ac3cb2816eef0942342ac93846" "98d31549e02be1d0545d751e5f065343"
-    ## [157] "8f2833a34dc99cf9662ff3fbf66700a8" "e787389f8bbfabef66615e5e72558118"
-    ## [159] "02680fb27de40537190da374721a1753" "2a935f852276a0fa465afad4aef1526d"
-    ## [161] "0f95836a0dff166e4a57fc9eae0c4148" "01169913773c94596b60157a154a6401"
-    ## [163] "96048083eb3777f81f272b91f5b301a6" "f42e78dbbd0f72b18b83a5704a5efa6b"
-    ## [165] "14cbc8ea821822d4096c19aa6062bf67" "508119d31073fad177cedcecbdffb2b1"
-    ## [167] "d917306c4c8d0ea86cbc8696c91d037b" "76e06e178cf790167ac7685cd99f62fa"
-    ## [169] "72c659c5151b43410bfced46533303f4" "0295cbe666314a27f251a26b521091ce"
-    ## [171] "e6eb78585d7fd46ab8cc28481c0a17bf" "4f615576acf981faa27f65216ef54deb"
-    ## [173] "bf49809769af933f740df88d9b4b8cf0" "84f295cc0efa62d8ce1058b303fc7d16"
-    ## [175] "eb90fdefb558eac480b5681a5be0e135" "b1a8935489e7797b00fabf970e8375eb"
-    ## [177] "b42325272b4c9abd14d3cd816b31e4ee" "08cb2baa9252356b194c8ffa99ff388f"
-    ## [179] "c08f974f6714b91a799d8df094c5eac1" "008ee034f582ba974f046e6b56bff504"
-    ## [181] "e1cdc45d861ab6a0f13152b84d6fc229" "0b79218c40c2157254c6b3e792ec3c2d"
-    ## [183] "9b3474bd2148382712c8e93ff8971ef3" "e41a12b513ff11bb3ae47220a0dda390"
-    ## [185] "a91e1037bb22ad2cf89dff794df117aa" "145442a98875f8e1c901b57132e3f2b8"
-    ## [187] "6d4a790c521c7d0abe28dee8a3bbe1be" "b4b40b4843572fc1248373762f4141af"
-    ## [189] "0a3934f0cdc5625b3234370dd0ad64ad" "6d91f11bb1ee51e78c6a71668f27cd51"
-    ## [191] "03c8cea8f166e10c919f86287b029108" "c0a6b6bf73297a8fd766ca7793112f64"
-    ## [193] "396d8c5e388cd6370d19d5095ccfaaec" "4f6e06d73dbccc2816111750e66d0dac"
-    ## [195] "87dfdcb2a28aa5ff3a581f1676e6c83a" "cc6e9a08ef43af24d1c092c913a7f29b"
-    ## [197] "ec646d93f7eb22c0e713efc48c25db8b" "223fabe32320a7e61015aa8bdb9b34b7"
-    ## [199] "6b215ea81a2cfb52147c93e3d0ac73eb" "12f255e4729fa1e28527bebdbd01b665"
-    ## [201] "d445c17d3507ef68861f392e8d3d6fa8" "b11a5c7f35001268287e9da14796c658"
-    ## [203] "e95ca0a460e7864c7f081d48d2ac7b3f" "5db69e722c78d247c014ef7eda35a466"
-    ## [205] "992a506a4d165db5630b66e8558fa0db" "eda9038d76e3d187bb533a3bf9c69572"
-    ## [207] "c49477a4c4e26cd506cccecfc13b2eb9" "5d5bcb362ab303007970ea2a66ca6a4f"
-    ## [209] "1f84c994ed76a681244635129d45afb1" "a082d61432f1376c81ce1a300684607c"
-    ## [211] "02647c4d438e5d5d85d9c60a8e091d08" "15456227e48f1103584e352c6ba34637"
-    ## [213] "ac983c4999b994f8cc0d50899930208d" "0e5d0956dbf7e8a582543a0e48749f23"
-    ## [215] "6e14f3b73a7b23f80af1b20da1879073" "29468914cfd0458997db92c2d12f6ea1"
-    ## [217] "d459a221d49830ff0ac9b7ca7c7e74b8" "ad944660c5dc1fe4f8ec42e82dac3586"
-    ## [219] "e38aad168c4c83e152902aa20c4d606b" "ed091ed6e1210b8a5f867ae5a2ec8c1b"
-    ## [221] "f258bdb4cf46614a407aa9e510bbe7e2" "bc712a9cdc707bad53d6f5bc304f77bf"
-    ## [223] "f5fb5183a6a846e7cd74cc7263484793" "21446eeb931ab4982671848a625427c3"
-    ## [225] "ad7717fbac45c22b7eaee1837eb7890a" "366e866734c792c9cd90d1b74227127a"
-    ## [227] "3d5d667586c613318405c652f7da6189" "eb000f29c8de866f4f00c2f9f8b936f1"
-    ## [229] "024d1530bde785a3d09c57992d1c32d9" "4521afd72e0101b30d46c8c5192731ab"
-    ## [231] "b1c1744a2e9d6e9a3a0b76e6363a81aa" "019979c656994aff8fc4f0ac7cc76f26"
-    ## [233] "a0ffff106699f3e3ce0f94968a7163bb" "a2202910eb63129ff1bc2671b0f1e97f"
-    ## [235] "b6b30df14a74be386d793a655e5c3f5a" "e19ffd09ddcd963ec97b1f87061daa3d"
-    ## [237] "bbc64e2e9a820a461c9110996a550476" "3a45645fc53551a3e90908f39c80ea88"
-    ## [239] "e50ae72ff30f9926f2c3a67785e0da4d" "8fae55cee0eca1189a65b2b220858bb2"
-    ## [241] "1cde23872dfe6fbe0be46acfb05e97f4" "03ade159ea72e5ce832aeabce7b1ee10"
-    ## [243] "f513f17828d5fb1a8a8f372dd0196b20" "b32c0acc84b61034def60552ffbc45b3"
-    ## [245] "aca5a198d98a6f08022edf5c9d9afc48" "10ddc3e327033f12a05e18ad0c00dc7a"
-    ## [247] "9fd28cac88e776acb1d31f291c210bf8" "bc3a435fb31a51f9704cd8ee46d6a39b"
-    ## [249] "db8504b88caf12ec4d4439a8eff576b0" "56530b6128d8756ae7861edae0e9d721"
-    ## [251] "596a9ea28ef4a1ddcd05615d3cc79f8e" "45183dcc4ae37290a6a7a1baca5fa7dd"
-    ## [253] "3d59dfb3780680fccc9440e16fdf3370" "6bfcb65c060ad1b5ffa6a38d74077d3e"
-    ## [255] "1d946a3133fec4b7567cc21f626d7756" "05dea4e3cf93c880e10e0b9ba3380de3"
-    ## [257] "ef77ae02d2fc7305b4f8a9ae13725131" "d1c36eab2d59a64805ab7d08ed43a812"
-    ## [259] "40b435e5674c6078b9d5f8060d88e771" "2e443e898dc4bc5a287aa6491d69d932"
-    ## [261] "759981bd9dff0f5c9b0c6d5675d78dbb" "bea3672886376020539cbd24ae559916"
-    ## [263] "7e3ca0d5c105a87f4d7f79720d505380" "421aa959fd23fcedb89ed8d8e63efc9f"
-    ## [265] "71712885a6cc11367f2f55fb285e7cb2" "46818903d787927ae5525ec67d66d2bc"
-    ## [267] "0c6671ebf3dec2215f8da62a80b6cf18" "83202425ed2c33e124962cee68358427"
-    ## [269] "a3094802b0fef5b8f1e65f1ebd0a6057" "c503136f017a999fc8489f1235d7ec42"
-    ## [271] "af96fa42263c875e8046672192f627a2" "a95e1ac9cc3cb387894d32a12fe26029"
-    ## [273] "785dbbe7ed389648b1d0522284d87e53" "f7a0c0329f5ecaca02fccd2c338f59fa"
-    ## [275] "245006be6cb03b28d9c2f84033f79cbc" "874ca34eeb8bbff4ac3aa9de7108f0e3"
-    ## [277] "74b0c0dd904bbb32cff008bc513b74d2" "c3dbf41ed1b8e2e51e190cddb6f60e45"
-    ## [279] "6bdc85134a0192d99709599fdc12b448" "9937fe5099010b99e563efdc75914997"
-    ## [281] "a09a44b4f12b35b7d2f3b6355ffab2eb" "89c589e18239553d989e1f6ed8f4ee9a"
-    ## [283] "4a0972f5318ca24d8ec9bdf5131cff99" "5bef8ba85b7ab8a4b48ca401e97513a6"
-    ## [285] "cfd0cd17c85fc790b5bf730245653b50" "03d603f406e50b013b7d0645b72bc507"
-    ## 
-    ## 
-    ## $svg
-    ## [1] "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\"700\" height=\"500\">\n<defs>\n<style type=\"text/css\"><![CDATA[\n  .borderLine {\n\t   stroke: none;\n\t   fill-opacity:  0.2 ;\n  }\n  .outLine {\n\t   stroke-width:  1 ;\n\t   fill: none;\n  }\n  .circle {\n\t   stroke: #888888;\n\t   stroke-width: 0.5;\n\t   fill: none;\n    pointer-events: all;\n  }\n  .nLabel {\n\t   font-family: Arial;\n    pointer-events: none;\n\t   font-size: 10px;\n\t   text-anchor: middle;\n\t   alignment-baseline: central;\n  }\n  .belong {\n\t   font-family: Arial;\n    pointer-events: none;\n\t   font-size: 5px;\n\t   text-anchor: middle;\n\t   alignment-baseline: central;\n  }\n  .legend {\n    font-family: Arial;\n    font-size: 15px;\n  }\n  #legendBox {\n    display:  inline ;\n  }\n  .p0{\n    stroke: none;\n    fill: #e6194b;\n  }\n  .q0{\n    fill: none;\n    stroke: #e6194b;\n  }\n  .p1{\n    stroke: none;\n    fill: #3cb44b;\n  }\n  .q1{\n    fill: none;\n    stroke: #3cb44b;\n  }\n  .p2{\n    stroke: none;\n    fill: #ffe119;\n  }\n  .q2{\n    fill: none;\n    stroke: #ffe119;\n  }\n]]>\n</style>\n<symbol id=\"bl0\">\n<path d=\"M 248.58 316.38 L 243.49 320.00 L 238.28 323.51 L 233.04 327.03 L 227.84 330.63 L 222.71 334.32 L 217.61 338.06 L 212.54 341.83 L 207.46 345.60 L 202.36 349.35 L 197.18 353.04 L 191.84 356.60 L 186.28 360.00 L 180.50 363.33 L 174.36 366.11 L 167.94 366.62 L 161.73 364.95 L 156.36 361.18 L 151.85 356.49 L 147.58 351.76 L 143.64 346.91 L 139.93 341.95 L 136.34 336.92 L 132.80 331.87 L 129.28 326.82 L 125.76 321.76 L 122.25 316.70 L 118.73 311.64 L 115.22 306.58 L 111.70 301.52 L 108.19 296.46 L 104.68 291.40 L 101.17 286.34 L 97.66 281.28 L 94.16 276.21 L 90.65 271.14 L 87.14 266.08 L 83.63 261.01 L 80.12 255.94 L 76.60 250.87 L 73.09 245.80 L 69.58 240.74 L 66.08 235.67 L 62.57 230.61 L 59.07 225.55 L 55.56 220.49 L 52.06 215.43 L 48.56 210.37 L 45.05 205.31 L 41.55 200.25 L 38.05 195.19 L 34.56 190.12 L 31.10 185.03 L 27.69 179.91 L 24.38 174.71 L 21.24 169.42 L 18.34 164.01 L 15.78 158.44 L 13.65 152.70 L 11.99 146.82 L 10.81 140.82 L 10.15 134.75 L 10.00 128.64 L 10.37 122.54 L 11.25 116.50 L 12.64 110.54 L 14.52 104.73 L 16.90 99.10 L 19.74 93.69 L 23.02 88.54 L 26.73 83.69 L 30.83 79.16 L 35.30 74.99 L 40.11 71.22 L 45.22 67.86 L 50.59 64.93 L 56.18 62.44 L 61.95 60.35 L 67.84 58.64 L 73.82 57.24 L 79.85 56.06 L 85.91 55.02 L 91.99 54.05 L 98.07 53.09 L 104.15 52.15 L 110.24 51.20 L 116.33 50.26 L 122.41 49.31 L 128.50 48.37 L 134.59 47.42 L 140.68 46.48 L 146.77 45.54 L 152.86 44.60 L 158.96 43.65 L 165.05 42.71 L 171.14 41.77 L 177.24 40.85 L 183.34 39.95 L 189.46 39.12 L 195.59 38.41 L 201.73 37.90 L 207.88 37.70 L 214.00 37.94 L 220.05 38.72 L 225.99 40.07 L 231.77 42.01 L 237.31 44.53 L 242.56 47.59 L 247.47 51.18 L 251.98 55.27 L 256.04 59.80 L 259.61 64.77 L 262.64 70.18 L 265.12 76.04 L 267.07 82.38 L 268.54 89.15 L 269.64 96.22 L 270.55 103.36 L 271.38 110.44 L 272.20 117.41 L 273.02 124.30 L 273.84 131.15 L 274.67 137.98 L 275.50 144.81 L 276.32 151.63 L 277.15 158.46 L 277.98 165.29 L 278.81 172.11 L 279.64 178.94 L 280.46 185.77 L 281.29 192.60 L 282.11 199.43 L 282.91 206.26 L 283.67 213.12 L 284.35 220.03 L 284.89 226.99 L 285.25 234.01 L 285.40 241.03 L 285.30 247.96 L 284.87 254.68 L 284.05 261.13 L 282.80 267.30 L 281.11 273.23 L 278.96 278.94 L 276.39 284.46 L 273.43 289.76 L 270.09 294.84 L 266.40 299.67 L 262.39 304.24 L 258.07 308.54 L 253.46 312.58 Z\" />\n</symbol>\n<symbol id=\"bl1\">\n<path d=\"M 467.31 303.84 L 462.20 309.74 L 456.66 315.25 L 450.71 320.31 L 444.40 324.89 L 437.75 328.99 L 430.82 332.56 L 423.63 335.59 L 416.23 338.06 L 408.67 339.97 L 400.98 341.28 L 393.21 342.00 L 385.41 342.14 L 377.62 341.66 L 369.89 340.60 L 362.26 338.94 L 354.77 336.71 L 347.44 333.92 L 340.28 330.66 L 333.27 327.05 L 326.31 323.34 L 319.31 319.87 L 312.17 316.88 L 304.87 314.50 L 297.44 312.80 L 289.89 311.81 L 282.29 311.53 L 274.70 311.95 L 267.17 313.06 L 259.75 314.81 L 252.47 317.11 L 245.32 319.81 L 238.22 322.68 L 231.08 325.41 L 223.82 327.77 L 216.42 329.62 L 208.90 330.88 L 201.29 331.50 L 193.64 331.46 L 185.99 330.76 L 178.39 329.38 L 170.91 327.34 L 163.62 324.65 L 156.60 321.32 L 149.88 317.39 L 143.54 312.89 L 137.63 307.83 L 132.19 302.28 L 127.25 296.27 L 122.87 289.85 L 119.07 283.06 L 115.89 275.97 L 113.34 268.63 L 111.46 261.09 L 110.24 253.41 L 109.72 245.65 L 109.88 237.87 L 110.72 230.14 L 112.24 222.51 L 114.43 215.04 L 117.25 207.77 L 120.67 200.75 L 124.60 193.98 L 128.92 187.43 L 133.47 181.03 L 138.00 174.63 L 142.22 168.07 L 145.90 161.23 L 148.90 154.09 L 151.14 146.68 L 152.59 139.08 L 153.25 131.35 L 153.21 123.55 L 152.65 115.74 L 151.95 107.94 L 151.58 100.14 L 151.91 92.39 L 153.12 84.75 L 155.27 77.35 L 158.37 70.31 L 162.35 63.72 L 167.17 57.71 L 172.74 52.39 L 178.97 47.83 L 185.74 44.10 L 192.94 41.20 L 200.42 38.95 L 208.07 37.25 L 215.81 35.96 L 223.59 34.93 L 231.38 34.05 L 239.17 33.24 L 246.96 32.46 L 254.76 31.68 L 262.55 30.91 L 270.35 30.14 L 278.15 29.37 L 285.95 28.61 L 293.74 27.85 L 301.54 27.14 L 309.34 26.53 L 317.16 26.13 L 324.97 26.11 L 332.77 26.61 L 340.48 27.70 L 348.04 29.51 L 355.31 32.26 L 362.15 35.92 L 368.46 40.48 L 374.21 45.75 L 379.58 51.46 L 384.65 57.50 L 389.48 63.73 L 394.17 70.08 L 398.77 76.49 L 403.34 82.91 L 407.89 89.34 L 412.44 95.78 L 416.98 102.21 L 421.53 108.65 L 426.07 115.09 L 430.60 121.53 L 435.14 127.97 L 439.68 134.41 L 444.22 140.85 L 448.75 147.29 L 453.28 153.74 L 457.79 160.20 L 462.27 166.68 L 466.68 173.21 L 470.95 179.82 L 474.99 186.56 L 478.67 193.48 L 481.89 200.60 L 484.60 207.94 L 486.75 215.44 L 488.32 223.09 L 489.31 230.84 L 489.71 238.64 L 489.51 246.45 L 488.72 254.22 L 487.34 261.91 L 485.37 269.47 L 482.83 276.86 L 479.74 284.03 L 476.10 290.94 L 471.95 297.56 Z\" />\n</symbol>\n<symbol id=\"bl2\">\n<path d=\"M 439.85 338.00 L 435.19 343.39 L 430.52 348.79 L 425.86 354.18 L 421.19 359.57 L 416.53 364.97 L 411.86 370.36 L 407.19 375.76 L 402.52 381.15 L 397.85 386.54 L 393.18 391.92 L 388.51 397.31 L 383.84 402.69 L 379.16 408.08 L 374.49 413.46 L 369.82 418.83 L 365.14 424.21 L 360.46 429.58 L 355.76 434.93 L 350.99 440.22 L 346.10 445.38 L 341.00 450.31 L 335.62 454.92 L 329.94 459.15 L 323.95 462.92 L 317.68 466.17 L 311.16 468.89 L 304.43 471.03 L 297.54 472.59 L 290.55 473.54 L 283.50 473.89 L 276.44 473.63 L 269.44 472.76 L 262.54 471.30 L 255.80 469.23 L 249.25 466.60 L 242.96 463.41 L 236.97 459.68 L 231.30 455.47 L 225.98 450.81 L 221.01 445.76 L 216.30 440.43 L 211.78 434.92 L 207.36 429.31 L 202.98 423.66 L 198.63 417.98 L 194.29 412.30 L 189.94 406.61 L 185.61 400.92 L 181.27 395.23 L 176.94 389.53 L 172.61 383.82 L 168.32 378.06 L 164.06 372.21 L 159.82 366.27 L 155.52 360.33 L 151.73 353.89 L 148.38 347.17 L 145.04 340.57 L 141.77 334.01 L 138.58 327.46 L 135.42 320.91 L 132.29 314.36 L 129.17 307.81 L 126.07 301.25 L 123.02 294.66 L 120.07 288.03 L 117.30 281.33 L 114.79 274.54 L 112.68 267.63 L 111.06 260.61 L 109.97 253.49 L 109.46 246.31 L 109.53 239.12 L 110.19 231.95 L 111.42 224.86 L 113.24 217.89 L 115.63 211.10 L 118.58 204.51 L 122.08 198.18 L 126.14 192.11 L 130.74 186.33 L 135.87 180.88 L 141.50 175.81 L 147.56 171.20 L 154.03 167.12 L 160.83 163.64 L 167.92 160.77 L 175.22 158.57 L 182.68 157.02 L 190.20 156.11 L 197.75 155.77 L 205.31 155.80 L 212.91 155.96 L 220.59 156.03 L 228.37 155.89 L 236.22 155.56 L 244.12 155.09 L 252.05 154.55 L 259.99 153.99 L 267.93 153.42 L 275.87 152.85 L 283.80 152.28 L 291.74 151.70 L 299.68 151.13 L 307.62 150.54 L 315.56 149.89 L 323.50 149.11 L 331.44 148.08 L 339.37 146.64 L 347.26 144.80 L 355.06 142.75 L 362.70 140.82 L 370.15 139.26 L 377.43 138.19 L 384.62 137.65 L 391.75 137.64 L 398.84 138.14 L 405.86 139.15 L 412.79 140.64 L 419.60 142.62 L 426.25 145.06 L 432.72 147.96 L 438.97 151.30 L 444.98 155.06 L 450.71 159.24 L 456.14 163.80 L 461.24 168.72 L 465.98 173.99 L 470.35 179.57 L 474.33 185.44 L 477.89 191.57 L 481.01 197.94 L 483.69 204.51 L 485.91 211.25 L 487.66 218.13 L 488.93 225.11 L 489.71 232.17 L 490.00 239.26 L 489.80 246.35 L 489.12 253.41 L 487.94 260.40 L 486.29 267.30 L 484.16 274.07 L 481.58 280.69 L 478.55 287.12 L 475.12 293.34 L 471.32 299.36 L 467.22 305.18 L 462.89 310.83 L 458.39 316.35 L 453.80 321.80 L 449.17 327.21 L 444.51 332.61 Z\" />\n</symbol>\n</defs>\n<!-- isDone: 0 -->\n<rect width=\"700\" height=\"500\" style=\"fill:#fff;stroke-width:0\" />\n<use class=\"p0 borderLine\" xlink:href=\"#bl0\"/>\n<use class=\"p1 borderLine\" xlink:href=\"#bl1\"/>\n<use class=\"p2 borderLine\" xlink:href=\"#bl2\"/>\n<use class=\"q0 outLine\" xlink:href=\"#bl0\"/>\n<use class=\"q1 outLine\" xlink:href=\"#bl1\"/>\n<use class=\"q2 outLine\" xlink:href=\"#bl2\"/>\n<circle onclick=\"fromCircle(4)\" class=\"circle\" cx=\"81.2828\" cy=\"129.3024\" r=\"70.2630\" />\n<text class=\"nLabel\" x=\"81.28\" y=\"124.30\">58</text>\n<text class=\"belong\" x=\"81.28\" y=\"134.30\">(1)</text>\n<circle onclick=\"fromCircle(6)\" class=\"circle\" cx=\"209.9265\" cy=\"96.6133\" r=\"57.6163\" />\n<text class=\"nLabel\" x=\"209.93\" y=\"91.61\">39</text>\n<text class=\"belong\" x=\"209.93\" y=\"101.61\">(1, 2)</text>\n<circle onclick=\"fromCircle(7)\" class=\"circle\" cx=\"197.5619\" cy=\"243.6234\" r=\"86.5474\" />\n<text class=\"nLabel\" x=\"197.56\" y=\"238.62\">88</text>\n<text class=\"belong\" x=\"197.56\" y=\"248.62\">(1, 2, 3)</text>\n<circle onclick=\"fromCircle(2)\" class=\"circle\" cx=\"330.7929\" cy=\"86.1463\" r=\"59.0751\" />\n<text class=\"nLabel\" x=\"330.79\" y=\"81.15\">41</text>\n<text class=\"belong\" x=\"330.79\" y=\"91.15\">(2)</text>\n<circle onclick=\"fromCircle(3)\" class=\"circle\" cx=\"388.4784\" cy=\"240.0908\" r=\"100.6437\" />\n<text class=\"nLabel\" x=\"388.48\" y=\"235.09\">119</text>\n<text class=\"belong\" x=\"388.48\" y=\"245.09\">(2, 3)</text>\n<circle onclick=\"fromCircle(1)\" class=\"circle\" cx=\"283.3501\" cy=\"393.4969\" r=\"79.8994\" />\n<text class=\"nLabel\" x=\"283.35\" y=\"388.50\">75</text>\n<text class=\"belong\" x=\"283.35\" y=\"398.50\">(3)</text>\n<circle onclick=\"fromCircle(5)\" class=\"circle\" cx=\"169.6585\" cy=\"347.9908\" r=\"18.4520\" />\n<text class=\"nLabel\" x=\"169.66\" y=\"342.99\">4</text>\n<text class=\"belong\" x=\"169.66\" y=\"352.99\">(1, 3)</text>\n<g id=\"legendBox\">\n<rect class=\"p0 borderLine\" x=\"500.00\" y=\"50.00\" width=\"30.00\" height=\"15.00\" />\n<rect class=\"q0\" x=\"500.00\" y=\"50.00\" width=\"30.00\" height=\"15.00\" />\n<text class=\"legend\" x=\"540.00\" y=\"65.00\">Week 2</text>\n<rect class=\"p1 borderLine\" x=\"500.00\" y=\"90.00\" width=\"30.00\" height=\"15.00\" />\n<rect class=\"q1\" x=\"500.00\" y=\"90.00\" width=\"30.00\" height=\"15.00\" />\n<text class=\"legend\" x=\"540.00\" y=\"105.00\">Week 6</text>\n<rect class=\"p2 borderLine\" x=\"500.00\" y=\"130.00\" width=\"30.00\" height=\"15.00\" />\n<rect class=\"q2\" x=\"500.00\" y=\"130.00\" width=\"30.00\" height=\"15.00\" />\n<text class=\"legend\" x=\"540.00\" y=\"145.00\">Week 10</text>\n</g>\n</svg>\n"
-    ## 
-    ## attr(,"class")
-    ## [1] "list"     "nVennObj"
-
-``` r
-#Testing out the nVennR package as an alternative way to create Venn Diagrams
-#River water
-nVennR_plot_test_2 <- plotVenn(list(taxa_MP_TWW2_chr, taxa_MP_TWW6_chr, taxa_MP_TWW10_chr), sNames=c("Week 2", "Week 6", "Week 10"))
-showSVG(nVennR_plot_test_2, opacity=0.2)
-```
-
-![](Analysis_files/figure-gfm/venn%20MP%20time-3.png)<!-- -->
-
-    ## $def
-    ##  [1] "nVenn1.2" "3"        "Week 2"   "Week 6"   "Week 10"  "0"       
-    ##  [7] "55"       "34"       "124"      "57"       "4"        "39"      
-    ## [13] "106"     
-    ## 
-    ## $set
-    ## [1] "_F\n0\n_L\n6.98188\n24.8477\n6.72447\n25.1269\n6.427\n25.4045\n6.05744\n25.6251\n5.69155\n25.4445\n5.50502\n25.1541\n5.26616\n24.8086\n5.06974\n24.5092\n4.88001\n24.213\n4.65677\n23.8787\n4.49529\n23.5372\n4.37883\n23.1729\n4.25973\n22.8068\n4.12896\n22.4512\n4.00177\n22.0903\n3.88552\n21.7263\n3.76723\n21.3667\n3.64169\n21.0041\n3.52383\n20.62\n3.4059\n20.255\n3.38189\n19.8871\n3.45782\n19.52\n3.63133\n19.1737\n3.89466\n18.8846\n4.21283\n18.6835\n4.57698\n18.5701\n4.95915\n18.5625\n5.31349\n18.6163\n5.68428\n18.6544\n6.06741\n18.6966\n6.4359\n18.7531\n6.80972\n18.8149\n7.18715\n18.8628\n7.55382\n18.9206\n7.92691\n19.0271\n8.2559\n19.2506\n8.468\n19.5602\n8.58531\n19.9303\n8.56579\n20.4026\n8.5068\n20.8037\n8.45104\n21.201\n8.39689\n21.611\n8.34676\n22.0084\n8.29323\n22.4123\n8.23912\n22.8236\n8.18804\n23.4102\n8.0669\n23.788\n7.87254\n24.1031\n7.60332\n24.3876\n7.31638\n24.6192\n_L\n11.9629\n24.4464\n11.6611\n24.8041\n11.2801\n25.0888\n10.8594\n25.2736\n10.3991\n25.3618\n9.92368\n25.3429\n9.46351\n25.216\n9.03934\n24.9854\n8.68804\n24.6793\n8.2291\n24.4969\n7.69994\n24.4882\n7.26979\n24.6391\n6.81173\n24.7992\n6.33271\n24.8751\n5.83034\n24.8004\n5.38686\n24.6279\n5.00432\n24.3236\n4.68851\n23.9548\n4.50381\n23.5406\n4.42246\n23.0808\n4.45143\n22.5906\n4.60127\n22.134\n4.83804\n21.7462\n5.17291\n21.4173\n5.58519\n21.1783\n5.9366\n20.8462\n6.15614\n20.4217\n6.23283\n19.9412\n6.39468\n19.4813\n6.71003\n19.143\n7.14838\n18.9393\n7.64143\n18.9256\n8.11327\n18.9682\n8.58182\n19.0068\n9.05203\n19.0421\n9.52705\n19.0917\n9.99545\n19.1486\n10.4145\n19.3909\n10.6939\n19.7786\n10.9132\n20.1905\n11.1405\n20.6033\n11.358\n21.007\n11.5679\n21.405\n11.7885\n21.8053\n12.0095\n22.216\n12.2055\n22.6429\n12.3019\n23.099\n12.2936\n23.5652\n12.1776\n24.0285\n_L\n10.6636\n25.5681\n10.3196\n25.8384\n9.97568\n26.0944\n9.62925\n26.3616\n9.29125\n26.6196\n8.9558\n26.8633\n8.61175\n27.1021\n8.20357\n27.2462\n7.7679\n27.2574\n7.36357\n27.1403\n6.98858\n26.8897\n6.7193\n26.5641\n6.42451\n26.2527\n6.14571\n25.9317\n5.87363\n25.6149\n5.61829\n25.248\n5.37292\n24.8894\n5.12484\n24.5302\n4.86981\n24.1978\n4.62821\n23.8448\n4.47698\n23.4426\n4.41231\n23.0427\n4.44763\n22.5989\n4.57922\n22.1641\n4.79306\n21.7863\n5.09649\n21.4851\n5.46793\n21.2387\n5.86293\n21.0674\n6.29174\n21.0094\n6.73158\n21.0721\n7.28078\n21.2841\n7.73904\n21.299\n8.19917\n21.309\n8.65836\n21.3236\n9.12991\n21.3311\n9.59294\n21.3284\n10.1154\n21.2333\n10.5301\n21.2477\n10.9308\n21.3455\n11.3167\n21.5286\n11.6549\n21.7845\n11.9355\n22.1076\n12.1427\n22.482\n12.2715\n22.8867\n12.3142\n23.3035\n12.2715\n23.7151\n12.1435\n24.1152\n11.9382\n24.484\n11.6673\n24.8026\n11.3419\n25.0558\n11.0126\n25.3156\n_C\n0\n4.29497e+09\n0\n4.80562\n19.9789\n1.35599\n7.41343\n20.1042\n1.12163\n6.33355\n22.9477\n1.84915\n9.66276\n20.2126\n1.04727\n10.241\n23.2967\n2\n7.94721\n25.8678\n1.33199\n6.04281\n25.2\n0.359211\n"
-    ## 
-    ## $reg
-    ## $reg[[1]]
-    ##  [1] "7d3e36bd1b7de8f400d1c6fcd708d640" "291a6c9f0f851992bf926dbf9a38b686"
-    ##  [3] "ebb384b9749d0cddc4db50edf42fc930" "12d8b8ed493ae5149f6f598da0d5df53"
-    ##  [5] "d40b62cc96be2f2e83efd4412fed82e3" "628baedc604a9b4c9711819b7184ec32"
-    ##  [7] "01169913773c94596b60157a154a6401" "eb90fdefb558eac480b5681a5be0e135"
-    ##  [9] "008ee034f582ba974f046e6b56bff504" "d445c17d3507ef68861f392e8d3d6fa8"
-    ## [11] "508119d31073fad177cedcecbdffb2b1" "e95ca0a460e7864c7f081d48d2ac7b3f"
-    ## [13] "ad7717fbac45c22b7eaee1837eb7890a" "4d18e6d6e0039a7075756f1ceb852049"
-    ## [15] "f42e78dbbd0f72b18b83a5704a5efa6b" "96048083eb3777f81f272b91f5b301a6"
-    ## [17] "0c6671ebf3dec2215f8da62a80b6cf18" "b11a5c7f35001268287e9da14796c658"
-    ## [19] "bea3672886376020539cbd24ae559916" "a082d61432f1376c81ce1a300684607c"
-    ## [21] "aca5a198d98a6f08022edf5c9d9afc48" "49e1ac2aaf103304e7737e0560c1d291"
-    ## [23] "7f19a4562410a14448ff303b602da84c" "ec33e3a0b12a36bbecbab978e5c3d285"
-    ## [25] "15456227e48f1103584e352c6ba34637" "0a3934f0cdc5625b3234370dd0ad64ad"
-    ## [27] "019979c656994aff8fc4f0ac7cc76f26" "c2475a24bb2470fc76e4cbd21eb84d71"
-    ## [29] "08cb2baa9252356b194c8ffa99ff388f" "aad670faa4a136367fc62281300476a8"
-    ## [31] "016877611e2fe48c9d1c6f72a87e99a0" "0bcc0f508a93d83c972032c7c1bd6589"
-    ## [33] "d2c8f95d88c0869736acf50d7a887318" "370949f510f881d19bc60de1d83e4ead"
-    ## [35] "e38aad168c4c83e152902aa20c4d606b" "52e5524a6e2ce31bfcb205de002f0269"
-    ## [37] "245006be6cb03b28d9c2f84033f79cbc" "759981bd9dff0f5c9b0c6d5675d78dbb"
-    ## [39] "74b0c0dd904bbb32cff008bc513b74d2" "ad944660c5dc1fe4f8ec42e82dac3586"
-    ## [41] "a3094802b0fef5b8f1e65f1ebd0a6057" "eb000f29c8de866f4f00c2f9f8b936f1"
-    ## [43] "5bef8ba85b7ab8a4b48ca401e97513a6" "a91e1037bb22ad2cf89dff794df117aa"
-    ## [45] "8439d0f0d485b88cb830aa006a94775e" "db8504b88caf12ec4d4439a8eff576b0"
-    ## [47] "69d4ebdd6032c7a9be54ad84b0d2e362" "615c776a4b385cac49ee4fbc41797f0c"
-    ## [49] "f7a0c0329f5ecaca02fccd2c338f59fa" "43adcb719dafe832475eb1a80a4158e3"
-    ## [51] "d459a221d49830ff0ac9b7ca7c7e74b8" "596a9ea28ef4a1ddcd05615d3cc79f8e"
-    ## [53] "a95e1ac9cc3cb387894d32a12fe26029" "b980088bc90b1608f940645ce4764538"
-    ## [55] "56dfd3a857d6d28af59709494a394146"
-    ## 
-    ## $reg[[2]]
-    ##  [1] "e4bd78ea6c8dbdc8a7b6b5fa3b5145ad" "e787389f8bbfabef66615e5e72558118"
-    ##  [3] "566dcce23831f01974d7faa119d1a04b" "af4978e1f3e54ec981950df431ef50df"
-    ##  [5] "1662a5811fd6fb27159d4e5a4a61cfbc" "0af1aa8027504f8e262c813f1a105956"
-    ##  [7] "511edfdaaa000431a2ef4608cb899c9b" "25a958acb77cd495c521b56ae500fb64"
-    ##  [9] "abd0fbdd7476bd431022c83b9996b932" "d61e95adec762ae421115179a2e2e57a"
-    ## [11] "166dc8037be4288c063dc88655428add" "e2544f90a411cb4b935d40c83b01c933"
-    ## [13] "01d4b6911d831a55b64e5e2ead78f9d9" "bcac6add792dd24ab3bf3f6ffbb04fb4"
-    ## [15] "5246be93b22bbff1860fb674ac8fae76" "ac0e7cdc059f2055d79572a61d20c715"
-    ## [17] "96050a68d7cc36ee7db73c1dca70bb03" "de20414ed676f940ebabaa16c5230346"
-    ## [19] "29468914cfd0458997db92c2d12f6ea1" "e5fda54e0a8c8c07a8f5ac34c5a76458"
-    ## [21] "71a5c37154de935fff94761ce59ac82c" "250b3741ab97faee29ce3f485f6ca693"
-    ## [23] "7583f3e8bd25cea09fd93c46fe9a7ae2" "544a2fccd4424034ad383f9b5c19da6a"
-    ## [25] "ed091ed6e1210b8a5f867ae5a2ec8c1b" "5c703d95db653db1a4c5c0f47d5b2246"
-    ## [27] "25803d13372d703d797574d40b45502a" "9fd28cac88e776acb1d31f291c210bf8"
-    ## [29] "2a2243baf6753b2ef1966b60e6aad77e" "03d603f406e50b013b7d0645b72bc507"
-    ## [31] "7921c20395343a1e79eb8bca4c057597" "4f6e06d73dbccc2816111750e66d0dac"
-    ## [33] "c503136f017a999fc8489f1235d7ec42" "6bfcb65c060ad1b5ffa6a38d74077d3e"
-    ## 
-    ## $reg[[3]]
-    ##   [1] "ebea36365777bd01f7a2392732d898bd" "63b7bee3b253e9e92fe81667f0728235"
-    ##   [3] "dd0b81b53dfcca016c3a67c0e5c6c48e" "21e99fe5c4f938c48c2f7069ab9f610a"
-    ##   [5] "0421106b66647db14d8ed69d01ea3611" "e54de549032a1326d6a55c2a269250aa"
-    ##   [7] "b31be1b89bb580e3611089a09fd79e29" "cc761a4f31e6771b929aac7cc817f1d1"
-    ##   [9] "aa0ee917a8dc36eaf78efb83fba77ed5" "addab92b984c30ca70eb5c24dba68b9d"
-    ##  [11] "c255450be9edddca124eed4a6c0d81cc" "903cd9171aadd27179fb51786c7170d2"
-    ##  [13] "fa9f727d57fa4f41d697cd46038bf64c" "2f552815996dfc27273632a1d226abe1"
-    ##  [15] "383c0dd41e3275cce2f82dea5f6a17c6" "1dcb2212cc9d9cf41a609f9a5b37ff60"
-    ##  [17] "b54768b69d5232c811022985c5f87ba1" "c0824e391ee2243112234404d1fc3fe5"
-    ##  [19] "574e3638b2a0734d17cf4677544db213" "660b9068bde159e796065089f1a02c8d"
-    ##  [21] "9943198d8600ba3300ddd2a55a23ea03" "ce9a1772a026edb18c13e9bc12ee5f8e"
-    ##  [23] "8e41c8dcbd322ea1fb44b4c6fc2509b5" "63c998b1becea41ebc5ff3157947ec0c"
-    ##  [25] "29d2ec379830cfcfc5578be97c3dec89" "d27f40408b64515d72da95423d68b0b8"
-    ##  [27] "004ee5606a47f51fcc6bc734cd3208a9" "4c4a823cad28a748fc4f7b3456d60c0a"
-    ##  [29] "8aaf7109cebfa92679a49880ebfd80a4" "be41a03722589632d727a128cc9c4167"
-    ##  [31] "4a0972f5318ca24d8ec9bdf5131cff99" "4f21b7663b40127efbf90c804dfc0c01"
-    ##  [33] "3fad284dcba1c58a6949eeaf7ea44bf4" "a45dc0cdbe32e3a32fa6bdb0a7db8f10"
-    ##  [35] "e582b6e0d5066cbec5e4a9dcadc6f2a9" "cac4ece48472d33e180eef98093b6b6c"
-    ##  [37] "d921f18656f3701ba8073d0c3dee85c8" "3d530dada2c6e5f710013bb4833ca876"
-    ##  [39] "dbe3dbcc928bdef85b910d5665b08cf2" "9b9586f4ee971734202c21eb49e48b39"
-    ##  [41] "cbfcd314ba0e663377fdbbcc777c904d" "96f2ea1bc29e65821a2d41321f44bbe9"
-    ##  [43] "8be5171abe1df417e0f5078942b9999f" "3d9dadd9f06cabeb9a241ac07e1f0b67"
-    ##  [45] "cd1debf4a8d99381146c78b455ce4cfc" "0bde8a25e6f2ff4a3b30ff5e78a7290b"
-    ##  [47] "b42325272b4c9abd14d3cd816b31e4ee" "cbc9c4c32b4cb83e040a059f0efbc264"
-    ##  [49] "c3613eb623a08774cb561781585a41d1" "6016955f71bd982363040e8921f0f5e3"
-    ##  [51] "403ca22e6c6abcdc7c4cd2a9b200d3ec" "d75502deb38927d3ef6d2468b6739bdf"
-    ##  [53] "6d4a790c521c7d0abe28dee8a3bbe1be" "4f615576acf981faa27f65216ef54deb"
-    ##  [55] "6c8d662cbe8111257a463827b60ecfea" "84bc6ce045f212f439b979e3862bb33e"
-    ##  [57] "2a935f852276a0fa465afad4aef1526d" "b6b30df14a74be386d793a655e5c3f5a"
-    ##  [59] "fac89bef8aba259524236d1cddd0186e" "af96fa42263c875e8046672192f627a2"
-    ##  [61] "ac14e7880e293f51174b794d5a030107" "f5fb5183a6a846e7cd74cc7263484793"
-    ##  [63] "31faddb3b5b7176c5b9898671082de18" "30ccf290598808febd1eaaed90f4a68a"
-    ##  [65] "14cbc8ea821822d4096c19aa6062bf67" "0a3a25fe271fa3dbb0951048645fa9a1"
-    ##  [67] "2db93eec92e9f257357b4602132cd244" "82b6e9ac3cb2816eef0942342ac93846"
-    ##  [69] "f461fb25a69dcc1a1e80c8ceb11dbbe2" "e41a12b513ff11bb3ae47220a0dda390"
-    ##  [71] "09b63638bd517482cd1f7988e4e6462a" "7e4cbef8b21a8f0ed39eda834bfac75f"
-    ##  [73] "8f2833a34dc99cf9662ff3fbf66700a8" "b1a8935489e7797b00fabf970e8375eb"
-    ##  [75] "dad247830785d0420ee254e0694769e6" "35e669f29c648b7198710753d58430c4"
-    ##  [77] "74d69fd27ce98e30efe3080a35b93f1a" "5e3237bab61c077efa7ff7de3da973c0"
-    ##  [79] "84f295cc0efa62d8ce1058b303fc7d16" "d3730d2ea6f0bd97baada418fbafe0ea"
-    ##  [81] "e1cdc45d861ab6a0f13152b84d6fc229" "ae3fb80642ecc01c124115e63a705835"
-    ##  [83] "0e5d0956dbf7e8a582543a0e48749f23" "308c77da094f92bc8d72e19bc189980d"
-    ##  [85] "02680fb27de40537190da374721a1753" "61aabbeb06c2f40348c40c8053c86b18"
-    ##  [87] "6c0bf239702859ae989d886f1985b1e4" "a0ffff106699f3e3ce0f94968a7163bb"
-    ##  [89] "4521afd72e0101b30d46c8c5192731ab" "46818903d787927ae5525ec67d66d2bc"
-    ##  [91] "422dfd34b05fa810d62aeb6e3aeb58d6" "263a8852574830e626fffd9f37dfae2f"
-    ##  [93] "49cab62dbe6dadb1d4e978d72919a351" "e19ffd09ddcd963ec97b1f87061daa3d"
-    ##  [95] "45d56e0f4181e23e94846640660e2a4f" "10ddc3e327033f12a05e18ad0c00dc7a"
-    ##  [97] "135a9589da9553e6d0e36c2a504be20d" "c08f974f6714b91a799d8df094c5eac1"
-    ##  [99] "02647c4d438e5d5d85d9c60a8e091d08" "f258bdb4cf46614a407aa9e510bbe7e2"
-    ## [101] "cc6e9a08ef43af24d1c092c913a7f29b" "1a97184c6eb51c28c91e545f2c5670b1"
-    ## [103] "5db69e722c78d247c014ef7eda35a466" "0836b1890d1fb5eaa54f48ccc4542828"
-    ## [105] "0295cbe666314a27f251a26b521091ce" "3a45645fc53551a3e90908f39c80ea88"
-    ## [107] "33eb097fa2020689c74765f69e597433" "03c8cea8f166e10c919f86287b029108"
-    ## [109] "e6608048edd6ac9283b9a520959fc92d" "59c0df61c5681fc16930b34d7f16484e"
-    ## [111] "0ed7039c73efb1ef597a6c91e456c595" "3c0d84f8bf9a3a8ea5cc05ad9b99c209"
-    ## [113] "ac983c4999b994f8cc0d50899930208d" "a2202910eb63129ff1bc2671b0f1e97f"
-    ## [115] "2a6dae61b2de8737200dbe19c7d59bf8" "ef77ae02d2fc7305b4f8a9ae13725131"
-    ## [117] "87dfdcb2a28aa5ff3a581f1676e6c83a" "8797ea3440904a0d42f950150b92f4e1"
-    ## [119] "2e70f4b0292118bb79e04f97e0fbf2c9" "72c659c5151b43410bfced46533303f4"
-    ## [121] "223fabe32320a7e61015aa8bdb9b34b7" "a0222761fcaff1d31b3989547a61585c"
-    ## [123] "ff8d1852cc3c9dc71215e4599040adb6" "30659e41fa4b2f628db60ae54d7fa031"
-    ## 
-    ## $reg[[4]]
-    ##  [1] "9f46abfb938487f0aa711df28f4f0412" "9f8b3118e08bc92b20dccf1a0f0ef018"
-    ##  [3] "c05c3925f1ed194a8cada4faed0d0239" "43bb4040fcebc6f5b5b3bbf9351d1b79"
-    ##  [5] "f29b7d44e1eee8fb456e135e369f884b" "a5146a2f02a75661dddcde0b55d011ff"
-    ##  [7] "9145226ceadf751f775e029451da1af7" "7552e27f8054c16a9d78e32787c2a27d"
-    ##  [9] "54872d114b686c741881a9e8f1490c38" "7ebc360a7d9e6bf6d09f5c861cf77eaa"
-    ## [11] "c03960dd2503185574bd3a3e4d4a98a3" "003af54128f08f88f4cc7f3d30c22bc7"
-    ## [13] "7b8e2178f80169722ad87575a3b70f2f" "30b314d93b23928c68e0c8da410b03e7"
-    ## [15] "0a3ccb90245c8f84bfbda3c58f3eacc5" "70525e61f8896a5eaf837858d677458d"
-    ## [17] "9761d928d5de6a325502f15050f9b961" "04fe639fd136e8365d18a092529648eb"
-    ## [19] "cff8112900c93927bd5a685201e2d902" "854aba6e257399a8c03c5324bda9c990"
-    ## [21] "ed8b535aed5997b3b266e0ea9d898136" "fa6510c9e980eaa30617c672e90ad082"
-    ## [23] "0c18b85116708d55b6cbea237b96525b" "e976584396be1aaf289a043643fef02d"
-    ## [25] "96bbfac18d1f7f13c4572ff34481c337" "bf49809769af933f740df88d9b4b8cf0"
-    ## [27] "585b0935354ab5352daba1259605c26f" "38d29ddd1fb248645f80ba68e2e7e62f"
-    ## [29] "2041c7ff34b21552a0af72753974d2bf" "22abbf44268e9ed6c8fc970b8414f6c7"
-    ## [31] "7cf1fe0262bdd789a550c1b9a418ffdf" "078f499e4fcb5690f47accb10b3b4f2d"
-    ## [33] "e028f45f70441498cf9422ed19a45c4f" "c47f2ca6b0a12c9e3e5365d1124ba227"
-    ## [35] "5798cab1b7f6bb1402038540f9a1ce58" "bd10c1c9dfe866a3e568941d39361d5f"
-    ## [37] "73000169a5403b78bdba446eb3341ad3" "d12afb35d31c7d7e3c581249f11985e7"
-    ## [39] "2b0dbc8ca8b74471b0029ee9d61a4c60" "3ac5a519014ada35464c1299daf000d2"
-    ## [41] "141e907da9c585151e08c5b9811b7723" "2431cd23bb22a066752b0565a00e7c72"
-    ## [43] "4fe873352f09745cce4b1b014cac1eed" "ba7514af0613a537e7c3898eb68f26fd"
-    ## [45] "f8367e2b20da5a27a9a4bba9beacd01e" "f7084ae926cc6dc493e235d38c6268ea"
-    ## [47] "84b1ac7156d2cfffc75f32498516c27b" "81febb4c432de5a4419d54dde0747ddc"
-    ## [49] "9e1fd6a6141200e5610a0ea3911d6006" "6e678220347dfaff5e6949fa73dce40b"
-    ## [51] "28e2b56220974c5a80d2715b29d11dc4" "d18be0ed6a08bb48c01d46fbe3b7ab9e"
-    ## [53] "6fa74a2dd7a1a7594d88ac26e06758c5" "80dfc7a01e7f1a59030cc7009ce644c4"
-    ## [55] "fd5f3f199153ef09acfd2f1347cf2771" "e797350616765ebc353f7db9202f7ed5"
-    ## [57] "b644212b82eca6c12c76ef975069e278"
-    ## 
-    ## $reg[[5]]
-    ## [1] "cac60cec0955acc359ab0ef9171dd831" "d3d1e84295033baefd6a1e89d8723635"
-    ## [3] "12f255e4729fa1e28527bebdbd01b665" "103184d8cd0e4e5314a832452c411097"
-    ## 
-    ## $reg[[6]]
-    ##  [1] "43e7785fcfd6a38e1b2eca6b90c1d55a" "777802441241504d1fed2b77daa4fef5"
-    ##  [3] "8c4cec6e98cea9bde7e38c90077ae964" "4b9ec1e85d49003e97f518a4dca29882"
-    ##  [5] "c2aab74e136fb634b1af41d20eeb7f8a" "d53e8d3d5e370ac1a993f48eaf24567b"
-    ##  [7] "642ba0fce2b417d95bd2e5d4a53b7f17" "1205b1ceb6bc665ee9c9ff7777702229"
-    ##  [9] "b8fb10ff84dac2887c68af3765c299a0" "1906cb6358f38d0ae5aa315ef00a0a71"
-    ## [11] "0b79218c40c2157254c6b3e792ec3c2d" "d5d450d02f6aedb908030d49f999d3fe"
-    ## [13] "1fc38e467d309ae2119780e63150843e" "9df517b3f6356b68cdff3bd4c1a5f68e"
-    ## [15] "9e8b6fe0f83968bb3f6e83b5480ccfc7" "b6153c6f0918e711e23dd7ab752974cf"
-    ## [17] "6239f9b05b4d67add0e16120725b698f" "6dc71e1a6b132d3e7b7d9cc1819f86d7"
-    ## [19] "f3c0b7307fa3a0f3e72ddb28e8b6aaf4" "7ecbf406dc3f6f333a519ce74b301023"
-    ## [21] "1668c2c9b8d56257977288479d75c290" "e782f6bfe9343f586c431a75aab548ea"
-    ## [23] "b89167e054fe7c610f28568f7856e09a" "74ad381e9372fd1db6ac76aa766e1d43"
-    ## [25] "ebfbc7b35234a42a899f633d1ebd0485" "b3024ead76a455bee792deeaa8f99e67"
-    ## [27] "9937fe5099010b99e563efdc75914997" "d4fad67eb706ab86122fb36afee869c7"
-    ## [29] "1088ef9a6107c7269bb30393d3f3db41" "516cbbb75c0b06047ea38d8266bb02ca"
-    ## [31] "0e8d660cbd4a72352ad4109b2440286e" "97f0707f0565cf3c4a3d1e77cedd5aa3"
-    ## [33] "9a40244307e335d1e9b88f1a32153bf0" "e5c8f31705ae991221de2a5dff050a57"
-    ## [35] "f89a3f319aee4abfc2e002e63b9a0a7c" "906b324e809f8b6c27ad0fda85b72ab4"
-    ## [37] "d1c36eab2d59a64805ab7d08ed43a812" "e91b53dc74978289576c73257d218974"
-    ## [39] "71c53c6a37053e7d434496143599861e"
-    ## 
-    ## $reg[[7]]
-    ##   [1] "e60e6623788897e5665e14807bbdaeb9" "cffb21d28a9912629dbeb0231a15145b"
-    ##   [3] "c436dc67b676f98d091ac4c0ad7c340d" "8369c51b146d25f46cfc9bcecec81a1d"
-    ##   [5] "5bd5cf8447f372b7da1789807bf31056" "f8845f54634ff554437b29a5116a748c"
-    ##   [7] "f9bd449cffe24a59560af012e7f138e9" "b214ae87c66eade48767078ed14f564f"
-    ##   [9] "c6a1db334b738c55bc3460b5aabffa07" "1284d0cd1f496848851b63197c931a12"
-    ##  [11] "281fc6085c84205551e126fe2e99bd11" "0132278ac2aa36023994ebf3d99874c8"
-    ##  [13] "212b0396860f119d035b5964aad3b498" "7fc48e52eb254b37318c41821d0094f7"
-    ##  [15] "7300b96b40471e6129a659d2418a7907" "4551fa93b93912e430376b39d3a7ab66"
-    ##  [17] "8665a3597d4d4a91d6d740410703140c" "dafdc5719dd9462554f050696d57a897"
-    ##  [19] "0dd0282527f32d7534e8b25bd8070e05" "344290542e48f66d0f4415ffa9a38c5d"
-    ##  [21] "61dc6caa907f3120c32c648b6118ac9c" "2ddb3fbdfd9ab21d2f063bb428628ad2"
-    ##  [23] "e4763bb938478b368fd72e9a60aff0a5" "e83d3a9ae4b566edc8ec920cc3e8f0f8"
-    ##  [25] "f85a8d563437c3cea39fc5f2af7e6e63" "af336b9ff59d0cc43097a16e4dabebc1"
-    ##  [27] "ab6263b5c92afe21d3ceee8b555383b3" "66535460961286c9481cc4c1122b467e"
-    ##  [29] "6c86f7748b5b1c8f46558c78ee7c1b55" "0f95836a0dff166e4a57fc9eae0c4148"
-    ##  [31] "47d1a216e45b781c3502fd2859efd875" "bd92fe8e683cd9c1bee36e9928e8badb"
-    ##  [33] "21132e5c0d7987e05c879573ce44d29e" "9e00e2e85b7a4d5dedca001cda062af9"
-    ##  [35] "1d946a3133fec4b7567cc21f626d7756" "87ec06a7e891bc5c6e8efa0eeced342b"
-    ##  [37] "3c7e95f662321ce2f815e078166c202c" "acafcd8c3b29657a0898eef798fa1130"
-    ##  [39] "9ec9e77a8f648020b9abcdbd083f380c" "ef6264405ac7d445c9c6cbfb2433182b"
-    ##  [41] "9e4644e245da272a465302d892652f65" "f3f6c4d101813bad866b9a7e79468934"
-    ##  [43] "396d8c5e388cd6370d19d5095ccfaaec" "98feeb7c5de77b4910f4315ad42371f1"
-    ##  [45] "054e74172c4bfa7b3f17a2621b23ec46" "7f68b5cb17ef3b54f27e21f466aea988"
-    ##  [47] "7fa49741de083ef7b236562545599e33" "6fc06167882ae179ab7c577bade962a9"
-    ##  [49] "5b5adb9e7226d029b43de63086a14f52" "4d9149ccd9bba7f1b5afeb88d0604a60"
-    ##  [51] "fa0218d20cc873b75d9f44d0cf83b289" "7b1b46921a2d2b57a78a84f243e5fc9c"
-    ##  [53] "62c0c4fd52961e0a06cad686e55cd4e8" "e9d595ecb807790e60534c0cae55b9ae"
-    ##  [55] "b715ac10e42a625caaf8578574b409d5" "5dc375716659a1f435f14a8187d63e1c"
-    ##  [57] "b4b40b4843572fc1248373762f4141af" "801ac70bd97e0acf24d78757bc0c4a63"
-    ##  [59] "e6eb78585d7fd46ab8cc28481c0a17bf" "698efa3367bdfade818ea2c90c4bf0ca"
-    ##  [61] "a761e859355039395824c375d161e32e" "e86f59429ce9ded69f030efabd334c6a"
-    ##  [63] "1af605105d06b8b23dbda027b7f56516" "df626b652a656ed681a97a0148443c7d"
-    ##  [65] "98d31549e02be1d0545d751e5f065343" "f19a6fdb3e559e5bcf0d514fc0f97d33"
-    ##  [67] "6b215ea81a2cfb52147c93e3d0ac73eb" "366e866734c792c9cd90d1b74227127a"
-    ##  [69] "7267a3df6ecca94716a20572b8ffdd92" "9efc4fc95e6bb6462e24fc527a71c2c3"
-    ##  [71] "cfd0cd17c85fc790b5bf730245653b50" "385f98df359e91790e07c2cb748d3dde"
-    ##  [73] "e916bc8b4b153d3d0103159b941ee071" "fee66e230fa30c21bc9c5b04c59be954"
-    ##  [75] "83c1a35def56c6aa91c75d114b788856" "145442a98875f8e1c901b57132e3f2b8"
-    ##  [77] "c7182f5b04146de5f14f442b2b5d62b2" "2f7862c3c7a03a873cf524a2d9cb12ee"
-    ##  [79] "565ad82315a8a7ac1e10b5f688547ece" "9055fdc0bf9fa7dd4d49a67d6c705dfe"
-    ##  [81] "2b8958aca7b054643c3aaa383fb339ee" "0ddee29dbce212f1e552515e33a03daa"
-    ##  [83] "26b1b7c2cf6645c09628164d8a151cc3" "6c929215c17f0fd84f034a9d95dce8ce"
-    ##  [85] "c49477a4c4e26cd506cccecfc13b2eb9" "9b3474bd2148382712c8e93ff8971ef3"
-    ##  [87] "b49591c0c7a246ddb594baeefbae62b9" "c2ad9f1e151e1131c6e4460f9bbfcbe8"
-    ##  [89] "6d91f11bb1ee51e78c6a71668f27cd51" "105c8c20b86e93ee958d1e2a76e39c1a"
-    ##  [91] "9bbceca2e8d18f3aec56a00b448892b8" "33ceaa3fed98090d535496959104c75a"
-    ##  [93] "a09a44b4f12b35b7d2f3b6355ffab2eb" "82f604781f0a733f3cadde378f654c64"
-    ##  [95] "c13ad8b0c5600fea448e6259170acc95" "d917306c4c8d0ea86cbc8696c91d037b"
-    ##  [97] "2ca52274a8215581e9a5d1e7bebe9f13" "dec54c185f0d58bdbaa59936dd7306af"
-    ##  [99] "56530b6128d8756ae7861edae0e9d721" "ee58be4d62175c6016d804c963f873fa"
-    ## [101] "bc3a435fb31a51f9704cd8ee46d6a39b" "dece12de754bd71facf31dd631e4e365"
-    ## [103] "a7e72d531eb0cdf659428d2c5b4d7d7c" "17bb4907c8c278121e08bd58c65689a1"
-    ## [105] "e808e1c5642115b737ecb921304fefc1" "bc712a9cdc707bad53d6f5bc304f77bf"
-    ## 
-    ## 
-    ## $orig
-    ## $orig$`Week 2`
-    ##   [1] "e60e6623788897e5665e14807bbdaeb9" "cffb21d28a9912629dbeb0231a15145b"
-    ##   [3] "c436dc67b676f98d091ac4c0ad7c340d" "8369c51b146d25f46cfc9bcecec81a1d"
-    ##   [5] "43e7785fcfd6a38e1b2eca6b90c1d55a" "5bd5cf8447f372b7da1789807bf31056"
-    ##   [7] "f8845f54634ff554437b29a5116a748c" "f9bd449cffe24a59560af012e7f138e9"
-    ##   [9] "b214ae87c66eade48767078ed14f564f" "c6a1db334b738c55bc3460b5aabffa07"
-    ##  [11] "1284d0cd1f496848851b63197c931a12" "281fc6085c84205551e126fe2e99bd11"
-    ##  [13] "0132278ac2aa36023994ebf3d99874c8" "212b0396860f119d035b5964aad3b498"
-    ##  [15] "7fc48e52eb254b37318c41821d0094f7" "777802441241504d1fed2b77daa4fef5"
-    ##  [17] "7300b96b40471e6129a659d2418a7907" "8c4cec6e98cea9bde7e38c90077ae964"
-    ##  [19] "4551fa93b93912e430376b39d3a7ab66" "4b9ec1e85d49003e97f518a4dca29882"
-    ##  [21] "c2aab74e136fb634b1af41d20eeb7f8a" "d53e8d3d5e370ac1a993f48eaf24567b"
-    ##  [23] "8665a3597d4d4a91d6d740410703140c" "642ba0fce2b417d95bd2e5d4a53b7f17"
-    ##  [25] "dafdc5719dd9462554f050696d57a897" "0dd0282527f32d7534e8b25bd8070e05"
-    ##  [27] "344290542e48f66d0f4415ffa9a38c5d" "61dc6caa907f3120c32c648b6118ac9c"
-    ##  [29] "1205b1ceb6bc665ee9c9ff7777702229" "b8fb10ff84dac2887c68af3765c299a0"
-    ##  [31] "1906cb6358f38d0ae5aa315ef00a0a71" "2ddb3fbdfd9ab21d2f063bb428628ad2"
-    ##  [33] "e4763bb938478b368fd72e9a60aff0a5" "e83d3a9ae4b566edc8ec920cc3e8f0f8"
-    ##  [35] "f85a8d563437c3cea39fc5f2af7e6e63" "af336b9ff59d0cc43097a16e4dabebc1"
-    ##  [37] "9f46abfb938487f0aa711df28f4f0412" "ab6263b5c92afe21d3ceee8b555383b3"
-    ##  [39] "66535460961286c9481cc4c1122b467e" "6c86f7748b5b1c8f46558c78ee7c1b55"
-    ##  [41] "0f95836a0dff166e4a57fc9eae0c4148" "47d1a216e45b781c3502fd2859efd875"
-    ##  [43] "bd92fe8e683cd9c1bee36e9928e8badb" "21132e5c0d7987e05c879573ce44d29e"
-    ##  [45] "9e00e2e85b7a4d5dedca001cda062af9" "1d946a3133fec4b7567cc21f626d7756"
-    ##  [47] "87ec06a7e891bc5c6e8efa0eeced342b" "0b79218c40c2157254c6b3e792ec3c2d"
-    ##  [49] "3c7e95f662321ce2f815e078166c202c" "acafcd8c3b29657a0898eef798fa1130"
-    ##  [51] "9ec9e77a8f648020b9abcdbd083f380c" "ef6264405ac7d445c9c6cbfb2433182b"
-    ##  [53] "9f8b3118e08bc92b20dccf1a0f0ef018" "9e4644e245da272a465302d892652f65"
-    ##  [55] "c05c3925f1ed194a8cada4faed0d0239" "f3f6c4d101813bad866b9a7e79468934"
-    ##  [57] "396d8c5e388cd6370d19d5095ccfaaec" "cac60cec0955acc359ab0ef9171dd831"
-    ##  [59] "98feeb7c5de77b4910f4315ad42371f1" "d5d450d02f6aedb908030d49f999d3fe"
-    ##  [61] "054e74172c4bfa7b3f17a2621b23ec46" "43bb4040fcebc6f5b5b3bbf9351d1b79"
-    ##  [63] "7f68b5cb17ef3b54f27e21f466aea988" "7fa49741de083ef7b236562545599e33"
-    ##  [65] "f29b7d44e1eee8fb456e135e369f884b" "1fc38e467d309ae2119780e63150843e"
-    ##  [67] "6fc06167882ae179ab7c577bade962a9" "9df517b3f6356b68cdff3bd4c1a5f68e"
-    ##  [69] "5b5adb9e7226d029b43de63086a14f52" "a5146a2f02a75661dddcde0b55d011ff"
-    ##  [71] "9145226ceadf751f775e029451da1af7" "7552e27f8054c16a9d78e32787c2a27d"
-    ##  [73] "4d9149ccd9bba7f1b5afeb88d0604a60" "9e8b6fe0f83968bb3f6e83b5480ccfc7"
-    ##  [75] "fa0218d20cc873b75d9f44d0cf83b289" "7b1b46921a2d2b57a78a84f243e5fc9c"
-    ##  [77] "b6153c6f0918e711e23dd7ab752974cf" "62c0c4fd52961e0a06cad686e55cd4e8"
-    ##  [79] "54872d114b686c741881a9e8f1490c38" "e9d595ecb807790e60534c0cae55b9ae"
-    ##  [81] "b715ac10e42a625caaf8578574b409d5" "6239f9b05b4d67add0e16120725b698f"
-    ##  [83] "5dc375716659a1f435f14a8187d63e1c" "b4b40b4843572fc1248373762f4141af"
-    ##  [85] "801ac70bd97e0acf24d78757bc0c4a63" "7ebc360a7d9e6bf6d09f5c861cf77eaa"
-    ##  [87] "e6eb78585d7fd46ab8cc28481c0a17bf" "698efa3367bdfade818ea2c90c4bf0ca"
-    ##  [89] "a761e859355039395824c375d161e32e" "d3d1e84295033baefd6a1e89d8723635"
-    ##  [91] "c03960dd2503185574bd3a3e4d4a98a3" "e86f59429ce9ded69f030efabd334c6a"
-    ##  [93] "003af54128f08f88f4cc7f3d30c22bc7" "1af605105d06b8b23dbda027b7f56516"
-    ##  [95] "6dc71e1a6b132d3e7b7d9cc1819f86d7" "f3c0b7307fa3a0f3e72ddb28e8b6aaf4"
-    ##  [97] "7ecbf406dc3f6f333a519ce74b301023" "df626b652a656ed681a97a0148443c7d"
-    ##  [99] "98d31549e02be1d0545d751e5f065343" "1668c2c9b8d56257977288479d75c290"
-    ## [101] "f19a6fdb3e559e5bcf0d514fc0f97d33" "6b215ea81a2cfb52147c93e3d0ac73eb"
-    ## [103] "7b8e2178f80169722ad87575a3b70f2f" "30b314d93b23928c68e0c8da410b03e7"
-    ## [105] "0a3ccb90245c8f84bfbda3c58f3eacc5" "70525e61f8896a5eaf837858d677458d"
-    ## [107] "9761d928d5de6a325502f15050f9b961" "366e866734c792c9cd90d1b74227127a"
-    ## [109] "e782f6bfe9343f586c431a75aab548ea" "7267a3df6ecca94716a20572b8ffdd92"
-    ## [111] "9efc4fc95e6bb6462e24fc527a71c2c3" "cfd0cd17c85fc790b5bf730245653b50"
-    ## [113] "385f98df359e91790e07c2cb748d3dde" "04fe639fd136e8365d18a092529648eb"
-    ## [115] "e916bc8b4b153d3d0103159b941ee071" "cff8112900c93927bd5a685201e2d902"
-    ## [117] "854aba6e257399a8c03c5324bda9c990" "fee66e230fa30c21bc9c5b04c59be954"
-    ## [119] "83c1a35def56c6aa91c75d114b788856" "145442a98875f8e1c901b57132e3f2b8"
-    ## [121] "12f255e4729fa1e28527bebdbd01b665" "c7182f5b04146de5f14f442b2b5d62b2"
-    ## [123] "b89167e054fe7c610f28568f7856e09a" "2f7862c3c7a03a873cf524a2d9cb12ee"
-    ## [125] "103184d8cd0e4e5314a832452c411097" "565ad82315a8a7ac1e10b5f688547ece"
-    ## [127] "ed8b535aed5997b3b266e0ea9d898136" "9055fdc0bf9fa7dd4d49a67d6c705dfe"
-    ## [129] "2b8958aca7b054643c3aaa383fb339ee" "74ad381e9372fd1db6ac76aa766e1d43"
-    ## [131] "ebfbc7b35234a42a899f633d1ebd0485" "b3024ead76a455bee792deeaa8f99e67"
-    ## [133] "0ddee29dbce212f1e552515e33a03daa" "26b1b7c2cf6645c09628164d8a151cc3"
-    ## [135] "6c929215c17f0fd84f034a9d95dce8ce" "9937fe5099010b99e563efdc75914997"
-    ## [137] "c49477a4c4e26cd506cccecfc13b2eb9" "9b3474bd2148382712c8e93ff8971ef3"
-    ## [139] "fa6510c9e980eaa30617c672e90ad082" "0c18b85116708d55b6cbea237b96525b"
-    ## [141] "d4fad67eb706ab86122fb36afee869c7" "b49591c0c7a246ddb594baeefbae62b9"
-    ## [143] "e976584396be1aaf289a043643fef02d" "c2ad9f1e151e1131c6e4460f9bbfcbe8"
-    ## [145] "1088ef9a6107c7269bb30393d3f3db41" "6d91f11bb1ee51e78c6a71668f27cd51"
-    ## [147] "96bbfac18d1f7f13c4572ff34481c337" "bf49809769af933f740df88d9b4b8cf0"
-    ## [149] "516cbbb75c0b06047ea38d8266bb02ca" "105c8c20b86e93ee958d1e2a76e39c1a"
-    ## [151] "9bbceca2e8d18f3aec56a00b448892b8" "33ceaa3fed98090d535496959104c75a"
-    ## [153] "0e8d660cbd4a72352ad4109b2440286e" "585b0935354ab5352daba1259605c26f"
-    ## [155] "38d29ddd1fb248645f80ba68e2e7e62f" "a09a44b4f12b35b7d2f3b6355ffab2eb"
-    ## [157] "97f0707f0565cf3c4a3d1e77cedd5aa3" "82f604781f0a733f3cadde378f654c64"
-    ## [159] "2041c7ff34b21552a0af72753974d2bf" "22abbf44268e9ed6c8fc970b8414f6c7"
-    ## [161] "c13ad8b0c5600fea448e6259170acc95" "7cf1fe0262bdd789a550c1b9a418ffdf"
-    ## [163] "9a40244307e335d1e9b88f1a32153bf0" "078f499e4fcb5690f47accb10b3b4f2d"
-    ## [165] "d917306c4c8d0ea86cbc8696c91d037b" "2ca52274a8215581e9a5d1e7bebe9f13"
-    ## [167] "e028f45f70441498cf9422ed19a45c4f" "e5c8f31705ae991221de2a5dff050a57"
-    ## [169] "dec54c185f0d58bdbaa59936dd7306af" "c47f2ca6b0a12c9e3e5365d1124ba227"
-    ## [171] "5798cab1b7f6bb1402038540f9a1ce58" "56530b6128d8756ae7861edae0e9d721"
-    ## [173] "bd10c1c9dfe866a3e568941d39361d5f" "73000169a5403b78bdba446eb3341ad3"
-    ## [175] "d12afb35d31c7d7e3c581249f11985e7" "2b0dbc8ca8b74471b0029ee9d61a4c60"
-    ## [177] "3ac5a519014ada35464c1299daf000d2" "141e907da9c585151e08c5b9811b7723"
-    ## [179] "ee58be4d62175c6016d804c963f873fa" "f89a3f319aee4abfc2e002e63b9a0a7c"
-    ## [181] "2431cd23bb22a066752b0565a00e7c72" "4fe873352f09745cce4b1b014cac1eed"
-    ## [183] "ba7514af0613a537e7c3898eb68f26fd" "f8367e2b20da5a27a9a4bba9beacd01e"
-    ## [185] "f7084ae926cc6dc493e235d38c6268ea" "84b1ac7156d2cfffc75f32498516c27b"
-    ## [187] "81febb4c432de5a4419d54dde0747ddc" "9e1fd6a6141200e5610a0ea3911d6006"
-    ## [189] "906b324e809f8b6c27ad0fda85b72ab4" "d1c36eab2d59a64805ab7d08ed43a812"
-    ## [191] "e91b53dc74978289576c73257d218974" "bc3a435fb31a51f9704cd8ee46d6a39b"
-    ## [193] "6e678220347dfaff5e6949fa73dce40b" "dece12de754bd71facf31dd631e4e365"
-    ## [195] "28e2b56220974c5a80d2715b29d11dc4" "a7e72d531eb0cdf659428d2c5b4d7d7c"
-    ## [197] "17bb4907c8c278121e08bd58c65689a1" "d18be0ed6a08bb48c01d46fbe3b7ab9e"
-    ## [199] "71c53c6a37053e7d434496143599861e" "6fa74a2dd7a1a7594d88ac26e06758c5"
-    ## [201] "80dfc7a01e7f1a59030cc7009ce644c4" "e808e1c5642115b737ecb921304fefc1"
-    ## [203] "bc712a9cdc707bad53d6f5bc304f77bf" "fd5f3f199153ef09acfd2f1347cf2771"
-    ## [205] "e797350616765ebc353f7db9202f7ed5" "b644212b82eca6c12c76ef975069e278"
-    ## 
-    ## $orig$`Week 6`
-    ##   [1] "e60e6623788897e5665e14807bbdaeb9" "ebea36365777bd01f7a2392732d898bd"
-    ##   [3] "8369c51b146d25f46cfc9bcecec81a1d" "c436dc67b676f98d091ac4c0ad7c340d"
-    ##   [5] "63b7bee3b253e9e92fe81667f0728235" "c6a1db334b738c55bc3460b5aabffa07"
-    ##   [7] "dd0b81b53dfcca016c3a67c0e5c6c48e" "f8845f54634ff554437b29a5116a748c"
-    ##   [9] "cffb21d28a9912629dbeb0231a15145b" "0132278ac2aa36023994ebf3d99874c8"
-    ##  [11] "5bd5cf8447f372b7da1789807bf31056" "0dd0282527f32d7534e8b25bd8070e05"
-    ##  [13] "212b0396860f119d035b5964aad3b498" "21e99fe5c4f938c48c2f7069ab9f610a"
-    ##  [15] "7300b96b40471e6129a659d2418a7907" "1284d0cd1f496848851b63197c931a12"
-    ##  [17] "43e7785fcfd6a38e1b2eca6b90c1d55a" "e4763bb938478b368fd72e9a60aff0a5"
-    ##  [19] "2ddb3fbdfd9ab21d2f063bb428628ad2" "0421106b66647db14d8ed69d01ea3611"
-    ##  [21] "e54de549032a1326d6a55c2a269250aa" "4551fa93b93912e430376b39d3a7ab66"
-    ##  [23] "f9bd449cffe24a59560af012e7f138e9" "61dc6caa907f3120c32c648b6118ac9c"
-    ##  [25] "b31be1b89bb580e3611089a09fd79e29" "1d946a3133fec4b7567cc21f626d7756"
-    ##  [27] "66535460961286c9481cc4c1122b467e" "9e4644e245da272a465302d892652f65"
-    ##  [29] "7fc48e52eb254b37318c41821d0094f7" "6c86f7748b5b1c8f46558c78ee7c1b55"
-    ##  [31] "cc761a4f31e6771b929aac7cc817f1d1" "aa0ee917a8dc36eaf78efb83fba77ed5"
-    ##  [33] "addab92b984c30ca70eb5c24dba68b9d" "c255450be9edddca124eed4a6c0d81cc"
-    ##  [35] "903cd9171aadd27179fb51786c7170d2" "b214ae87c66eade48767078ed14f564f"
-    ##  [37] "3c7e95f662321ce2f815e078166c202c" "281fc6085c84205551e126fe2e99bd11"
-    ##  [39] "1205b1ceb6bc665ee9c9ff7777702229" "dafdc5719dd9462554f050696d57a897"
-    ##  [41] "642ba0fce2b417d95bd2e5d4a53b7f17" "af336b9ff59d0cc43097a16e4dabebc1"
-    ##  [43] "fa9f727d57fa4f41d697cd46038bf64c" "2f552815996dfc27273632a1d226abe1"
-    ##  [45] "383c0dd41e3275cce2f82dea5f6a17c6" "c2aab74e136fb634b1af41d20eeb7f8a"
-    ##  [47] "ab6263b5c92afe21d3ceee8b555383b3" "f85a8d563437c3cea39fc5f2af7e6e63"
-    ##  [49] "d53e8d3d5e370ac1a993f48eaf24567b" "b8fb10ff84dac2887c68af3765c299a0"
-    ##  [51] "777802441241504d1fed2b77daa4fef5" "87ec06a7e891bc5c6e8efa0eeced342b"
-    ##  [53] "396d8c5e388cd6370d19d5095ccfaaec" "1dcb2212cc9d9cf41a609f9a5b37ff60"
-    ##  [55] "b54768b69d5232c811022985c5f87ba1" "344290542e48f66d0f4415ffa9a38c5d"
-    ##  [57] "8c4cec6e98cea9bde7e38c90077ae964" "7fa49741de083ef7b236562545599e33"
-    ##  [59] "4b9ec1e85d49003e97f518a4dca29882" "c0824e391ee2243112234404d1fc3fe5"
-    ##  [61] "e4bd78ea6c8dbdc8a7b6b5fa3b5145ad" "6fc06167882ae179ab7c577bade962a9"
-    ##  [63] "21132e5c0d7987e05c879573ce44d29e" "8665a3597d4d4a91d6d740410703140c"
-    ##  [65] "ef6264405ac7d445c9c6cbfb2433182b" "bd92fe8e683cd9c1bee36e9928e8badb"
-    ##  [67] "f3f6c4d101813bad866b9a7e79468934" "7b1b46921a2d2b57a78a84f243e5fc9c"
-    ##  [69] "0f95836a0dff166e4a57fc9eae0c4148" "ee58be4d62175c6016d804c963f873fa"
-    ##  [71] "e83d3a9ae4b566edc8ec920cc3e8f0f8" "acafcd8c3b29657a0898eef798fa1130"
-    ##  [73] "62c0c4fd52961e0a06cad686e55cd4e8" "054e74172c4bfa7b3f17a2621b23ec46"
-    ##  [75] "1906cb6358f38d0ae5aa315ef00a0a71" "33ceaa3fed98090d535496959104c75a"
-    ##  [77] "9e00e2e85b7a4d5dedca001cda062af9" "9ec9e77a8f648020b9abcdbd083f380c"
-    ##  [79] "2f7862c3c7a03a873cf524a2d9cb12ee" "574e3638b2a0734d17cf4677544db213"
-    ##  [81] "47d1a216e45b781c3502fd2859efd875" "660b9068bde159e796065089f1a02c8d"
-    ##  [83] "9943198d8600ba3300ddd2a55a23ea03" "ce9a1772a026edb18c13e9bc12ee5f8e"
-    ##  [85] "98feeb7c5de77b4910f4315ad42371f1" "7f68b5cb17ef3b54f27e21f466aea988"
-    ##  [87] "6c929215c17f0fd84f034a9d95dce8ce" "dece12de754bd71facf31dd631e4e365"
-    ##  [89] "8e41c8dcbd322ea1fb44b4c6fc2509b5" "63c998b1becea41ebc5ff3157947ec0c"
-    ##  [91] "29d2ec379830cfcfc5578be97c3dec89" "e9d595ecb807790e60534c0cae55b9ae"
-    ##  [93] "9df517b3f6356b68cdff3bd4c1a5f68e" "d27f40408b64515d72da95423d68b0b8"
-    ##  [95] "105c8c20b86e93ee958d1e2a76e39c1a" "a761e859355039395824c375d161e32e"
-    ##  [97] "801ac70bd97e0acf24d78757bc0c4a63" "7267a3df6ecca94716a20572b8ffdd92"
-    ##  [99] "004ee5606a47f51fcc6bc734cd3208a9" "98d31549e02be1d0545d751e5f065343"
-    ## [101] "e916bc8b4b153d3d0103159b941ee071" "f19a6fdb3e559e5bcf0d514fc0f97d33"
-    ## [103] "4c4a823cad28a748fc4f7b3456d60c0a" "698efa3367bdfade818ea2c90c4bf0ca"
-    ## [105] "9efc4fc95e6bb6462e24fc527a71c2c3" "8aaf7109cebfa92679a49880ebfd80a4"
-    ## [107] "be41a03722589632d727a128cc9c4167" "4a0972f5318ca24d8ec9bdf5131cff99"
-    ## [109] "4f21b7663b40127efbf90c804dfc0c01" "fee66e230fa30c21bc9c5b04c59be954"
-    ## [111] "3fad284dcba1c58a6949eeaf7ea44bf4" "1fc38e467d309ae2119780e63150843e"
-    ## [113] "a45dc0cdbe32e3a32fa6bdb0a7db8f10" "e582b6e0d5066cbec5e4a9dcadc6f2a9"
-    ## [115] "cac4ece48472d33e180eef98093b6b6c" "c2ad9f1e151e1131c6e4460f9bbfcbe8"
-    ## [117] "f3c0b7307fa3a0f3e72ddb28e8b6aaf4" "d921f18656f3701ba8073d0c3dee85c8"
-    ## [119] "3d530dada2c6e5f710013bb4833ca876" "dbe3dbcc928bdef85b910d5665b08cf2"
-    ## [121] "9b9586f4ee971734202c21eb49e48b39" "366e866734c792c9cd90d1b74227127a"
-    ## [123] "cbfcd314ba0e663377fdbbcc777c904d" "6239f9b05b4d67add0e16120725b698f"
-    ## [125] "e808e1c5642115b737ecb921304fefc1" "c13ad8b0c5600fea448e6259170acc95"
-    ## [127] "96f2ea1bc29e65821a2d41321f44bbe9" "8be5171abe1df417e0f5078942b9999f"
-    ## [129] "3d9dadd9f06cabeb9a241ac07e1f0b67" "cd1debf4a8d99381146c78b455ce4cfc"
-    ## [131] "0bde8a25e6f2ff4a3b30ff5e78a7290b" "c7182f5b04146de5f14f442b2b5d62b2"
-    ## [133] "b4b40b4843572fc1248373762f4141af" "0b79218c40c2157254c6b3e792ec3c2d"
-    ## [135] "9e8b6fe0f83968bb3f6e83b5480ccfc7" "fa0218d20cc873b75d9f44d0cf83b289"
-    ## [137] "b42325272b4c9abd14d3cd816b31e4ee" "e787389f8bbfabef66615e5e72558118"
-    ## [139] "566dcce23831f01974d7faa119d1a04b" "b715ac10e42a625caaf8578574b409d5"
-    ## [141] "af4978e1f3e54ec981950df431ef50df" "5b5adb9e7226d029b43de63086a14f52"
-    ## [143] "cbc9c4c32b4cb83e040a059f0efbc264" "c3613eb623a08774cb561781585a41d1"
-    ## [145] "b49591c0c7a246ddb594baeefbae62b9" "1662a5811fd6fb27159d4e5a4a61cfbc"
-    ## [147] "6016955f71bd982363040e8921f0f5e3" "1af605105d06b8b23dbda027b7f56516"
-    ## [149] "403ca22e6c6abcdc7c4cd2a9b200d3ec" "565ad82315a8a7ac1e10b5f688547ece"
-    ## [151] "df626b652a656ed681a97a0148443c7d" "cfd0cd17c85fc790b5bf730245653b50"
-    ## [153] "d75502deb38927d3ef6d2468b6739bdf" "6d4a790c521c7d0abe28dee8a3bbe1be"
-    ## [155] "4f615576acf981faa27f65216ef54deb" "6c8d662cbe8111257a463827b60ecfea"
-    ## [157] "83c1a35def56c6aa91c75d114b788856" "2b8958aca7b054643c3aaa383fb339ee"
-    ## [159] "84bc6ce045f212f439b979e3862bb33e" "9937fe5099010b99e563efdc75914997"
-    ## [161] "2a935f852276a0fa465afad4aef1526d" "5dc375716659a1f435f14a8187d63e1c"
-    ## [163] "6d91f11bb1ee51e78c6a71668f27cd51" "4d9149ccd9bba7f1b5afeb88d0604a60"
-    ## [165] "bc3a435fb31a51f9704cd8ee46d6a39b" "b6b30df14a74be386d793a655e5c3f5a"
-    ## [167] "fac89bef8aba259524236d1cddd0186e" "af96fa42263c875e8046672192f627a2"
-    ## [169] "d4fad67eb706ab86122fb36afee869c7" "9055fdc0bf9fa7dd4d49a67d6c705dfe"
-    ## [171] "ac14e7880e293f51174b794d5a030107" "6b215ea81a2cfb52147c93e3d0ac73eb"
-    ## [173] "f5fb5183a6a846e7cd74cc7263484793" "e6eb78585d7fd46ab8cc28481c0a17bf"
-    ## [175] "31faddb3b5b7176c5b9898671082de18" "30ccf290598808febd1eaaed90f4a68a"
-    ## [177] "14cbc8ea821822d4096c19aa6062bf67" "0a3a25fe271fa3dbb0951048645fa9a1"
-    ## [179] "2db93eec92e9f257357b4602132cd244" "82b6e9ac3cb2816eef0942342ac93846"
-    ## [181] "0af1aa8027504f8e262c813f1a105956" "f461fb25a69dcc1a1e80c8ceb11dbbe2"
-    ## [183] "71c53c6a37053e7d434496143599861e" "e41a12b513ff11bb3ae47220a0dda390"
-    ## [185] "511edfdaaa000431a2ef4608cb899c9b" "09b63638bd517482cd1f7988e4e6462a"
-    ## [187] "145442a98875f8e1c901b57132e3f2b8" "7e4cbef8b21a8f0ed39eda834bfac75f"
-    ## [189] "e782f6bfe9343f586c431a75aab548ea" "8f2833a34dc99cf9662ff3fbf66700a8"
-    ## [191] "25a958acb77cd495c521b56ae500fb64" "e86f59429ce9ded69f030efabd334c6a"
-    ## [193] "b89167e054fe7c610f28568f7856e09a" "17bb4907c8c278121e08bd58c65689a1"
-    ## [195] "b1a8935489e7797b00fabf970e8375eb" "abd0fbdd7476bd431022c83b9996b932"
-    ## [197] "dad247830785d0420ee254e0694769e6" "26b1b7c2cf6645c09628164d8a151cc3"
-    ## [199] "35e669f29c648b7198710753d58430c4" "74d69fd27ce98e30efe3080a35b93f1a"
-    ## [201] "5e3237bab61c077efa7ff7de3da973c0" "84f295cc0efa62d8ce1058b303fc7d16"
-    ## [203] "d61e95adec762ae421115179a2e2e57a" "b3024ead76a455bee792deeaa8f99e67"
-    ## [205] "166dc8037be4288c063dc88655428add" "e2544f90a411cb4b935d40c83b01c933"
-    ## [207] "01d4b6911d831a55b64e5e2ead78f9d9" "906b324e809f8b6c27ad0fda85b72ab4"
-    ## [209] "d3730d2ea6f0bd97baada418fbafe0ea" "0ddee29dbce212f1e552515e33a03daa"
-    ## [211] "e1cdc45d861ab6a0f13152b84d6fc229" "ae3fb80642ecc01c124115e63a705835"
-    ## [213] "0e5d0956dbf7e8a582543a0e48749f23" "ebfbc7b35234a42a899f633d1ebd0485"
-    ## [215] "9bbceca2e8d18f3aec56a00b448892b8" "bcac6add792dd24ab3bf3f6ffbb04fb4"
-    ## [217] "a09a44b4f12b35b7d2f3b6355ffab2eb" "56530b6128d8756ae7861edae0e9d721"
-    ## [219] "dec54c185f0d58bdbaa59936dd7306af" "74ad381e9372fd1db6ac76aa766e1d43"
-    ## [221] "308c77da094f92bc8d72e19bc189980d" "a7e72d531eb0cdf659428d2c5b4d7d7c"
-    ## [223] "02680fb27de40537190da374721a1753" "82f604781f0a733f3cadde378f654c64"
-    ## [225] "9a40244307e335d1e9b88f1a32153bf0" "61aabbeb06c2f40348c40c8053c86b18"
-    ## [227] "6c0bf239702859ae989d886f1985b1e4" "a0ffff106699f3e3ce0f94968a7163bb"
-    ## [229] "5246be93b22bbff1860fb674ac8fae76" "4521afd72e0101b30d46c8c5192731ab"
-    ## [231] "46818903d787927ae5525ec67d66d2bc" "d1c36eab2d59a64805ab7d08ed43a812"
-    ## [233] "422dfd34b05fa810d62aeb6e3aeb58d6" "263a8852574830e626fffd9f37dfae2f"
-    ## [235] "49cab62dbe6dadb1d4e978d72919a351" "e19ffd09ddcd963ec97b1f87061daa3d"
-    ## [237] "e91b53dc74978289576c73257d218974" "45d56e0f4181e23e94846640660e2a4f"
-    ## [239] "10ddc3e327033f12a05e18ad0c00dc7a" "c49477a4c4e26cd506cccecfc13b2eb9"
-    ## [241] "135a9589da9553e6d0e36c2a504be20d" "ac0e7cdc059f2055d79572a61d20c715"
-    ## [243] "516cbbb75c0b06047ea38d8266bb02ca" "2ca52274a8215581e9a5d1e7bebe9f13"
-    ## [245] "0e8d660cbd4a72352ad4109b2440286e" "d5d450d02f6aedb908030d49f999d3fe"
-    ## [247] "385f98df359e91790e07c2cb748d3dde" "c08f974f6714b91a799d8df094c5eac1"
-    ## [249] "02647c4d438e5d5d85d9c60a8e091d08" "f258bdb4cf46614a407aa9e510bbe7e2"
-    ## [251] "96050a68d7cc36ee7db73c1dca70bb03" "de20414ed676f940ebabaa16c5230346"
-    ## [253] "29468914cfd0458997db92c2d12f6ea1" "f89a3f319aee4abfc2e002e63b9a0a7c"
-    ## [255] "cc6e9a08ef43af24d1c092c913a7f29b" "1a97184c6eb51c28c91e545f2c5670b1"
-    ## [257] "5db69e722c78d247c014ef7eda35a466" "e5fda54e0a8c8c07a8f5ac34c5a76458"
-    ## [259] "0836b1890d1fb5eaa54f48ccc4542828" "71a5c37154de935fff94761ce59ac82c"
-    ## [261] "0295cbe666314a27f251a26b521091ce" "250b3741ab97faee29ce3f485f6ca693"
-    ## [263] "7583f3e8bd25cea09fd93c46fe9a7ae2" "3a45645fc53551a3e90908f39c80ea88"
-    ## [265] "33eb097fa2020689c74765f69e597433" "03c8cea8f166e10c919f86287b029108"
-    ## [267] "e6608048edd6ac9283b9a520959fc92d" "59c0df61c5681fc16930b34d7f16484e"
-    ## [269] "0ed7039c73efb1ef597a6c91e456c595" "544a2fccd4424034ad383f9b5c19da6a"
-    ## [271] "1088ef9a6107c7269bb30393d3f3db41" "3c0d84f8bf9a3a8ea5cc05ad9b99c209"
-    ## [273] "ed091ed6e1210b8a5f867ae5a2ec8c1b" "ac983c4999b994f8cc0d50899930208d"
-    ## [275] "a2202910eb63129ff1bc2671b0f1e97f" "2a6dae61b2de8737200dbe19c7d59bf8"
-    ## [277] "5c703d95db653db1a4c5c0f47d5b2246" "d917306c4c8d0ea86cbc8696c91d037b"
-    ## [279] "7ecbf406dc3f6f333a519ce74b301023" "25803d13372d703d797574d40b45502a"
-    ## [281] "bc712a9cdc707bad53d6f5bc304f77bf" "6dc71e1a6b132d3e7b7d9cc1819f86d7"
-    ## [283] "9fd28cac88e776acb1d31f291c210bf8" "97f0707f0565cf3c4a3d1e77cedd5aa3"
-    ## [285] "9b3474bd2148382712c8e93ff8971ef3" "2a2243baf6753b2ef1966b60e6aad77e"
-    ## [287] "ef77ae02d2fc7305b4f8a9ae13725131" "87dfdcb2a28aa5ff3a581f1676e6c83a"
-    ## [289] "8797ea3440904a0d42f950150b92f4e1" "03d603f406e50b013b7d0645b72bc507"
-    ## [291] "7921c20395343a1e79eb8bca4c057597" "2e70f4b0292118bb79e04f97e0fbf2c9"
-    ## [293] "4f6e06d73dbccc2816111750e66d0dac" "72c659c5151b43410bfced46533303f4"
-    ## [295] "c503136f017a999fc8489f1235d7ec42" "b6153c6f0918e711e23dd7ab752974cf"
-    ## [297] "e5c8f31705ae991221de2a5dff050a57" "223fabe32320a7e61015aa8bdb9b34b7"
-    ## [299] "a0222761fcaff1d31b3989547a61585c" "1668c2c9b8d56257977288479d75c290"
-    ## [301] "ff8d1852cc3c9dc71215e4599040adb6" "6bfcb65c060ad1b5ffa6a38d74077d3e"
-    ## [303] "30659e41fa4b2f628db60ae54d7fa031"
-    ## 
-    ## $orig$`Week 10`
-    ##   [1] "e60e6623788897e5665e14807bbdaeb9" "ebea36365777bd01f7a2392732d898bd"
-    ##   [3] "8369c51b146d25f46cfc9bcecec81a1d" "c436dc67b676f98d091ac4c0ad7c340d"
-    ##   [5] "63b7bee3b253e9e92fe81667f0728235" "dd0b81b53dfcca016c3a67c0e5c6c48e"
-    ##   [7] "c6a1db334b738c55bc3460b5aabffa07" "21e99fe5c4f938c48c2f7069ab9f610a"
-    ##   [9] "f8845f54634ff554437b29a5116a748c" "7300b96b40471e6129a659d2418a7907"
-    ##  [11] "e4763bb938478b368fd72e9a60aff0a5" "2ddb3fbdfd9ab21d2f063bb428628ad2"
-    ##  [13] "5bd5cf8447f372b7da1789807bf31056" "cc761a4f31e6771b929aac7cc817f1d1"
-    ##  [15] "0132278ac2aa36023994ebf3d99874c8" "0dd0282527f32d7534e8b25bd8070e05"
-    ##  [17] "aa0ee917a8dc36eaf78efb83fba77ed5" "b31be1b89bb580e3611089a09fd79e29"
-    ##  [19] "1d946a3133fec4b7567cc21f626d7756" "66535460961286c9481cc4c1122b467e"
-    ##  [21] "4551fa93b93912e430376b39d3a7ab66" "281fc6085c84205551e126fe2e99bd11"
-    ##  [23] "903cd9171aadd27179fb51786c7170d2" "f9bd449cffe24a59560af012e7f138e9"
-    ##  [25] "c255450be9edddca124eed4a6c0d81cc" "0421106b66647db14d8ed69d01ea3611"
-    ##  [27] "1dcb2212cc9d9cf41a609f9a5b37ff60" "9e4644e245da272a465302d892652f65"
-    ##  [29] "cffb21d28a9912629dbeb0231a15145b" "addab92b984c30ca70eb5c24dba68b9d"
-    ##  [31] "f85a8d563437c3cea39fc5f2af7e6e63" "61dc6caa907f3120c32c648b6118ac9c"
-    ##  [33] "3c7e95f662321ce2f815e078166c202c" "1284d0cd1f496848851b63197c931a12"
-    ##  [35] "212b0396860f119d035b5964aad3b498" "7fc48e52eb254b37318c41821d0094f7"
-    ##  [37] "574e3638b2a0734d17cf4677544db213" "e54de549032a1326d6a55c2a269250aa"
-    ##  [39] "396d8c5e388cd6370d19d5095ccfaaec" "6c86f7748b5b1c8f46558c78ee7c1b55"
-    ##  [41] "c0824e391ee2243112234404d1fc3fe5" "ab6263b5c92afe21d3ceee8b555383b3"
-    ##  [43] "af336b9ff59d0cc43097a16e4dabebc1" "b54768b69d5232c811022985c5f87ba1"
-    ##  [45] "62c0c4fd52961e0a06cad686e55cd4e8" "383c0dd41e3275cce2f82dea5f6a17c6"
-    ##  [47] "dafdc5719dd9462554f050696d57a897" "87ec06a7e891bc5c6e8efa0eeced342b"
-    ##  [49] "b214ae87c66eade48767078ed14f564f" "6fc06167882ae179ab7c577bade962a9"
-    ##  [51] "7b1b46921a2d2b57a78a84f243e5fc9c" "8665a3597d4d4a91d6d740410703140c"
-    ##  [53] "fa9f727d57fa4f41d697cd46038bf64c" "21132e5c0d7987e05c879573ce44d29e"
-    ##  [55] "cac60cec0955acc359ab0ef9171dd831" "7fa49741de083ef7b236562545599e33"
-    ##  [57] "9e00e2e85b7a4d5dedca001cda062af9" "acafcd8c3b29657a0898eef798fa1130"
-    ##  [59] "344290542e48f66d0f4415ffa9a38c5d" "dece12de754bd71facf31dd631e4e365"
-    ##  [61] "054e74172c4bfa7b3f17a2621b23ec46" "ef6264405ac7d445c9c6cbfb2433182b"
-    ##  [63] "ce9a1772a026edb18c13e9bc12ee5f8e" "6c929215c17f0fd84f034a9d95dce8ce"
-    ##  [65] "2f552815996dfc27273632a1d226abe1" "f3f6c4d101813bad866b9a7e79468934"
-    ##  [67] "4c4a823cad28a748fc4f7b3456d60c0a" "84bc6ce045f212f439b979e3862bb33e"
-    ##  [69] "d27f40408b64515d72da95423d68b0b8" "7d3e36bd1b7de8f400d1c6fcd708d640"
-    ##  [71] "e582b6e0d5066cbec5e4a9dcadc6f2a9" "0f95836a0dff166e4a57fc9eae0c4148"
-    ##  [73] "9943198d8600ba3300ddd2a55a23ea03" "ee58be4d62175c6016d804c963f873fa"
-    ##  [75] "6016955f71bd982363040e8921f0f5e3" "e83d3a9ae4b566edc8ec920cc3e8f0f8"
-    ##  [77] "291a6c9f0f851992bf926dbf9a38b686" "bd92fe8e683cd9c1bee36e9928e8badb"
-    ##  [79] "98feeb7c5de77b4910f4315ad42371f1" "660b9068bde159e796065089f1a02c8d"
-    ##  [81] "6c0bf239702859ae989d886f1985b1e4" "cac4ece48472d33e180eef98093b6b6c"
-    ##  [83] "7f68b5cb17ef3b54f27e21f466aea988" "8aaf7109cebfa92679a49880ebfd80a4"
-    ##  [85] "b715ac10e42a625caaf8578574b409d5" "29d2ec379830cfcfc5578be97c3dec89"
-    ##  [87] "8e41c8dcbd322ea1fb44b4c6fc2509b5" "9ec9e77a8f648020b9abcdbd083f380c"
-    ##  [89] "3fad284dcba1c58a6949eeaf7ea44bf4" "698efa3367bdfade818ea2c90c4bf0ca"
-    ##  [91] "004ee5606a47f51fcc6bc734cd3208a9" "e916bc8b4b153d3d0103159b941ee071"
-    ##  [93] "fee66e230fa30c21bc9c5b04c59be954" "8797ea3440904a0d42f950150b92f4e1"
-    ##  [95] "801ac70bd97e0acf24d78757bc0c4a63" "9efc4fc95e6bb6462e24fc527a71c2c3"
-    ##  [97] "4a0972f5318ca24d8ec9bdf5131cff99" "14cbc8ea821822d4096c19aa6062bf67"
-    ##  [99] "4f21b7663b40127efbf90c804dfc0c01" "a761e859355039395824c375d161e32e"
-    ## [101] "ebb384b9749d0cddc4db50edf42fc930" "3d530dada2c6e5f710013bb4833ca876"
-    ## [103] "7267a3df6ecca94716a20572b8ffdd92" "ac14e7880e293f51174b794d5a030107"
-    ## [105] "105c8c20b86e93ee958d1e2a76e39c1a" "cbfcd314ba0e663377fdbbcc777c904d"
-    ## [107] "4f615576acf981faa27f65216ef54deb" "c7182f5b04146de5f14f442b2b5d62b2"
-    ## [109] "a45dc0cdbe32e3a32fa6bdb0a7db8f10" "63c998b1becea41ebc5ff3157947ec0c"
-    ## [111] "47d1a216e45b781c3502fd2859efd875" "6c8d662cbe8111257a463827b60ecfea"
-    ## [113] "565ad82315a8a7ac1e10b5f688547ece" "6d4a790c521c7d0abe28dee8a3bbe1be"
-    ## [115] "e9d595ecb807790e60534c0cae55b9ae" "2f7862c3c7a03a873cf524a2d9cb12ee"
-    ## [117] "c2ad9f1e151e1131c6e4460f9bbfcbe8" "8be5171abe1df417e0f5078942b9999f"
-    ## [119] "12d8b8ed493ae5149f6f598da0d5df53" "f19a6fdb3e559e5bcf0d514fc0f97d33"
-    ## [121] "bc3a435fb31a51f9704cd8ee46d6a39b" "98d31549e02be1d0545d751e5f065343"
-    ## [123] "403ca22e6c6abcdc7c4cd2a9b200d3ec" "d921f18656f3701ba8073d0c3dee85c8"
-    ## [125] "9055fdc0bf9fa7dd4d49a67d6c705dfe" "cd1debf4a8d99381146c78b455ce4cfc"
-    ## [127] "4d9149ccd9bba7f1b5afeb88d0604a60" "0bde8a25e6f2ff4a3b30ff5e78a7290b"
-    ## [129] "61aabbeb06c2f40348c40c8053c86b18" "e6eb78585d7fd46ab8cc28481c0a17bf"
-    ## [131] "d3d1e84295033baefd6a1e89d8723635" "d40b62cc96be2f2e83efd4412fed82e3"
-    ## [133] "35e669f29c648b7198710753d58430c4" "96f2ea1bc29e65821a2d41321f44bbe9"
-    ## [135] "b42325272b4c9abd14d3cd816b31e4ee" "628baedc604a9b4c9711819b7184ec32"
-    ## [137] "cfd0cd17c85fc790b5bf730245653b50" "9b9586f4ee971734202c21eb49e48b39"
-    ## [139] "1af605105d06b8b23dbda027b7f56516" "17bb4907c8c278121e08bd58c65689a1"
-    ## [141] "df626b652a656ed681a97a0148443c7d" "3d9dadd9f06cabeb9a241ac07e1f0b67"
-    ## [143] "be41a03722589632d727a128cc9c4167" "fac89bef8aba259524236d1cddd0186e"
-    ## [145] "31faddb3b5b7176c5b9898671082de18" "2db93eec92e9f257357b4602132cd244"
-    ## [147] "2a935f852276a0fa465afad4aef1526d" "af96fa42263c875e8046672192f627a2"
-    ## [149] "c13ad8b0c5600fea448e6259170acc95" "d75502deb38927d3ef6d2468b6739bdf"
-    ## [151] "dad247830785d0420ee254e0694769e6" "33ceaa3fed98090d535496959104c75a"
-    ## [153] "7e4cbef8b21a8f0ed39eda834bfac75f" "366e866734c792c9cd90d1b74227127a"
-    ## [155] "83c1a35def56c6aa91c75d114b788856" "5b5adb9e7226d029b43de63086a14f52"
-    ## [157] "ae3fb80642ecc01c124115e63a705835" "8f2833a34dc99cf9662ff3fbf66700a8"
-    ## [159] "01169913773c94596b60157a154a6401" "c08f974f6714b91a799d8df094c5eac1"
-    ## [161] "0a3a25fe271fa3dbb0951048645fa9a1" "e19ffd09ddcd963ec97b1f87061daa3d"
-    ## [163] "b49591c0c7a246ddb594baeefbae62b9" "d917306c4c8d0ea86cbc8696c91d037b"
-    ## [165] "30ccf290598808febd1eaaed90f4a68a" "b4b40b4843572fc1248373762f4141af"
-    ## [167] "cbc9c4c32b4cb83e040a059f0efbc264" "2b8958aca7b054643c3aaa383fb339ee"
-    ## [169] "0ed7039c73efb1ef597a6c91e456c595" "f461fb25a69dcc1a1e80c8ceb11dbbe2"
-    ## [171] "b6b30df14a74be386d793a655e5c3f5a" "e808e1c5642115b737ecb921304fefc1"
-    ## [173] "eb90fdefb558eac480b5681a5be0e135" "5e3237bab61c077efa7ff7de3da973c0"
-    ## [175] "145442a98875f8e1c901b57132e3f2b8" "f258bdb4cf46614a407aa9e510bbe7e2"
-    ## [177] "4521afd72e0101b30d46c8c5192731ab" "5dc375716659a1f435f14a8187d63e1c"
-    ## [179] "2a6dae61b2de8737200dbe19c7d59bf8" "b1a8935489e7797b00fabf970e8375eb"
-    ## [181] "6b215ea81a2cfb52147c93e3d0ac73eb" "02680fb27de40537190da374721a1753"
-    ## [183] "46818903d787927ae5525ec67d66d2bc" "008ee034f582ba974f046e6b56bff504"
-    ## [185] "cc6e9a08ef43af24d1c092c913a7f29b" "422dfd34b05fa810d62aeb6e3aeb58d6"
-    ## [187] "82b6e9ac3cb2816eef0942342ac93846" "fa0218d20cc873b75d9f44d0cf83b289"
-    ## [189] "d445c17d3507ef68861f392e8d3d6fa8" "49cab62dbe6dadb1d4e978d72919a351"
-    ## [191] "508119d31073fad177cedcecbdffb2b1" "e95ca0a460e7864c7f081d48d2ac7b3f"
-    ## [193] "26b1b7c2cf6645c09628164d8a151cc3" "84f295cc0efa62d8ce1058b303fc7d16"
-    ## [195] "9b3474bd2148382712c8e93ff8971ef3" "308c77da094f92bc8d72e19bc189980d"
-    ## [197] "74d69fd27ce98e30efe3080a35b93f1a" "5db69e722c78d247c014ef7eda35a466"
-    ## [199] "30659e41fa4b2f628db60ae54d7fa031" "a0222761fcaff1d31b3989547a61585c"
-    ## [201] "dec54c185f0d58bdbaa59936dd7306af" "87dfdcb2a28aa5ff3a581f1676e6c83a"
-    ## [203] "03c8cea8f166e10c919f86287b029108" "ac983c4999b994f8cc0d50899930208d"
-    ## [205] "ad7717fbac45c22b7eaee1837eb7890a" "e41a12b513ff11bb3ae47220a0dda390"
-    ## [207] "4d18e6d6e0039a7075756f1ceb852049" "dbe3dbcc928bdef85b910d5665b08cf2"
-    ## [209] "82f604781f0a733f3cadde378f654c64" "f42e78dbbd0f72b18b83a5704a5efa6b"
-    ## [211] "e6608048edd6ac9283b9a520959fc92d" "56530b6128d8756ae7861edae0e9d721"
-    ## [213] "96048083eb3777f81f272b91f5b301a6" "59c0df61c5681fc16930b34d7f16484e"
-    ## [215] "c3613eb623a08774cb561781585a41d1" "0c6671ebf3dec2215f8da62a80b6cf18"
-    ## [217] "0e5d0956dbf7e8a582543a0e48749f23" "263a8852574830e626fffd9f37dfae2f"
-    ## [219] "b11a5c7f35001268287e9da14796c658" "6d91f11bb1ee51e78c6a71668f27cd51"
-    ## [221] "0295cbe666314a27f251a26b521091ce" "bc712a9cdc707bad53d6f5bc304f77bf"
-    ## [223] "a2202910eb63129ff1bc2671b0f1e97f" "e86f59429ce9ded69f030efabd334c6a"
-    ## [225] "2e70f4b0292118bb79e04f97e0fbf2c9" "bea3672886376020539cbd24ae559916"
-    ## [227] "2ca52274a8215581e9a5d1e7bebe9f13" "3a45645fc53551a3e90908f39c80ea88"
-    ## [229] "a7e72d531eb0cdf659428d2c5b4d7d7c" "a082d61432f1376c81ce1a300684607c"
-    ## [231] "ef77ae02d2fc7305b4f8a9ae13725131" "1a97184c6eb51c28c91e545f2c5670b1"
-    ## [233] "0ddee29dbce212f1e552515e33a03daa" "aca5a198d98a6f08022edf5c9d9afc48"
-    ## [235] "49e1ac2aaf103304e7737e0560c1d291" "7f19a4562410a14448ff303b602da84c"
-    ## [237] "ec33e3a0b12a36bbecbab978e5c3d285" "15456227e48f1103584e352c6ba34637"
-    ## [239] "0a3934f0cdc5625b3234370dd0ad64ad" "019979c656994aff8fc4f0ac7cc76f26"
-    ## [241] "12f255e4729fa1e28527bebdbd01b665" "e1cdc45d861ab6a0f13152b84d6fc229"
-    ## [243] "10ddc3e327033f12a05e18ad0c00dc7a" "c2475a24bb2470fc76e4cbd21eb84d71"
-    ## [245] "08cb2baa9252356b194c8ffa99ff388f" "02647c4d438e5d5d85d9c60a8e091d08"
-    ## [247] "aad670faa4a136367fc62281300476a8" "016877611e2fe48c9d1c6f72a87e99a0"
-    ## [249] "a0ffff106699f3e3ce0f94968a7163bb" "0bcc0f508a93d83c972032c7c1bd6589"
-    ## [251] "103184d8cd0e4e5314a832452c411097" "45d56e0f4181e23e94846640660e2a4f"
-    ## [253] "d2c8f95d88c0869736acf50d7a887318" "0836b1890d1fb5eaa54f48ccc4542828"
-    ## [255] "370949f510f881d19bc60de1d83e4ead" "a09a44b4f12b35b7d2f3b6355ffab2eb"
-    ## [257] "135a9589da9553e6d0e36c2a504be20d" "e38aad168c4c83e152902aa20c4d606b"
-    ## [259] "52e5524a6e2ce31bfcb205de002f0269" "d3730d2ea6f0bd97baada418fbafe0ea"
-    ## [261] "223fabe32320a7e61015aa8bdb9b34b7" "245006be6cb03b28d9c2f84033f79cbc"
-    ## [263] "759981bd9dff0f5c9b0c6d5675d78dbb" "74b0c0dd904bbb32cff008bc513b74d2"
-    ## [265] "3c0d84f8bf9a3a8ea5cc05ad9b99c209" "ad944660c5dc1fe4f8ec42e82dac3586"
-    ## [267] "a3094802b0fef5b8f1e65f1ebd0a6057" "eb000f29c8de866f4f00c2f9f8b936f1"
-    ## [269] "5bef8ba85b7ab8a4b48ca401e97513a6" "385f98df359e91790e07c2cb748d3dde"
-    ## [271] "9bbceca2e8d18f3aec56a00b448892b8" "ff8d1852cc3c9dc71215e4599040adb6"
-    ## [273] "a91e1037bb22ad2cf89dff794df117aa" "c49477a4c4e26cd506cccecfc13b2eb9"
-    ## [275] "8439d0f0d485b88cb830aa006a94775e" "09b63638bd517482cd1f7988e4e6462a"
-    ## [277] "db8504b88caf12ec4d4439a8eff576b0" "69d4ebdd6032c7a9be54ad84b0d2e362"
-    ## [279] "f5fb5183a6a846e7cd74cc7263484793" "615c776a4b385cac49ee4fbc41797f0c"
-    ## [281] "72c659c5151b43410bfced46533303f4" "f7a0c0329f5ecaca02fccd2c338f59fa"
-    ## [283] "43adcb719dafe832475eb1a80a4158e3" "33eb097fa2020689c74765f69e597433"
-    ## [285] "d459a221d49830ff0ac9b7ca7c7e74b8" "596a9ea28ef4a1ddcd05615d3cc79f8e"
-    ## [287] "a95e1ac9cc3cb387894d32a12fe26029" "b980088bc90b1608f940645ce4764538"
-    ## [289] "56dfd3a857d6d28af59709494a394146"
-    ## 
-    ## 
-    ## $svg
-    ## [1] "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\"700\" height=\"500\">\n<defs>\n<style type=\"text/css\"><![CDATA[\n  .borderLine {\n\t   stroke: none;\n\t   fill-opacity:  0.2 ;\n  }\n  .outLine {\n\t   stroke-width:  1 ;\n\t   fill: none;\n  }\n  .circle {\n\t   stroke: #888888;\n\t   stroke-width: 0.5;\n\t   fill: none;\n    pointer-events: all;\n  }\n  .nLabel {\n\t   font-family: Arial;\n    pointer-events: none;\n\t   font-size: 10px;\n\t   text-anchor: middle;\n\t   alignment-baseline: central;\n  }\n  .belong {\n\t   font-family: Arial;\n    pointer-events: none;\n\t   font-size: 5px;\n\t   text-anchor: middle;\n\t   alignment-baseline: central;\n  }\n  .legend {\n    font-family: Arial;\n    font-size: 15px;\n  }\n  #legendBox {\n    display:  inline ;\n  }\n  .p0{\n    stroke: none;\n    fill: #e6194b;\n  }\n  .q0{\n    fill: none;\n    stroke: #e6194b;\n  }\n  .p1{\n    stroke: none;\n    fill: #3cb44b;\n  }\n  .q1{\n    fill: none;\n    stroke: #3cb44b;\n  }\n  .p2{\n    stroke: none;\n    fill: #ffe119;\n  }\n  .q2{\n    fill: none;\n    stroke: #ffe119;\n  }\n]]>\n</style>\n<symbol id=\"bl0\">\n<path d=\"M 220.84 342.74 L 215.27 346.99 L 209.69 351.32 L 204.25 355.80 L 199.02 360.47 L 193.93 365.30 L 188.84 370.20 L 183.60 375.08 L 178.11 379.85 L 172.33 384.43 L 166.30 388.92 L 159.95 393.00 L 153.18 394.60 L 146.28 393.69 L 139.92 390.43 L 134.46 384.64 L 129.11 378.58 L 124.04 372.16 L 119.23 365.53 L 114.52 358.73 L 109.76 351.70 L 104.88 344.37 L 99.93 336.85 L 95.05 329.38 L 90.38 322.18 L 86.02 315.37 L 81.99 308.90 L 78.33 302.63 L 75.02 296.43 L 72.03 290.19 L 69.33 283.88 L 66.88 277.47 L 64.59 270.98 L 62.39 264.44 L 60.21 257.88 L 58.03 251.32 L 55.80 244.80 L 53.54 238.30 L 51.24 231.83 L 48.94 225.37 L 46.65 218.89 L 44.39 212.38 L 42.18 205.87 L 40.00 199.34 L 37.87 192.81 L 35.74 186.28 L 33.61 179.76 L 31.47 173.25 L 29.30 166.73 L 27.12 160.19 L 24.92 153.59 L 22.74 146.92 L 20.58 140.19 L 18.46 133.42 L 16.39 126.67 L 14.43 119.97 L 12.69 113.32 L 11.30 106.71 L 10.38 100.10 L 10.00 93.49 L 10.19 86.89 L 10.97 80.31 L 12.34 73.79 L 14.29 67.36 L 16.82 61.07 L 19.92 54.99 L 23.55 49.17 L 27.70 43.69 L 32.31 38.61 L 37.31 33.98 L 42.68 29.85 L 48.37 26.22 L 54.34 23.13 L 60.57 20.59 L 67.04 18.60 L 73.73 17.20 L 80.66 16.38 L 87.93 16.13 L 95.57 16.36 L 103.49 16.96 L 111.38 17.75 L 118.97 18.58 L 126.20 19.38 L 133.19 20.14 L 140.07 20.91 L 146.90 21.71 L 153.69 22.56 L 160.44 23.47 L 167.15 24.44 L 173.86 25.46 L 180.58 26.50 L 187.31 27.54 L 194.06 28.54 L 200.83 29.52 L 207.58 30.47 L 214.31 31.45 L 221.00 32.51 L 227.67 33.72 L 234.32 35.15 L 240.94 36.91 L 247.46 39.09 L 253.81 41.81 L 259.86 45.12 L 265.50 49.03 L 270.63 53.51 L 275.15 58.52 L 279.05 64.00 L 282.32 69.92 L 284.95 76.27 L 286.93 83.06 L 288.22 90.31 L 288.83 97.95 L 288.86 105.82 L 288.46 113.66 L 287.76 121.33 L 286.88 128.80 L 285.91 136.12 L 284.91 143.37 L 283.91 150.61 L 282.92 157.88 L 281.93 165.17 L 280.97 172.47 L 280.01 179.77 L 279.07 187.03 L 278.14 194.28 L 277.21 201.52 L 276.26 208.78 L 275.31 216.09 L 274.35 223.43 L 273.40 230.85 L 272.48 238.34 L 271.60 245.95 L 270.75 253.65 L 269.87 261.38 L 268.83 269.03 L 267.50 276.48 L 265.77 283.63 L 263.60 290.44 L 260.99 296.89 L 257.92 303.01 L 254.42 308.81 L 250.49 314.35 L 246.17 319.65 L 241.52 324.71 L 236.63 329.52 L 231.55 334.09 L 226.28 338.47 Z\" />\n</symbol>\n<symbol id=\"bl1\">\n<path d=\"M 482.78 310.01 L 479.53 317.76 L 475.72 325.22 L 471.36 332.36 L 466.47 339.14 L 461.08 345.53 L 455.21 351.50 L 448.90 357.02 L 442.19 362.05 L 435.17 366.55 L 427.86 370.47 L 420.30 373.82 L 412.51 376.58 L 404.50 378.74 L 396.31 380.30 L 387.99 381.24 L 379.59 381.54 L 371.15 381.21 L 362.75 380.24 L 354.42 378.61 L 346.22 376.36 L 338.20 373.49 L 330.40 370.02 L 322.87 366.02 L 315.62 361.58 L 308.57 356.87 L 301.55 352.14 L 294.29 347.73 L 286.62 343.90 L 278.48 340.84 L 269.93 338.68 L 261.09 337.48 L 252.18 337.25 L 243.42 337.94 L 234.95 339.45 L 226.72 341.57 L 218.59 344.04 L 210.43 346.62 L 202.16 349.10 L 193.77 351.28 L 185.25 352.99 L 176.61 354.09 L 167.87 354.47 L 159.07 354.07 L 150.33 352.90 L 141.75 351.03 L 133.45 348.47 L 125.47 345.25 L 117.84 341.33 L 110.59 336.72 L 103.73 331.49 L 97.27 325.74 L 91.29 319.54 L 85.84 312.97 L 81.02 306.08 L 76.89 298.90 L 73.47 291.43 L 70.71 283.70 L 68.62 275.71 L 67.18 267.49 L 66.39 259.08 L 66.27 250.54 L 66.83 241.95 L 68.07 233.44 L 70.00 225.10 L 72.57 217.01 L 75.74 209.25 L 79.49 201.85 L 83.79 194.82 L 88.65 188.18 L 94.07 181.93 L 100.00 176.08 L 106.39 170.62 L 113.12 165.49 L 120.01 160.47 L 126.81 155.29 L 133.32 149.75 L 139.36 143.73 L 144.79 137.20 L 149.49 130.16 L 153.45 122.65 L 156.67 114.77 L 159.29 106.59 L 161.58 98.25 L 163.89 89.90 L 166.55 81.70 L 169.78 73.82 L 173.73 66.44 L 178.49 59.70 L 184.07 53.68 L 190.40 48.45 L 197.43 44.05 L 205.06 40.57 L 213.15 38.07 L 221.55 36.50 L 230.14 35.73 L 238.79 35.57 L 247.41 35.82 L 255.98 36.34 L 264.50 36.97 L 272.99 37.66 L 281.47 38.36 L 289.94 39.04 L 298.41 39.73 L 306.90 40.44 L 315.41 41.20 L 323.93 42.02 L 332.44 42.93 L 340.92 43.97 L 349.32 45.25 L 357.58 46.95 L 365.69 49.15 L 373.54 52.20 L 380.84 56.40 L 387.46 61.60 L 393.24 67.74 L 398.42 74.40 L 403.25 81.33 L 407.72 88.50 L 411.95 95.81 L 416.06 103.19 L 420.12 110.60 L 424.17 118.00 L 428.18 125.37 L 432.16 132.70 L 436.08 139.99 L 439.97 147.24 L 443.83 154.46 L 447.68 161.67 L 451.54 168.88 L 455.44 176.10 L 459.37 183.35 L 463.31 190.65 L 467.23 198.01 L 471.09 205.43 L 474.82 212.95 L 478.35 220.57 L 481.58 228.31 L 484.38 236.19 L 486.65 244.20 L 488.34 252.35 L 489.43 260.58 L 489.89 268.88 L 489.73 277.22 L 488.93 285.56 L 487.50 293.84 L 485.44 302.02 Z\" />\n</symbol>\n<symbol id=\"bl2\">\n<path d=\"M 421.20 380.09 L 414.98 384.79 L 408.75 389.46 L 402.53 394.15 L 396.30 398.88 L 390.09 403.64 L 383.88 408.39 L 377.68 413.11 L 371.47 417.82 L 365.25 422.52 L 359.03 427.26 L 352.80 432.02 L 346.52 436.81 L 340.13 441.66 L 333.49 446.66 L 326.47 451.87 L 319.13 457.21 L 311.75 462.45 L 304.58 467.31 L 297.64 471.64 L 290.74 475.37 L 283.71 478.48 L 276.47 480.93 L 269.03 482.67 L 261.45 483.66 L 253.83 483.87 L 246.27 483.31 L 238.83 481.97 L 231.55 479.86 L 224.48 476.99 L 217.66 473.38 L 211.17 469.12 L 205.09 464.32 L 199.43 459.09 L 194.08 453.59 L 188.88 447.96 L 183.71 442.29 L 178.52 436.61 L 173.35 430.92 L 168.23 425.21 L 163.17 419.47 L 158.17 413.70 L 153.23 407.89 L 148.36 401.99 L 143.55 395.92 L 138.84 389.68 L 134.20 383.28 L 129.63 376.80 L 125.11 370.31 L 120.63 363.83 L 116.16 357.36 L 111.69 350.93 L 107.19 344.54 L 102.68 338.24 L 98.15 332.02 L 93.64 325.84 L 89.20 319.63 L 84.90 313.31 L 80.84 306.79 L 77.14 300.01 L 73.88 292.82 L 71.09 285.11 L 68.81 276.80 L 67.14 267.98 L 66.16 259.01 L 65.93 250.24 L 66.41 241.82 L 67.55 233.70 L 69.30 225.81 L 71.62 218.13 L 74.46 210.72 L 77.83 203.62 L 81.70 196.88 L 86.09 190.55 L 91.00 184.63 L 96.38 179.12 L 102.20 173.99 L 108.41 169.23 L 114.93 164.87 L 121.71 160.92 L 128.68 157.45 L 135.84 154.51 L 143.17 152.17 L 150.67 150.47 L 158.32 149.45 L 166.07 149.12 L 173.86 149.49 L 181.66 150.50 L 189.39 152.08 L 197.04 154.11 L 204.66 156.37 L 212.31 158.54 L 220.10 160.34 L 228.05 161.60 L 236.17 162.38 L 244.38 162.84 L 252.65 163.15 L 260.94 163.39 L 269.25 163.61 L 277.56 163.84 L 285.90 164.06 L 294.27 164.26 L 302.69 164.43 L 311.13 164.54 L 319.60 164.56 L 328.11 164.45 L 336.73 164.12 L 345.57 163.52 L 354.73 162.67 L 364.27 161.81 L 374.23 161.28 L 384.50 161.39 L 394.83 162.32 L 404.83 164.05 L 414.13 166.47 L 422.53 169.42 L 430.09 172.80 L 437.01 176.57 L 443.46 180.76 L 449.53 185.35 L 455.25 190.35 L 460.61 195.75 L 465.59 201.51 L 470.17 207.60 L 474.31 213.99 L 478.01 220.65 L 481.25 227.54 L 484.01 234.61 L 486.29 241.86 L 488.06 249.29 L 489.29 256.98 L 489.95 265.05 L 490.00 273.60 L 489.39 282.50 L 488.15 291.32 L 486.34 299.69 L 484.04 307.46 L 481.27 314.73 L 478.04 321.63 L 474.37 328.26 L 470.22 334.64 L 465.53 340.83 L 460.20 346.92 L 454.16 352.99 L 447.53 358.99 L 440.66 364.77 L 433.94 370.20 L 427.48 375.27 Z\" />\n</symbol>\n</defs>\n<!-- isDone: 0 -->\n<rect width=\"700\" height=\"500\" style=\"fill:#fff;stroke-width:0\" />\n<use class=\"p0 borderLine\" xlink:href=\"#bl0\"/>\n<use class=\"p1 borderLine\" xlink:href=\"#bl1\"/>\n<use class=\"p2 borderLine\" xlink:href=\"#bl2\"/>\n<use class=\"q0 outLine\" xlink:href=\"#bl0\"/>\n<use class=\"q1 outLine\" xlink:href=\"#bl1\"/>\n<use class=\"q2 outLine\" xlink:href=\"#bl2\"/>\n<circle onclick=\"fromCircle(4)\" class=\"circle\" cx=\"84.9370\" cy=\"91.0171\" r=\"73.7023\" />\n<text class=\"nLabel\" x=\"84.94\" y=\"86.02\">57</text>\n<text class=\"belong\" x=\"84.94\" y=\"96.02\">(1)</text>\n<circle onclick=\"fromCircle(6)\" class=\"circle\" cx=\"226.6795\" cy=\"97.8275\" r=\"60.9643\" />\n<text class=\"nLabel\" x=\"226.68\" y=\"92.83\">39</text>\n<text class=\"belong\" x=\"226.68\" y=\"102.83\">(1, 2)</text>\n<circle onclick=\"fromCircle(7)\" class=\"circle\" cx=\"167.9847\" cy=\"252.3806\" r=\"100.5070\" />\n<text class=\"nLabel\" x=\"167.98\" y=\"247.38\">106</text>\n<text class=\"belong\" x=\"167.98\" y=\"257.38\">(1, 2, 3)</text>\n<circle onclick=\"fromCircle(2)\" class=\"circle\" cx=\"348.9376\" cy=\"103.7194\" r=\"56.9224\" />\n<text class=\"nLabel\" x=\"348.94\" y=\"98.72\">34</text>\n<text class=\"belong\" x=\"348.94\" y=\"108.72\">(2)</text>\n<circle onclick=\"fromCircle(3)\" class=\"circle\" cx=\"380.3668\" cy=\"271.3498\" r=\"108.7062\" />\n<text class=\"nLabel\" x=\"380.37\" y=\"266.35\">124</text>\n<text class=\"belong\" x=\"380.37\" y=\"276.35\">(2, 3)</text>\n<circle onclick=\"fromCircle(1)\" class=\"circle\" cx=\"255.6921\" cy=\"411.0970\" r=\"72.3977\" />\n<text class=\"nLabel\" x=\"255.69\" y=\"406.10\">55</text>\n<text class=\"belong\" x=\"255.69\" y=\"416.10\">(3)</text>\n<circle onclick=\"fromCircle(5)\" class=\"circle\" cx=\"152.1821\" cy=\"374.8001\" r=\"19.5242\" />\n<text class=\"nLabel\" x=\"152.18\" y=\"369.80\">4</text>\n<text class=\"belong\" x=\"152.18\" y=\"379.80\">(1, 3)</text>\n<g id=\"legendBox\">\n<rect class=\"p0 borderLine\" x=\"500.00\" y=\"50.00\" width=\"30.00\" height=\"15.00\" />\n<rect class=\"q0\" x=\"500.00\" y=\"50.00\" width=\"30.00\" height=\"15.00\" />\n<text class=\"legend\" x=\"540.00\" y=\"65.00\">Week 2</text>\n<rect class=\"p1 borderLine\" x=\"500.00\" y=\"90.00\" width=\"30.00\" height=\"15.00\" />\n<rect class=\"q1\" x=\"500.00\" y=\"90.00\" width=\"30.00\" height=\"15.00\" />\n<text class=\"legend\" x=\"540.00\" y=\"105.00\">Week 6</text>\n<rect class=\"p2 borderLine\" x=\"500.00\" y=\"130.00\" width=\"30.00\" height=\"15.00\" />\n<rect class=\"q2\" x=\"500.00\" y=\"130.00\" width=\"30.00\" height=\"15.00\" />\n<text class=\"legend\" x=\"540.00\" y=\"145.00\">Week 10</text>\n</g>\n</svg>\n"
-    ## 
-    ## attr(,"class")
-    ## [1] "list"     "nVennObj"
-
-### 8.4.4 SuperExactTest
+### 8.6.4 SuperExactTest
 
 ``` r
 #Using the list MP_time_comparisons from ggVennDiagram above 
@@ -10979,11 +13164,18 @@ plot(res, Layout="landscape", degree=4:6, sort.by="size", margin=c(0.5,5,1,2))
 ![](Analysis_files/figure-gfm/SuperExactTest-2.png)<!-- -->
 
 ``` r
-#Plot 
+#Plotting all intersections as a bar chart 
 plot(res, Layout="landscape", sort.by="size", margin=c(0.5,5,1,2))
 ```
 
 ![](Analysis_files/figure-gfm/SuperExactTest-3.png)<!-- -->
+
+``` r
+#Plotting only intersections among 1-3 sets
+plot(res, Layout="landscape", degree=1:3, sort.by="size", margin=c(0.5,5,1,2))
+```
+
+![](Analysis_files/figure-gfm/SuperExactTest-4.png)<!-- -->
 
 ``` r
 #View a summary of the SuperExactTest results
@@ -11186,79 +13378,686 @@ summary(res)
     ## 111110 054e74172c4bfa7b3f17 ...
     ## 111111 054e74172c4bfa7b3f17 ...
 
-## 8.5 Comparing bacterial community composition between glass and microplastics
+### 8.6.5 Heatmap
 
-### 8.5.1 Venn Diagram, river water
+This section creates a heatmap of the DESeq2 results for all
+particle_effluent_time categories (MP_CON_2, MP_CON_6, MP_CON_10,
+MP_TWW_2, MP_TWW_6, MP_TWW_10). The heatmap is based on the normalized
+relative abundance data calculated by DESeq2, and only the ASV’s with
+positive log2FoldChanges (i.e., those that were higher in abundance on
+MP than in the water in each of the six groups) are included in the
+final heatmap dataset. The first part of this code goes through
+combining all of the data necessary for creating the heatmap, while the
+second section includes the actual heatmap creation.
 
 ``` r
-#Using the method from above (prepping the data for plots) to prep the deseq output for plotting with ggVennDiagram
+#Find normalized counts of the ASV's from the deseq object
+mp_time_deseq_norm_counts <- as.data.frame(counts(mp_time_deseq, normalize = TRUE))
 
-#Filter deseq dataframes so that they only include ASV's with positive 
-#log2foldchanges - the point here is to keep only ASV's that were higher in abundance on microplastics then in the water
+#Make the rownames a column
+sig_norm_counts_time <- tibble::rownames_to_column(mp_time_deseq_norm_counts, var = "ASV")
 
-#Filter the MP dataframes
-df_mp_time_deseq_CON2_filt <- filter(df_mp_time_deseq_CON2_filt, 
-                                     log2FoldChange > 0)
-df_mp_time_deseq_CON6_filt <- filter(df_mp_time_deseq_CON6_filt, 
-                                     log2FoldChange > 0)
-df_mp_time_deseq_CON10_filt <- filter(df_mp_time_deseq_CON10_filt, 
-                                      log2FoldChange > 0)
+#Gathering the normalized counts into 2 columns
+sig_norm_counts_time_long <- gather(sig_norm_counts_time, key = "samplename",
+                                value = "normalized_counts", -ASV)
 
-#Filter the glass dataframes
-df_mp_glass_deseq_CON2_filt <- filter(df_mp_glass_deseq_CON2_filt, 
-                                     log2FoldChange > 0)
-df_mp_glass_deseq_CON6_filt <- filter(df_mp_glass_deseq_CON6_filt, 
-                                     log2FoldChange > 0)
-df_mp_glass_deseq_CON10_filt <- filter(df_mp_glass_deseq_CON10_filt, 
-                                      log2FoldChange > 0)
+#Create dataframe out of the phyloseq metadata so that we can ID these samples
+meta_time_heatmap <- data.frame(sample_data(MPphyseq)) %>%
+  tibble::rownames_to_column(var = "samplename")
 
-#Create a column with the filtered deseq dataframe rownames and then filter to 
-#contain only ASV's
-taxa_MP_CON2 <- data.frame(df_mp_time_deseq_CON2_filt) %>%
-  tibble::rownames_to_column(var = "MP_CON_2") %>%
-  select(MP_CON_2)
+#Merge metadata with sig_norm_counts_time_long so that it includes metadata
+sig_norm_counts_time_long <- sig_norm_counts_time_long %>%
+  left_join(meta_time_heatmap, by = "samplename")
 
-taxa_MP_CON6 <- data.frame(df_mp_time_deseq_CON6_filt) %>%
-  tibble::rownames_to_column(var = "MP_CON_6") %>%
-  select(MP_CON_6)
+#Filter: Remove columns that aren't relevant for the following graph, and filter the particle_effluent_time column so that the dataset includes only the samples contrasted in deseq. The last two lines of the code below calculate the average abundance of each ASV for each of the six particle_effluent_time categories (MP_CON_2, MP_CON_6, MP_CON_10, MP_TWW_2, MP_TWW_6, MP_TWW_10).
+sig_norm_counts_time_long_2 <- sig_norm_counts_time_long %>% 
+  filter(particle_effluent_time %in% c("MP_CON_2", "MP_CON_6", "MP_CON_10",
+                                       "MP_TWW_2", "MP_TWW_6", "MP_TWW_10")) %>%
+  group_by(ASV, particle_effluent_time) %>%
+    dplyr::summarize(Mean = mean(normalized_counts, na.rm=TRUE))
+```
 
-taxa_MP_CON10 <- data.frame(df_mp_time_deseq_CON10_filt) %>%
-  tibble::rownames_to_column(var = "MP_CON_10") %>%
-  select(MP_CON_10)
+    ## `summarise()` has grouped output by 'ASV'. You can override using the `.groups`
+    ## argument.
+
+``` r
+#Add 1 to the averaged normalized count data to account for 0's and then log transform the count data
+sig_norm_counts_time_long_2$log_normalized_counts <- log(sig_norm_counts_time_long_2$Mean+1)
 
 
-taxa_glass_CON2 <- data.frame(df_mp_glass_deseq_CON2_filt) %>%
-  tibble::rownames_to_column(var = "Glass_CON_2") %>%
-  select(Glass_CON_2)
 
-taxa_glass_CON6 <- data.frame(df_mp_glass_deseq_CON6_filt) %>%
-  tibble::rownames_to_column(var = "Glass_CON_6") %>%
-  select(Glass_CON_6)
+#Grab ASV's from the filtered DESeq2 lists (which contain only positive log2FoldChanges). Make sure the new columns created for each of the six sets have the same label for the ASV column so that they can be merged into one dataset later.
+taxa_MP_CON2_heatmap <- data.frame(df_mp_time_deseq_CON2_filt) %>%
+  tibble::rownames_to_column(var = "ASV") %>%
+  select(ASV)
 
-taxa_glass_CON10 <- data.frame(df_mp_glass_deseq_CON10_filt) %>%
-  tibble::rownames_to_column(var = "Glass_CON_10") %>%
-  select(Glass_CON_10)
+taxa_MP_CON6_heatmap <- data.frame(df_mp_time_deseq_CON6_filt) %>%
+  tibble::rownames_to_column(var = "ASV") %>%
+  select(ASV)
+
+taxa_MP_CON10_heatmap <- data.frame(df_mp_time_deseq_CON10_filt) %>%
+  tibble::rownames_to_column(var = "ASV") %>%
+  select(ASV)
+
+
+taxa_MP_TWW2_heatmap <- data.frame(df_mp_time_deseq_TWW2_filt) %>%
+  tibble::rownames_to_column(var = "ASV") %>%
+  select(ASV)
+
+taxa_MP_TWW6_heatmap <- data.frame(df_mp_time_deseq_TWW6_filt) %>%
+  tibble::rownames_to_column(var = "ASV") %>%
+  select(ASV)
+
+taxa_MP_TWW10_heatmap <- data.frame(df_mp_time_deseq_TWW10_filt) %>%
+  tibble::rownames_to_column(var = "ASV") %>%
+  select(ASV)
+
+#Merge these dataframes; note that "all=TRUE" keeps all values from the ASV column, even those that don't match across all dataframes
+DESeq_sig_taxa_MP <- merge(taxa_MP_CON2_heatmap, taxa_MP_CON6_heatmap, by = "ASV", all=TRUE)
+
+DESeq_sig_taxa_MP <- merge(DESeq_sig_taxa_MP, taxa_MP_CON10_heatmap, by = "ASV", all=TRUE)
+
+DESeq_sig_taxa_MP <- merge(DESeq_sig_taxa_MP, taxa_MP_TWW2_heatmap, by = "ASV", all=TRUE)
+
+DESeq_sig_taxa_MP <- merge(DESeq_sig_taxa_MP, taxa_MP_TWW6_heatmap, by = "ASV", all=TRUE)
+
+DESeq_sig_taxa_MP <- merge(DESeq_sig_taxa_MP, taxa_MP_TWW10_heatmap, by = "ASV", all=TRUE)
+
+
+
+#Now we can filter the sig_norm_counts_time_long_2 dataframe (which includes the log normalized count data that we need) based on these ASV's; here we use left_join, which will only include the row names listed in DESeq_sig_taxa_MP.
+sig_norm_counts_time_long_filt <- DESeq_sig_taxa_MP %>%
+  left_join(sig_norm_counts_time_long_2, by = "ASV") 
+
+#Now we can restructure this dataframe so that each group in the particle_effluent_time column is a separate column
+sig_norm_counts_heatmap_format <- sig_norm_counts_time_long_filt %>%
+  select(-Mean) %>% 
+  pivot_wider(names_from = particle_effluent_time, values_from = log_normalized_counts)  
+
+#This dataframe now contains the average log normalized counts (extracted from DESeq2) for each significant ASV in each treatment category. We also need to add taxonomic information to each ASV so that we can ID these ASV's. First, create a dataframe containing the taxonomic information for each ASV:
+tax_tab_df <- data.frame((tax_table(MPphyseq))) %>%
+  tibble::rownames_to_column(var = "ASV")
+
+#And then left_join that taxonomic information with the dataframe containing the DESeq ASV's with log normalized counts:
+sig_norm_counts_time_long_filt_tax <- sig_norm_counts_heatmap_format %>%
+  left_join(tax_tab_df, by = "ASV")
+
+#Finally, order alphabetically by Class:
+sig_norm_counts_time_long_filt_tax <- sig_norm_counts_time_long_filt_tax[order(sig_norm_counts_time_long_filt_tax$Class),]
+```
+
+``` r
+#Pheatmap only takes a matrix that contains numeric values as input - 
+#grab only the columns with the numeric values we want to examine
+matrix_sig_ASVs <- as.matrix(sig_norm_counts_time_long_filt_tax[2:7])
+
+#Make sure the sig_norm_counts_time_long_filt_tax data is a dataframe
+sig_norm_counts_time_long_filt_tax <- as.data.frame(sig_norm_counts_time_long_filt_tax)
+class(sig_norm_counts_time_long_filt_tax)
+```
+
+    ## [1] "data.frame"
+
+``` r
+#Add the Species level names to the rows
+rownames(matrix_sig_ASVs) <- as.character(sig_norm_counts_time_long_filt_tax[, "Species"])
+
+#Create a dataframe containing metadata; be sure to label the rows using row.names with the same names as the columns in matrix_2w
+metadata_sig_ASVs <- data.frame(
+  effluent = c("River", "River", "River", "TWW", "TWW", "TWW"),
+  week = c("10", "2", "6", "10", "2", "6")
+)
+
+row.names(metadata_sig_ASVs) <- c("MP_CON_10", "MP_CON_2", "MP_CON_6", 
+                                  "MP_TWW_10", "MP_TWW_2", "MP_TWW_6") 
+   
+#Define the annotation color for columns and rows
+annotation_col = data.frame(
+  effluent = as.factor(metadata_sig_ASVs$effluent), 
+  week = as.factor(metadata_sig_ASVs$week),
+  check.names = FALSE)
+
+rownames(annotation_col) = rownames(metadata_sig_ASVs)
+
+annotation_row = data.frame(
+  Class = as.factor(sig_norm_counts_time_long_filt_tax[, "Class"]))
+
+rownames(annotation_row) = rownames(matrix_sig_ASVs)
+```
+
+    ## Error in `.rowNamesDF<-`(x, value = value): duplicate 'row.names' are not allowed
+
+``` r
+#Choose and assign colors
+#ann_color should be named vectors
+class_col = colorRampPalette(brewer.pal(9,"RdYlBu"))(31)
+names(class_col) = levels(annotation_row$Class)
+ann_colors = list(
+  effluent = c(River = "red", TWW = "blue"),
+  week = c('2' = "red", '6' = "blue", '10' = "yellow"),
+  Class = class_col)
+
+#Plot heatmap; the scale = "column" function normalizes the values of the 
+#matrix by column; could also normalize by row instead
+#If you want to view the relative abundance data without a normalization, remove
+#the scale function from the code entirely 
+abundant_heatmap_all_sig_ASVs <- ComplexHeatmap::pheatmap(matrix_sig_ASVs, 
+                         annotation_col = annotation_col, 
+                         annotation_row = annotation_row, 
+                         annotation_colors = ann_colors,
+                         cluster_rows = FALSE)
+
+print(abundant_heatmap_all_sig_ASVs)
+```
+
+![](Analysis_files/figure-gfm/MP%20heatmap%20creation-1.png)<!-- -->
+
+### 8.6.6 Heatmap at genus level
+
+Same heatmap as above, but concatenated by genus level so that trends
+can be more easily discerned.
+
+``` r
+#First, left_join that taxonomic information with the dataframe containing the DESeq ASV's with log normalized counts:
+sig_norm_counts_tax_genus <- sig_norm_counts_time_long_filt %>%
+  left_join(tax_tab_df, by = "ASV")
+
+#Group by genus
+sig_norm_counts_time_long_filt_genus <- sig_norm_counts_tax_genus %>% 
+  group_by(particle_effluent_time, 
+           Kingdom, Phylum, Class, Order, Family, Genus) %>%
+  dplyr::summarize(log_normalized_counts = mean(log_normalized_counts, na.rm=TRUE)) %>%
+  arrange(Class)
+```
+
+    ## `summarise()` has grouped output by 'particle_effluent_time', 'Kingdom',
+    ## 'Phylum', 'Class', 'Order', 'Family'. You can override using the `.groups`
+    ## argument.
+
+``` r
+#Now we can restructure this dataframe so that each group in the particle_effluent_time column is a separate column
+sig_norm_counts_heatmap_format_genus <- sig_norm_counts_time_long_filt_genus %>%
+    pivot_wider(names_from = particle_effluent_time, values_from = log_normalized_counts) 
+
+#Now create the heatmap
+
+#Pheatmap only takes a matrix that contains numeric values as input - 
+#grab only the columns with the numeric values we want to examine
+matrix_sig_ASVs_genus <- as.matrix(sig_norm_counts_heatmap_format_genus[7:12])
+
+#Make sure the sig_norm_counts_time_long_filt_tax data is a dataframe
+sig_norm_counts_heatmap_format_genus <- as.data.frame(sig_norm_counts_heatmap_format_genus)
+class(sig_norm_counts_heatmap_format_genus)
+```
+
+    ## [1] "data.frame"
+
+``` r
+#Add the Species level names to the rows
+rownames(matrix_sig_ASVs_genus) <- as.character(sig_norm_counts_heatmap_format_genus[, "Genus"])
+
+#Create a dataframe containing metadata; be sure to label the rows using row.names with the same names as the columns in matrix_sig_ASVs_genus
+metadata_sig_ASVs_genus <- data.frame(
+  effluent = c("River", "River", "River", "TWW", "TWW", "TWW"),
+  week = c("10", "2", "6", "10", "2", "6")
+)
+
+row.names(metadata_sig_ASVs_genus) <- c("MP_CON_10", "MP_CON_2", "MP_CON_6", 
+                                  "MP_TWW_10", "MP_TWW_2", "MP_TWW_6") 
+   
+#Define the annotation color for columns and rows
+annotation_col_genus = data.frame(
+  effluent = as.factor(metadata_sig_ASVs_genus$effluent), 
+  week = as.factor(metadata_sig_ASVs_genus$week),
+  check.names = FALSE)
+
+rownames(annotation_col_genus) = rownames(metadata_sig_ASVs_genus)
+
+annotation_row = data.frame(
+  Class = as.factor(sig_norm_counts_heatmap_format_genus[, "Class"]))
+
+rownames(annotation_row) = rownames(matrix_sig_ASVs_genus)
+```
+
+    ## Error in `.rowNamesDF<-`(x, value = value): duplicate 'row.names' are not allowed
+
+``` r
+#Choose and assign colors
+#ann_color should be named vectors
+class_col = colorRampPalette(brewer.pal(9,"RdYlBu"))(31)
+names(class_col) = levels(annotation_row$Class)
+ann_colors = list(
+  effluent = c(River = "red", TWW = "blue"),
+  week = c('2' = "red", '6' = "blue", '10' = "yellow"),
+  Class = class_col)
+
+#Plot heatmap; the scale = "column" function normalizes the values of the 
+#matrix by column; could also normalize by row instead
+#If you want to view the relative abundance data without a normalization, remove
+#the scale function from the code entirely 
+heatmap_sig_ASVs_genus <- ComplexHeatmap::pheatmap(matrix_sig_ASVs_genus, 
+                         annotation_col = annotation_col, 
+                         annotation_row = annotation_row, 
+                         annotation_colors = ann_colors,
+                         cluster_rows = FALSE)
+
+print(heatmap_sig_ASVs_genus)
+```
+
+![](Analysis_files/figure-gfm/MP%20heatmap%20genus-1.png)<!-- -->
+
+``` r
+#Save as an svg file
+ggsave(filename="Microplastics_sig_ASVs_genus.pdf", plot=heatmap_sig_ASVs_genus, width=12, height=10, device=pdf)
+```
+
+    ## Error in x$theme: $ operator not defined for this S4 class
+
+``` r
+png("Microplastics_sig_ASVs_genus.png")
+dev.off()
+```
+
+    ## png 
+    ##   2
+
+### 8.6.7 Finding ASV’s unique to TWW MP communities
+
+``` r
+#Combine all river water MP timepoints. To do this, we'll use the dataframes created from the filtered DESeq2 lists above. Note that "all=TRUE" keeps all values from the ASV column, even those that don't match across all dataframes
+DESeq_sig_taxa_MP_CON <- merge(taxa_MP_CON2_heatmap, taxa_MP_CON6_heatmap, by = "ASV", all=TRUE)
+
+DESeq_sig_taxa_MP_CON <- merge(DESeq_sig_taxa_MP_CON, taxa_MP_CON10_heatmap, by = "ASV", all=TRUE)
+
+#Now combine all TWW MP timepoints.
+DESeq_sig_taxa_MP_TWW <- merge(taxa_MP_TWW2_heatmap, taxa_MP_TWW6_heatmap, by = "ASV", all=TRUE)
+
+DESeq_sig_taxa_MP_TWW <- merge(DESeq_sig_taxa_MP_TWW, taxa_MP_TWW10_heatmap, by = "ASV", all=TRUE)
 
 #Make each dataframe into a list
-lista <- list(taxa_MP_CON2$MP_CON_2)
-listb <- list(taxa_MP_CON6$MP_CON_6)
-listc <- list(taxa_MP_CON10$MP_CON_10)
-
-listd <- list(taxa_glass_CON2$Glass_CON_2)
-liste <- list(taxa_glass_CON6$Glass_CON_6)
-listf <- list(taxa_glass_CON10$Glass_CON_10)
+list_MP_CON_all <- list(DESeq_sig_taxa_MP_CON$ASV)
+list_MP_TWW_all <- list(DESeq_sig_taxa_MP_TWW$ASV)
 
 #Change to characters
-taxa_MP_CON2_chr <- as.character(lista[[1]])
-taxa_MP_CON6_chr <- as.character(listb[[1]])
-taxa_MP_CON10_chr <- as.character(listc[[1]])
+taxa_MP_CON_chr <- as.character(list_MP_CON_all[[1]])
+taxa_MP_TWW_chr <- as.character(list_MP_TWW_all[[1]])
 
-taxa_glass_CON2_chr <- as.character(listd[[1]])
-taxa_glass_CON6_chr <- as.character(liste[[1]])
-taxa_glass_CON10_chr <- as.character(listf[[1]])
+#Make list for ggVennDiagram
+MP_TWW_CON_comparison <- list(taxa_MP_CON_chr, taxa_MP_TWW_chr) %>%
+  setNames(c("CON", "TWW"))
+
+#Make Venn Diagram - TWW vs CON comparison
+ggVennDiagram(MP_TWW_CON_comparison) + scale_fill_gradient(low="blue",high = "red")
 
 
-#Make Venn Diagram - all comparisons
+#Now finding unique TWW ASV's using nVennR; for some reason, you can't extract the intersections from ggVennDiagram plots, but you can easily do it with nVennR plots, so we'll use nVennR here to get the ASV's that we're interested in (the ones only present on TWW MP). 
+nVennR_plot_test_TWW <- plotVenn(list(DESeq_sig_taxa_MP_TWW, DESeq_sig_taxa_MP_CON), sNames=c("TWW", "CON"))
+```
+
+![](Analysis_files/figure-gfm/unique%20TWW-1.png)<!-- -->
+
+``` r
+#Grab the list of ASV's comprising each region from nVennR plot objects
+TWW_Venn_categories <- nVennR_plot_test_TWW[["reg"]]
+
+#Within this new list is a list of ASV's for each Venn diagram region. We have to compare the number of characters in each list in TWW_Venn_categories to the Venn diagrams in order to determine which list (numbered as 1-3) is each region of the Venn diagram. Then, we can create individual dataframes containing the ASV's for each Venn diagram region.
+Venn_TWW_only <- data.frame(TWW_Venn_categories[[1]])
+
+#Rename column as ASV
+Venn_TWW_only <- Venn_TWW_only %>% rename_at('TWW_Venn_categories..1..', ~'ASV')
+
+
+
+
+listVennRegions(nVennR_plot_test_TWW)
+```
+
+    ## $`0, 1 (CON)`
+    ##  [1] "0117867a9ba93735abe1d3efa8fa8955" "024d1530bde785a3d09c57992d1c32d9"
+    ##  [3] "030dbbb00fc8b67d161ce83113d5e125" "03ade159ea72e5ce832aeabce7b1ee10"
+    ##  [5] "05dea4e3cf93c880e10e0b9ba3380de3" "0f856893d22bc27834d83f861a9ee614"
+    ##  [7] "1bf834043265c0accda0413d393b1611" "1cde23872dfe6fbe0be46acfb05e97f4"
+    ##  [9] "1f2b82832cf70122f61da691993af785" "1f84c994ed76a681244635129d45afb1"
+    ## [11] "21446eeb931ab4982671848a625427c3" "2d37ffca47fe5824a470909338fec905"
+    ## [13] "2e443e898dc4bc5a287aa6491d69d932" "35733b4629d96dbaa97fa17a3a5fc133"
+    ## [15] "3ad6059cf09768d3ce5e70b438da0f10" "3d59dfb3780680fccc9440e16fdf3370"
+    ## [17] "3d5d667586c613318405c652f7da6189" "40b435e5674c6078b9d5f8060d88e771"
+    ## [19] "4187a2441b4caa03144a8126d4576615" "421aa959fd23fcedb89ed8d8e63efc9f"
+    ## [21] "45183dcc4ae37290a6a7a1baca5fa7dd" "4e3f676699e9e82c2c857f0f512f6e8e"
+    ## [23] "4fe733484d5eada5a294908ac21f0188" "5862e04f024f2a3a3ab86980c93bbd84"
+    ## [25] "5bb0d9c1b42e96a7095bc4d686e38363" "5d5bcb362ab303007970ea2a66ca6a4f"
+    ## [27] "5dacb579663156dad6205a9fe3256377" "68986c579b02ae70f0c94723348f67e3"
+    ## [29] "6bc5a89b396e66cddcaf085d71133cbb" "6bdc85134a0192d99709599fdc12b448"
+    ## [31] "6e14f3b73a7b23f80af1b20da1879073" "6e3f7a4e5285c4c17f3138be5a91d0ff"
+    ## [33] "71712885a6cc11367f2f55fb285e7cb2" "753ec501f392b0cd16e3e04ea95f9ad4"
+    ## [35] "76e06e178cf790167ac7685cd99f62fa" "785dbbe7ed389648b1d0522284d87e53"
+    ## [37] "7e3ca0d5c105a87f4d7f79720d505380" "83202425ed2c33e124962cee68358427"
+    ## [39] "874ca34eeb8bbff4ac3aa9de7108f0e3" "89c589e18239553d989e1f6ed8f4ee9a"
+    ## [41] "8fae55cee0eca1189a65b2b220858bb2" "9158ad9569910f7f5d5da4ae41a18887"
+    ## [43] "929d0d883b2a6cd9957536ae4d22215a" "992a506a4d165db5630b66e8558fa0db"
+    ## [45] "9b5ba30c2f8aae257690a556bba1a295" "a2c81eed46456e502a81027ffbf8ca12"
+    ## [47] "a94d8fee872266a54b1e5706d6bcfbac" "b1c1744a2e9d6e9a3a0b76e6363a81aa"
+    ## [49] "b27b16c6c33fea7155ed51d440624370" "b32c0acc84b61034def60552ffbc45b3"
+    ## [51] "b8119da8e2feaf69fba6b39159823d3b" "ba21b0881bf7f1be9b96c67633f7c782"
+    ## [53] "bbc64e2e9a820a461c9110996a550476" "bd17406aa68a2af93f87df0e45b7368d"
+    ## [55] "c0a6b6bf73297a8fd766ca7793112f64" "c3dbf41ed1b8e2e51e190cddb6f60e45"
+    ## [57] "c422ab6a332c8b3d4352f9918b0121f9" "cc07410e0bcaa30936fd5cce14b4ca66"
+    ## [59] "d25c5394c5c8b8371fe4bef69c14cbe2" "d76ba0b7aed0394a548ad1e5ccb8d0fe"
+    ## [61] "d98b02d9e03f0ebb0f00a0147d720d93" "e1aff31c92bea9be3ad6857d9fdcbfc4"
+    ## [63] "e50ae72ff30f9926f2c3a67785e0da4d" "e83a6a8619fb9176c8c7bfd276835e7c"
+    ## [65] "ec646d93f7eb22c0e713efc48c25db8b" "eda9038d76e3d187bb533a3bf9c69572"
+    ## [67] "f513f17828d5fb1a8a8f372dd0196b20" "f7f5baacba98d73f745d7a6b02c54cdb"
+    ## 
+    ## $`1, 0 (TWW)`
+    ##  [1] "016877611e2fe48c9d1c6f72a87e99a0" "0421106b66647db14d8ed69d01ea3611"
+    ##  [3] "0ed7039c73efb1ef597a6c91e456c595" "103184d8cd0e4e5314a832452c411097"
+    ##  [5] "1a97184c6eb51c28c91e545f2c5670b1" "250b3741ab97faee29ce3f485f6ca693"
+    ##  [7] "25803d13372d703d797574d40b45502a" "263a8852574830e626fffd9f37dfae2f"
+    ##  [9] "29d2ec379830cfcfc5578be97c3dec89" "2a2243baf6753b2ef1966b60e6aad77e"
+    ## [11] "2a6dae61b2de8737200dbe19c7d59bf8" "2ca52274a8215581e9a5d1e7bebe9f13"
+    ## [13] "308c77da094f92bc8d72e19bc189980d" "33eb097fa2020689c74765f69e597433"
+    ## [15] "344290542e48f66d0f4415ffa9a38c5d" "3c0d84f8bf9a3a8ea5cc05ad9b99c209"
+    ## [17] "422dfd34b05fa810d62aeb6e3aeb58d6" "43adcb719dafe832475eb1a80a4158e3"
+    ## [19] "45d56e0f4181e23e94846640660e2a4f" "4c4a823cad28a748fc4f7b3456d60c0a"
+    ## [21] "4f21b7663b40127efbf90c804dfc0c01" "516cbbb75c0b06047ea38d8266bb02ca"
+    ## [23] "5246be93b22bbff1860fb674ac8fae76" "52e5524a6e2ce31bfcb205de002f0269"
+    ## [25] "544a2fccd4424034ad383f9b5c19da6a" "54872d114b686c741881a9e8f1490c38"
+    ## [27] "56dfd3a857d6d28af59709494a394146" "5798cab1b7f6bb1402038540f9a1ce58"
+    ## [29] "59c0df61c5681fc16930b34d7f16484e" "615c776a4b385cac49ee4fbc41797f0c"
+    ## [31] "73000169a5403b78bdba446eb3341ad3" "7583f3e8bd25cea09fd93c46fe9a7ae2"
+    ## [33] "7921c20395343a1e79eb8bca4c057597" "7f19a4562410a14448ff303b602da84c"
+    ## [35] "7f68b5cb17ef3b54f27e21f466aea988" "84b1ac7156d2cfffc75f32498516c27b"
+    ## [37] "9055fdc0bf9fa7dd4d49a67d6c705dfe" "9145226ceadf751f775e029451da1af7"
+    ## [39] "96050a68d7cc36ee7db73c1dca70bb03" "96f2ea1bc29e65821a2d41321f44bbe9"
+    ## [41] "a0222761fcaff1d31b3989547a61585c" "a7e72d531eb0cdf659428d2c5b4d7d7c"
+    ## [43] "aad670faa4a136367fc62281300476a8" "b31be1b89bb580e3611089a09fd79e29"
+    ## [45] "b715ac10e42a625caaf8578574b409d5" "b89167e054fe7c610f28568f7856e09a"
+    ## [47] "b8fb10ff84dac2887c68af3765c299a0" "b980088bc90b1608f940645ce4764538"
+    ## [49] "ba7514af0613a537e7c3898eb68f26fd" "bd92fe8e683cd9c1bee36e9928e8badb"
+    ## [51] "c2475a24bb2470fc76e4cbd21eb84d71" "c47f2ca6b0a12c9e3e5365d1124ba227"
+    ## [53] "d2c8f95d88c0869736acf50d7a887318" "d3730d2ea6f0bd97baada418fbafe0ea"
+    ## [55] "de20414ed676f940ebabaa16c5230346" "df626b652a656ed681a97a0148443c7d"
+    ## [57] "e5c8f31705ae991221de2a5dff050a57" "e6608048edd6ac9283b9a520959fc92d"
+    ## [59] "e86f59429ce9ded69f030efabd334c6a" "ec33e3a0b12a36bbecbab978e5c3d285"
+    ## [61] "f7084ae926cc6dc493e235d38c6268ea" "f85a8d563437c3cea39fc5f2af7e6e63"
+    ## [63] "ff8d1852cc3c9dc71215e4599040adb6"
+    ## 
+    ## $`1, 1 (TWW, CON)`
+    ##   [1] "003af54128f08f88f4cc7f3d30c22bc7" "004ee5606a47f51fcc6bc734cd3208a9"
+    ##   [3] "008ee034f582ba974f046e6b56bff504" "01169913773c94596b60157a154a6401"
+    ##   [5] "0132278ac2aa36023994ebf3d99874c8" "019979c656994aff8fc4f0ac7cc76f26"
+    ##   [7] "01d4b6911d831a55b64e5e2ead78f9d9" "02647c4d438e5d5d85d9c60a8e091d08"
+    ##   [9] "02680fb27de40537190da374721a1753" "0295cbe666314a27f251a26b521091ce"
+    ##  [11] "03c8cea8f166e10c919f86287b029108" "03d603f406e50b013b7d0645b72bc507"
+    ##  [13] "04fe639fd136e8365d18a092529648eb" "054e74172c4bfa7b3f17a2621b23ec46"
+    ##  [15] "078f499e4fcb5690f47accb10b3b4f2d" "0836b1890d1fb5eaa54f48ccc4542828"
+    ##  [17] "08cb2baa9252356b194c8ffa99ff388f" "09b63638bd517482cd1f7988e4e6462a"
+    ##  [19] "0a3934f0cdc5625b3234370dd0ad64ad" "0a3a25fe271fa3dbb0951048645fa9a1"
+    ##  [21] "0a3ccb90245c8f84bfbda3c58f3eacc5" "0af1aa8027504f8e262c813f1a105956"
+    ##  [23] "0b79218c40c2157254c6b3e792ec3c2d" "0bcc0f508a93d83c972032c7c1bd6589"
+    ##  [25] "0bde8a25e6f2ff4a3b30ff5e78a7290b" "0c18b85116708d55b6cbea237b96525b"
+    ##  [27] "0c6671ebf3dec2215f8da62a80b6cf18" "0dd0282527f32d7534e8b25bd8070e05"
+    ##  [29] "0ddee29dbce212f1e552515e33a03daa" "0e5d0956dbf7e8a582543a0e48749f23"
+    ##  [31] "0e8d660cbd4a72352ad4109b2440286e" "0f95836a0dff166e4a57fc9eae0c4148"
+    ##  [33] "105c8c20b86e93ee958d1e2a76e39c1a" "1088ef9a6107c7269bb30393d3f3db41"
+    ##  [35] "10ddc3e327033f12a05e18ad0c00dc7a" "1205b1ceb6bc665ee9c9ff7777702229"
+    ##  [37] "1284d0cd1f496848851b63197c931a12" "12d8b8ed493ae5149f6f598da0d5df53"
+    ##  [39] "12f255e4729fa1e28527bebdbd01b665" "135a9589da9553e6d0e36c2a504be20d"
+    ##  [41] "141e907da9c585151e08c5b9811b7723" "145442a98875f8e1c901b57132e3f2b8"
+    ##  [43] "14cbc8ea821822d4096c19aa6062bf67" "15456227e48f1103584e352c6ba34637"
+    ##  [45] "1662a5811fd6fb27159d4e5a4a61cfbc" "1668c2c9b8d56257977288479d75c290"
+    ##  [47] "166dc8037be4288c063dc88655428add" "17bb4907c8c278121e08bd58c65689a1"
+    ##  [49] "1906cb6358f38d0ae5aa315ef00a0a71" "1af605105d06b8b23dbda027b7f56516"
+    ##  [51] "1d946a3133fec4b7567cc21f626d7756" "1dcb2212cc9d9cf41a609f9a5b37ff60"
+    ##  [53] "1fc38e467d309ae2119780e63150843e" "2041c7ff34b21552a0af72753974d2bf"
+    ##  [55] "21132e5c0d7987e05c879573ce44d29e" "212b0396860f119d035b5964aad3b498"
+    ##  [57] "21e99fe5c4f938c48c2f7069ab9f610a" "223fabe32320a7e61015aa8bdb9b34b7"
+    ##  [59] "22abbf44268e9ed6c8fc970b8414f6c7" "2431cd23bb22a066752b0565a00e7c72"
+    ##  [61] "245006be6cb03b28d9c2f84033f79cbc" "25a958acb77cd495c521b56ae500fb64"
+    ##  [63] "26b1b7c2cf6645c09628164d8a151cc3" "281fc6085c84205551e126fe2e99bd11"
+    ##  [65] "28e2b56220974c5a80d2715b29d11dc4" "291a6c9f0f851992bf926dbf9a38b686"
+    ##  [67] "29468914cfd0458997db92c2d12f6ea1" "2a935f852276a0fa465afad4aef1526d"
+    ##  [69] "2b0dbc8ca8b74471b0029ee9d61a4c60" "2b8958aca7b054643c3aaa383fb339ee"
+    ##  [71] "2db93eec92e9f257357b4602132cd244" "2ddb3fbdfd9ab21d2f063bb428628ad2"
+    ##  [73] "2e70f4b0292118bb79e04f97e0fbf2c9" "2f552815996dfc27273632a1d226abe1"
+    ##  [75] "2f7862c3c7a03a873cf524a2d9cb12ee" "30659e41fa4b2f628db60ae54d7fa031"
+    ##  [77] "30b314d93b23928c68e0c8da410b03e7" "30ccf290598808febd1eaaed90f4a68a"
+    ##  [79] "31faddb3b5b7176c5b9898671082de18" "33ceaa3fed98090d535496959104c75a"
+    ##  [81] "35e669f29c648b7198710753d58430c4" "366e866734c792c9cd90d1b74227127a"
+    ##  [83] "370949f510f881d19bc60de1d83e4ead" "383c0dd41e3275cce2f82dea5f6a17c6"
+    ##  [85] "385f98df359e91790e07c2cb748d3dde" "38d29ddd1fb248645f80ba68e2e7e62f"
+    ##  [87] "396d8c5e388cd6370d19d5095ccfaaec" "3a45645fc53551a3e90908f39c80ea88"
+    ##  [89] "3ac5a519014ada35464c1299daf000d2" "3c7e95f662321ce2f815e078166c202c"
+    ##  [91] "3d530dada2c6e5f710013bb4833ca876" "3d9dadd9f06cabeb9a241ac07e1f0b67"
+    ##  [93] "3fad284dcba1c58a6949eeaf7ea44bf4" "403ca22e6c6abcdc7c4cd2a9b200d3ec"
+    ##  [95] "43bb4040fcebc6f5b5b3bbf9351d1b79" "43e7785fcfd6a38e1b2eca6b90c1d55a"
+    ##  [97] "4521afd72e0101b30d46c8c5192731ab" "4551fa93b93912e430376b39d3a7ab66"
+    ##  [99] "46818903d787927ae5525ec67d66d2bc" "47d1a216e45b781c3502fd2859efd875"
+    ## [101] "49cab62dbe6dadb1d4e978d72919a351" "49e1ac2aaf103304e7737e0560c1d291"
+    ## [103] "4a0972f5318ca24d8ec9bdf5131cff99" "4b9ec1e85d49003e97f518a4dca29882"
+    ## [105] "4d18e6d6e0039a7075756f1ceb852049" "4d9149ccd9bba7f1b5afeb88d0604a60"
+    ## [107] "4f615576acf981faa27f65216ef54deb" "4f6e06d73dbccc2816111750e66d0dac"
+    ## [109] "4fe873352f09745cce4b1b014cac1eed" "508119d31073fad177cedcecbdffb2b1"
+    ## [111] "511edfdaaa000431a2ef4608cb899c9b" "56530b6128d8756ae7861edae0e9d721"
+    ## [113] "565ad82315a8a7ac1e10b5f688547ece" "566dcce23831f01974d7faa119d1a04b"
+    ## [115] "574e3638b2a0734d17cf4677544db213" "585b0935354ab5352daba1259605c26f"
+    ## [117] "596a9ea28ef4a1ddcd05615d3cc79f8e" "5b5adb9e7226d029b43de63086a14f52"
+    ## [119] "5bd5cf8447f372b7da1789807bf31056" "5bef8ba85b7ab8a4b48ca401e97513a6"
+    ## [121] "5c703d95db653db1a4c5c0f47d5b2246" "5db69e722c78d247c014ef7eda35a466"
+    ## [123] "5dc375716659a1f435f14a8187d63e1c" "5e3237bab61c077efa7ff7de3da973c0"
+    ## [125] "6016955f71bd982363040e8921f0f5e3" "61aabbeb06c2f40348c40c8053c86b18"
+    ## [127] "61dc6caa907f3120c32c648b6118ac9c" "6239f9b05b4d67add0e16120725b698f"
+    ## [129] "628baedc604a9b4c9711819b7184ec32" "62c0c4fd52961e0a06cad686e55cd4e8"
+    ## [131] "63b7bee3b253e9e92fe81667f0728235" "63c998b1becea41ebc5ff3157947ec0c"
+    ## [133] "642ba0fce2b417d95bd2e5d4a53b7f17" "660b9068bde159e796065089f1a02c8d"
+    ## [135] "66535460961286c9481cc4c1122b467e" "698efa3367bdfade818ea2c90c4bf0ca"
+    ## [137] "69d4ebdd6032c7a9be54ad84b0d2e362" "6b215ea81a2cfb52147c93e3d0ac73eb"
+    ## [139] "6bfcb65c060ad1b5ffa6a38d74077d3e" "6c0bf239702859ae989d886f1985b1e4"
+    ## [141] "6c86f7748b5b1c8f46558c78ee7c1b55" "6c8d662cbe8111257a463827b60ecfea"
+    ## [143] "6c929215c17f0fd84f034a9d95dce8ce" "6d4a790c521c7d0abe28dee8a3bbe1be"
+    ## [145] "6d91f11bb1ee51e78c6a71668f27cd51" "6dc71e1a6b132d3e7b7d9cc1819f86d7"
+    ## [147] "6e678220347dfaff5e6949fa73dce40b" "6fa74a2dd7a1a7594d88ac26e06758c5"
+    ## [149] "6fc06167882ae179ab7c577bade962a9" "70525e61f8896a5eaf837858d677458d"
+    ## [151] "71a5c37154de935fff94761ce59ac82c" "71c53c6a37053e7d434496143599861e"
+    ## [153] "7267a3df6ecca94716a20572b8ffdd92" "72c659c5151b43410bfced46533303f4"
+    ## [155] "7300b96b40471e6129a659d2418a7907" "74ad381e9372fd1db6ac76aa766e1d43"
+    ## [157] "74b0c0dd904bbb32cff008bc513b74d2" "74d69fd27ce98e30efe3080a35b93f1a"
+    ## [159] "7552e27f8054c16a9d78e32787c2a27d" "759981bd9dff0f5c9b0c6d5675d78dbb"
+    ## [161] "777802441241504d1fed2b77daa4fef5" "7b1b46921a2d2b57a78a84f243e5fc9c"
+    ## [163] "7b8e2178f80169722ad87575a3b70f2f" "7cf1fe0262bdd789a550c1b9a418ffdf"
+    ## [165] "7d3e36bd1b7de8f400d1c6fcd708d640" "7e4cbef8b21a8f0ed39eda834bfac75f"
+    ## [167] "7ebc360a7d9e6bf6d09f5c861cf77eaa" "7ecbf406dc3f6f333a519ce74b301023"
+    ## [169] "7fa49741de083ef7b236562545599e33" "7fc48e52eb254b37318c41821d0094f7"
+    ## [171] "801ac70bd97e0acf24d78757bc0c4a63" "80dfc7a01e7f1a59030cc7009ce644c4"
+    ## [173] "81febb4c432de5a4419d54dde0747ddc" "82b6e9ac3cb2816eef0942342ac93846"
+    ## [175] "82f604781f0a733f3cadde378f654c64" "8369c51b146d25f46cfc9bcecec81a1d"
+    ## [177] "83c1a35def56c6aa91c75d114b788856" "8439d0f0d485b88cb830aa006a94775e"
+    ## [179] "84bc6ce045f212f439b979e3862bb33e" "84f295cc0efa62d8ce1058b303fc7d16"
+    ## [181] "854aba6e257399a8c03c5324bda9c990" "8665a3597d4d4a91d6d740410703140c"
+    ## [183] "8797ea3440904a0d42f950150b92f4e1" "87dfdcb2a28aa5ff3a581f1676e6c83a"
+    ## [185] "87ec06a7e891bc5c6e8efa0eeced342b" "8aaf7109cebfa92679a49880ebfd80a4"
+    ## [187] "8be5171abe1df417e0f5078942b9999f" "8c4cec6e98cea9bde7e38c90077ae964"
+    ## [189] "8e41c8dcbd322ea1fb44b4c6fc2509b5" "8f2833a34dc99cf9662ff3fbf66700a8"
+    ## [191] "903cd9171aadd27179fb51786c7170d2" "906b324e809f8b6c27ad0fda85b72ab4"
+    ## [193] "96048083eb3777f81f272b91f5b301a6" "96bbfac18d1f7f13c4572ff34481c337"
+    ## [195] "9761d928d5de6a325502f15050f9b961" "97f0707f0565cf3c4a3d1e77cedd5aa3"
+    ## [197] "98d31549e02be1d0545d751e5f065343" "98feeb7c5de77b4910f4315ad42371f1"
+    ## [199] "9937fe5099010b99e563efdc75914997" "9943198d8600ba3300ddd2a55a23ea03"
+    ## [201] "9a40244307e335d1e9b88f1a32153bf0" "9b3474bd2148382712c8e93ff8971ef3"
+    ## [203] "9b9586f4ee971734202c21eb49e48b39" "9bbceca2e8d18f3aec56a00b448892b8"
+    ## [205] "9df517b3f6356b68cdff3bd4c1a5f68e" "9e00e2e85b7a4d5dedca001cda062af9"
+    ## [207] "9e1fd6a6141200e5610a0ea3911d6006" "9e4644e245da272a465302d892652f65"
+    ## [209] "9e8b6fe0f83968bb3f6e83b5480ccfc7" "9ec9e77a8f648020b9abcdbd083f380c"
+    ## [211] "9efc4fc95e6bb6462e24fc527a71c2c3" "9f46abfb938487f0aa711df28f4f0412"
+    ## [213] "9f8b3118e08bc92b20dccf1a0f0ef018" "9fd28cac88e776acb1d31f291c210bf8"
+    ## [215] "a082d61432f1376c81ce1a300684607c" "a09a44b4f12b35b7d2f3b6355ffab2eb"
+    ## [217] "a0ffff106699f3e3ce0f94968a7163bb" "a2202910eb63129ff1bc2671b0f1e97f"
+    ## [219] "a3094802b0fef5b8f1e65f1ebd0a6057" "a45dc0cdbe32e3a32fa6bdb0a7db8f10"
+    ## [221] "a5146a2f02a75661dddcde0b55d011ff" "a761e859355039395824c375d161e32e"
+    ## [223] "a91e1037bb22ad2cf89dff794df117aa" "a95e1ac9cc3cb387894d32a12fe26029"
+    ## [225] "aa0ee917a8dc36eaf78efb83fba77ed5" "ab6263b5c92afe21d3ceee8b555383b3"
+    ## [227] "abd0fbdd7476bd431022c83b9996b932" "ac0e7cdc059f2055d79572a61d20c715"
+    ## [229] "ac14e7880e293f51174b794d5a030107" "ac983c4999b994f8cc0d50899930208d"
+    ## [231] "aca5a198d98a6f08022edf5c9d9afc48" "acafcd8c3b29657a0898eef798fa1130"
+    ## [233] "ad7717fbac45c22b7eaee1837eb7890a" "ad944660c5dc1fe4f8ec42e82dac3586"
+    ## [235] "addab92b984c30ca70eb5c24dba68b9d" "ae3fb80642ecc01c124115e63a705835"
+    ## [237] "af336b9ff59d0cc43097a16e4dabebc1" "af4978e1f3e54ec981950df431ef50df"
+    ## [239] "af96fa42263c875e8046672192f627a2" "b11a5c7f35001268287e9da14796c658"
+    ## [241] "b1a8935489e7797b00fabf970e8375eb" "b214ae87c66eade48767078ed14f564f"
+    ## [243] "b3024ead76a455bee792deeaa8f99e67" "b42325272b4c9abd14d3cd816b31e4ee"
+    ## [245] "b49591c0c7a246ddb594baeefbae62b9" "b4b40b4843572fc1248373762f4141af"
+    ## [247] "b54768b69d5232c811022985c5f87ba1" "b6153c6f0918e711e23dd7ab752974cf"
+    ## [249] "b644212b82eca6c12c76ef975069e278" "b6b30df14a74be386d793a655e5c3f5a"
+    ## [251] "bc3a435fb31a51f9704cd8ee46d6a39b" "bc712a9cdc707bad53d6f5bc304f77bf"
+    ## [253] "bcac6add792dd24ab3bf3f6ffbb04fb4" "bd10c1c9dfe866a3e568941d39361d5f"
+    ## [255] "be41a03722589632d727a128cc9c4167" "bea3672886376020539cbd24ae559916"
+    ## [257] "bf49809769af933f740df88d9b4b8cf0" "c03960dd2503185574bd3a3e4d4a98a3"
+    ## [259] "c05c3925f1ed194a8cada4faed0d0239" "c0824e391ee2243112234404d1fc3fe5"
+    ## [261] "c08f974f6714b91a799d8df094c5eac1" "c13ad8b0c5600fea448e6259170acc95"
+    ## [263] "c255450be9edddca124eed4a6c0d81cc" "c2aab74e136fb634b1af41d20eeb7f8a"
+    ## [265] "c2ad9f1e151e1131c6e4460f9bbfcbe8" "c3613eb623a08774cb561781585a41d1"
+    ## [267] "c436dc67b676f98d091ac4c0ad7c340d" "c49477a4c4e26cd506cccecfc13b2eb9"
+    ## [269] "c503136f017a999fc8489f1235d7ec42" "c6a1db334b738c55bc3460b5aabffa07"
+    ## [271] "c7182f5b04146de5f14f442b2b5d62b2" "cac4ece48472d33e180eef98093b6b6c"
+    ## [273] "cac60cec0955acc359ab0ef9171dd831" "cbc9c4c32b4cb83e040a059f0efbc264"
+    ## [275] "cbfcd314ba0e663377fdbbcc777c904d" "cc6e9a08ef43af24d1c092c913a7f29b"
+    ## [277] "cc761a4f31e6771b929aac7cc817f1d1" "cd1debf4a8d99381146c78b455ce4cfc"
+    ## [279] "ce9a1772a026edb18c13e9bc12ee5f8e" "cfd0cd17c85fc790b5bf730245653b50"
+    ## [281] "cff8112900c93927bd5a685201e2d902" "cffb21d28a9912629dbeb0231a15145b"
+    ## [283] "d12afb35d31c7d7e3c581249f11985e7" "d18be0ed6a08bb48c01d46fbe3b7ab9e"
+    ## [285] "d1c36eab2d59a64805ab7d08ed43a812" "d27f40408b64515d72da95423d68b0b8"
+    ## [287] "d3d1e84295033baefd6a1e89d8723635" "d40b62cc96be2f2e83efd4412fed82e3"
+    ## [289] "d445c17d3507ef68861f392e8d3d6fa8" "d459a221d49830ff0ac9b7ca7c7e74b8"
+    ## [291] "d4fad67eb706ab86122fb36afee869c7" "d53e8d3d5e370ac1a993f48eaf24567b"
+    ## [293] "d5d450d02f6aedb908030d49f999d3fe" "d61e95adec762ae421115179a2e2e57a"
+    ## [295] "d75502deb38927d3ef6d2468b6739bdf" "d917306c4c8d0ea86cbc8696c91d037b"
+    ## [297] "d921f18656f3701ba8073d0c3dee85c8" "dad247830785d0420ee254e0694769e6"
+    ## [299] "dafdc5719dd9462554f050696d57a897" "db8504b88caf12ec4d4439a8eff576b0"
+    ## [301] "dbe3dbcc928bdef85b910d5665b08cf2" "dd0b81b53dfcca016c3a67c0e5c6c48e"
+    ## [303] "dec54c185f0d58bdbaa59936dd7306af" "dece12de754bd71facf31dd631e4e365"
+    ## [305] "e028f45f70441498cf9422ed19a45c4f" "e19ffd09ddcd963ec97b1f87061daa3d"
+    ## [307] "e1cdc45d861ab6a0f13152b84d6fc229" "e2544f90a411cb4b935d40c83b01c933"
+    ## [309] "e38aad168c4c83e152902aa20c4d606b" "e41a12b513ff11bb3ae47220a0dda390"
+    ## [311] "e4763bb938478b368fd72e9a60aff0a5" "e4bd78ea6c8dbdc8a7b6b5fa3b5145ad"
+    ## [313] "e54de549032a1326d6a55c2a269250aa" "e582b6e0d5066cbec5e4a9dcadc6f2a9"
+    ## [315] "e5fda54e0a8c8c07a8f5ac34c5a76458" "e60e6623788897e5665e14807bbdaeb9"
+    ## [317] "e6eb78585d7fd46ab8cc28481c0a17bf" "e782f6bfe9343f586c431a75aab548ea"
+    ## [319] "e787389f8bbfabef66615e5e72558118" "e797350616765ebc353f7db9202f7ed5"
+    ## [321] "e808e1c5642115b737ecb921304fefc1" "e83d3a9ae4b566edc8ec920cc3e8f0f8"
+    ## [323] "e916bc8b4b153d3d0103159b941ee071" "e91b53dc74978289576c73257d218974"
+    ## [325] "e95ca0a460e7864c7f081d48d2ac7b3f" "e976584396be1aaf289a043643fef02d"
+    ## [327] "e9d595ecb807790e60534c0cae55b9ae" "eb000f29c8de866f4f00c2f9f8b936f1"
+    ## [329] "eb90fdefb558eac480b5681a5be0e135" "ebb384b9749d0cddc4db50edf42fc930"
+    ## [331] "ebea36365777bd01f7a2392732d898bd" "ebfbc7b35234a42a899f633d1ebd0485"
+    ## [333] "ed091ed6e1210b8a5f867ae5a2ec8c1b" "ed8b535aed5997b3b266e0ea9d898136"
+    ## [335] "ee58be4d62175c6016d804c963f873fa" "ef6264405ac7d445c9c6cbfb2433182b"
+    ## [337] "ef77ae02d2fc7305b4f8a9ae13725131" "f19a6fdb3e559e5bcf0d514fc0f97d33"
+    ## [339] "f258bdb4cf46614a407aa9e510bbe7e2" "f29b7d44e1eee8fb456e135e369f884b"
+    ## [341] "f3c0b7307fa3a0f3e72ddb28e8b6aaf4" "f3f6c4d101813bad866b9a7e79468934"
+    ## [343] "f42e78dbbd0f72b18b83a5704a5efa6b" "f461fb25a69dcc1a1e80c8ceb11dbbe2"
+    ## [345] "f5fb5183a6a846e7cd74cc7263484793" "f7a0c0329f5ecaca02fccd2c338f59fa"
+    ## [347] "f8367e2b20da5a27a9a4bba9beacd01e" "f8845f54634ff554437b29a5116a748c"
+    ## [349] "f89a3f319aee4abfc2e002e63b9a0a7c" "f9bd449cffe24a59560af012e7f138e9"
+    ## [351] "fa0218d20cc873b75d9f44d0cf83b289" "fa6510c9e980eaa30617c672e90ad082"
+    ## [353] "fa9f727d57fa4f41d697cd46038bf64c" "fac89bef8aba259524236d1cddd0186e"
+    ## [355] "fd5f3f199153ef09acfd2f1347cf2771" "fee66e230fa30c21bc9c5b04c59be954"
+
+``` r
+tww_only_2 <- as.data.frame(getVennRegion(nVennR_plot_test_TWW, c(1, 0)))
+```
+
+Now that we have a dataframe containing the ASV’s that are unique to the
+TWW MP’s, we’ll add the normalized count data to this dataframe and
+rearrage it in order to get it into a format suitable for graphing.
+
+``` r
+#Now we can filter the sig_norm_counts_time_long_2 dataframe (which includes the log normalized count data that we need) based on these ASV's; here we use left_join, which will only include the row names listed in Venn_TWW_only.
+Venn_TWW_only_counts <- Venn_TWW_only %>%
+  left_join(sig_norm_counts_time_long_2, by = "ASV")
+
+#This dataframe now contains the average log normalized counts (extracted from DESeq2) for each significant ASV in each treatment category. We also need to add taxonomic information to each ASV so that we can ID these ASV's. First, create a dataframe containing the taxonomic information for each ASV:
+tax_tab_df <- data.frame((tax_table(MPphyseq))) %>%
+  tibble::rownames_to_column(var = "ASV")
+
+#And then left_join that taxonomic information with the dataframe containing the DESeq ASV's with log normalized counts:
+Venn_TWW_only_tax <- Venn_TWW_only_counts %>%
+  left_join(tax_tab_df, by = "ASV")
+
+#Now we can restructure this dataframe so that each group in the particle_effluent_time column is a separate column
+Venn_TWW_only_tax <- Venn_TWW_only_tax %>%
+  select(-Mean) %>% 
+  pivot_wider(names_from = particle_effluent_time, values_from = log_normalized_counts)
+
+#Finally, order alphabetically by Class:
+Venn_TWW_only_tax <- Venn_TWW_only_tax[order(Venn_TWW_only_tax$Class),]
+```
+
+### 8.6.8 Finding ASV’s for each set from the Venn diagrams
+
+In this section I’m going to extract the specific ASV’s from each
+section of the Venn diagrams above, label them with taxonomic
+information, and then create bar charts so that we can determine who
+these ASV’s are. Although I used the ggVennDiagram package to create the
+Venn diagrams in the section above, ggVennDiagram doesn’t have a
+function that allows me to extract the values from each Venn diagram
+category. Instead, here I’ll find those same Venn diagram intersections
+using the nVennR package, which includes a function called getVennRegion
+that allows for the elements from each region to be extracted easily.
+
+``` r
+#Testing out the nVennR package as an alternative way to create Venn Diagrams
+#River water
+nVennR_plot_test_CON <- plotVenn(list(taxa_MP_CON2_chr, taxa_MP_CON6_chr, taxa_MP_CON10_chr), sNames=c("Week 2", "Week 6", "Week 10"))
+#showSVG(nVennR_plot_test_CON, opacity=0.2)
+
+#TWW
+nVennR_plot_test_TWW <- plotVenn(list(taxa_MP_TWW2_chr, taxa_MP_TWW6_chr, taxa_MP_TWW10_chr), sNames=c("Week 2", "Week 6", "Week 10"))
+```
+
+![](Analysis_files/figure-gfm/MP%20sig%20ASV%20bars-1.png)<!-- -->
+
+``` r
+#showSVG(nVennR_plot_test_TWW, opacity=0.2)
+
+#Grab the list of ASV's comprising each region from nVennR plot objects
+TWW_Venn_categories <- nVennR_plot_test_TWW[["reg"]]
+
+#With in this new list is a list of ASV's for each Venn diagram region. Have to compare the number of characters in each list in TWW_Venn_categories to the Venn diagrams in order to determine which list (numbered as 1-7) is each region of the Venn diagram. Then, we can create 7 individual dataframes containing the ASV's for each Venn diagram region.
+TWW_Venn_2w <- data.frame(TWW_Venn_categories[[4]])
+
+#Rename column as ASV
+TWW_Venn_2w <- TWW_Venn_2w %>% rename_at('TWW_Venn_categories..4..', ~'ASV')
+
+#Extracting the ASV's from each region
+#getVennRegion(nVennR_plot_test_CON, region)
+#getVennRegion(nVennR_plot_test_TWW, region)
+
+#Add taxonomic information and log normalized count data
+TWW_Venn_2w_tax <- TWW_Venn_2w %>%
+  left_join(sig_norm_counts_time_long_filt_tax, by = "ASV") %>%
+  select(-c(MP_CON_10, MP_CON_2, MP_CON_6, MP_TWW_10, MP_TWW_6))
+
+#Plot!!
+```
+
+## 8.7 Comparing bacterial community composition between glass and microplastics
+
+The following section examines the similarities between microbial
+communities present on glass beads and those present on MP’s, split by
+effluent type (i.e., river water vs TWW). To do this, we’ll be using the
+results from the DESeq2 tests above.
+
+### 8.7.1 Venn Diagram, river water
+
+We can use the filtered dataframes created above containing the DESeq2
+results to create a Venn diagram displaying the overlap between the taxa
+present on glass beads at different timepoints. To compare MP
+communities at different timepoints to glass bead communities at
+different timepoints, we then create an additional Venn diagram
+displaying the overlap in taxa between these six data points.
+
+``` r
+#Make Venn Diagram - glass and MP in river water comparisons
 CON_MP_glass_comparisons <- list(taxa_MP_CON2_chr, taxa_MP_CON6_chr, taxa_MP_CON10_chr, taxa_glass_CON2_chr, taxa_glass_CON6_chr, taxa_glass_CON10_chr) %>%
   setNames(c("MP_CON_2", "MP_CON_6", "MP_CON_10", "Glass_CON_2", "Glass_CON_6", "Glass_CON_10"))
 
@@ -11267,88 +14066,13 @@ ggVennDiagram(CON_MP_glass_comparisons) + scale_fill_gradient(low="blue",high = 
 
 ![](Analysis_files/figure-gfm/venn%20glass%20v%20plastic%20river-1.png)<!-- -->
 
-``` r
-#Make Venn Diagram - only the glass comparisons
-CON_glass_comparisons <- list(taxa_glass_CON2_chr, taxa_glass_CON6_chr, taxa_glass_CON10_chr) %>%
-  setNames(c("Week 2", "Week 6", "Week 10"))
+### 8.7.2 Venn Diagram, TWW
 
-ggVennDiagram(CON_glass_comparisons, label_alpha = 0) + scale_fill_gradient(low="blue",high = "red") +
-  theme(legend.position = "bottom", legend.direction = "horizontal")
-```
-
-![](Analysis_files/figure-gfm/venn%20glass%20v%20plastic%20river-2.png)<!-- -->
-
-### 8.5.2 Venn Diagram, TWW
+Now we’ll apply the same methods as above to compare TWW glass bead
+communties to TWW MP communities.
 
 ``` r
-#Using the method from above (prepping the data for plots) to prep the deseq output for plotting with ggVennDiagram
-
-#Filter deseq dataframes so that they only include ASV's with positive 
-#log2foldchanges - the point here is to keep only ASV's that were higher in abundance on microplastics then in the water
-
-#Filter the MP dataframes
-df_mp_time_deseq_TWW2_filt <- filter(df_mp_time_deseq_TWW2_filt, 
-                                     log2FoldChange > 0)
-df_mp_time_deseq_TWW6_filt <- filter(df_mp_time_deseq_TWW6_filt, 
-                                     log2FoldChange > 0)
-df_mp_time_deseq_TWW10_filt <- filter(df_mp_time_deseq_TWW10_filt, 
-                                      log2FoldChange > 0)
-
-#Filter the glass dataframes
-df_mp_glass_deseq_TWW2_filt <- filter(df_mp_glass_deseq_TWW2_filt, 
-                                     log2FoldChange > 0)
-df_mp_glass_deseq_TWW6_filt <- filter(df_mp_glass_deseq_TWW6_filt, 
-                                     log2FoldChange > 0)
-df_mp_glass_deseq_TWW10_filt <- filter(df_mp_glass_deseq_TWW10_filt, 
-                                      log2FoldChange > 0)
-
-#Create a column with the filtered deseq dataframe rownames and then filter to 
-#contain only ASV's
-taxa_MP_TWW2 <- data.frame(df_mp_time_deseq_TWW2_filt) %>%
-  tibble::rownames_to_column(var = "MP_TWW_2") %>%
-  select(MP_TWW_2)
-
-taxa_MP_TWW6 <- data.frame(df_mp_time_deseq_TWW6_filt) %>%
-  tibble::rownames_to_column(var = "MP_TWW_6") %>%
-  select(MP_TWW_6)
-
-taxa_MP_TWW10 <- data.frame(df_mp_time_deseq_TWW10_filt) %>%
-  tibble::rownames_to_column(var = "MP_TWW_10") %>%
-  select(MP_TWW_10)
-
-
-taxa_glass_TWW2 <- data.frame(df_mp_glass_deseq_TWW2_filt) %>%
-  tibble::rownames_to_column(var = "Glass_TWW_2") %>%
-  select(Glass_TWW_2)
-
-taxa_glass_TWW6 <- data.frame(df_mp_glass_deseq_TWW6_filt) %>%
-  tibble::rownames_to_column(var = "Glass_TWW_6") %>%
-  select(Glass_TWW_6)
-
-taxa_glass_TWW10 <- data.frame(df_mp_glass_deseq_TWW10_filt) %>%
-  tibble::rownames_to_column(var = "Glass_TWW_10") %>%
-  select(Glass_TWW_10)
-
-#Make each dataframe into a list
-lista <- list(taxa_MP_TWW2$MP_TWW_2)
-listb <- list(taxa_MP_TWW6$MP_TWW_6)
-listc <- list(taxa_MP_TWW10$MP_TWW_10)
-
-listd <- list(taxa_glass_TWW2$Glass_TWW_2)
-liste <- list(taxa_glass_TWW6$Glass_TWW_6)
-listf <- list(taxa_glass_TWW10$Glass_TWW_10)
-
-#Change to characters
-taxa_MP_TWW2_chr <- as.character(lista[[1]])
-taxa_MP_TWW6_chr <- as.character(listb[[1]])
-taxa_MP_TWW10_chr <- as.character(listc[[1]])
-
-taxa_glass_TWW2_chr <- as.character(listd[[1]])
-taxa_glass_TWW6_chr <- as.character(liste[[1]])
-taxa_glass_TWW10_chr <- as.character(listf[[1]])
-
-
-#Make Venn Diagram - all comparisons
+#Make Venn Diagram - glass and MP in TWW comparisons
 TWW_MP_glass_comparisons <- list(taxa_MP_TWW2_chr, taxa_MP_TWW6_chr, taxa_MP_TWW10_chr, taxa_glass_TWW2_chr, taxa_glass_TWW6_chr, taxa_glass_TWW10_chr) %>%
   setNames(c("MP_TWW_2", "MP_TWW_6", "MP_TWW_10", "Glass_TWW_2", "Glass_TWW_6", "Glass_TWW_10"))
 
@@ -11357,18 +14081,480 @@ ggVennDiagram(TWW_MP_glass_comparisons) + scale_fill_gradient(low="blue",high = 
 
 ![](Analysis_files/figure-gfm/venn%20glass%20v%20plastic%20TWW-1.png)<!-- -->
 
-``` r
-#Make Venn Diagram - only the glass comparisons
-TWW_glass_comparisons <- list(taxa_glass_TWW2_chr, taxa_glass_TWW6_chr, taxa_glass_TWW10_chr) %>%
-  setNames(c("Week 2", "Week 6", "Week 10"))
+### 8.7.3 SuperExactTest
 
-ggVennDiagram(TWW_glass_comparisons, label_alpha = 0) + scale_fill_gradient(low="blue",high = "red") +
-  theme(legend.position = "bottom", legend.direction = "horizontal")
+``` r
+#Grabbing lists from the Venn diagram sections for MP and glass beads, above in order to create a list with all MP and glass comparisons across water types
+all_effluent_MP_glass_comparisons <- list(
+          taxa_MP_CON2_chr, taxa_MP_CON6_chr, taxa_MP_CON10_chr, 
+          taxa_MP_TWW2_chr, taxa_MP_TWW6_chr, taxa_MP_TWW10_chr, 
+          taxa_glass_CON2_chr, taxa_glass_CON6_chr, taxa_glass_CON10_chr,        
+          taxa_glass_TWW2_chr, taxa_glass_TWW6_chr, taxa_glass_TWW10_chr) %>%
+  setNames(c(
+          "MP_CON_2", "MP_CON_6", "MP_CON_10",
+          "MP_TWW_2", "MP_TWW_6", "MP_TWW_10", 
+          "Glass_CON_2", "Glass_CON_6", "Glass_CON_10",
+          "Glass_TWW_2", "Glass_TWW_6", "Glass_TWW_10"))
+
+
+#Run the super exact test; n is the total number in the deseq datasets from above
+res_all_glass_mp=supertest(all_effluent_MP_glass_comparisons, n=994)
+
+#Plot SuperExactTest results - circular plot
+plot(res_all_glass_mp, sort.by="size", margin=c(2,2,2,2), color.scale.pos=c(0.85,1), legend.pos=c(0.9,0.15))
 ```
 
-![](Analysis_files/figure-gfm/venn%20glass%20v%20plastic%20TWW-2.png)<!-- -->
+![](Analysis_files/figure-gfm/SuperExactTest%20glass%20v%20MP-1.png)<!-- -->
+
+``` r
+#Another plot - bar plot,  only intersections among 6 sets
+plot(res_all_glass_mp, Layout="landscape", degree=6, sort.by="size", margin=c(0.5,5,1,2))
+```
+
+![](Analysis_files/figure-gfm/SuperExactTest%20glass%20v%20MP-2.png)<!-- -->
+
+The plots produced above are very crowded, making it difficult to
+actually see the results.
+
+``` r
+#Create a dataframe out of the SuperExactTest results
+res_all_glass_mp_df <- summary(res_all_glass_mp)$Table
+```
 
 # 9 NMDS plots - filtered dataset
+
+The NMDS analyses completed above were run on the full phyloseq object,
+which contained all ASV’s, including those with very low abundance and
+minimal presence in the samples. Now we’ll re-run the NMDS analyses on
+the filtered phyloseq object that we imported into DESeq2.
+
+## 9.1 Preparing the data
+
+Before we can create NMDS plots, we need to transform the filtered
+phyloseq object from counts to relative abundance and then make the
+variables factors.
+
+``` r
+#Transform to relative abundance. Save as new object.
+MPfiltRA = transform_sample_counts(ps.taxa.all.filt, function(x){x / sum(x)})
+
+#Order factors
+sample_data(MPfiltRA)$effluent <- factor(sample_data(MPfiltRA)$effluent, 
+                                           levels = c("CON", "TWW"),
+                                           labels = c("CON", "TWW"))
+
+sample_data(MPfiltRA)$polymer_type <- factor(sample_data(MPfiltRA)$polymer_type, 
+                        levels = c("Glass", "HDPE", "LDPE", "PP", "PS", "Water"),
+                        labels = c("Glass", "HDPE", "LDPE", "PP", "PS", "Water"))
+
+sample_data(MPfiltRA)$week <- factor(sample_data(MPfiltRA)$week, 
+                                       levels = c("0", "2", "6", "10"),
+                                       labels = c("0", "2", "6", "10"))
+
+sample_data(MPfiltRA)$sample_type <- factor(sample_data(MPfiltRA)$sample_type, 
+                                              levels = c("Particle", "Water"),
+                                              labels = c("Particle", "Water"))
+
+sample_data(MPfiltRA)$particle_type <- factor(sample_data(MPfiltRA)$particle_type, 
+                                              levels = c("MP", "Glass", "Water"),
+                                              labels = c("MP", "Glass", "Water"))
+```
+
+## 9.2 NMDS of all data
+
+Now we can create an NMDS plot using the filtered data that plots all
+sample variables (i.e., effluent type, polymer type, time point, etc.).
+
+``` r
+filt.nmds.source.ord <- ordinate(
+  physeq = MPfiltRA, 
+  method = "NMDS", 
+  distance = "bray"
+)
+```
+
+    ## Run 0 stress 0.1213057 
+    ## Run 1 stress 0.1213057 
+    ## ... New best solution
+    ## ... Procrustes: rmse 3.500813e-06  max resid 2.428856e-05 
+    ## ... Similar to previous best
+    ## Run 2 stress 0.1208281 
+    ## ... New best solution
+    ## ... Procrustes: rmse 0.003606045  max resid 0.0427885 
+    ## Run 3 stress 0.1444589 
+    ## Run 4 stress 0.1217572 
+    ## Run 5 stress 0.1217571 
+    ## Run 6 stress 0.1217572 
+    ## Run 7 stress 0.1213057 
+    ## ... Procrustes: rmse 0.003606178  max resid 0.04282297 
+    ## Run 8 stress 0.1213057 
+    ## ... Procrustes: rmse 0.003605543  max resid 0.04281624 
+    ## Run 9 stress 0.1208282 
+    ## ... Procrustes: rmse 8.086083e-05  max resid 0.0007057675 
+    ## ... Similar to previous best
+    ## Run 10 stress 0.1208281 
+    ## ... Procrustes: rmse 1.361366e-05  max resid 8.928344e-05 
+    ## ... Similar to previous best
+    ## Run 11 stress 0.1208282 
+    ## ... Procrustes: rmse 8.067674e-05  max resid 0.0007055687 
+    ## ... Similar to previous best
+    ## Run 12 stress 0.1213057 
+    ## ... Procrustes: rmse 0.003606156  max resid 0.04282323 
+    ## Run 13 stress 0.1213057 
+    ## ... Procrustes: rmse 0.003606023  max resid 0.04282195 
+    ## Run 14 stress 0.2547821 
+    ## Run 15 stress 0.1208281 
+    ## ... New best solution
+    ## ... Procrustes: rmse 9.861822e-06  max resid 7.81792e-05 
+    ## ... Similar to previous best
+    ## Run 16 stress 0.1208281 
+    ## ... Procrustes: rmse 8.549917e-06  max resid 8.446391e-05 
+    ## ... Similar to previous best
+    ## Run 17 stress 0.1213057 
+    ## ... Procrustes: rmse 0.003606509  max resid 0.04282394 
+    ## Run 18 stress 0.1208283 
+    ## ... Procrustes: rmse 7.701847e-05  max resid 0.0006737237 
+    ## ... Similar to previous best
+    ## Run 19 stress 0.1217571 
+    ## Run 20 stress 0.1213057 
+    ## ... Procrustes: rmse 0.003606567  max resid 0.04282254 
+    ## *** Best solution repeated 3 times
+
+``` r
+#Plot, color coding by particle type
+filt.nmds.particle_type <- plot_ordination(
+  physeq = MPfiltRA,
+  ordination = filt.nmds.source.ord) + 
+  scale_fill_manual(values = plot.colors, "Particle Type") +
+  scale_shape_manual(values = c("MP" = 21, "Glass" = 21, "Water" = 21), name = "Particle Type") +
+  geom_point(mapping = aes(fill = factor(particle_type), shape = particle_type, size = 5)) +
+  guides(size=FALSE) +
+  guides(shape = guide_legend(override.aes = list(size = 3))) +
+  theme(plot.title = element_text(size = 18),
+        text = element_text(size = 18), 
+        axis.title = element_text(size = 15),
+        panel.spacing = unit(1, "lines"), 
+        panel.border = element_rect(colour = "black", fill = NA, size = 0.5), 
+        panel.background = element_blank(), 
+        legend.text = element_text(size = 15),
+        legend.title = element_text(size = 15),
+        legend.position = c(.99, .99),
+        legend.justification = c("right", "top"),
+        legend.box.just = "right",
+        legend.margin = margin(6, 6, 6, 6)) +
+  stat_ellipse(aes(group=particle_type))
+
+print(filt.nmds.particle_type)
+```
+
+![](Analysis_files/figure-gfm/NMDS%20994-1.png)<!-- -->
+
+``` r
+#Plot, color coding by water source
+filt.nmds.source <- plot_ordination(
+  physeq = MPfiltRA,
+  ordination = filt.nmds.source.ord) + 
+  scale_fill_manual(values = plot.colors, "Water Source") +
+  scale_shape_manual(values = c("TWW" = 21, "CON" = 21), name = "Water Source") +
+  geom_point(mapping = aes(fill = factor(effluent), shape = effluent, size = 5)) +
+  guides(size=FALSE) +
+  guides(shape = guide_legend(override.aes = list(size = 3))) +
+  theme(plot.title = element_text(size = 18),
+        text = element_text(size = 18), 
+        axis.title = element_text(size = 15),
+        panel.spacing = unit(1, "lines"), 
+        panel.border = element_rect(colour = "black", fill = NA, size = 0.5), 
+        panel.background = element_blank(), 
+        legend.text = element_text(size = 15),
+        legend.title = element_text(size = 15),
+        legend.position = c(.99, .99),
+        legend.justification = c("right", "top"),
+        legend.box.just = "right",
+        legend.margin = margin(6, 6, 6, 6)) +
+  stat_ellipse(aes(group=effluent))
+
+print(filt.nmds.source)
+```
+
+![](Analysis_files/figure-gfm/NMDS%20994-2.png)<!-- -->
+
+``` r
+#Plot, color coding by week
+filt.nmds.week <- plot_ordination(
+  physeq = MPfiltRA,
+  ordination = filt.nmds.source.ord) + 
+  scale_fill_manual(values = plot.colors, "Week") +
+  scale_shape_manual(values = c("0" = 21, "2" = 21, "6" = 21, "10" = 21), name = "Week") +
+  geom_point(mapping = aes(fill = factor(week), shape = week, size = 5)) +
+  guides(size=FALSE) +
+  guides(shape = guide_legend(override.aes = list(size = 3))) +
+  theme(plot.title = element_text(size = 18),
+        text = element_text(size = 18), 
+        axis.title = element_text(size = 15),
+        panel.spacing = unit(1, "lines"), 
+        panel.border = element_rect(colour = "black", fill = NA, size = 0.5), 
+        panel.background = element_blank(), 
+        legend.text = element_text(size = 15),
+        legend.title = element_text(size = 15),
+        legend.position = c(.99, .99),
+        legend.justification = c("right", "top"),
+        legend.box.just = "right",
+        legend.margin = margin(6, 6, 6, 6)) +
+  stat_ellipse(aes(group=week))
+
+print(filt.nmds.week)
+```
+
+![](Analysis_files/figure-gfm/NMDS%20994-3.png)<!-- -->
+
+``` r
+#Plot, color coding by sample type
+filt.nmds.sample.type <- plot_ordination(
+  physeq = MPfiltRA,
+  ordination = filt.nmds.source.ord) + 
+  scale_fill_manual(values = plot.colors, "Sample Type") +
+  scale_shape_manual(values = c("Particle" = 21, "Water" = 21), name = "Sample Type") +
+  geom_point(mapping = aes(fill = factor(sample_type), shape = sample_type, size = 5)) +
+  guides(size=FALSE) +
+  guides(shape = guide_legend(override.aes = list(size = 3))) +
+  theme(plot.title = element_text(size = 18),
+        text = element_text(size = 18), 
+        axis.title = element_text(size = 15),
+        panel.spacing = unit(1, "lines"), 
+        panel.border = element_rect(colour = "black", fill = NA, size = 0.5), 
+        panel.background = element_blank(), 
+        legend.text = element_text(size = 15),
+        legend.title = element_text(size = 15),
+        legend.position = c(.99, .99),
+        legend.justification = c("right", "top"),
+        legend.box.just = "right",
+        legend.margin = margin(6, 6, 6, 6)) +
+  stat_ellipse(aes(group=sample_type))
+
+print(filt.nmds.sample.type)
+```
+
+![](Analysis_files/figure-gfm/NMDS%20994-4.png)<!-- -->
+
+``` r
+#Use patchwork to combine these 4 plots
+all_combo <- (filt.nmds.particle_type | filt.nmds.source)/(filt.nmds.week | filt.nmds.sample.type)
+
+#Save as an svg file
+ggsave(filename="Microplastics_NMDS_all_Bray.svg", plot=all_combo, width=12, height=10, device=svg)
+```
+
+## 9.3 NMDS of particles (glass and MPs) only, no water, Bray-Curtis dissimilarity
+
+``` r
+#Subset phyloseq object
+sample_data(MPfiltRA)
+```
+
+    ## Sample Data:        [ 151 samples by 9 sample variables ]:
+    ##                effluent week  polymer_type bead_diameter Channel sample_type
+    ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
+    ##  1 ESF21MP-100 CON      10    HDPE                  3.18 7.1     Particle   
+    ##  2 ESF21MP-101 TWW      10    HDPE                  3.18 5.2     Particle   
+    ##  3 ESF21MP-102 CON      10    LDPE                  3.18 7.2     Particle   
+    ##  4 ESF21MP-103 TWW      10    PP                    3.18 5.2     Particle   
+    ##  5 ESF21MP-104 CON      10    PP                    3.18 7.2     Particle   
+    ##  6 ESF21MP-105 TWW      10    HDPE                  3.18 8.1     Particle   
+    ##  7 ESF21MP-106 CON      10    LDPE                  3.18 7.1     Particle   
+    ##  8 ESF21MP-107 TWW      10    HDPE                  3.18 5.1     Particle   
+    ##  9 ESF21MP-108 CON      10    LDPE                  3.18 8.2     Particle   
+    ## 10 ESF21MP-109 CON      10    PP                    3.18 8.2     Particle   
+    ## # ℹ 141 more samples
+    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>
+
+``` r
+mp.filt.particle <- subset_samples(MPfiltRA, sample_type == "Particle")
+sample_data(MPfiltRA)
+```
+
+    ## Sample Data:        [ 151 samples by 9 sample variables ]:
+    ##                effluent week  polymer_type bead_diameter Channel sample_type
+    ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
+    ##  1 ESF21MP-100 CON      10    HDPE                  3.18 7.1     Particle   
+    ##  2 ESF21MP-101 TWW      10    HDPE                  3.18 5.2     Particle   
+    ##  3 ESF21MP-102 CON      10    LDPE                  3.18 7.2     Particle   
+    ##  4 ESF21MP-103 TWW      10    PP                    3.18 5.2     Particle   
+    ##  5 ESF21MP-104 CON      10    PP                    3.18 7.2     Particle   
+    ##  6 ESF21MP-105 TWW      10    HDPE                  3.18 8.1     Particle   
+    ##  7 ESF21MP-106 CON      10    LDPE                  3.18 7.1     Particle   
+    ##  8 ESF21MP-107 TWW      10    HDPE                  3.18 5.1     Particle   
+    ##  9 ESF21MP-108 CON      10    LDPE                  3.18 8.2     Particle   
+    ## 10 ESF21MP-109 CON      10    PP                    3.18 8.2     Particle   
+    ## # ℹ 141 more samples
+    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>
+
+``` r
+#Create NMDS
+mp.filt.particle.nmds.ord <- ordinate(
+  physeq = mp.filt.particle, 
+  method = "NMDS", 
+  distance = "bray"
+)
+```
+
+    ## Run 0 stress 0.1016472 
+    ## Run 1 stress 0.1182118 
+    ## Run 2 stress 0.1189451 
+    ## Run 3 stress 0.1176893 
+    ## Run 4 stress 0.1025661 
+    ## Run 5 stress 0.1016629 
+    ## ... Procrustes: rmse 0.003005103  max resid 0.03161655 
+    ## Run 6 stress 0.1024691 
+    ## Run 7 stress 0.1084945 
+    ## Run 8 stress 0.1011705 
+    ## ... New best solution
+    ## ... Procrustes: rmse 0.01324517  max resid 0.1031719 
+    ## Run 9 stress 0.1075118 
+    ## Run 10 stress 0.1199804 
+    ## Run 11 stress 0.1017838 
+    ## Run 12 stress 0.1194886 
+    ## Run 13 stress 0.1035735 
+    ## Run 14 stress 0.1075926 
+    ## Run 15 stress 0.1188789 
+    ## Run 16 stress 0.1079221 
+    ## Run 17 stress 0.1007854 
+    ## ... New best solution
+    ## ... Procrustes: rmse 0.01279426  max resid 0.1035468 
+    ## Run 18 stress 0.102034 
+    ## Run 19 stress 0.1141629 
+    ## Run 20 stress 0.108425 
+    ## *** Best solution was not repeated -- monoMDS stopping criteria:
+    ##     18: stress ratio > sratmax
+    ##      2: scale factor of the gradient < sfgrmin
+
+``` r
+#Plot, color coding by particle type
+particle.nmds.type <- plot_ordination(
+  physeq = mp.filt.particle,
+  ordination = mp.filt.particle.nmds.ord) + 
+  scale_fill_manual(values = plot.colors, "Particle Type") +
+  scale_shape_manual(values = c("MP" = 21, "Glass" = 21), name = "Particle Type") +
+  geom_point(mapping = aes(fill = factor(particle_type), shape = particle_type, size = 5)) +
+  guides(size=FALSE) +
+  guides(shape = guide_legend(override.aes = list(size = 3))) +
+  theme(plot.title = element_text(size = 18),
+        text = element_text(size = 18), 
+        axis.title = element_text(size = 15),
+        panel.spacing = unit(1, "lines"), 
+        panel.border = element_rect(colour = "black", fill = NA, size = 0.5), 
+        panel.background = element_blank(), 
+        legend.text = element_text(size = 12),
+        legend.title = element_text(size = 13),
+        legend.position = c(.25, .23),
+        legend.justification = c("right", "top"),
+        legend.box.just = "right",
+        legend.margin = margin(6, 6, 6, 6)) +
+  stat_ellipse(aes(group=particle_type))
+
+print(particle.nmds.type)
+```
+
+![](Analysis_files/figure-gfm/NMDS%20994%202-1.png)<!-- -->
+
+``` r
+#Plot, color coding by water source
+particle.nmds.source <- plot_ordination(
+  physeq = mp.filt.particle,
+  ordination = mp.filt.particle.nmds.ord) + 
+  scale_fill_manual(values = plot.colors, "Water Source") +
+  scale_shape_manual(values = c("CON" = 21, "TWW" = 21), name = "Water Source") +
+  geom_point(mapping = aes(fill = factor(effluent), shape = effluent, size = 5)) +
+  guides(size=FALSE) +
+  guides(shape = guide_legend(override.aes = list(size = 3))) +
+  theme(plot.title = element_text(size = 18),
+        text = element_text(size = 18), 
+        axis.title = element_text(size = 15),
+        panel.spacing = unit(1, "lines"), 
+        panel.border = element_rect(colour = "black", fill = NA, size = 0.5), 
+        panel.background = element_blank(), 
+        legend.text = element_text(size = 12),
+        legend.title = element_text(size = 13),
+        legend.position = c(.25, .23),
+        legend.justification = c("right", "top"),
+        legend.box.just = "right",
+        legend.margin = margin(6, 6, 6, 6)) +
+  stat_ellipse(aes(group=effluent))
+
+print(particle.nmds.source)
+```
+
+![](Analysis_files/figure-gfm/NMDS%20994%202-2.png)<!-- -->
+
+``` r
+#Plot, color coding by week
+particle.nmds.week <- plot_ordination(
+  physeq = mp.filt.particle,
+  ordination = mp.filt.particle.nmds.ord) + 
+  scale_fill_manual(values = plot.colors, "Week") +
+  scale_shape_manual(values = c("2" = 21, "6" = 21, "10" = 21), name = "Week") +
+  geom_point(mapping = aes(fill = factor(week), shape = week, size = 5)) +
+  guides(size=FALSE) +
+  guides(shape = guide_legend(override.aes = list(size = 3))) +
+  theme(plot.title = element_text(size = 18),
+        text = element_text(size = 18), 
+        axis.title = element_text(size = 15),
+        panel.spacing = unit(1, "lines"), 
+        panel.border = element_rect(colour = "black", fill = NA, size = 0.5), 
+        panel.background = element_blank(), 
+        legend.text = element_text(size = 12),
+        legend.title = element_text(size = 13),
+        legend.position = c(.14, .27),
+        legend.justification = c("right", "top"),
+        legend.box.just = "right",
+        legend.margin = margin(6, 6, 6, 6)) +
+  stat_ellipse(aes(group=week))
+
+print(particle.nmds.week)
+```
+
+![](Analysis_files/figure-gfm/NMDS%20994%202-3.png)<!-- -->
+
+``` r
+#Plot, color coding by polymer type
+particle.nmds.polymer <- plot_ordination(
+  physeq = mp.filt.particle,
+  ordination = mp.filt.particle.nmds.ord) + 
+  scale_fill_manual(values = plot.colors, "Polymer Type") +
+  scale_shape_manual(values = c("Glass" = 21, "HDPE" = 21, "LDPE" = 21, "PP" = 21,
+                                "PS" = 21), name = "Polymer Type") +
+  geom_point(mapping = aes(fill = factor(polymer_type), shape = polymer_type, size = 5)) +
+  guides(size=FALSE) +
+  guides(shape = guide_legend(override.aes = list(size = 3))) +
+  theme(plot.title = element_text(size = 18),
+        text = element_text(size = 18), 
+        axis.title = element_text(size = 15),
+        panel.spacing = unit(1, "lines"), 
+        panel.border = element_rect(colour = "black", fill = NA, size = 0.5), 
+        panel.background = element_blank(), 
+        legend.text = element_text(size = 12),
+        legend.title = element_text(size = 13),
+        legend.position = c(.25, .4),
+        legend.justification = c("right", "top"),
+        legend.box.just = "right",
+        legend.margin = margin(6, 6, 6, 6)) + 
+  stat_ellipse(aes(group=polymer_type))
+
+print(particle.nmds.polymer)
+```
+
+![](Analysis_files/figure-gfm/NMDS%20994%202-4.png)<!-- -->
+
+``` r
+#Use patchwork to combine these 4 plots
+particle_combo <- (particle.nmds.type | particle.nmds.source)/(particle.nmds.week | particle.nmds.polymer)
+
+#Save as an svg file
+ggsave(filename="Microplastics_NMDS_particle.svg", plot=particle_combo, width=12, height=10, device=svg)
+```
+
+## 9.4 NMDS of particles (glass and MPs) only, no water, at 2 weeks, Bray-Curtis dissimilarity
 
 # 10 Session Info
 
@@ -11386,7 +14572,7 @@ devtools::session_info()
     ##  collate  English_United States.utf8
     ##  ctype    English_United States.utf8
     ##  tz       America/New_York
-    ##  date     2023-06-23
+    ##  date     2023-07-18
     ##  pandoc   2.18 @ C:/Program Files/RStudio/bin/quarto/bin/tools/ (via rmarkdown)
     ## 
     ## ─ Packages ───────────────────────────────────────────────────────────────────
@@ -11434,7 +14620,7 @@ devtools::session_info()
     ##    DT                     0.28       2023-05-18 [1] CRAN (R 4.2.3)
     ##    e1071                  1.7-13     2023-02-01 [1] CRAN (R 4.2.3)
     ##    ellipsis               0.3.2      2021-04-29 [1] CRAN (R 4.2.3)
-    ##    emdbook                1.3.12     2020-02-19 [1] CRAN (R 4.2.3)
+    ##    emdbook                1.3.13     2023-07-03 [1] CRAN (R 4.2.1)
     ##    evaluate               0.21       2023-05-05 [1] CRAN (R 4.2.3)
     ##    fansi                  1.0.4      2023-01-22 [1] CRAN (R 4.2.3)
     ##    farver                 2.1.1      2022-07-06 [1] CRAN (R 4.2.3)
@@ -11500,7 +14686,7 @@ devtools::session_info()
     ##    phyloseq             * 1.42.0     2022-11-01 [1] Bioconductor
     ##    picante              * 1.8.2      2020-06-10 [1] CRAN (R 4.2.3)
     ##    pillar                 1.9.0      2023-03-22 [1] CRAN (R 4.2.3)
-    ##    pkgbuild               1.4.0      2022-11-27 [1] CRAN (R 4.2.3)
+    ##    pkgbuild               1.4.2      2023-06-26 [1] CRAN (R 4.2.1)
     ##    pkgconfig              2.0.3      2019-09-22 [1] CRAN (R 4.2.3)
     ##    pkgload                1.3.2      2022-11-16 [1] CRAN (R 4.2.3)
     ##    plyr                 * 1.8.8      2022-11-11 [1] CRAN (R 4.2.3)
@@ -11524,7 +14710,7 @@ devtools::session_info()
     ##    Rhdf5lib               1.20.0     2022-11-01 [1] Bioconductor
     ##    rjson                  0.2.21     2022-01-09 [1] CRAN (R 4.2.0)
     ##    rlang                  1.1.1      2023-04-28 [1] CRAN (R 4.2.3)
-    ##    rmarkdown              2.22       2023-06-01 [1] CRAN (R 4.2.3)
+    ##    rmarkdown              2.23       2023-07-01 [1] CRAN (R 4.2.1)
     ##    rpart                  4.1.19     2022-10-21 [1] CRAN (R 4.2.3)
     ##    RSQLite                2.3.1      2023-04-03 [1] CRAN (R 4.2.3)
     ##    rstudioapi             0.14       2022-08-22 [1] CRAN (R 4.2.3)
@@ -11545,19 +14731,19 @@ devtools::session_info()
     ##    survival               3.5-5      2023-03-12 [1] CRAN (R 4.2.3)
     ##    svglite                2.1.1      2023-01-10 [1] CRAN (R 4.2.3)
     ##    systemfonts            1.0.4      2022-02-11 [1] CRAN (R 4.2.3)
-    ##    tibble                 3.2.1      2023-03-20 [1] CRAN (R 4.2.3)
+    ##    tibble               * 3.2.1      2023-03-20 [1] CRAN (R 4.2.3)
     ##    tidyr                * 1.3.0      2023-01-24 [1] CRAN (R 4.2.3)
     ##    tidyselect             1.2.0      2022-10-10 [1] CRAN (R 4.2.3)
     ##    truncnorm              1.0-9      2023-03-20 [1] CRAN (R 4.2.3)
     ##    units                  0.8-2      2023-04-27 [1] CRAN (R 4.2.3)
     ##    urlchecker             1.0.1      2021-11-30 [1] CRAN (R 4.2.3)
-    ##    usethis                2.2.0      2023-06-06 [1] CRAN (R 4.2.3)
+    ##    usethis                2.2.1      2023-06-23 [1] CRAN (R 4.2.3)
     ##    utf8                   1.2.3      2023-01-31 [1] CRAN (R 4.2.3)
     ##    vctrs                  0.6.2      2023-04-19 [1] CRAN (R 4.2.3)
     ##    vegan                * 2.6-4      2022-10-11 [1] CRAN (R 4.2.3)
     ##    viridis              * 0.6.3      2023-05-03 [1] CRAN (R 4.2.3)
     ##    viridisLite          * 0.4.2      2023-05-02 [1] CRAN (R 4.2.3)
-    ##    webshot                0.5.4      2022-09-26 [1] CRAN (R 4.2.3)
+    ##    webshot                0.5.5      2023-06-26 [1] CRAN (R 4.2.1)
     ##    withr                  2.5.0      2022-03-03 [1] CRAN (R 4.2.3)
     ##    xfun                   0.39       2023-04-20 [1] CRAN (R 4.2.3)
     ##    XML                    3.99-0.14  2023-03-19 [1] CRAN (R 4.2.3)
