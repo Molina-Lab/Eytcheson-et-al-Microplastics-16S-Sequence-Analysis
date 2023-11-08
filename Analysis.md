@@ -1,13 +1,22 @@
 Analysis
 ================
 Sarah Brown
-2023-04-28
+2023-11-8
 
 -   <a href="#1-load-packages-and-import-data"
     id="toc-1-load-packages-and-import-data">1 Load Packages and Import
     Data</a>
 -   <a href="#2-preparing-the-data" id="toc-2-preparing-the-data">2
     Preparing the Data</a>
+    -   <a href="#21-remove-contaminants-blanks-and-controls"
+        id="toc-21-remove-contaminants-blanks-and-controls">2.1 Remove
+        contaminants, blanks, and controls</a>
+    -   <a href="#22-examine-the-number-of-reads"
+        id="toc-22-examine-the-number-of-reads">2.2 Examine the number of
+        reads</a>
+    -   <a href="#23-label-variables-and-transform-to-relative-abundance"
+        id="toc-23-label-variables-and-transform-to-relative-abundance">2.3
+        Label variables and transform to relative abundance</a>
 -   <a href="#3-alpha-diversity" id="toc-3-alpha-diversity">3 Alpha
     Diversity</a>
     -   <a href="#31-calculate-shannon-diversity-per-sample"
@@ -20,13 +29,13 @@ Sarah Brown
             id="toc-321-comparison-particles-vs-water">3.2.1 Comparison: particles
             vs. water</a>
         -   <a
-            href="#322-comparison-particle-types-microplastic-glass-or-water-between-effluent-sources"
-            id="toc-322-comparison-particle-types-microplastic-glass-or-water-between-effluent-sources">3.2.2
+            href="#322-comparison-particle-types-microplastic-glass-or-water-between-treatments"
+            id="toc-322-comparison-particle-types-microplastic-glass-or-water-between-treatments">3.2.2
             Comparison: particle types (microplastic, glass, or water) between
-            effluent sources</a>
-        -   <a href="#323-comparison-polymer-types-by-effluent-source"
-            id="toc-323-comparison-polymer-types-by-effluent-source">3.2.3
-            Comparison: polymer types by effluent source</a>
+            treatments</a>
+        -   <a href="#323-comparison-polymer-types-by-treatment"
+            id="toc-323-comparison-polymer-types-by-treatment">3.2.3 Comparison:
+            polymer types by treatment</a>
         -   <a href="#324-comparison-particle_type-glass-vs-microplastics-over-time"
             id="toc-324-comparison-particle_type-glass-vs-microplastics-over-time">3.2.4
             Comparison: particle_type (glass vs. microplastics) over time</a>
@@ -36,44 +45,46 @@ Sarah Brown
 -   <a href="#4-alpha-diversity-statistics"
     id="toc-4-alpha-diversity-statistics">4 Alpha Diversity statistics</a>
 -   <a href="#5-nmds-plots" id="toc-5-nmds-plots">5 NMDS plots</a>
-    -   <a href="#51-nmds-of-all-data" id="toc-51-nmds-of-all-data">5.1 NMDS of
+    -   <a href="#51-choose-colors" id="toc-51-choose-colors">5.1 Choose
+        colors</a>
+    -   <a href="#52-nmds-of-all-data" id="toc-52-nmds-of-all-data">5.2 NMDS of
         all data</a>
     -   <a
-        href="#52-nmds-of-particles-glass-and-mps-only-no-water-bray-curtis-dissimilarity"
-        id="toc-52-nmds-of-particles-glass-and-mps-only-no-water-bray-curtis-dissimilarity">5.2
+        href="#53-nmds-of-particles-glass-and-mps-only-no-water-bray-curtis-dissimilarity"
+        id="toc-53-nmds-of-particles-glass-and-mps-only-no-water-bray-curtis-dissimilarity">5.3
         NMDS of particles (glass and MPs) only, no water, Bray-Curtis
         dissimilarity</a>
     -   <a
-        href="#53-nmds-of-particles-glass-and-mps-only-no-water-unifrac-dissimmilarity"
-        id="toc-53-nmds-of-particles-glass-and-mps-only-no-water-unifrac-dissimmilarity">5.3
+        href="#54-nmds-of-particles-glass-and-mps-only-no-water-unifrac-dissimmilarity"
+        id="toc-54-nmds-of-particles-glass-and-mps-only-no-water-unifrac-dissimmilarity">5.4
         NMDS of particles (glass and MPs) only, no water, Unifrac
         dissimmilarity</a>
     -   <a
-        href="#54-nmds-of-particles-glass-and-mps-only-no-water-at-2-weeks-bray-curtis-dissimilarity"
-        id="toc-54-nmds-of-particles-glass-and-mps-only-no-water-at-2-weeks-bray-curtis-dissimilarity">5.4
+        href="#55-nmds-of-particles-glass-and-mps-only-no-water-at-2-weeks-bray-curtis-dissimilarity"
+        id="toc-55-nmds-of-particles-glass-and-mps-only-no-water-at-2-weeks-bray-curtis-dissimilarity">5.5
         NMDS of particles (glass and MPs) only, no water, at 2 weeks,
         Bray-Curtis dissimilarity</a>
     -   <a
-        href="#55-nmds-of-particles-glass-and-mps-only-no-water-at-6-weeks-bray-curtis-dissimilarity"
-        id="toc-55-nmds-of-particles-glass-and-mps-only-no-water-at-6-weeks-bray-curtis-dissimilarity">5.5
+        href="#56-nmds-of-particles-glass-and-mps-only-no-water-at-6-weeks-bray-curtis-dissimilarity"
+        id="toc-56-nmds-of-particles-glass-and-mps-only-no-water-at-6-weeks-bray-curtis-dissimilarity">5.6
         NMDS of particles (glass and MPs) only, no water, at 6 weeks,
         Bray-Curtis dissimilarity</a>
     -   <a
-        href="#56-nmds-of-particles-glass-and-mps-only-no-water-at-10-weeks-bray-curtis-dissimilarity"
-        id="toc-56-nmds-of-particles-glass-and-mps-only-no-water-at-10-weeks-bray-curtis-dissimilarity">5.6
+        href="#57-nmds-of-particles-glass-and-mps-only-no-water-at-10-weeks-bray-curtis-dissimilarity"
+        id="toc-57-nmds-of-particles-glass-and-mps-only-no-water-at-10-weeks-bray-curtis-dissimilarity">5.7
         NMDS of particles (glass and MPs) only, no water, at 10 weeks,
         Bray-Curtis dissimilarity</a>
-    -   <a href="#57-nmds-of-mps-only-bray-curtis-dissimilarity"
-        id="toc-57-nmds-of-mps-only-bray-curtis-dissimilarity">5.7 NMDS of MP’s
+    -   <a href="#58-nmds-of-mps-only-bray-curtis-dissimilarity"
+        id="toc-58-nmds-of-mps-only-bray-curtis-dissimilarity">5.8 NMDS of MP’s
         only, Bray-Curtis dissimilarity</a>
-    -   <a href="#58-nmds-of-mps-only-at-2-weeks-bray-curtis-dissimilarity"
-        id="toc-58-nmds-of-mps-only-at-2-weeks-bray-curtis-dissimilarity">5.8
+    -   <a href="#59-nmds-of-mps-only-at-2-weeks-bray-curtis-dissimilarity"
+        id="toc-59-nmds-of-mps-only-at-2-weeks-bray-curtis-dissimilarity">5.9
         NMDS of MP’s only, at 2 weeks, Bray-Curtis dissimilarity</a>
-    -   <a href="#59-nmds-of-mps-only-at-6-weeks-bray-curtis-dissimilarity"
-        id="toc-59-nmds-of-mps-only-at-6-weeks-bray-curtis-dissimilarity">5.9
+    -   <a href="#510-nmds-of-mps-only-at-6-weeks-bray-curtis-dissimilarity"
+        id="toc-510-nmds-of-mps-only-at-6-weeks-bray-curtis-dissimilarity">5.10
         NMDS of MP’s only, at 6 weeks, Bray-Curtis dissimilarity</a>
-    -   <a href="#510-nmds-of-mps-only-at-10-weeks-bray-curtis-dissimilarity"
-        id="toc-510-nmds-of-mps-only-at-10-weeks-bray-curtis-dissimilarity">5.10
+    -   <a href="#511-nmds-of-mps-only-at-10-weeks-bray-curtis-dissimilarity"
+        id="toc-511-nmds-of-mps-only-at-10-weeks-bray-curtis-dissimilarity">5.11
         NMDS of MP’s only, at 10 weeks, Bray-Curtis dissimilarity</a>
 -   <a href="#6-permanova-analysis" id="toc-6-permanova-analysis">6
     PERMANOVA Analysis</a>
@@ -126,9 +137,12 @@ Sarah Brown
     -   <a href="#83-mp-in-tww-vs-mp-in-river-water-all-timepoints"
         id="toc-83-mp-in-tww-vs-mp-in-river-water-all-timepoints">8.3 MP in TWW
         vs MP in River Water, all timepoints</a>
-        -   <a href="#831-create-bar-plot-of-results---log-normalized-counts"
-            id="toc-831-create-bar-plot-of-results---log-normalized-counts">8.3.1
-            Create bar plot of results - log normalized counts</a>
+        -   <a href="#831-create-bar-plot-of-results---log-normalized-counts-fig-s9"
+            id="toc-831-create-bar-plot-of-results---log-normalized-counts-fig-s9">8.3.1
+            Create bar plot of results - log normalized counts (Fig. S9)</a>
+        -   <a href="#832-create-dot-plot-of-results---log2fold-change-fig-4"
+            id="toc-832-create-dot-plot-of-results---log2fold-change-fig-4">8.3.2
+            Create dot plot of results - log2fold change (Fig. 4)</a>
     -   <a href="#84-mp-vs-glass-all-timepoints-combined-water-sources"
         id="toc-84-mp-vs-glass-all-timepoints-combined-water-sources">8.4 MP vs
         glass, all timepoints, combined water sources</a>
@@ -141,145 +155,330 @@ Sarah Brown
         -   <a href="#851-create-bar-plot-of-results---log-normalized-counts"
             id="toc-851-create-bar-plot-of-results---log-normalized-counts">8.5.1
             Create bar plot of results - log normalized counts</a>
+    -   <a href="#86-test---1-mp-type-vs-glass-all-timepoints-river-water-only"
+        id="toc-86-test---1-mp-type-vs-glass-all-timepoints-river-water-only">8.6
+        TEST - 1 MP type vs glass, all timepoints, river water only</a>
+    -   <a href="#87-mp-vs-glass-all-timepoints-tww-only"
+        id="toc-87-mp-vs-glass-all-timepoints-tww-only">8.7 MP vs glass, all
+        timepoints, TWW only</a>
+        -   <a href="#871-create-bar-plot-of-results---log-normalized-counts"
+            id="toc-871-create-bar-plot-of-results---log-normalized-counts">8.7.1
+            Create bar plot of results - log normalized counts</a>
     -   <a
-        href="#86-examining-changes-in-bacterial-communities-on-glass-beads-over-time"
-        id="toc-86-examining-changes-in-bacterial-communities-on-glass-beads-over-time">8.6
+        href="#88-examining-changes-in-bacterial-communities-on-glass-beads-over-time"
+        id="toc-88-examining-changes-in-bacterial-communities-on-glass-beads-over-time">8.8
         Examining changes in bacterial communities on glass beads over time</a>
         -   <a
-            href="#861-contrasts---2w-6w-10w-river-water-glass-only-vs-river-water"
-            id="toc-861-contrasts---2w-6w-10w-river-water-glass-only-vs-river-water">8.6.1
+            href="#881-contrasts---2w-6w-10w-river-water-glass-only-vs-river-water"
+            id="toc-881-contrasts---2w-6w-10w-river-water-glass-only-vs-river-water">8.8.1
             Contrasts - 2w, 6w, 10w river water glass only, vs river water</a>
-        -   <a href="#862-contrasts---2w-6w-10w-tww-glass-only-vs-tww"
-            id="toc-862-contrasts---2w-6w-10w-tww-glass-only-vs-tww">8.6.2 Contrasts
+        -   <a href="#882-contrasts---2w-6w-10w-tww-glass-only-vs-tww"
+            id="toc-882-contrasts---2w-6w-10w-tww-glass-only-vs-tww">8.8.2 Contrasts
             - 2w, 6w, 10w TWW Glass only, vs TWW</a>
-        -   <a href="#863-venn-diagrams" id="toc-863-venn-diagrams">8.6.3 Venn
+        -   <a href="#883-venn-diagrams" id="toc-883-venn-diagrams">8.8.3 Venn
             Diagrams</a>
+        -   <a href="#884-heatmap" id="toc-884-heatmap">8.8.4 Heatmap</a>
+        -   <a href="#885-heatmap-at-genus-level-with-annotations-fig-s8"
+            id="toc-885-heatmap-at-genus-level-with-annotations-fig-s8">8.8.5
+            Heatmap at genus level with annotations (Fig. S8)</a>
+        -   <a href="#886-heatmap-at-family-level-with-annotations-fig-s7"
+            id="toc-886-heatmap-at-family-level-with-annotations-fig-s7">8.8.6
+            Heatmap at family level with annotations (Fig. S7)</a>
     -   <a
-        href="#87-examining-changes-in-bacterial-communities-on-microplastics-over-time"
-        id="toc-87-examining-changes-in-bacterial-communities-on-microplastics-over-time">8.7
+        href="#89-examining-changes-in-bacterial-communities-on-microplastics-over-time"
+        id="toc-89-examining-changes-in-bacterial-communities-on-microplastics-over-time">8.9
         Examining changes in bacterial communities on microplastics over
         time</a>
-        -   <a href="#871-contrasts---2w-6w-10w-river-water-mps-only-vs-river-water"
-            id="toc-871-contrasts---2w-6w-10w-river-water-mps-only-vs-river-water">8.7.1
+        -   <a href="#891-contrasts---2w-6w-10w-river-water-mps-only-vs-river-water"
+            id="toc-891-contrasts---2w-6w-10w-river-water-mps-only-vs-river-water">8.9.1
             Contrasts - 2w, 6w, 10w river water MP’s only, vs river water</a>
-        -   <a href="#872-contrasts---2w-6w-10w-tww-mps-only-vs-tww"
-            id="toc-872-contrasts---2w-6w-10w-tww-mps-only-vs-tww">8.7.2 Contrasts -
+        -   <a href="#892-contrasts---2w-6w-10w-tww-mps-only-vs-tww"
+            id="toc-892-contrasts---2w-6w-10w-tww-mps-only-vs-tww">8.9.2 Contrasts -
             2w, 6w, 10w TWW MP’s only, vs TWW</a>
-        -   <a href="#873-venn-diagrams" id="toc-873-venn-diagrams">8.7.3 Venn
+        -   <a href="#893-venn-diagrams" id="toc-893-venn-diagrams">8.9.3 Venn
             Diagrams</a>
-        -   <a href="#874-superexacttest" id="toc-874-superexacttest">8.7.4
+        -   <a href="#894-superexacttest" id="toc-894-superexacttest">8.9.4
             SuperExactTest</a>
-        -   <a href="#875-heatmap" id="toc-875-heatmap">8.7.5 Heatmap</a>
-        -   <a href="#876-heatmap-at-genus-level"
-            id="toc-876-heatmap-at-genus-level">8.7.6 Heatmap at genus level</a>
-        -   <a href="#877-heatmap-at-family-level"
-            id="toc-877-heatmap-at-family-level">8.7.7 Heatmap at family level</a>
-        -   <a href="#878-heatmap-at-family-level-with-annotations"
-            id="toc-878-heatmap-at-family-level-with-annotations">8.7.8 Heatmap at
-            family level with annotations</a>
-        -   <a href="#879-finding-asvs-enriched-on-con-mp--tww-mp"
-            id="toc-879-finding-asvs-enriched-on-con-mp--tww-mp">8.7.9 Finding ASV’s
-            enriched on CON MP &amp; TWW MP</a>
+        -   <a href="#895-heatmap" id="toc-895-heatmap">8.9.5 Heatmap</a>
+        -   <a href="#896-heatmap-at-genus-level"
+            id="toc-896-heatmap-at-genus-level">8.9.6 Heatmap at genus level</a>
+        -   <a href="#897-heatmap-at-genus-level-with-annotations-fig-s6"
+            id="toc-897-heatmap-at-genus-level-with-annotations-fig-s6">8.9.7
+            Heatmap at genus level with annotations (Fig. S6)</a>
+        -   <a href="#898-heatmap-at-family-level"
+            id="toc-898-heatmap-at-family-level">8.9.8 Heatmap at family level</a>
+        -   <a href="#899-heatmap-at-family-level-with-annotations-fig-3"
+            id="toc-899-heatmap-at-family-level-with-annotations-fig-3">8.9.9
+            Heatmap at family level with annotations (Fig. 3)</a>
+        -   <a href="#8910-finding-asvs-enriched-on-con-mp--tww-mp-fig-s5"
+            id="toc-8910-finding-asvs-enriched-on-con-mp--tww-mp-fig-s5">8.9.10
+            Finding ASV’s enriched on CON MP &amp; TWW MP (Fig. S5)</a>
         -   <a
-            href="#8710-phylogenetic-tree-comparing-asvs-enriched-on-con-vs-tww-mps"
-            id="toc-8710-phylogenetic-tree-comparing-asvs-enriched-on-con-vs-tww-mps">8.7.10
+            href="#8911-phylogenetic-tree-comparing-asvs-enriched-on-con-vs-tww-mps"
+            id="toc-8911-phylogenetic-tree-comparing-asvs-enriched-on-con-vs-tww-mps">8.9.11
             Phylogenetic tree comparing ASVs enriched on CON vs TWW MP’s</a>
     -   <a
-        href="#88-comparing-bacterial-community-composition-between-glass-and-microplastics"
-        id="toc-88-comparing-bacterial-community-composition-between-glass-and-microplastics">8.8
-        Comparing bacterial community composition between glass and
-        microplastics</a>
-        -   <a href="#881-venn-diagram-river-water-timepoints"
-            id="toc-881-venn-diagram-river-water-timepoints">8.8.1 Venn Diagram,
+        href="#810-examining-changes-in-bacterial-communities-on-ps-over-time"
+        id="toc-810-examining-changes-in-bacterial-communities-on-ps-over-time">8.10
+        Examining changes in bacterial communities on PS over time</a>
+        -   <a href="#8101-contrasts---2w-6w-10w-river-water-ps-only-vs-river-water"
+            id="toc-8101-contrasts---2w-6w-10w-river-water-ps-only-vs-river-water">8.10.1
+            Contrasts - 2w, 6w, 10w river water PS only, vs river water</a>
+        -   <a href="#8102-venn-diagrams---ps-river"
+            id="toc-8102-venn-diagrams---ps-river">8.10.2 Venn Diagrams - PS
+            River</a>
+        -   <a href="#8103-contrasts---2w-6w-10w-tww-ps-only-vs-tww"
+            id="toc-8103-contrasts---2w-6w-10w-tww-ps-only-vs-tww">8.10.3 Contrasts
+            - 2w, 6w, 10w TWW PS only, vs TWW</a>
+        -   <a href="#8104-venn-diagrams---ps-tww"
+            id="toc-8104-venn-diagrams---ps-tww">8.10.4 Venn Diagrams - PS TWW</a>
+    -   <a
+        href="#811-examining-changes-in-bacterial-communities-on-ldpe-over-time"
+        id="toc-811-examining-changes-in-bacterial-communities-on-ldpe-over-time">8.11
+        Examining changes in bacterial communities on LDPE over time</a>
+        -   <a
+            href="#8111-contrasts---2w-6w-10w-river-water-ldpe-only-vs-river-water"
+            id="toc-8111-contrasts---2w-6w-10w-river-water-ldpe-only-vs-river-water">8.11.1
+            Contrasts - 2w, 6w, 10w river water LDPE only, vs river water</a>
+        -   <a href="#8112-venn-diagrams---ldpe-river"
+            id="toc-8112-venn-diagrams---ldpe-river">8.11.2 Venn Diagrams - LDPE
+            river</a>
+        -   <a href="#8113-contrasts---2w-6w-10w-tww-ldpe-only-vs-tww"
+            id="toc-8113-contrasts---2w-6w-10w-tww-ldpe-only-vs-tww">8.11.3
+            Contrasts - 2w, 6w, 10w TWW LDPE only, vs TWW</a>
+        -   <a href="#8114-venn-diagrams---ldpe-tww"
+            id="toc-8114-venn-diagrams---ldpe-tww">8.11.4 Venn Diagrams - LDPE
+            TWW</a>
+    -   <a
+        href="#812-examining-changes-in-bacterial-communities-on-hdpe-over-time"
+        id="toc-812-examining-changes-in-bacterial-communities-on-hdpe-over-time">8.12
+        Examining changes in bacterial communities on HDPE over time</a>
+        -   <a
+            href="#8121-contrasts---2w-6w-10w-river-water-hdpe-only-vs-river-water"
+            id="toc-8121-contrasts---2w-6w-10w-river-water-hdpe-only-vs-river-water">8.12.1
+            Contrasts - 2w, 6w, 10w river water HDPE only, vs river water</a>
+        -   <a href="#8122-venn-diagrams---hdpe-river"
+            id="toc-8122-venn-diagrams---hdpe-river">8.12.2 Venn Diagrams - HDPE
+            river</a>
+        -   <a href="#8123-contrasts---2w-6w-10w-tww-hdpe-only-vs-tww"
+            id="toc-8123-contrasts---2w-6w-10w-tww-hdpe-only-vs-tww">8.12.3
+            Contrasts - 2w, 6w, 10w TWW HDPE only, vs TWW</a>
+        -   <a href="#8124-venn-diagrams---hdpe-tww"
+            id="toc-8124-venn-diagrams---hdpe-tww">8.12.4 Venn Diagrams - HDPE
+            TWW</a>
+    -   <a
+        href="#813-examining-changes-in-bacterial-communities-on-pp-over-time"
+        id="toc-813-examining-changes-in-bacterial-communities-on-pp-over-time">8.13
+        Examining changes in bacterial communities on PP over time</a>
+        -   <a href="#8131-contrasts---2w-6w-10w-river-water-pp-only-vs-river-water"
+            id="toc-8131-contrasts---2w-6w-10w-river-water-pp-only-vs-river-water">8.13.1
+            Contrasts - 2w, 6w, 10w river water PP only, vs river water</a>
+        -   <a href="#8132-venn-diagrams---pp-river"
+            id="toc-8132-venn-diagrams---pp-river">8.13.2 Venn Diagrams - PP
+            river</a>
+        -   <a href="#8133-contrasts---2w-6w-10w-tww-pp-only-vs-tww"
+            id="toc-8133-contrasts---2w-6w-10w-tww-pp-only-vs-tww">8.13.3 Contrasts
+            - 2w, 6w, 10w TWW PP only, vs TWW</a>
+        -   <a href="#8134-venn-diagrams---pp-tww"
+            id="toc-8134-venn-diagrams---pp-tww">8.13.4 Venn Diagrams - PP TWW</a>
+    -   <a
+        href="#814-comparing-bacterial-community-composition-between-river-water-glass-and-mp"
+        id="toc-814-comparing-bacterial-community-composition-between-river-water-glass-and-mp">8.14
+        Comparing bacterial community composition between river water glass and
+        MP</a>
+        -   <a href="#8141-venn-diagram-river-water-timepoints"
+            id="toc-8141-venn-diagram-river-water-timepoints">8.14.1 Venn Diagram,
             river water timepoints</a>
-        -   <a href="#882-finding-asvs-enriched-on-mp--glass"
-            id="toc-882-finding-asvs-enriched-on-mp--glass">8.8.2 Finding ASV’s
+        -   <a href="#8142-finding-asvs-enriched-on-mp--glass"
+            id="toc-8142-finding-asvs-enriched-on-mp--glass">8.14.2 Finding ASV’s
             enriched on MP &amp; glass</a>
-        -   <a href="#883-venn-diagram-tww" id="toc-883-venn-diagram-tww">8.8.3 Venn
-            Diagram, TWW</a>
-        -   <a href="#884-superexacttest" id="toc-884-superexacttest">8.8.4
+        -   <a href="#8143-venn-diagram-tww" id="toc-8143-venn-diagram-tww">8.14.3
+            Venn Diagram, TWW</a>
+        -   <a href="#8144-superexacttest" id="toc-8144-superexacttest">8.14.4
             SuperExactTest</a>
--   <a href="#9-nmds-plots---filtered-dataset"
-    id="toc-9-nmds-plots---filtered-dataset">9 NMDS plots - filtered
-    dataset</a>
+    -   <a
+        href="#815-comparing-bacterial-community-composition-between-glass-and-ps"
+        id="toc-815-comparing-bacterial-community-composition-between-glass-and-ps">8.15
+        Comparing bacterial community composition between glass and PS</a>
+        -   <a href="#8151-finding-asvs-enriched-on-ps--glass-in-river-water"
+            id="toc-8151-finding-asvs-enriched-on-ps--glass-in-river-water">8.15.1
+            Finding ASVs enriched on PS &amp; glass in river water</a>
+        -   <a href="#8152-finding-asvs-enriched-on-ps--glass-in-tww"
+            id="toc-8152-finding-asvs-enriched-on-ps--glass-in-tww">8.15.2 Finding
+            ASVs enriched on PS &amp; glass in TWW</a>
+    -   <a
+        href="#816-comparing-bacterial-community-composition-between-river-water-glass-and-ldpe"
+        id="toc-816-comparing-bacterial-community-composition-between-river-water-glass-and-ldpe">8.16
+        Comparing bacterial community composition between river water glass and
+        LDPE</a>
+        -   <a href="#8161-finding-asvs-enriched-on-ldpe--glass"
+            id="toc-8161-finding-asvs-enriched-on-ldpe--glass">8.16.1 Finding ASVs
+            enriched on LDPE &amp; glass</a>
+        -   <a href="#8162-finding-asvs-enriched-on-ldpe--glass-in-tww"
+            id="toc-8162-finding-asvs-enriched-on-ldpe--glass-in-tww">8.16.2 Finding
+            ASVs enriched on LDPE &amp; glass in TWW</a>
+    -   <a
+        href="#817-comparing-bacterial-community-composition-between-river-water-glass-and-hdpe"
+        id="toc-817-comparing-bacterial-community-composition-between-river-water-glass-and-hdpe">8.17
+        Comparing bacterial community composition between river water glass and
+        HDPE</a>
+        -   <a href="#8171-finding-asvs-enriched-on-hdpe--glass"
+            id="toc-8171-finding-asvs-enriched-on-hdpe--glass">8.17.1 Finding ASVs
+            enriched on HDPE &amp; glass</a>
+        -   <a href="#8172-finding-asvs-enriched-on-hdpe--glass-in-tww"
+            id="toc-8172-finding-asvs-enriched-on-hdpe--glass-in-tww">8.17.2 Finding
+            ASVs enriched on HDPE &amp; glass in TWW</a>
+    -   <a
+        href="#818-comparing-bacterial-community-composition-between-river-water-glass-and-pp"
+        id="toc-818-comparing-bacterial-community-composition-between-river-water-glass-and-pp">8.18
+        Comparing bacterial community composition between river water glass and
+        PP</a>
+        -   <a href="#8181-finding-asvs-enriched-on-pp--glass"
+            id="toc-8181-finding-asvs-enriched-on-pp--glass">8.18.1 Finding ASVs
+            enriched on PP &amp; glass</a>
+        -   <a href="#8182-finding-asvs-enriched-on-pp--glass-in-tww"
+            id="toc-8182-finding-asvs-enriched-on-pp--glass-in-tww">8.18.2 Finding
+            ASVs enriched on PP &amp; glass in TWW</a>
+    -   <a
+        href="#819-comparing-bacterial-community-composition-between-all-river-water-polymer-types"
+        id="toc-819-comparing-bacterial-community-composition-between-all-river-water-polymer-types">8.19
+        Comparing bacterial community composition between all river water
+        polymer types</a>
+    -   <a
+        href="#820-comparing-bacterial-community-composition-between-all-tww-polymer-types"
+        id="toc-820-comparing-bacterial-community-composition-between-all-tww-polymer-types">8.20
+        Comparing bacterial community composition between all TWW polymer
+        types</a>
+-   <a href="#9-alpha-diversity---filtered-dataset"
+    id="toc-9-alpha-diversity---filtered-dataset">9 Alpha diversity -
+    filtered dataset</a>
     -   <a href="#91-preparing-the-data" id="toc-91-preparing-the-data">9.1
         Preparing the data</a>
-    -   <a href="#92-nmds-of-all-data" id="toc-92-nmds-of-all-data">9.2 NMDS of
-        all data</a>
+    -   <a href="#92-calculate-shannon-diversity-per-sample"
+        id="toc-92-calculate-shannon-diversity-per-sample">9.2 Calculate Shannon
+        Diversity per Sample</a>
+    -   <a href="#93-create-alpha-diversity-boxplots"
+        id="toc-93-create-alpha-diversity-boxplots">9.3 Create Alpha Diversity
+        Boxplots</a>
+        -   <a href="#931-comparison-particles-vs-water-fig-s1"
+            id="toc-931-comparison-particles-vs-water-fig-s1">9.3.1 Comparison:
+            particles vs. water (Fig. S1)</a>
+        -   <a
+            href="#932-comparison-sample-types-mp-glass-water-between-treatments-fig-s2"
+            id="toc-932-comparison-sample-types-mp-glass-water-between-treatments-fig-s2">9.3.2
+            Comparison: sample types (MP, glass, water) between treatments (Fig.
+            S2)</a>
+        -   <a href="#933-comparison-polymer-types-by-treatment-fig-s3"
+            id="toc-933-comparison-polymer-types-by-treatment-fig-s3">9.3.3
+            Comparison: polymer types by treatment (Fig. S3)</a>
+        -   <a href="#934-comparison-particle_type-glass-vs-mps-over-time-fig-s4"
+            id="toc-934-comparison-particle_type-glass-vs-mps-over-time-fig-s4">9.3.4
+            Comparison: particle_type (glass vs. MPs) over time (Fig. S4)</a>
+        -   <a href="#935-comparison-polymer-types-over-time"
+            id="toc-935-comparison-polymer-types-over-time">9.3.5 Comparison:
+            polymer types over time</a>
+-   <a href="#10-alpha-diversity-statistics---filtered-dataset"
+    id="toc-10-alpha-diversity-statistics---filtered-dataset">10 Alpha
+    diversity statistics - filtered dataset</a>
+-   <a href="#11-nmds-plots---filtered-dataset"
+    id="toc-11-nmds-plots---filtered-dataset">11 NMDS plots - filtered
+    dataset</a>
+    -   <a href="#111-choose-colors" id="toc-111-choose-colors">11.1 Choose
+        colors</a>
+    -   <a href="#112-label-variables" id="toc-112-label-variables">11.2 Label
+        variables</a>
+    -   <a href="#113-nmds-of-all-data-fig-1"
+        id="toc-113-nmds-of-all-data-fig-1">11.3 NMDS of all data (Fig. 1)</a>
     -   <a
-        href="#93-nmds-of-particles-glass-and-mps-only-no-water-bray-curtis-dissimilarity"
-        id="toc-93-nmds-of-particles-glass-and-mps-only-no-water-bray-curtis-dissimilarity">9.3
+        href="#114-nmds-of-particles-glass-and-mps-only-no-water-bray-curtis-dissimilarity"
+        id="toc-114-nmds-of-particles-glass-and-mps-only-no-water-bray-curtis-dissimilarity">11.4
         NMDS of particles (glass and MPs) only, no water, Bray-Curtis
         dissimilarity</a>
     -   <a
-        href="#94-nmds-of-particles-glass-and-mps-only-no-water-at-2-weeks-bray-curtis-dissimilarity"
-        id="toc-94-nmds-of-particles-glass-and-mps-only-no-water-at-2-weeks-bray-curtis-dissimilarity">9.4
+        href="#115-nmds-of-particles-glass-and-mps-only-no-water-at-2-weeks-bray-curtis-dissimilarity"
+        id="toc-115-nmds-of-particles-glass-and-mps-only-no-water-at-2-weeks-bray-curtis-dissimilarity">11.5
         NMDS of particles (glass and MPs) only, no water, at 2 weeks,
         Bray-Curtis dissimilarity</a>
     -   <a
-        href="#95-nmds-of-particles-glass-and-mps-only-no-water-at-6-weeks-bray-curtis-dissimilarity"
-        id="toc-95-nmds-of-particles-glass-and-mps-only-no-water-at-6-weeks-bray-curtis-dissimilarity">9.5
+        href="#116-nmds-of-particles-glass-and-mps-only-no-water-at-6-weeks-bray-curtis-dissimilarity"
+        id="toc-116-nmds-of-particles-glass-and-mps-only-no-water-at-6-weeks-bray-curtis-dissimilarity">11.6
         NMDS of particles (glass and MPs) only, no water, at 6 weeks,
         Bray-Curtis dissimilarity</a>
     -   <a
-        href="#96-nmds-of-particles-glass-and-mps-only-no-water-at-10-weeks-bray-curtis-dissimilarity"
-        id="toc-96-nmds-of-particles-glass-and-mps-only-no-water-at-10-weeks-bray-curtis-dissimilarity">9.6
+        href="#117-nmds-of-particles-glass-and-mps-only-no-water-at-10-weeks-bray-curtis-dissimilarity"
+        id="toc-117-nmds-of-particles-glass-and-mps-only-no-water-at-10-weeks-bray-curtis-dissimilarity">11.7
         NMDS of particles (glass and MPs) only, no water, at 10 weeks,
         Bray-Curtis dissimilarity</a>
-    -   <a href="#97-nmds-of-mps-only-bray-curtis-dissimilarity"
-        id="toc-97-nmds-of-mps-only-bray-curtis-dissimilarity">9.7 NMDS of MP’s
-        only, Bray-Curtis dissimilarity</a>
-    -   <a href="#98-nmds-of-mps-only-at-2-weeks-bray-curtis-dissimilarity"
-        id="toc-98-nmds-of-mps-only-at-2-weeks-bray-curtis-dissimilarity">9.8
+    -   <a href="#118-nmds-of-mps-only-bray-curtis-dissimilarity"
+        id="toc-118-nmds-of-mps-only-bray-curtis-dissimilarity">11.8 NMDS of
+        MP’s only, Bray-Curtis dissimilarity</a>
+    -   <a href="#119-nmds-of-mps-only-at-2-weeks-bray-curtis-dissimilarity"
+        id="toc-119-nmds-of-mps-only-at-2-weeks-bray-curtis-dissimilarity">11.9
         NMDS of MP’s only, at 2 weeks, Bray-Curtis dissimilarity</a>
-    -   <a href="#99-nmds-of-mps-only-at-6-weeks-bray-curtis-dissimilarity"
-        id="toc-99-nmds-of-mps-only-at-6-weeks-bray-curtis-dissimilarity">9.9
+    -   <a href="#1110-nmds-of-mps-only-at-6-weeks-bray-curtis-dissimilarity"
+        id="toc-1110-nmds-of-mps-only-at-6-weeks-bray-curtis-dissimilarity">11.10
         NMDS of MP’s only, at 6 weeks, Bray-Curtis dissimilarity</a>
-    -   <a href="#910-nmds-of-mps-only-at-10-weeks-bray-curtis-dissimilarity"
-        id="toc-910-nmds-of-mps-only-at-10-weeks-bray-curtis-dissimilarity">9.10
+    -   <a href="#1111-nmds-of-mps-only-at-10-weeks-bray-curtis-dissimilarity"
+        id="toc-1111-nmds-of-mps-only-at-10-weeks-bray-curtis-dissimilarity">11.11
         NMDS of MP’s only, at 10 weeks, Bray-Curtis dissimilarity</a>
--   <a href="#10-permanova-analysis---filtered-dataset"
-    id="toc-10-permanova-analysis---filtered-dataset">10 PERMANOVA Analysis
-    - filtered dataset</a>
+    -   <a href="#1112-combine-nmds-plots-for-fig-2"
+        id="toc-1112-combine-nmds-plots-for-fig-2">11.12 Combine NMDS plots for
+        Fig. 2</a>
     -   <a
-        href="#101-permanova-analysis-of-particles-glass-and-mps-only-no-water-bray-and-unifrac"
-        id="toc-101-permanova-analysis-of-particles-glass-and-mps-only-no-water-bray-and-unifrac">10.1
+        href="#1113-nmds-of-river-water-particles-glass-and-mps-only-at-10-weeks-bray-curtis-dissimilarity"
+        id="toc-1113-nmds-of-river-water-particles-glass-and-mps-only-at-10-weeks-bray-curtis-dissimilarity">11.13
+        NMDS of river water particles (glass and MPs only), at 10 weeks,
+        Bray-Curtis dissimilarity</a>
+-   <a href="#12-permanova-analysis---filtered-dataset"
+    id="toc-12-permanova-analysis---filtered-dataset">12 PERMANOVA Analysis
+    - filtered dataset</a>
+    -   <a href="#121-permanova-analysis-of-all-data-bray"
+        id="toc-121-permanova-analysis-of-all-data-bray">12.1 PERMANOVA analysis
+        of all data, bray</a>
+    -   <a
+        href="#122-permanova-analysis-of-particles-glass-and-mps-only-no-water-bray-and-unifrac"
+        id="toc-122-permanova-analysis-of-particles-glass-and-mps-only-no-water-bray-and-unifrac">12.2
         PERMANOVA analysis of particles (glass and MPs) only, no water, bray and
         unifrac</a>
     -   <a
-        href="#102-permanova-analysis-of-particles-glass-and-mps-only-no-water-at-2-weeks-bray"
-        id="toc-102-permanova-analysis-of-particles-glass-and-mps-only-no-water-at-2-weeks-bray">10.2
+        href="#123-permanova-analysis-of-particles-glass-and-mps-only-no-water-at-2-weeks-bray"
+        id="toc-123-permanova-analysis-of-particles-glass-and-mps-only-no-water-at-2-weeks-bray">12.3
         PERMANOVA analysis of particles (glass and MPs) only, no water at 2
         weeks, bray</a>
     -   <a
-        href="#103-permanova-analysis-of-particles-glass-and-mps-only-no-water-at-6-weeks-bray"
-        id="toc-103-permanova-analysis-of-particles-glass-and-mps-only-no-water-at-6-weeks-bray">10.3
+        href="#124-permanova-analysis-of-particles-glass-and-mps-only-no-water-at-6-weeks-bray"
+        id="toc-124-permanova-analysis-of-particles-glass-and-mps-only-no-water-at-6-weeks-bray">12.4
         PERMANOVA analysis of particles (glass and MPs) only, no water at 6
         weeks, bray</a>
     -   <a
-        href="#104-permanova-analysis-of-particles-glass-and-mps-only-no-water-at-10-weeks-bray"
-        id="toc-104-permanova-analysis-of-particles-glass-and-mps-only-no-water-at-10-weeks-bray">10.4
+        href="#125-permanova-analysis-of-particles-glass-and-mps-only-no-water-at-10-weeks-bray"
+        id="toc-125-permanova-analysis-of-particles-glass-and-mps-only-no-water-at-10-weeks-bray">12.5
         PERMANOVA analysis of particles (glass and MPs) only, no water at 10
         weeks, bray</a>
-    -   <a href="#105-permanova-analysis-of-mps-only-bray"
-        id="toc-105-permanova-analysis-of-mps-only-bray">10.5 PERMANOVA analysis
+    -   <a href="#126-permanova-analysis-of-mps-only-bray"
+        id="toc-126-permanova-analysis-of-mps-only-bray">12.6 PERMANOVA analysis
         of MP’s only, bray</a>
     -   <a
-        href="#106-permanova-analysis-of-plastics-only-no-water-no-glass-at-2-weeks-bray"
-        id="toc-106-permanova-analysis-of-plastics-only-no-water-no-glass-at-2-weeks-bray">10.6
+        href="#127-permanova-analysis-of-plastics-only-no-water-no-glass-at-2-weeks-bray"
+        id="toc-127-permanova-analysis-of-plastics-only-no-water-no-glass-at-2-weeks-bray">12.7
         PERMANOVA analysis of plastics only, no water, no glass, at 2 weeks,
         bray</a>
     -   <a
-        href="#107-permanova-analysis-of-plastics-only-no-water-no-glass-at-6-weeks-bray"
-        id="toc-107-permanova-analysis-of-plastics-only-no-water-no-glass-at-6-weeks-bray">10.7
+        href="#128-permanova-analysis-of-plastics-only-no-water-no-glass-at-6-weeks-bray"
+        id="toc-128-permanova-analysis-of-plastics-only-no-water-no-glass-at-6-weeks-bray">12.8
         PERMANOVA analysis of plastics only, no water, no glass, at 6 weeks,
         bray</a>
     -   <a
-        href="#108-permanova-analysis-of-plastics-only-no-water-no-glass-at-10-weeks-bray"
-        id="toc-108-permanova-analysis-of-plastics-only-no-water-no-glass-at-10-weeks-bray">10.8
+        href="#129-permanova-analysis-of-plastics-only-no-water-no-glass-at-10-weeks-bray"
+        id="toc-129-permanova-analysis-of-plastics-only-no-water-no-glass-at-10-weeks-bray">12.9
         PERMANOVA analysis of plastics only, no water, no glass, at 10 weeks,
         bray</a>
--   <a href="#11-session-info" id="toc-11-session-info">11 Session Info</a>
+    -   <a
+        href="#1210-pairwise-permanova-analysis-of-plastics-only-no-water-no-glass-at-10-weeks-bray"
+        id="toc-1210-pairwise-permanova-analysis-of-plastics-only-no-water-no-glass-at-10-weeks-bray">12.10
+        Pairwise PERMANOVA analysis of plastics only, no water, no glass, at 10
+        weeks, bray</a>
+-   <a href="#13-session-info" id="toc-13-session-info">13 Session Info</a>
 
 # 1 Load Packages and Import Data
 
@@ -309,6 +508,7 @@ library(ggVennDiagram)
 library(SuperExactTest)
 library(nVennR)
 library(ggh4x)
+library(tidyverse)
 
 set.seed(13289)
 
@@ -323,6 +523,8 @@ MPphyseq <- qza_to_phyloseq(
 ```
 
 # 2 Preparing the Data
+
+## 2.1 Remove contaminants, blanks, and controls
 
 Before performing any analyses, we need to examine the phyloseq object
 and remove chloroplast and mitochondrial sequences:
@@ -342,9 +544,10 @@ rank_names(MPphyseq)
 sample_variables(MPphyseq)
 ```
 
-    ## [1] "effluent"               "week"                   "polymer_type"          
-    ## [4] "bead_diameter"          "Channel"                "sample_type"           
-    ## [7] "particle_type"          "particle_effluent"      "particle_effluent_time"
+    ##  [1] "effluent"               "week"                   "polymer_type"          
+    ##  [4] "bead_diameter"          "Channel"                "sample_type"           
+    ##  [7] "particle_type"          "particle_effluent"      "particle_effluent_time"
+    ## [10] "polymer_effluent_time"
 
 ``` r
 #Remove chloroplast sequences and any contaminant sequences
@@ -362,6 +565,11 @@ taxtabl <- as.data.frame(tax_table(MPphyseq))
 MPphyseq = subset_samples(MPphyseq, effluent != "FB")
 ```
 
+## 2.2 Examine the number of reads
+
+First, creating a bar plot showing the number of reads and ASV’s per
+sample:
+
 ``` r
 #Examining the total number of reads and ASV's
 readsumsdf = data.frame(nreads = sort(taxa_sums(MPphyseq), TRUE), 
@@ -374,6 +582,8 @@ p + ggtitle(title) + scale_y_log10() + facet_wrap(~type, 1, scales = "free")
 ```
 
 ![](Analysis_files/figure-gfm/asv%20plot-1.png)<!-- -->
+
+And then plotting a rarefaction curve using vegan:
 
 ``` r
 #Rarefaction curve using vegan
@@ -416,13 +626,16 @@ system.time(rarecurve(mat, step = 100, sample = raremax, col = "blue", label = F
 ![](Analysis_files/figure-gfm/rarefaction%20curve-1.png)<!-- -->
 
     ##    user  system elapsed 
-    ##   25.98    1.58   27.61
+    ##   63.80    3.83   75.83
+
+## 2.3 Label variables and transform to relative abundance
+
+If you type in MPphyseq you will see that sample_data is the matrix
+within the phyloseq object that holds the information that we want to
+change, so we need to include sample_data in our code here in order to
+re-label and organize the variables.
 
 ``` r
-#Re-label the variables; if you type in MPphyseq you will see that sample_data 
-#is the matrix that holds the information that we want to change, so we need to 
-#include sample_data in our code here
-
 #Order factors
 sample_data(MPphyseq)$effluent <- factor(sample_data(MPphyseq)$effluent, 
                                            levels = c("CON", "TWW"),
@@ -452,7 +665,7 @@ MPphyseqRA = transform_sample_counts(MPphyseq, function(x){x / sum(x)})
 sample_data(MPphyseqRA)
 ```
 
-    ## Sample Data:        [ 151 samples by 9 sample variables ]:
+    ## Sample Data:        [ 151 samples by 10 sample variables ]:
     ##                effluent week  polymer_type bead_diameter Channel sample_type
     ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
     ##  1 ESF21MP-100 CON      10    HDPE                  3.18 7.1     Particle   
@@ -466,15 +679,15 @@ sample_data(MPphyseqRA)
     ##  9 ESF21MP-108 CON      10    LDPE                  3.18 8.2     Particle   
     ## 10 ESF21MP-109 CON      10    PP                    3.18 8.2     Particle   
     ## # ℹ 141 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 mp.con <- subset_samples(MPphyseqRA, effluent == "CON")
 sample_data(mp.con)
 ```
 
-    ## Sample Data:        [ 75 samples by 9 sample variables ]:
+    ## Sample Data:        [ 75 samples by 10 sample variables ]:
     ##                effluent week  polymer_type bead_diameter Channel sample_type
     ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
     ##  1 ESF21MP-100 CON      10    HDPE                  3.18 7.1     Particle   
@@ -488,15 +701,15 @@ sample_data(mp.con)
     ##  9 ESF21MP-114 CON      10    PS                    3.18 7.2     Particle   
     ## 10 ESF21MP-117 CON      10    Glass                 3.18 7.1     Particle   
     ## # ℹ 65 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 mp.tww <- subset_samples(MPphyseqRA, effluent == "TWW")
 sample_data(mp.tww)
 ```
 
-    ## Sample Data:        [ 76 samples by 9 sample variables ]:
+    ## Sample Data:        [ 76 samples by 10 sample variables ]:
     ##                effluent week  polymer_type bead_diameter Channel sample_type
     ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
     ##  1 ESF21MP-101 TWW      10    HDPE                  3.18 5.2     Particle   
@@ -510,16 +723,16 @@ sample_data(mp.tww)
     ##  9 ESF21MP-123 TWW      10    PS                    3.18 6.2     Particle   
     ## 10 ESF21MP-126 TWW      10    PP                    3.18 5.1     Particle   
     ## # ℹ 66 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 # 3 Alpha Diversity
 
-Note that these data are not rarefied. We’ll use the Shannon diversity
-index (based on richness AND evenness; examines how many different taxa
-are present and how evenly they’re distributed within a sample) to
-analyze alpha diversity between variable types. This means it considers
-both the number of species and the inequality between species
+Note that these data are not rarefied yet. We’ll use the Shannon
+diversity index (based on richness AND evenness; examines how many
+different taxa are present and how evenly they’re distributed within a
+sample) to analyze alpha diversity between variable types. This means it
+considers both the number of species and the inequality between species
 abundances.
 
 ## 3.1 Calculate Shannon Diversity per Sample
@@ -547,14 +760,13 @@ s <- data.frame(sample_data(MPphyseqRA))
 s <- setNames(cbind(rownames(s), s, row.names = NULL), 
               c("sample-id", "effluent", "week", "polymer_type", 
                 "bead_diameter", "Channel", "sample_type", "particle_type",
-                "particle_effluent", "particle_effluent_time"))
+                "particle_effluent", "particle_effluent_time", "polymer_effluent_time"))
 
 alphadiv <- merge(s, richness, by = "sample-id")
 
 #Order factors
 alphadiv$polymer_type <- factor(alphadiv$polymer_type, 
-                        levels = c("Glass", "HDPE", "LDPE", "PP", "PS", "Water"),
-                        labels = c("Glass", "HDPE", "LDPE", "PP", "PS", "Water")) 
+                        levels = c("Glass", "HDPE", "LDPE", "PP", "PS", "Water")) 
 
 #Shows the calculated indices
 knitr::kable(head(alphadiv)) %>% 
@@ -619,6 +831,11 @@ particle_effluent
 particle_effluent_time
 
 </th>
+<th style="text-align:left;">
+
+polymer_effluent_time
+
+</th>
 <th style="text-align:right;">
 
 Shannon
@@ -678,6 +895,11 @@ MP_CON
 MP_CON_10
 
 </td>
+<td style="text-align:left;">
+
+HDPE_CON_10
+
+</td>
 <td style="text-align:right;">
 
 5.500475
@@ -733,6 +955,11 @@ MP_TWW
 <td style="text-align:left;">
 
 MP_TWW_10
+
+</td>
+<td style="text-align:left;">
+
+HDPE_TWW_10
 
 </td>
 <td style="text-align:right;">
@@ -792,6 +1019,11 @@ MP_CON
 MP_CON_10
 
 </td>
+<td style="text-align:left;">
+
+LDPE_CON_10
+
+</td>
 <td style="text-align:right;">
 
 5.045258
@@ -847,6 +1079,11 @@ MP_TWW
 <td style="text-align:left;">
 
 MP_TWW_10
+
+</td>
+<td style="text-align:left;">
+
+PP_TWW_10
 
 </td>
 <td style="text-align:right;">
@@ -906,6 +1143,11 @@ MP_CON
 MP_CON_10
 
 </td>
+<td style="text-align:left;">
+
+PP_CON_10
+
+</td>
 <td style="text-align:right;">
 
 5.174548
@@ -963,6 +1205,11 @@ MP_TWW
 MP_TWW_10
 
 </td>
+<td style="text-align:left;">
+
+HDPE_TWW_10
+
+</td>
 <td style="text-align:right;">
 
 3.987267
@@ -979,44 +1226,58 @@ MP_TWW_10
 ### 3.2.1 Comparison: particles vs. water
 
 ``` r
+#Relabel variables
+alphadiv$effluent <- factor(alphadiv$effluent, 
+                                           levels = c("CON", "TWW"),
+                                           labels = c("River", "TWW"))
+
 #Plot
-ggplot(data=alphadiv, aes(x=sample_type, y=Shannon), alpha=0.1) + 
+alpha_particlesvwater <- ggplot(data=alphadiv, aes(x=sample_type, y=Shannon), alpha=0.1) + 
   geom_boxplot(aes(fill=sample_type)) +
   geom_point(position=position_dodge(width=0.75),aes(group=sample_type)) +
-  facet_wrap(~effluent, scale="free") +
+  coord_cartesian(ylim = c(2, 6)) +
+  facet_wrap(~effluent, scale="free") + labs(fill = "Sample Type") +
   theme(legend.position="right",
         panel.border = element_rect(colour = "black", fill = NA, size = 0.5), 
-        panel.background = element_blank())
+        panel.background = element_blank(), axis.title.x = element_blank())
+
+print(alpha_particlesvwater)
 ```
 
 ![](Analysis_files/figure-gfm/boxplot1-1.png)<!-- -->
 
-### 3.2.2 Comparison: particle types (microplastic, glass, or water) between effluent sources
+### 3.2.2 Comparison: particle types (microplastic, glass, or water) between treatments
 
 ``` r
 #Plot
-ggplot(data=alphadiv, aes(x=effluent, y=Shannon), alpha=0.1) + 
+alpha_particleseffluent <- ggplot(data=alphadiv, aes(x=effluent, y=Shannon), alpha=0.1) + 
   geom_boxplot(aes(fill=effluent)) +
   geom_point(position=position_dodge(width=0.75),aes(group=effluent)) +
-  facet_wrap(~particle_type, scale="free") +
+  coord_cartesian(ylim = c(2, 6)) +
+  facet_wrap(~particle_type, scale="free") + labs(fill = "Treatment") +
   theme(legend.position="right",
         panel.border = element_rect(colour = "black", fill = NA, size = 0.5), 
-        panel.background = element_blank())
+        panel.background = element_blank(), axis.title.x = element_blank())
+
+print(alpha_particleseffluent)
 ```
 
 ![](Analysis_files/figure-gfm/boxplot2-1.png)<!-- -->
 
-### 3.2.3 Comparison: polymer types by effluent source
+### 3.2.3 Comparison: polymer types by treatment
 
 ``` r
 #Plot
-ggplot(data=alphadiv, aes(x=polymer_type, y=Shannon), alpha=0.1) + 
+alpha_polymereffluent <- ggplot(data=alphadiv, aes(x=polymer_type, y=Shannon), alpha=0.1) + 
   geom_boxplot(aes(fill=polymer_type)) +
   geom_point(position=position_dodge(width=0.75),aes(group=polymer_type)) +
-  facet_wrap(~effluent, scale="free") +
+  coord_cartesian(ylim = c(2, 6)) +
+  facet_wrap(~effluent, scale="free") + labs(fill = "Polymer Type") +
   theme(legend.position="right",
         panel.border = element_rect(colour = "black", fill = NA, size = 0.5), 
-        panel.background = element_blank())
+        panel.background = element_blank(), axis.title.x = element_blank())
+
+print(alpha_polymereffluent)
 ```
 
 ![](Analysis_files/figure-gfm/boxplot3-1.png)<!-- -->
@@ -1029,32 +1290,34 @@ alphadiv.particle <- filter(alphadiv, particle_type != "Water")
 sample_data(alphadiv.particle)
 ```
 
-    ## Sample Data:        [ 119 samples by 11 sample variables ]:
+    ## Sample Data:        [ 119 samples by 12 sample variables ]:
     ##          sample.id effluent week  polymer_type bead_diameter Channel sample_type
     ##          <chr>     <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
-    ##  1 sa1   ESF21MP-… CON      10    HDPE                  3.18 7.1     Particle   
+    ##  1 sa1   ESF21MP-… River    10    HDPE                  3.18 7.1     Particle   
     ##  2 sa2   ESF21MP-… TWW      10    HDPE                  3.18 5.2     Particle   
-    ##  3 sa3   ESF21MP-… CON      10    LDPE                  3.18 7.2     Particle   
+    ##  3 sa3   ESF21MP-… River    10    LDPE                  3.18 7.2     Particle   
     ##  4 sa4   ESF21MP-… TWW      10    PP                    3.18 5.2     Particle   
-    ##  5 sa5   ESF21MP-… CON      10    PP                    3.18 7.2     Particle   
+    ##  5 sa5   ESF21MP-… River    10    PP                    3.18 7.2     Particle   
     ##  6 sa6   ESF21MP-… TWW      10    HDPE                  3.18 8.1     Particle   
-    ##  7 sa7   ESF21MP-… CON      10    LDPE                  3.18 7.1     Particle   
+    ##  7 sa7   ESF21MP-… River    10    LDPE                  3.18 7.1     Particle   
     ##  8 sa8   ESF21MP-… TWW      10    HDPE                  3.18 5.1     Particle   
-    ##  9 sa9   ESF21MP-… CON      10    LDPE                  3.18 8.2     Particle   
-    ## 10 sa10  ESF21MP-… CON      10    PP                    3.18 8.2     Particle   
+    ##  9 sa9   ESF21MP-… River    10    LDPE                  3.18 8.2     Particle   
+    ## 10 sa10  ESF21MP-… River    10    PP                    3.18 8.2     Particle   
     ## # ℹ 109 more samples
-    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>, Shannon <dbl>
+    ## # ℹ 5 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>, Shannon <dbl>
 
 ``` r
 #Plot
-ggplot(data=alphadiv.particle, aes(x=week, y=Shannon), alpha=0.1) + 
+alpha_glassvMP <- ggplot(data=alphadiv.particle, aes(x=week, y=Shannon), alpha=0.1) + 
   geom_boxplot(aes(fill=particle_type)) +
   geom_point(position=position_dodge(width=0.75),aes(group=particle_type)) +
   facet_wrap(~effluent, scale="free") +
   theme(legend.position="right",
         panel.border = element_rect(colour = "black", fill = NA, size = 0.5), 
         panel.background = element_blank())
+
+print(alpha_glassvMP)
 ```
 
 ![](Analysis_files/figure-gfm/boxplot4-1.png)<!-- -->
@@ -1063,13 +1326,15 @@ ggplot(data=alphadiv.particle, aes(x=week, y=Shannon), alpha=0.1) +
 
 ``` r
 #Plot
-ggplot(data=alphadiv, aes(x=week, y=Shannon), alpha=0.1) + 
+alpha_polymertime <- ggplot(data=alphadiv, aes(x=week, y=Shannon), alpha=0.1) + 
 geom_boxplot(aes(fill=polymer_type)) +
   geom_point(position=position_dodge(width=0.75),aes(group=polymer_type)) +
   facet_wrap(~effluent, scale="free") +
   theme(legend.position="right",
         panel.border = element_rect(colour = "black", fill = NA, size = 0.5), 
         panel.background = element_blank())
+
+print(alpha_polymertime)
 ```
 
 ![](Analysis_files/figure-gfm/boxplot5-1.png)<!-- -->
@@ -1092,15 +1357,91 @@ differences between two groups is statistically significant.”
 #Wilcoxon pairwise test is a non-parametric alternative to paired t-test
 
 #Subset data by water source
-mp.con.shannon <- subset(alphadiv, effluent == "CON")
+mp.con.shannon <- subset(alphadiv, effluent == "River")
 mp.tww.shannon <- subset(alphadiv, effluent == "TWW")
+
+#Subset by particle_type; keep glass and MP only
+particle.con.shannon <- subset(mp.con.shannon, particle_type != "Water")
+particle.tww.shannon <- subset(mp.tww.shannon, particle_type != "Water")
 
 #Subset by particle type - microplastics only (particle_type = MP)
 mp.only.shannon <- subset(alphadiv, particle_type == "MP")
 
 #Subset MP only dataframe by water source
-mp.only.con.shannon <- subset(mp.only.shannon, effluent == "CON")
+mp.only.con.shannon <- subset(mp.only.shannon, effluent == "River")
 mp.only.tww.shannon <- subset(mp.only.shannon, effluent == "TWW")
+
+
+#Test for differences between particles and the surrounding water; separated by water type
+wilcoxon_shannon_particle_con <- wilcox.test(Shannon ~ sample_type, data = mp.con.shannon)
+wilcoxon_shannon_particle_con
+```
+
+    ## 
+    ##  Wilcoxon rank sum test with continuity correction
+    ## 
+    ## data:  Shannon by sample_type
+    ## W = 669, p-value = 0.01104
+    ## alternative hypothesis: true location shift is not equal to 0
+
+``` r
+#Wilcoxon rank sum test with continuity correction
+#data:  Shannon by sample_type
+#W = 669, p-value = 0.01104
+#alternative hypothesis: true location shift is not equal to 0
+
+wilcoxon_shannon_particle_tww <- wilcox.test(Shannon ~ sample_type, data = mp.tww.shannon)
+wilcoxon_shannon_particle_tww
+```
+
+    ## 
+    ##  Wilcoxon rank sum test with continuity correction
+    ## 
+    ## data:  Shannon by sample_type
+    ## W = 729, p-value = 0.001545
+    ## alternative hypothesis: true location shift is not equal to 0
+
+``` r
+#Wilcoxon rank sum test with continuity correction
+#data:  Shannon by sample_type
+#W = 729, p-value = 0.001545
+#alternative hypothesis: true location shift is not equal to 0
+
+
+#Test for differences in diversity between MP and glass; separated by water type
+wilcoxon_shannon_glass_v_mp_con <- wilcox.test(Shannon ~ particle_type, data = particle.con.shannon)
+wilcoxon_shannon_glass_v_mp_con
+```
+
+    ## 
+    ##  Wilcoxon rank sum exact test
+    ## 
+    ## data:  Shannon by particle_type
+    ## W = 256, p-value = 0.6353
+    ## alternative hypothesis: true location shift is not equal to 0
+
+``` r
+#Wilcoxon rank sum exact test
+#data:  Shannon by particle_type
+#W = 256, p-value = 0.6353
+#alternative hypothesis: true location shift is not equal to 0
+
+wilcoxon_shannon_glass_v_mp_tww <- wilcox.test(Shannon ~ particle_type, data = particle.tww.shannon)
+wilcoxon_shannon_glass_v_mp_tww
+```
+
+    ## 
+    ##  Wilcoxon rank sum exact test
+    ## 
+    ## data:  Shannon by particle_type
+    ## W = 387, p-value = 0.1476
+    ## alternative hypothesis: true location shift is not equal to 0
+
+``` r
+#Wilcoxon rank sum exact test
+#data:  Shannon by particle_type
+#W = 387, p-value = 0.1476
+#alternative hypothesis: true location shift is not equal to 0
 
 
 #Test for differences in MP alpha diversity between CON and TWW (does not include 
@@ -1779,12 +2120,13 @@ because it is not affected by the number of null values between samples
 like Euclidean distance, and nMDS is chosen because you can choose any
 similarity matrix, not like PCA.”
 
+## 5.1 Choose colors
+
 ``` r
-#Choose colors
 plot.colors <- c("steelblue2","purple4","darkorange","firebrick","springgreen4", "gold", "darkblue", "darkred", "steelblue", "yellowgreen","turquoise4", "orange","indianred","darkslategrey", "lightblue","darkgreen","mediumaquamarine","gray48","mediumorchid1", "#5F7FC7","#DA5724", "#508578", "#CBD588","#CD9BCD","#AD6F3B", "#673770","#D14285", "#652926", "#C84248", "#8569D5", "#5E738F","#D1A33D","#8A7C64", "#599861","dodgerblue","darkmagenta", "forestgreen","steelblue1", "cyan","mediumorchid3", "cadetblue3", "yellow")
 ```
 
-## 5.1 NMDS of all data
+## 5.2 NMDS of all data
 
 ``` r
 all.nmds.source.ord <- ordinate(
@@ -1979,14 +2321,14 @@ all_combo <- (all.nmds.particle_type | all.nmds.source)/(all.nmds.week | all.nmd
 ggsave(filename="Microplastics_NMDS_all_Bray.svg", plot=all_combo, width=12, height=10, device=svg)
 ```
 
-## 5.2 NMDS of particles (glass and MPs) only, no water, Bray-Curtis dissimilarity
+## 5.3 NMDS of particles (glass and MPs) only, no water, Bray-Curtis dissimilarity
 
 ``` r
 #Subset phyloseq object
 sample_data(MPphyseqRA)
 ```
 
-    ## Sample Data:        [ 151 samples by 9 sample variables ]:
+    ## Sample Data:        [ 151 samples by 10 sample variables ]:
     ##                effluent week  polymer_type bead_diameter Channel sample_type
     ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
     ##  1 ESF21MP-100 CON      10    HDPE                  3.18 7.1     Particle   
@@ -2000,15 +2342,15 @@ sample_data(MPphyseqRA)
     ##  9 ESF21MP-108 CON      10    LDPE                  3.18 8.2     Particle   
     ## 10 ESF21MP-109 CON      10    PP                    3.18 8.2     Particle   
     ## # ℹ 141 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 mp.count.particle <- subset_samples(MPphyseqRA, sample_type == "Particle")
 sample_data(mp.count.particle)
 ```
 
-    ## Sample Data:        [ 119 samples by 9 sample variables ]:
+    ## Sample Data:        [ 119 samples by 10 sample variables ]:
     ##                effluent week  polymer_type bead_diameter Channel sample_type
     ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
     ##  1 ESF21MP-100 CON      10    HDPE                  3.18 7.1     Particle   
@@ -2022,8 +2364,8 @@ sample_data(mp.count.particle)
     ##  9 ESF21MP-108 CON      10    LDPE                  3.18 8.2     Particle   
     ## 10 ESF21MP-109 CON      10    PP                    3.18 8.2     Particle   
     ## # ℹ 109 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 #Create NMDS
@@ -2187,14 +2529,14 @@ particle_combo <- (particle.nmds.type | particle.nmds.source)/(particle.nmds.wee
 ggsave(filename="Microplastics_NMDS_particle.svg", plot=particle_combo, width=12, height=10, device=svg)
 ```
 
-## 5.3 NMDS of particles (glass and MPs) only, no water, Unifrac dissimmilarity
+## 5.4 NMDS of particles (glass and MPs) only, no water, Unifrac dissimmilarity
 
 ``` r
 #Subset phyloseq object
 sample_data(MPphyseqRA)
 ```
 
-    ## Sample Data:        [ 151 samples by 9 sample variables ]:
+    ## Sample Data:        [ 151 samples by 10 sample variables ]:
     ##                effluent week  polymer_type bead_diameter Channel sample_type
     ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
     ##  1 ESF21MP-100 CON      10    HDPE                  3.18 7.1     Particle   
@@ -2208,15 +2550,15 @@ sample_data(MPphyseqRA)
     ##  9 ESF21MP-108 CON      10    LDPE                  3.18 8.2     Particle   
     ## 10 ESF21MP-109 CON      10    PP                    3.18 8.2     Particle   
     ## # ℹ 141 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 mp.count.particle <- subset_samples(MPphyseqRA, sample_type == "Particle")
 sample_data(mp.count.particle)
 ```
 
-    ## Sample Data:        [ 119 samples by 9 sample variables ]:
+    ## Sample Data:        [ 119 samples by 10 sample variables ]:
     ##                effluent week  polymer_type bead_diameter Channel sample_type
     ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
     ##  1 ESF21MP-100 CON      10    HDPE                  3.18 7.1     Particle   
@@ -2230,8 +2572,8 @@ sample_data(mp.count.particle)
     ##  9 ESF21MP-108 CON      10    LDPE                  3.18 8.2     Particle   
     ## 10 ESF21MP-109 CON      10    PP                    3.18 8.2     Particle   
     ## # ℹ 109 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 #Create NMDS
@@ -2399,14 +2741,14 @@ particle_combo_unifrac <- (particle.nmds.type.unifrac | particle.nmds.source.uni
 ggsave(filename="Microplastics_NMDS_particle_Unifrac.svg", plot=particle_combo_unifrac, width=12, height=10, device=svg)
 ```
 
-## 5.4 NMDS of particles (glass and MPs) only, no water, at 2 weeks, Bray-Curtis dissimilarity
+## 5.5 NMDS of particles (glass and MPs) only, no water, at 2 weeks, Bray-Curtis dissimilarity
 
 ``` r
 #Subset phyloseq object
 sample_data(MPphyseqRA)
 ```
 
-    ## Sample Data:        [ 151 samples by 9 sample variables ]:
+    ## Sample Data:        [ 151 samples by 10 sample variables ]:
     ##                effluent week  polymer_type bead_diameter Channel sample_type
     ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
     ##  1 ESF21MP-100 CON      10    HDPE                  3.18 7.1     Particle   
@@ -2420,15 +2762,15 @@ sample_data(MPphyseqRA)
     ##  9 ESF21MP-108 CON      10    LDPE                  3.18 8.2     Particle   
     ## 10 ESF21MP-109 CON      10    PP                    3.18 8.2     Particle   
     ## # ℹ 141 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 mp.count.particle <- subset_samples(MPphyseqRA, sample_type == "Particle")
 sample_data(mp.count.particle)
 ```
 
-    ## Sample Data:        [ 119 samples by 9 sample variables ]:
+    ## Sample Data:        [ 119 samples by 10 sample variables ]:
     ##                effluent week  polymer_type bead_diameter Channel sample_type
     ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
     ##  1 ESF21MP-100 CON      10    HDPE                  3.18 7.1     Particle   
@@ -2442,15 +2784,15 @@ sample_data(mp.count.particle)
     ##  9 ESF21MP-108 CON      10    LDPE                  3.18 8.2     Particle   
     ## 10 ESF21MP-109 CON      10    PP                    3.18 8.2     Particle   
     ## # ℹ 109 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 mp.count.particle.2 <- subset_samples(mp.count.particle, week == "2")
 sample_data(mp.count.particle.2)
 ```
 
-    ## Sample Data:        [ 40 samples by 9 sample variables ]:
+    ## Sample Data:        [ 40 samples by 10 sample variables ]:
     ##               effluent week  polymer_type bead_diameter Channel sample_type
     ##               <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
     ##  1 ESF21MP-13 TWW      2     Glass                 3.18 5.1     Particle   
@@ -2464,8 +2806,8 @@ sample_data(mp.count.particle.2)
     ##  9 ESF21MP-21 TWW      2     Glass                 3.18 6.2     Particle   
     ## 10 ESF21MP-22 TWW      2     PP                    3.18 5.2     Particle   
     ## # ℹ 30 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 #Create NMDS
@@ -2604,14 +2946,14 @@ particle_combo_2 <- (particle.nmds.type.2 | particle.nmds.source.2)/particle.nmd
 ggsave(filename="Microplastics_NMDS_particle_2w.svg", plot=particle_combo_2, width=12, height=10, device=svg)
 ```
 
-## 5.5 NMDS of particles (glass and MPs) only, no water, at 6 weeks, Bray-Curtis dissimilarity
+## 5.6 NMDS of particles (glass and MPs) only, no water, at 6 weeks, Bray-Curtis dissimilarity
 
 ``` r
 #Subset phyloseq object
 sample_data(MPphyseqRA)
 ```
 
-    ## Sample Data:        [ 151 samples by 9 sample variables ]:
+    ## Sample Data:        [ 151 samples by 10 sample variables ]:
     ##                effluent week  polymer_type bead_diameter Channel sample_type
     ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
     ##  1 ESF21MP-100 CON      10    HDPE                  3.18 7.1     Particle   
@@ -2625,15 +2967,15 @@ sample_data(MPphyseqRA)
     ##  9 ESF21MP-108 CON      10    LDPE                  3.18 8.2     Particle   
     ## 10 ESF21MP-109 CON      10    PP                    3.18 8.2     Particle   
     ## # ℹ 141 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 mp.count.particle <- subset_samples(MPphyseqRA, sample_type == "Particle")
 sample_data(mp.count.particle)
 ```
 
-    ## Sample Data:        [ 119 samples by 9 sample variables ]:
+    ## Sample Data:        [ 119 samples by 10 sample variables ]:
     ##                effluent week  polymer_type bead_diameter Channel sample_type
     ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
     ##  1 ESF21MP-100 CON      10    HDPE                  3.18 7.1     Particle   
@@ -2647,15 +2989,15 @@ sample_data(mp.count.particle)
     ##  9 ESF21MP-108 CON      10    LDPE                  3.18 8.2     Particle   
     ## 10 ESF21MP-109 CON      10    PP                    3.18 8.2     Particle   
     ## # ℹ 109 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 mp.count.particle.6 <- subset_samples(mp.count.particle, week == "6")
 sample_data(mp.count.particle.6)
 ```
 
-    ## Sample Data:        [ 39 samples by 9 sample variables ]:
+    ## Sample Data:        [ 39 samples by 10 sample variables ]:
     ##               effluent week  polymer_type bead_diameter Channel sample_type
     ##               <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
     ##  1 ESF21MP-56 TWW      6     PS                    3.18 5.1     Particle   
@@ -2669,8 +3011,8 @@ sample_data(mp.count.particle.6)
     ##  9 ESF21MP-64 TWW      6     Glass                 3.18 5.2     Particle   
     ## 10 ESF21MP-65 TWW      6     Glass                 3.18 6.2     Particle   
     ## # ℹ 29 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 #Create NMDS
@@ -2821,14 +3163,14 @@ particle_combo_6 <- (particle.nmds.type.6 | particle.nmds.source.6)/particle.nmd
 ggsave(filename="Microplastics_NMDS_particle_6w.svg", plot=particle_combo_6, width=12, height=10, device=svg)
 ```
 
-## 5.6 NMDS of particles (glass and MPs) only, no water, at 10 weeks, Bray-Curtis dissimilarity
+## 5.7 NMDS of particles (glass and MPs) only, no water, at 10 weeks, Bray-Curtis dissimilarity
 
 ``` r
 #Subset phyloseq object
 sample_data(MPphyseqRA)
 ```
 
-    ## Sample Data:        [ 151 samples by 9 sample variables ]:
+    ## Sample Data:        [ 151 samples by 10 sample variables ]:
     ##                effluent week  polymer_type bead_diameter Channel sample_type
     ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
     ##  1 ESF21MP-100 CON      10    HDPE                  3.18 7.1     Particle   
@@ -2842,15 +3184,15 @@ sample_data(MPphyseqRA)
     ##  9 ESF21MP-108 CON      10    LDPE                  3.18 8.2     Particle   
     ## 10 ESF21MP-109 CON      10    PP                    3.18 8.2     Particle   
     ## # ℹ 141 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 mp.count.particle <- subset_samples(MPphyseqRA, sample_type == "Particle")
 sample_data(mp.count.particle)
 ```
 
-    ## Sample Data:        [ 119 samples by 9 sample variables ]:
+    ## Sample Data:        [ 119 samples by 10 sample variables ]:
     ##                effluent week  polymer_type bead_diameter Channel sample_type
     ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
     ##  1 ESF21MP-100 CON      10    HDPE                  3.18 7.1     Particle   
@@ -2864,15 +3206,15 @@ sample_data(mp.count.particle)
     ##  9 ESF21MP-108 CON      10    LDPE                  3.18 8.2     Particle   
     ## 10 ESF21MP-109 CON      10    PP                    3.18 8.2     Particle   
     ## # ℹ 109 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 mp.count.particle.10 <- subset_samples(mp.count.particle, week == "10")
 sample_data(mp.count.particle.10)
 ```
 
-    ## Sample Data:        [ 40 samples by 9 sample variables ]:
+    ## Sample Data:        [ 40 samples by 10 sample variables ]:
     ##                effluent week  polymer_type bead_diameter Channel sample_type
     ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
     ##  1 ESF21MP-100 CON      10    HDPE                  3.18 7.1     Particle   
@@ -2886,8 +3228,8 @@ sample_data(mp.count.particle.10)
     ##  9 ESF21MP-108 CON      10    LDPE                  3.18 8.2     Particle   
     ## 10 ESF21MP-109 CON      10    PP                    3.18 8.2     Particle   
     ## # ℹ 30 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 #Create NMDS
@@ -3027,14 +3369,14 @@ particle_combo_10 <- (particle.nmds.type.10 | particle.nmds.source.10)/particle.
 ggsave(filename="Microplastics_NMDS_particle_10w.svg", plot=particle_combo_10, width=12, height=10, device=svg)
 ```
 
-## 5.7 NMDS of MP’s only, Bray-Curtis dissimilarity
+## 5.8 NMDS of MP’s only, Bray-Curtis dissimilarity
 
 ``` r
 #Subset phyloseq object
 sample_data(MPphyseqRA)
 ```
 
-    ## Sample Data:        [ 151 samples by 9 sample variables ]:
+    ## Sample Data:        [ 151 samples by 10 sample variables ]:
     ##                effluent week  polymer_type bead_diameter Channel sample_type
     ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
     ##  1 ESF21MP-100 CON      10    HDPE                  3.18 7.1     Particle   
@@ -3048,15 +3390,15 @@ sample_data(MPphyseqRA)
     ##  9 ESF21MP-108 CON      10    LDPE                  3.18 8.2     Particle   
     ## 10 ESF21MP-109 CON      10    PP                    3.18 8.2     Particle   
     ## # ℹ 141 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 mp.count.plastics <- subset_samples(MPphyseqRA, particle_type == "MP")
 sample_data(mp.count.plastics)
 ```
 
-    ## Sample Data:        [ 94 samples by 9 sample variables ]:
+    ## Sample Data:        [ 94 samples by 10 sample variables ]:
     ##                effluent week  polymer_type bead_diameter Channel sample_type
     ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
     ##  1 ESF21MP-100 CON      10    HDPE                  3.18 7.1     Particle   
@@ -3070,8 +3412,8 @@ sample_data(mp.count.plastics)
     ##  9 ESF21MP-108 CON      10    LDPE                  3.18 8.2     Particle   
     ## 10 ESF21MP-109 CON      10    PP                    3.18 8.2     Particle   
     ## # ℹ 84 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 #Create NMDS
@@ -3207,14 +3549,14 @@ plastics_combo <- (plastics.nmds.source | plastics.nmds.week)/(plastics.nmds.pol
 ggsave(filename="Microplastics_NMDS_particle.svg", plot=plastics_combo, width=12, height=10, device=svg)
 ```
 
-## 5.8 NMDS of MP’s only, at 2 weeks, Bray-Curtis dissimilarity
+## 5.9 NMDS of MP’s only, at 2 weeks, Bray-Curtis dissimilarity
 
 ``` r
 #Subset phyloseq object
 sample_data(MPphyseqRA)
 ```
 
-    ## Sample Data:        [ 151 samples by 9 sample variables ]:
+    ## Sample Data:        [ 151 samples by 10 sample variables ]:
     ##                effluent week  polymer_type bead_diameter Channel sample_type
     ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
     ##  1 ESF21MP-100 CON      10    HDPE                  3.18 7.1     Particle   
@@ -3228,15 +3570,15 @@ sample_data(MPphyseqRA)
     ##  9 ESF21MP-108 CON      10    LDPE                  3.18 8.2     Particle   
     ## 10 ESF21MP-109 CON      10    PP                    3.18 8.2     Particle   
     ## # ℹ 141 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 mp.count.plastics <- subset_samples(MPphyseqRA, particle_type == "MP")
 sample_data(mp.count.plastics)
 ```
 
-    ## Sample Data:        [ 94 samples by 9 sample variables ]:
+    ## Sample Data:        [ 94 samples by 10 sample variables ]:
     ##                effluent week  polymer_type bead_diameter Channel sample_type
     ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
     ##  1 ESF21MP-100 CON      10    HDPE                  3.18 7.1     Particle   
@@ -3250,15 +3592,15 @@ sample_data(mp.count.plastics)
     ##  9 ESF21MP-108 CON      10    LDPE                  3.18 8.2     Particle   
     ## 10 ESF21MP-109 CON      10    PP                    3.18 8.2     Particle   
     ## # ℹ 84 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 mp.count.plastics.2 <- subset_samples(mp.count.plastics, week == "2")
 sample_data(mp.count.plastics.2)
 ```
 
-    ## Sample Data:        [ 32 samples by 9 sample variables ]:
+    ## Sample Data:        [ 32 samples by 10 sample variables ]:
     ##               effluent week  polymer_type bead_diameter Channel sample_type
     ##               <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
     ##  1 ESF21MP-14 CON      2     PP                    3.18 8.2     Particle   
@@ -3272,8 +3614,8 @@ sample_data(mp.count.plastics.2)
     ##  9 ESF21MP-23 TWW      2     PP                    3.18 5.1     Particle   
     ## 10 ESF21MP-24 CON      2     LDPE                  3.18 7.1     Particle   
     ## # ℹ 22 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 #Create NMDS
@@ -3384,14 +3726,14 @@ plastics_combo_2 <- (plastics.nmds.source.2 | plastics.nmds.polymer.2)
 ggsave(filename="Microplastics_NMDS_plastics_2w.svg", plot=plastics_combo_2, width=12, height=6, device=svg)
 ```
 
-## 5.9 NMDS of MP’s only, at 6 weeks, Bray-Curtis dissimilarity
+## 5.10 NMDS of MP’s only, at 6 weeks, Bray-Curtis dissimilarity
 
 ``` r
 #Subset phyloseq object
 sample_data(MPphyseqRA)
 ```
 
-    ## Sample Data:        [ 151 samples by 9 sample variables ]:
+    ## Sample Data:        [ 151 samples by 10 sample variables ]:
     ##                effluent week  polymer_type bead_diameter Channel sample_type
     ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
     ##  1 ESF21MP-100 CON      10    HDPE                  3.18 7.1     Particle   
@@ -3405,15 +3747,15 @@ sample_data(MPphyseqRA)
     ##  9 ESF21MP-108 CON      10    LDPE                  3.18 8.2     Particle   
     ## 10 ESF21MP-109 CON      10    PP                    3.18 8.2     Particle   
     ## # ℹ 141 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 mp.count.plastics <- subset_samples(MPphyseqRA, particle_type == "MP")
 sample_data(mp.count.plastics)
 ```
 
-    ## Sample Data:        [ 94 samples by 9 sample variables ]:
+    ## Sample Data:        [ 94 samples by 10 sample variables ]:
     ##                effluent week  polymer_type bead_diameter Channel sample_type
     ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
     ##  1 ESF21MP-100 CON      10    HDPE                  3.18 7.1     Particle   
@@ -3427,15 +3769,15 @@ sample_data(mp.count.plastics)
     ##  9 ESF21MP-108 CON      10    LDPE                  3.18 8.2     Particle   
     ## 10 ESF21MP-109 CON      10    PP                    3.18 8.2     Particle   
     ## # ℹ 84 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 mp.count.plastics.6 <- subset_samples(mp.count.plastics, week == "6")
 sample_data(mp.count.plastics.6)
 ```
 
-    ## Sample Data:        [ 30 samples by 9 sample variables ]:
+    ## Sample Data:        [ 30 samples by 10 sample variables ]:
     ##               effluent week  polymer_type bead_diameter Channel sample_type
     ##               <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
     ##  1 ESF21MP-56 TWW      6     PS                    3.18 5.1     Particle   
@@ -3449,8 +3791,8 @@ sample_data(mp.count.plastics.6)
     ##  9 ESF21MP-70 CON      6     PP                    3.18 7.1     Particle   
     ## 10 ESF21MP-71 CON      6     PP                    3.18 8.2     Particle   
     ## # ℹ 20 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 #Create NMDS
@@ -3566,14 +3908,14 @@ plastics_combo_6 <- (plastics.nmds.source.6 | plastics.nmds.polymer.6)
 ggsave(filename="Microplastics_NMDS_plastics_6w.svg", plot=plastics_combo_6, width=12, height=6, device=svg)
 ```
 
-## 5.10 NMDS of MP’s only, at 10 weeks, Bray-Curtis dissimilarity
+## 5.11 NMDS of MP’s only, at 10 weeks, Bray-Curtis dissimilarity
 
 ``` r
 #Subset phyloseq object
 sample_data(MPphyseqRA)
 ```
 
-    ## Sample Data:        [ 151 samples by 9 sample variables ]:
+    ## Sample Data:        [ 151 samples by 10 sample variables ]:
     ##                effluent week  polymer_type bead_diameter Channel sample_type
     ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
     ##  1 ESF21MP-100 CON      10    HDPE                  3.18 7.1     Particle   
@@ -3587,15 +3929,15 @@ sample_data(MPphyseqRA)
     ##  9 ESF21MP-108 CON      10    LDPE                  3.18 8.2     Particle   
     ## 10 ESF21MP-109 CON      10    PP                    3.18 8.2     Particle   
     ## # ℹ 141 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 mp.count.plastics <- subset_samples(MPphyseqRA, particle_type == "MP")
 sample_data(mp.count.plastics)
 ```
 
-    ## Sample Data:        [ 94 samples by 9 sample variables ]:
+    ## Sample Data:        [ 94 samples by 10 sample variables ]:
     ##                effluent week  polymer_type bead_diameter Channel sample_type
     ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
     ##  1 ESF21MP-100 CON      10    HDPE                  3.18 7.1     Particle   
@@ -3609,15 +3951,15 @@ sample_data(mp.count.plastics)
     ##  9 ESF21MP-108 CON      10    LDPE                  3.18 8.2     Particle   
     ## 10 ESF21MP-109 CON      10    PP                    3.18 8.2     Particle   
     ## # ℹ 84 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 mp.count.plastics.10 <- subset_samples(mp.count.plastics, week == "10")
 sample_data(mp.count.plastics.10)
 ```
 
-    ## Sample Data:        [ 32 samples by 9 sample variables ]:
+    ## Sample Data:        [ 32 samples by 10 sample variables ]:
     ##                effluent week  polymer_type bead_diameter Channel sample_type
     ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
     ##  1 ESF21MP-100 CON      10    HDPE                  3.18 7.1     Particle   
@@ -3631,8 +3973,8 @@ sample_data(mp.count.plastics.10)
     ##  9 ESF21MP-108 CON      10    LDPE                  3.18 8.2     Particle   
     ## 10 ESF21MP-109 CON      10    PP                    3.18 8.2     Particle   
     ## # ℹ 22 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 #Create NMDS
@@ -3772,7 +4114,7 @@ mp.particle.RA <- subset_samples(MPphyseqRA, sample_type == "Particle")
 sample_data(mp.particle.RA)
 ```
 
-    ## Sample Data:        [ 119 samples by 9 sample variables ]:
+    ## Sample Data:        [ 119 samples by 10 sample variables ]:
     ##                effluent week  polymer_type bead_diameter Channel sample_type
     ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
     ##  1 ESF21MP-100 CON      10    HDPE                  3.18 7.1     Particle   
@@ -3786,43 +4128,18 @@ sample_data(mp.particle.RA)
     ##  9 ESF21MP-108 CON      10    LDPE                  3.18 8.2     Particle   
     ## 10 ESF21MP-109 CON      10    PP                    3.18 8.2     Particle   
     ## # ℹ 109 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 #Run PERMANOVA with Bray-Curtis dissimilarity
 particle_bray <- phyloseq::distance(mp.particle.RA, method = "bray")
 particle_bray_df <- data.frame(sample_data(mp.particle.RA))
-all <- adonis(particle_bray ~ particle_type*effluent*week*polymer_type, data = particle_bray_df)
-```
-
-    ## 'adonis' will be deprecated: use 'adonis2' instead
-
-``` r
+all <- adonis2(particle_bray ~ particle_type*effluent*week*polymer_type, data = particle_bray_df)
 all$aov.tab
 ```
 
-    ## Permutation: free
-    ## Number of permutations: 999
-    ## 
-    ## Terms added sequentially (first to last)
-    ## 
-    ##                              Df SumsOfSqs MeanSqs F.Model      R2 Pr(>F)    
-    ## particle_type                 1     0.589  0.5892   3.856 0.01755  0.002 ** 
-    ## effluent                      1     1.094  1.0942   7.161 0.03258  0.001 ***
-    ## week                          2    12.137  6.0687  39.717 0.36144  0.001 ***
-    ## polymer_type                  4     0.928  0.2321   1.519 0.02765  0.039 *  
-    ## particle_type:effluent        1     0.238  0.2382   1.559 0.00709  0.122    
-    ## particle_type:week            2     0.693  0.3466   2.268 0.02064  0.010 ** 
-    ## effluent:week                 2     1.057  0.5283   3.457 0.03146  0.002 ** 
-    ## effluent:polymer_type         3     0.654  0.2181   1.427 0.01948  0.087 .  
-    ## week:polymer_type             6     0.990  0.1651   1.080 0.02949  0.298    
-    ## particle_type:effluent:week   2     0.461  0.2304   1.508 0.01372  0.082 .  
-    ## effluent:week:polymer_type    6     1.292  0.2153   1.409 0.03846  0.033 *  
-    ## Residuals                    88    13.446  0.1528         0.40042           
-    ## Total                       118    33.580                 1.00000           
-    ## ---
-    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+    ## NULL
 
 ``` r
 #Convert output to dataframe
@@ -3839,523 +4156,8 @@ knitr::kable(all.pvalue) %>%
 style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; ">
 
 <table class="table table-striped" style="margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="text-align:left;">
-</th>
-<th style="text-align:right;">
-
-Df
-
-</th>
-<th style="text-align:right;">
-
-SumsOfSqs
-
-</th>
-<th style="text-align:right;">
-
-MeanSqs
-
-</th>
-<th style="text-align:right;">
-
-F.Model
-
-</th>
-<th style="text-align:right;">
-
-R2
-
-</th>
-<th style="text-align:right;">
-
-Pr(\>F)
-
-</th>
-</tr>
-</thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
-
-particle_type
-
-</td>
-<td style="text-align:right;">
-
-1
-
-</td>
-<td style="text-align:right;">
-
-0.5892420
-
-</td>
-<td style="text-align:right;">
-
-0.5892420
-
-</td>
-<td style="text-align:right;">
-
-3.856355
-
-</td>
-<td style="text-align:right;">
-
-0.0175472
-
-</td>
-<td style="text-align:right;">
-
-0.002
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-effluent
-
-</td>
-<td style="text-align:right;">
-
-1
-
-</td>
-<td style="text-align:right;">
-
-1.0941608
-
-</td>
-<td style="text-align:right;">
-
-1.0941608
-
-</td>
-<td style="text-align:right;">
-
-7.160849
-
-</td>
-<td style="text-align:right;">
-
-0.0325834
-
-</td>
-<td style="text-align:right;">
-
-0.001
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-week
-
-</td>
-<td style="text-align:right;">
-
-2
-
-</td>
-<td style="text-align:right;">
-
-12.1373003
-
-</td>
-<td style="text-align:right;">
-
-6.0686502
-
-</td>
-<td style="text-align:right;">
-
-39.716912
-
-</td>
-<td style="text-align:right;">
-
-0.3614409
-
-</td>
-<td style="text-align:right;">
-
-0.001
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-polymer_type
-
-</td>
-<td style="text-align:right;">
-
-4
-
-</td>
-<td style="text-align:right;">
-
-0.9284125
-
-</td>
-<td style="text-align:right;">
-
-0.2321031
-
-</td>
-<td style="text-align:right;">
-
-1.519023
-
-</td>
-<td style="text-align:right;">
-
-0.0276475
-
-</td>
-<td style="text-align:right;">
-
-0.039
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-particle_type:effluent
-
-</td>
-<td style="text-align:right;">
-
-1
-
-</td>
-<td style="text-align:right;">
-
-0.2381740
-
-</td>
-<td style="text-align:right;">
-
-0.2381740
-
-</td>
-<td style="text-align:right;">
-
-1.558755
-
-</td>
-<td style="text-align:right;">
-
-0.0070927
-
-</td>
-<td style="text-align:right;">
-
-0.122
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-particle_type:week
-
-</td>
-<td style="text-align:right;">
-
-2
-
-</td>
-<td style="text-align:right;">
-
-0.6931109
-
-</td>
-<td style="text-align:right;">
-
-0.3465555
-
-</td>
-<td style="text-align:right;">
-
-2.268068
-
-</td>
-<td style="text-align:right;">
-
-0.0206404
-
-</td>
-<td style="text-align:right;">
-
-0.010
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-effluent:week
-
-</td>
-<td style="text-align:right;">
-
-2
-
-</td>
-<td style="text-align:right;">
-
-1.0565792
-
-</td>
-<td style="text-align:right;">
-
-0.5282896
-
-</td>
-<td style="text-align:right;">
-
-3.457446
-
-</td>
-<td style="text-align:right;">
-
-0.0314642
-
-</td>
-<td style="text-align:right;">
-
-0.002
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-effluent:polymer_type
-
-</td>
-<td style="text-align:right;">
-
-3
-
-</td>
-<td style="text-align:right;">
-
-0.6543098
-
-</td>
-<td style="text-align:right;">
-
-0.2181033
-
-</td>
-<td style="text-align:right;">
-
-1.427399
-
-</td>
-<td style="text-align:right;">
-
-0.0194849
-
-</td>
-<td style="text-align:right;">
-
-0.087
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-week:polymer_type
-
-</td>
-<td style="text-align:right;">
-
-6
-
-</td>
-<td style="text-align:right;">
-
-0.9904509
-
-</td>
-<td style="text-align:right;">
-
-0.1650751
-
-</td>
-<td style="text-align:right;">
-
-1.080351
-
-</td>
-<td style="text-align:right;">
-
-0.0294950
-
-</td>
-<td style="text-align:right;">
-
-0.298
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-particle_type:effluent:week
-
-</td>
-<td style="text-align:right;">
-
-2
-
-</td>
-<td style="text-align:right;">
-
-0.4607298
-
-</td>
-<td style="text-align:right;">
-
-0.2303649
-
-</td>
-<td style="text-align:right;">
-
-1.507647
-
-</td>
-<td style="text-align:right;">
-
-0.0137202
-
-</td>
-<td style="text-align:right;">
-
-0.082
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-effluent:week:polymer_type
-
-</td>
-<td style="text-align:right;">
-
-6
-
-</td>
-<td style="text-align:right;">
-
-1.2916572
-
-</td>
-<td style="text-align:right;">
-
-0.2152762
-
-</td>
-<td style="text-align:right;">
-
-1.408897
-
-</td>
-<td style="text-align:right;">
-
-0.0384647
-
-</td>
-<td style="text-align:right;">
-
-0.033
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-Residuals
-
-</td>
-<td style="text-align:right;">
-
-88
-
-</td>
-<td style="text-align:right;">
-
-13.4461919
-
-</td>
-<td style="text-align:right;">
-
-0.1527976
-
-</td>
-<td style="text-align:right;">
-
-NA
-
-</td>
-<td style="text-align:right;">
-
-0.4004188
-
-</td>
-<td style="text-align:right;">
-
-NA
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-Total
-
-</td>
-<td style="text-align:right;">
-
-118
-
-</td>
-<td style="text-align:right;">
-
-33.5803193
-
-</td>
-<td style="text-align:right;">
-
-NA
-
-</td>
-<td style="text-align:right;">
-
-NA
-
-</td>
-<td style="text-align:right;">
-
-1.0000000
-
-</td>
-<td style="text-align:right;">
-
-NA
-
-</td>
 </tr>
 </tbody>
 </table>
@@ -4366,26 +4168,11 @@ NA
 #Run PERMANOVA with Bray-Curtis dissimilarity, only looking at particle type (glass vs. plastic)
 particle_only_bray <- phyloseq::distance(mp.particle.RA, method = "bray")
 particle_only_bray_df <- data.frame(sample_data(mp.particle.RA))
-only_particle <- adonis(particle_only_bray ~ particle_type, data = particle_only_bray_df)
-```
-
-    ## 'adonis' will be deprecated: use 'adonis2' instead
-
-``` r
+only_particle <- adonis2(particle_only_bray ~ particle_type, data = particle_only_bray_df)
 only_particle$aov.tab
 ```
 
-    ## Permutation: free
-    ## Number of permutations: 999
-    ## 
-    ## Terms added sequentially (first to last)
-    ## 
-    ##                Df SumsOfSqs MeanSqs F.Model      R2 Pr(>F)  
-    ## particle_type   1     0.589 0.58924  2.0897 0.01755  0.034 *
-    ## Residuals     117    32.991 0.28198         0.98245         
-    ## Total         118    33.580                 1.00000         
-    ## ---
-    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+    ## NULL
 
 ``` r
 #Convert output to dataframe
@@ -4402,153 +4189,8 @@ knitr::kable(only.particle.pvalue) %>%
 style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; ">
 
 <table class="table table-striped" style="margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="text-align:left;">
-</th>
-<th style="text-align:right;">
-
-Df
-
-</th>
-<th style="text-align:right;">
-
-SumsOfSqs
-
-</th>
-<th style="text-align:right;">
-
-MeanSqs
-
-</th>
-<th style="text-align:right;">
-
-F.Model
-
-</th>
-<th style="text-align:right;">
-
-R2
-
-</th>
-<th style="text-align:right;">
-
-Pr(\>F)
-
-</th>
-</tr>
-</thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
-
-particle_type
-
-</td>
-<td style="text-align:right;">
-
-1
-
-</td>
-<td style="text-align:right;">
-
-0.589242
-
-</td>
-<td style="text-align:right;">
-
-0.589242
-
-</td>
-<td style="text-align:right;">
-
-2.089696
-
-</td>
-<td style="text-align:right;">
-
-0.0175472
-
-</td>
-<td style="text-align:right;">
-
-0.034
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-Residuals
-
-</td>
-<td style="text-align:right;">
-
-117
-
-</td>
-<td style="text-align:right;">
-
-32.991077
-
-</td>
-<td style="text-align:right;">
-
-0.281975
-
-</td>
-<td style="text-align:right;">
-
-NA
-
-</td>
-<td style="text-align:right;">
-
-0.9824528
-
-</td>
-<td style="text-align:right;">
-
-NA
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-Total
-
-</td>
-<td style="text-align:right;">
-
-118
-
-</td>
-<td style="text-align:right;">
-
-33.580319
-
-</td>
-<td style="text-align:right;">
-
-NA
-
-</td>
-<td style="text-align:right;">
-
-NA
-
-</td>
-<td style="text-align:right;">
-
-1.0000000
-
-</td>
-<td style="text-align:right;">
-
-NA
-
-</td>
 </tr>
 </tbody>
 </table>
@@ -4559,36 +4201,11 @@ NA
 #Run PERMANOVA with Unifrac dissimilarity
 particle_unifrac <- phyloseq::distance(mp.particle.RA, method = "unifrac")
 particle_unifrac_df <- data.frame(sample_data(mp.particle.RA))
-all_unifrac <- adonis(particle_unifrac ~ particle_type*effluent*week*polymer_type, data = particle_unifrac_df)
-```
-
-    ## 'adonis' will be deprecated: use 'adonis2' instead
-
-``` r
+all_unifrac <- adonis2(particle_unifrac ~ particle_type*effluent*week*polymer_type, data = particle_unifrac_df)
 all_unifrac$aov.tab
 ```
 
-    ## Permutation: free
-    ## Number of permutations: 999
-    ## 
-    ## Terms added sequentially (first to last)
-    ## 
-    ##                              Df SumsOfSqs MeanSqs F.Model      R2 Pr(>F)    
-    ## particle_type                 1     0.582  0.5819  1.9706 0.01375  0.007 ** 
-    ## effluent                      1     0.887  0.8869  3.0032 0.02096  0.001 ***
-    ## week                          2     6.417  3.2085 10.8650 0.15167  0.001 ***
-    ## polymer_type                  4     1.265  0.3162  1.0708 0.02990  0.199    
-    ## particle_type:effluent        1     0.302  0.3020  1.0228 0.00714  0.363    
-    ## particle_type:week            2     0.771  0.3854  1.3053 0.01822  0.039 *  
-    ## effluent:week                 2     1.046  0.5231  1.7714 0.02473  0.001 ***
-    ## effluent:polymer_type         3     0.941  0.3136  1.0620 0.02224  0.263    
-    ## week:polymer_type             6     1.726  0.2876  0.9740 0.04079  0.576    
-    ## particle_type:effluent:week   2     0.578  0.2889  0.9783 0.01366  0.498    
-    ## effluent:week:polymer_type    6     1.808  0.3014  1.0206 0.04274  0.353    
-    ## Residuals                    88    25.987  0.2953         0.61421           
-    ## Total                       118    42.309                 1.00000           
-    ## ---
-    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+    ## NULL
 
 ``` r
 #Convert output to dataframe
@@ -4605,523 +4222,8 @@ knitr::kable(all.unifrac.pvalue) %>%
 style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; ">
 
 <table class="table table-striped" style="margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="text-align:left;">
-</th>
-<th style="text-align:right;">
-
-Df
-
-</th>
-<th style="text-align:right;">
-
-SumsOfSqs
-
-</th>
-<th style="text-align:right;">
-
-MeanSqs
-
-</th>
-<th style="text-align:right;">
-
-F.Model
-
-</th>
-<th style="text-align:right;">
-
-R2
-
-</th>
-<th style="text-align:right;">
-
-Pr(\>F)
-
-</th>
-</tr>
-</thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
-
-particle_type
-
-</td>
-<td style="text-align:right;">
-
-1
-
-</td>
-<td style="text-align:right;">
-
-0.5819336
-
-</td>
-<td style="text-align:right;">
-
-0.5819336
-
-</td>
-<td style="text-align:right;">
-
-1.9706402
-
-</td>
-<td style="text-align:right;">
-
-0.0137544
-
-</td>
-<td style="text-align:right;">
-
-0.007
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-effluent
-
-</td>
-<td style="text-align:right;">
-
-1
-
-</td>
-<td style="text-align:right;">
-
-0.8868614
-
-</td>
-<td style="text-align:right;">
-
-0.8868614
-
-</td>
-<td style="text-align:right;">
-
-3.0032373
-
-</td>
-<td style="text-align:right;">
-
-0.0209616
-
-</td>
-<td style="text-align:right;">
-
-0.001
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-week
-
-</td>
-<td style="text-align:right;">
-
-2
-
-</td>
-<td style="text-align:right;">
-
-6.4169235
-
-</td>
-<td style="text-align:right;">
-
-3.2084617
-
-</td>
-<td style="text-align:right;">
-
-10.8650261
-
-</td>
-<td style="text-align:right;">
-
-0.1516685
-
-</td>
-<td style="text-align:right;">
-
-0.001
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-polymer_type
-
-</td>
-<td style="text-align:right;">
-
-4
-
-</td>
-<td style="text-align:right;">
-
-1.2648500
-
-</td>
-<td style="text-align:right;">
-
-0.3162125
-
-</td>
-<td style="text-align:right;">
-
-1.0708113
-
-</td>
-<td style="text-align:right;">
-
-0.0298956
-
-</td>
-<td style="text-align:right;">
-
-0.199
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-particle_type:effluent
-
-</td>
-<td style="text-align:right;">
-
-1
-
-</td>
-<td style="text-align:right;">
-
-0.3020229
-
-</td>
-<td style="text-align:right;">
-
-0.3020229
-
-</td>
-<td style="text-align:right;">
-
-1.0227601
-
-</td>
-<td style="text-align:right;">
-
-0.0071385
-
-</td>
-<td style="text-align:right;">
-
-0.363
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-particle_type:week
-
-</td>
-<td style="text-align:right;">
-
-2
-
-</td>
-<td style="text-align:right;">
-
-0.7708856
-
-</td>
-<td style="text-align:right;">
-
-0.3854428
-
-</td>
-<td style="text-align:right;">
-
-1.3052504
-
-</td>
-<td style="text-align:right;">
-
-0.0182204
-
-</td>
-<td style="text-align:right;">
-
-0.039
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-effluent:week
-
-</td>
-<td style="text-align:right;">
-
-2
-
-</td>
-<td style="text-align:right;">
-
-1.0462004
-
-</td>
-<td style="text-align:right;">
-
-0.5231002
-
-</td>
-<td style="text-align:right;">
-
-1.7714088
-
-</td>
-<td style="text-align:right;">
-
-0.0247277
-
-</td>
-<td style="text-align:right;">
-
-0.001
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-effluent:polymer_type
-
-</td>
-<td style="text-align:right;">
-
-3
-
-</td>
-<td style="text-align:right;">
-
-0.9408149
-
-</td>
-<td style="text-align:right;">
-
-0.3136050
-
-</td>
-<td style="text-align:right;">
-
-1.0619812
-
-</td>
-<td style="text-align:right;">
-
-0.0222368
-
-</td>
-<td style="text-align:right;">
-
-0.263
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-week:polymer_type
-
-</td>
-<td style="text-align:right;">
-
-6
-
-</td>
-<td style="text-align:right;">
-
-1.7257006
-
-</td>
-<td style="text-align:right;">
-
-0.2876168
-
-</td>
-<td style="text-align:right;">
-
-0.9739757
-
-</td>
-<td style="text-align:right;">
-
-0.0407881
-
-</td>
-<td style="text-align:right;">
-
-0.576
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-particle_type:effluent:week
-
-</td>
-<td style="text-align:right;">
-
-2
-
-</td>
-<td style="text-align:right;">
-
-0.5777812
-
-</td>
-<td style="text-align:right;">
-
-0.2888906
-
-</td>
-<td style="text-align:right;">
-
-0.9782893
-
-</td>
-<td style="text-align:right;">
-
-0.0136563
-
-</td>
-<td style="text-align:right;">
-
-0.498
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-effluent:week:polymer_type
-
-</td>
-<td style="text-align:right;">
-
-6
-
-</td>
-<td style="text-align:right;">
-
-1.8083474
-
-</td>
-<td style="text-align:right;">
-
-0.3013912
-
-</td>
-<td style="text-align:right;">
-
-1.0206210
-
-</td>
-<td style="text-align:right;">
-
-0.0427416
-
-</td>
-<td style="text-align:right;">
-
-0.353
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-Residuals
-
-</td>
-<td style="text-align:right;">
-
-88
-
-</td>
-<td style="text-align:right;">
-
-25.9865581
-
-</td>
-<td style="text-align:right;">
-
-0.2953018
-
-</td>
-<td style="text-align:right;">
-
-NA
-
-</td>
-<td style="text-align:right;">
-
-0.6142105
-
-</td>
-<td style="text-align:right;">
-
-NA
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-Total
-
-</td>
-<td style="text-align:right;">
-
-118
-
-</td>
-<td style="text-align:right;">
-
-42.3088794
-
-</td>
-<td style="text-align:right;">
-
-NA
-
-</td>
-<td style="text-align:right;">
-
-NA
-
-</td>
-<td style="text-align:right;">
-
-1.0000000
-
-</td>
-<td style="text-align:right;">
-
-NA
-
-</td>
 </tr>
 </tbody>
 </table>
@@ -5136,7 +4238,7 @@ mp.particle.RA <- subset_samples(MPphyseqRA, sample_type == "Particle")
 sample_data(mp.particle.RA)
 ```
 
-    ## Sample Data:        [ 119 samples by 9 sample variables ]:
+    ## Sample Data:        [ 119 samples by 10 sample variables ]:
     ##                effluent week  polymer_type bead_diameter Channel sample_type
     ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
     ##  1 ESF21MP-100 CON      10    HDPE                  3.18 7.1     Particle   
@@ -5150,15 +4252,15 @@ sample_data(mp.particle.RA)
     ##  9 ESF21MP-108 CON      10    LDPE                  3.18 8.2     Particle   
     ## 10 ESF21MP-109 CON      10    PP                    3.18 8.2     Particle   
     ## # ℹ 109 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 mp.particle.RA.2 <- subset_samples(mp.particle.RA, week == "2")
 sample_data(mp.particle.RA.2)
 ```
 
-    ## Sample Data:        [ 40 samples by 9 sample variables ]:
+    ## Sample Data:        [ 40 samples by 10 sample variables ]:
     ##               effluent week  polymer_type bead_diameter Channel sample_type
     ##               <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
     ##  1 ESF21MP-13 TWW      2     Glass                 3.18 5.1     Particle   
@@ -5172,37 +4274,18 @@ sample_data(mp.particle.RA.2)
     ##  9 ESF21MP-21 TWW      2     Glass                 3.18 6.2     Particle   
     ## 10 ESF21MP-22 TWW      2     PP                    3.18 5.2     Particle   
     ## # ℹ 30 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 #Run PERMANOVA with bray-curtis dissimilarity
 particle_bray_2 <- phyloseq::distance(mp.particle.RA.2, method = "bray")
 particle_bray_2_df <- data.frame(sample_data(mp.particle.RA.2))
-particle.2.adonis <- adonis(particle_bray_2 ~ particle_type*effluent*polymer_type, data = particle_bray_2_df)
-```
-
-    ## 'adonis' will be deprecated: use 'adonis2' instead
-
-``` r
+particle.2.adonis <- adonis2(particle_bray_2 ~ particle_type*effluent*polymer_type, data = particle_bray_2_df)
 particle.2.adonis$aov.tab
 ```
 
-    ## Permutation: free
-    ## Number of permutations: 999
-    ## 
-    ## Terms added sequentially (first to last)
-    ## 
-    ##                        Df SumsOfSqs MeanSqs F.Model      R2 Pr(>F)    
-    ## particle_type           1    0.6032 0.60325  4.1091 0.07989  0.001 ***
-    ## effluent                1    0.6247 0.62466  4.2549 0.08273  0.002 ** 
-    ## polymer_type            3    0.6199 0.20663  1.4075 0.08210  0.095 .  
-    ## particle_type:effluent  1    0.3824 0.38242  2.6049 0.05065  0.017 *  
-    ## effluent:polymer_type   3    0.9161 0.30537  2.0801 0.12133  0.010 ** 
-    ## Residuals              30    4.4042 0.14681         0.58330           
-    ## Total                  39    7.5506                 1.00000           
-    ## ---
-    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+    ## NULL
 
 ``` r
 #Convert output to dataframe
@@ -5219,301 +4302,8 @@ knitr::kable(particle.2.pvalue) %>%
 style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; ">
 
 <table class="table table-striped" style="margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="text-align:left;">
-</th>
-<th style="text-align:right;">
-
-Df
-
-</th>
-<th style="text-align:right;">
-
-SumsOfSqs
-
-</th>
-<th style="text-align:right;">
-
-MeanSqs
-
-</th>
-<th style="text-align:right;">
-
-F.Model
-
-</th>
-<th style="text-align:right;">
-
-R2
-
-</th>
-<th style="text-align:right;">
-
-Pr(\>F)
-
-</th>
-</tr>
-</thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
-
-particle_type
-
-</td>
-<td style="text-align:right;">
-
-1
-
-</td>
-<td style="text-align:right;">
-
-0.6032478
-
-</td>
-<td style="text-align:right;">
-
-0.6032478
-
-</td>
-<td style="text-align:right;">
-
-4.109087
-
-</td>
-<td style="text-align:right;">
-
-0.0798941
-
-</td>
-<td style="text-align:right;">
-
-0.001
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-effluent
-
-</td>
-<td style="text-align:right;">
-
-1
-
-</td>
-<td style="text-align:right;">
-
-0.6246612
-
-</td>
-<td style="text-align:right;">
-
-0.6246612
-
-</td>
-<td style="text-align:right;">
-
-4.254947
-
-</td>
-<td style="text-align:right;">
-
-0.0827301
-
-</td>
-<td style="text-align:right;">
-
-0.002
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-polymer_type
-
-</td>
-<td style="text-align:right;">
-
-3
-
-</td>
-<td style="text-align:right;">
-
-0.6198982
-
-</td>
-<td style="text-align:right;">
-
-0.2066327
-
-</td>
-<td style="text-align:right;">
-
-1.407501
-
-</td>
-<td style="text-align:right;">
-
-0.0820993
-
-</td>
-<td style="text-align:right;">
-
-0.095
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-particle_type:effluent
-
-</td>
-<td style="text-align:right;">
-
-1
-
-</td>
-<td style="text-align:right;">
-
-0.3824226
-
-</td>
-<td style="text-align:right;">
-
-0.3824226
-
-</td>
-<td style="text-align:right;">
-
-2.604912
-
-</td>
-<td style="text-align:right;">
-
-0.0506480
-
-</td>
-<td style="text-align:right;">
-
-0.017
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-effluent:polymer_type
-
-</td>
-<td style="text-align:right;">
-
-3
-
-</td>
-<td style="text-align:right;">
-
-0.9161147
-
-</td>
-<td style="text-align:right;">
-
-0.3053716
-
-</td>
-<td style="text-align:right;">
-
-2.080071
-
-</td>
-<td style="text-align:right;">
-
-0.1213302
-
-</td>
-<td style="text-align:right;">
-
-0.010
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-Residuals
-
-</td>
-<td style="text-align:right;">
-
-30
-
-</td>
-<td style="text-align:right;">
-
-4.4042469
-
-</td>
-<td style="text-align:right;">
-
-0.1468082
-
-</td>
-<td style="text-align:right;">
-
-NA
-
-</td>
-<td style="text-align:right;">
-
-0.5832983
-
-</td>
-<td style="text-align:right;">
-
-NA
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-Total
-
-</td>
-<td style="text-align:right;">
-
-39
-
-</td>
-<td style="text-align:right;">
-
-7.5505915
-
-</td>
-<td style="text-align:right;">
-
-NA
-
-</td>
-<td style="text-align:right;">
-
-NA
-
-</td>
-<td style="text-align:right;">
-
-1.0000000
-
-</td>
-<td style="text-align:right;">
-
-NA
-
-</td>
 </tr>
 </tbody>
 </table>
@@ -5528,7 +4318,7 @@ mp.particle.RA <- subset_samples(MPphyseqRA, sample_type == "Particle")
 sample_data(mp.particle.RA)
 ```
 
-    ## Sample Data:        [ 119 samples by 9 sample variables ]:
+    ## Sample Data:        [ 119 samples by 10 sample variables ]:
     ##                effluent week  polymer_type bead_diameter Channel sample_type
     ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
     ##  1 ESF21MP-100 CON      10    HDPE                  3.18 7.1     Particle   
@@ -5542,15 +4332,15 @@ sample_data(mp.particle.RA)
     ##  9 ESF21MP-108 CON      10    LDPE                  3.18 8.2     Particle   
     ## 10 ESF21MP-109 CON      10    PP                    3.18 8.2     Particle   
     ## # ℹ 109 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 mp.particle.RA.6 <- subset_samples(mp.particle.RA, week == "6")
 sample_data(mp.particle.RA.6)
 ```
 
-    ## Sample Data:        [ 39 samples by 9 sample variables ]:
+    ## Sample Data:        [ 39 samples by 10 sample variables ]:
     ##               effluent week  polymer_type bead_diameter Channel sample_type
     ##               <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
     ##  1 ESF21MP-56 TWW      6     PS                    3.18 5.1     Particle   
@@ -5564,37 +4354,18 @@ sample_data(mp.particle.RA.6)
     ##  9 ESF21MP-64 TWW      6     Glass                 3.18 5.2     Particle   
     ## 10 ESF21MP-65 TWW      6     Glass                 3.18 6.2     Particle   
     ## # ℹ 29 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 #Run PERMANOVA with bray-curtis dissimilarity
 particle_bray_6 <- phyloseq::distance(mp.particle.RA.6, method = "bray")
 particle_bray_6_df <- data.frame(sample_data(mp.particle.RA.6))
-particle.6.adonis <- adonis(particle_bray_6 ~ particle_type*effluent*polymer_type, data = particle_bray_6_df)
-```
-
-    ## 'adonis' will be deprecated: use 'adonis2' instead
-
-``` r
+particle.6.adonis <- adonis2(particle_bray_6 ~ particle_type*effluent*polymer_type, data = particle_bray_6_df)
 particle.6.adonis$aov.tab
 ```
 
-    ## Permutation: free
-    ## Number of permutations: 999
-    ## 
-    ## Terms added sequentially (first to last)
-    ## 
-    ##                        Df SumsOfSqs MeanSqs F.Model      R2 Pr(>F)    
-    ## particle_type           1    0.3888 0.38881  2.0160 0.04689  0.030 *  
-    ## effluent                1    0.8186 0.81863  4.2446 0.09873  0.001 ***
-    ## polymer_type            4    0.7984 0.19959  1.0349 0.09629  0.373    
-    ## particle_type:effluent  1    0.1859 0.18594  0.9641 0.02243  0.433    
-    ## effluent:polymer_type   3    0.6992 0.23307  1.2085 0.08433  0.179    
-    ## Residuals              28    5.4002 0.19287         0.65132           
-    ## Total                  38    8.2912                 1.00000           
-    ## ---
-    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+    ## NULL
 
 ``` r
 #Convert output to dataframe
@@ -5611,301 +4382,8 @@ knitr::kable(particle.6.pvalue) %>%
 style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; ">
 
 <table class="table table-striped" style="margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="text-align:left;">
-</th>
-<th style="text-align:right;">
-
-Df
-
-</th>
-<th style="text-align:right;">
-
-SumsOfSqs
-
-</th>
-<th style="text-align:right;">
-
-MeanSqs
-
-</th>
-<th style="text-align:right;">
-
-F.Model
-
-</th>
-<th style="text-align:right;">
-
-R2
-
-</th>
-<th style="text-align:right;">
-
-Pr(\>F)
-
-</th>
-</tr>
-</thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
-
-particle_type
-
-</td>
-<td style="text-align:right;">
-
-1
-
-</td>
-<td style="text-align:right;">
-
-0.3888138
-
-</td>
-<td style="text-align:right;">
-
-0.3888138
-
-</td>
-<td style="text-align:right;">
-
-2.0159829
-
-</td>
-<td style="text-align:right;">
-
-0.0468947
-
-</td>
-<td style="text-align:right;">
-
-0.030
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-effluent
-
-</td>
-<td style="text-align:right;">
-
-1
-
-</td>
-<td style="text-align:right;">
-
-0.8186332
-
-</td>
-<td style="text-align:right;">
-
-0.8186332
-
-</td>
-<td style="text-align:right;">
-
-4.2445784
-
-</td>
-<td style="text-align:right;">
-
-0.0987350
-
-</td>
-<td style="text-align:right;">
-
-0.001
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-polymer_type
-
-</td>
-<td style="text-align:right;">
-
-4
-
-</td>
-<td style="text-align:right;">
-
-0.7983766
-
-</td>
-<td style="text-align:right;">
-
-0.1995941
-
-</td>
-<td style="text-align:right;">
-
-1.0348872
-
-</td>
-<td style="text-align:right;">
-
-0.0962919
-
-</td>
-<td style="text-align:right;">
-
-0.373
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-particle_type:effluent
-
-</td>
-<td style="text-align:right;">
-
-1
-
-</td>
-<td style="text-align:right;">
-
-0.1859421
-
-</td>
-<td style="text-align:right;">
-
-0.1859421
-
-</td>
-<td style="text-align:right;">
-
-0.9641017
-
-</td>
-<td style="text-align:right;">
-
-0.0224264
-
-</td>
-<td style="text-align:right;">
-
-0.433
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-effluent:polymer_type
-
-</td>
-<td style="text-align:right;">
-
-3
-
-</td>
-<td style="text-align:right;">
-
-0.6992134
-
-</td>
-<td style="text-align:right;">
-
-0.2330711
-
-</td>
-<td style="text-align:right;">
-
-1.2084640
-
-</td>
-<td style="text-align:right;">
-
-0.0843318
-
-</td>
-<td style="text-align:right;">
-
-0.179
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-Residuals
-
-</td>
-<td style="text-align:right;">
-
-28
-
-</td>
-<td style="text-align:right;">
-
-5.4002371
-
-</td>
-<td style="text-align:right;">
-
-0.1928656
-
-</td>
-<td style="text-align:right;">
-
-NA
-
-</td>
-<td style="text-align:right;">
-
-0.6513203
-
-</td>
-<td style="text-align:right;">
-
-NA
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-Total
-
-</td>
-<td style="text-align:right;">
-
-38
-
-</td>
-<td style="text-align:right;">
-
-8.2912162
-
-</td>
-<td style="text-align:right;">
-
-NA
-
-</td>
-<td style="text-align:right;">
-
-NA
-
-</td>
-<td style="text-align:right;">
-
-1.0000000
-
-</td>
-<td style="text-align:right;">
-
-NA
-
-</td>
 </tr>
 </tbody>
 </table>
@@ -5920,7 +4398,7 @@ mp.particle.RA <- subset_samples(MPphyseqRA, sample_type == "Particle")
 sample_data(mp.particle.RA)
 ```
 
-    ## Sample Data:        [ 119 samples by 9 sample variables ]:
+    ## Sample Data:        [ 119 samples by 10 sample variables ]:
     ##                effluent week  polymer_type bead_diameter Channel sample_type
     ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
     ##  1 ESF21MP-100 CON      10    HDPE                  3.18 7.1     Particle   
@@ -5934,15 +4412,15 @@ sample_data(mp.particle.RA)
     ##  9 ESF21MP-108 CON      10    LDPE                  3.18 8.2     Particle   
     ## 10 ESF21MP-109 CON      10    PP                    3.18 8.2     Particle   
     ## # ℹ 109 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 mp.particle.RA.10 <- subset_samples(mp.particle.RA, week == "10")
 sample_data(mp.particle.RA.10)
 ```
 
-    ## Sample Data:        [ 40 samples by 9 sample variables ]:
+    ## Sample Data:        [ 40 samples by 10 sample variables ]:
     ##                effluent week  polymer_type bead_diameter Channel sample_type
     ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
     ##  1 ESF21MP-100 CON      10    HDPE                  3.18 7.1     Particle   
@@ -5956,8 +4434,8 @@ sample_data(mp.particle.RA.10)
     ##  9 ESF21MP-108 CON      10    LDPE                  3.18 8.2     Particle   
     ## 10 ESF21MP-109 CON      10    PP                    3.18 8.2     Particle   
     ## # ℹ 30 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 #Run PERMANOVA with bray-curtis dissimilarity
@@ -6312,7 +4790,7 @@ mp.count.plastics <- subset_samples(MPphyseqRA, particle_type == "MP")
 sample_data(mp.count.plastics)
 ```
 
-    ## Sample Data:        [ 94 samples by 9 sample variables ]:
+    ## Sample Data:        [ 94 samples by 10 sample variables ]:
     ##                effluent week  polymer_type bead_diameter Channel sample_type
     ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
     ##  1 ESF21MP-100 CON      10    HDPE                  3.18 7.1     Particle   
@@ -6326,15 +4804,15 @@ sample_data(mp.count.plastics)
     ##  9 ESF21MP-108 CON      10    LDPE                  3.18 8.2     Particle   
     ## 10 ESF21MP-109 CON      10    PP                    3.18 8.2     Particle   
     ## # ℹ 84 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 mp.count.plastics.2 <- subset_samples(mp.count.plastics, week == "2")
 sample_data(mp.count.plastics.2)
 ```
 
-    ## Sample Data:        [ 32 samples by 9 sample variables ]:
+    ## Sample Data:        [ 32 samples by 10 sample variables ]:
     ##               effluent week  polymer_type bead_diameter Channel sample_type
     ##               <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
     ##  1 ESF21MP-14 CON      2     PP                    3.18 8.2     Particle   
@@ -6348,8 +4826,8 @@ sample_data(mp.count.plastics.2)
     ##  9 ESF21MP-23 TWW      2     PP                    3.18 5.1     Particle   
     ## 10 ESF21MP-24 CON      2     LDPE                  3.18 7.1     Particle   
     ## # ℹ 22 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 #Run PERMANOVA with bray-curtis dissimilarity
@@ -6628,7 +5106,7 @@ mp.count.plastics <- subset_samples(MPphyseqRA, particle_type == "MP")
 sample_data(mp.count.plastics)
 ```
 
-    ## Sample Data:        [ 94 samples by 9 sample variables ]:
+    ## Sample Data:        [ 94 samples by 10 sample variables ]:
     ##                effluent week  polymer_type bead_diameter Channel sample_type
     ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
     ##  1 ESF21MP-100 CON      10    HDPE                  3.18 7.1     Particle   
@@ -6642,15 +5120,15 @@ sample_data(mp.count.plastics)
     ##  9 ESF21MP-108 CON      10    LDPE                  3.18 8.2     Particle   
     ## 10 ESF21MP-109 CON      10    PP                    3.18 8.2     Particle   
     ## # ℹ 84 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 mp.count.plastics.6 <- subset_samples(mp.count.plastics, week == "6")
 sample_data(mp.count.plastics.6)
 ```
 
-    ## Sample Data:        [ 30 samples by 9 sample variables ]:
+    ## Sample Data:        [ 30 samples by 10 sample variables ]:
     ##               effluent week  polymer_type bead_diameter Channel sample_type
     ##               <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
     ##  1 ESF21MP-56 TWW      6     PS                    3.18 5.1     Particle   
@@ -6664,8 +5142,8 @@ sample_data(mp.count.plastics.6)
     ##  9 ESF21MP-70 CON      6     PP                    3.18 7.1     Particle   
     ## 10 ESF21MP-71 CON      6     PP                    3.18 8.2     Particle   
     ## # ℹ 20 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 #Run PERMANOVA with bray-curtis dissimilarity
@@ -6944,7 +5422,7 @@ mp.count.plastics <- subset_samples(MPphyseqRA, particle_type == "MP")
 sample_data(mp.count.plastics)
 ```
 
-    ## Sample Data:        [ 94 samples by 9 sample variables ]:
+    ## Sample Data:        [ 94 samples by 10 sample variables ]:
     ##                effluent week  polymer_type bead_diameter Channel sample_type
     ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
     ##  1 ESF21MP-100 CON      10    HDPE                  3.18 7.1     Particle   
@@ -6958,15 +5436,15 @@ sample_data(mp.count.plastics)
     ##  9 ESF21MP-108 CON      10    LDPE                  3.18 8.2     Particle   
     ## 10 ESF21MP-109 CON      10    PP                    3.18 8.2     Particle   
     ## # ℹ 84 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 mp.count.plastics.10 <- subset_samples(mp.count.plastics, week == "10")
 sample_data(mp.count.plastics.10)
 ```
 
-    ## Sample Data:        [ 32 samples by 9 sample variables ]:
+    ## Sample Data:        [ 32 samples by 10 sample variables ]:
     ##                effluent week  polymer_type bead_diameter Channel sample_type
     ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
     ##  1 ESF21MP-100 CON      10    HDPE                  3.18 7.1     Particle   
@@ -6980,8 +5458,8 @@ sample_data(mp.count.plastics.10)
     ##  9 ESF21MP-108 CON      10    LDPE                  3.18 8.2     Particle   
     ## 10 ESF21MP-109 CON      10    PP                    3.18 8.2     Particle   
     ## # ℹ 22 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 #Run PERMANOVA with bray-curtis dissimilarity
@@ -7947,11 +6425,6 @@ ps.taxa.90.df$max_name <- (colnames(ps.taxa.90.df)[max.col(ps.taxa.90.df[1:151])
 
 #Making the row names into a column called ASV
 library(tibble)
-```
-
-    ## Warning: package 'tibble' was built under R version 4.2.3
-
-``` r
 ps.taxa.90.df <- tibble::rownames_to_column(ps.taxa.90.df, "ASV")
 
 
@@ -8043,6 +6516,11 @@ particle_type
 </th>
 <th style="text-align:left;">
 
+polymer_effluent_time
+
+</th>
+<th style="text-align:left;">
+
 ASV
 
 </th>
@@ -8088,6 +6566,11 @@ Particle
 <td style="text-align:left;">
 
 MP
+
+</td>
+<td style="text-align:left;">
+
+PP_TWW_6
 
 </td>
 <td style="text-align:left;">
@@ -8139,6 +6622,11 @@ Glass
 </td>
 <td style="text-align:left;">
 
+Glass_CON_6
+
+</td>
+<td style="text-align:left;">
+
 61cd58eb0632b57766bb21715729fb17
 
 </td>
@@ -8182,6 +6670,11 @@ Particle
 <td style="text-align:left;">
 
 Glass
+
+</td>
+<td style="text-align:left;">
+
+Glass_CON_6
 
 </td>
 <td style="text-align:left;">
@@ -8233,6 +6726,11 @@ Glass
 </td>
 <td style="text-align:left;">
 
+Glass_CON_6
+
+</td>
+<td style="text-align:left;">
+
 3b8a42c16aa5159f7b5f6ccd60079e36
 
 </td>
@@ -8280,6 +6778,11 @@ MP
 </td>
 <td style="text-align:left;">
 
+PP_CON_10
+
+</td>
+<td style="text-align:left;">
+
 630afe4e854c06f7ed5d7c13415e73a5
 
 </td>
@@ -8323,6 +6826,11 @@ Particle
 <td style="text-align:left;">
 
 MP
+
+</td>
+<td style="text-align:left;">
+
+PP_CON_10
 
 </td>
 <td style="text-align:left;">
@@ -8386,6 +6894,11 @@ particle_type
 </th>
 <th style="text-align:left;">
 
+polymer_effluent_time
+
+</th>
+<th style="text-align:left;">
+
 ASV
 
 </th>
@@ -8426,6 +6939,11 @@ Particle
 <td style="text-align:left;">
 
 MP
+
+</td>
+<td style="text-align:left;">
+
+LDPE_CON_10
 
 </td>
 <td style="text-align:left;">
@@ -8472,6 +6990,11 @@ MP
 </td>
 <td style="text-align:left;">
 
+LDPE_CON_10
+
+</td>
+<td style="text-align:left;">
+
 db37c64ea9d7439548921c6e7b95203e
 
 </td>
@@ -8510,6 +7033,11 @@ Particle
 <td style="text-align:left;">
 
 MP
+
+</td>
+<td style="text-align:left;">
+
+LDPE_CON_10
 
 </td>
 <td style="text-align:left;">
@@ -8556,6 +7084,11 @@ MP
 </td>
 <td style="text-align:left;">
 
+HDPE_CON_10
+
+</td>
+<td style="text-align:left;">
+
 65658b4b511f848caf5a38db1f4f372c
 
 </td>
@@ -8594,6 +7127,11 @@ Particle
 <td style="text-align:left;">
 
 MP
+
+</td>
+<td style="text-align:left;">
+
+HDPE_CON_10
 
 </td>
 <td style="text-align:left;">
@@ -8640,6 +7178,11 @@ MP
 </td>
 <td style="text-align:left;">
 
+LDPE_TWW_10
+
+</td>
+<td style="text-align:left;">
+
 eda97271c29a0d3d78ce5939e2cd25db
 
 </td>
@@ -8678,6 +7221,11 @@ Particle
 <td style="text-align:left;">
 
 Glass
+
+</td>
+<td style="text-align:left;">
+
+Glass_TWW_10
 
 </td>
 <td style="text-align:left;">
@@ -8724,6 +7272,11 @@ Glass
 </td>
 <td style="text-align:left;">
 
+Glass_TWW_10
+
+</td>
+<td style="text-align:left;">
+
 be517b868f55e680a8487ab9c9c50746
 
 </td>
@@ -8762,6 +7315,11 @@ Particle
 <td style="text-align:left;">
 
 Glass
+
+</td>
+<td style="text-align:left;">
+
+Glass_CON_10
 
 </td>
 <td style="text-align:left;">
@@ -8808,6 +7366,11 @@ MP
 </td>
 <td style="text-align:left;">
 
+HDPE_CON_10
+
+</td>
+<td style="text-align:left;">
+
 1b8e607e3799ad95b613ccf269cfd24e
 
 </td>
@@ -8846,6 +7409,11 @@ Particle
 <td style="text-align:left;">
 
 MP
+
+</td>
+<td style="text-align:left;">
+
+LDPE_CON_10
 
 </td>
 <td style="text-align:left;">
@@ -8892,6 +7460,11 @@ MP
 </td>
 <td style="text-align:left;">
 
+LDPE_CON_10
+
+</td>
+<td style="text-align:left;">
+
 5bed12a7494ec97e297b5b792fecda13
 
 </td>
@@ -8930,6 +7503,11 @@ Particle
 <td style="text-align:left;">
 
 MP
+
+</td>
+<td style="text-align:left;">
+
+PS_TWW_10
 
 </td>
 <td style="text-align:left;">
@@ -8976,6 +7554,11 @@ MP
 </td>
 <td style="text-align:left;">
 
+PS_TWW_10
+
+</td>
+<td style="text-align:left;">
+
 d9c0e3f307a4c08813fa6b653d5cc3c2
 
 </td>
@@ -9014,6 +7597,11 @@ Particle
 <td style="text-align:left;">
 
 MP
+
+</td>
+<td style="text-align:left;">
+
+PP_CON_2
 
 </td>
 <td style="text-align:left;">
@@ -9060,6 +7648,11 @@ Glass
 </td>
 <td style="text-align:left;">
 
+Glass_TWW_2
+
+</td>
+<td style="text-align:left;">
+
 7f30a3bd5dbeb6fe15774acfd742de9f
 
 </td>
@@ -9098,6 +7691,11 @@ Particle
 <td style="text-align:left;">
 
 MP
+
+</td>
+<td style="text-align:left;">
+
+LDPE_CON_2
 
 </td>
 <td style="text-align:left;">
@@ -9144,6 +7742,11 @@ MP
 </td>
 <td style="text-align:left;">
 
+LDPE_CON_2
+
+</td>
+<td style="text-align:left;">
+
 ca636ffbcc8128dab6cb27758336a60a
 
 </td>
@@ -9182,6 +7785,11 @@ Particle
 <td style="text-align:left;">
 
 MP
+
+</td>
+<td style="text-align:left;">
+
+PP_TWW_2
 
 </td>
 <td style="text-align:left;">
@@ -9228,6 +7836,11 @@ Glass
 </td>
 <td style="text-align:left;">
 
+Glass_TWW_2
+
+</td>
+<td style="text-align:left;">
+
 58a74f0521d7e47b39f901fa259a8a6e
 
 </td>
@@ -9266,6 +7879,11 @@ Particle
 <td style="text-align:left;">
 
 Glass
+
+</td>
+<td style="text-align:left;">
+
+Glass_TWW_2
 
 </td>
 <td style="text-align:left;">
@@ -9312,6 +7930,11 @@ Water
 </td>
 <td style="text-align:left;">
 
+water_TWW
+
+</td>
+<td style="text-align:left;">
+
 460b5576527744dc3f91d5ba11cb3a1f
 
 </td>
@@ -9350,6 +7973,11 @@ Water
 <td style="text-align:left;">
 
 Water
+
+</td>
+<td style="text-align:left;">
+
+water_TWW
 
 </td>
 <td style="text-align:left;">
@@ -9396,6 +8024,11 @@ Water
 </td>
 <td style="text-align:left;">
 
+water_TWW
+
+</td>
+<td style="text-align:left;">
+
 5e8ad17b4c179064a29c319abda296af
 
 </td>
@@ -9434,6 +8067,11 @@ Water
 <td style="text-align:left;">
 
 Water
+
+</td>
+<td style="text-align:left;">
+
+water_TWW
 
 </td>
 <td style="text-align:left;">
@@ -9480,6 +8118,11 @@ Water
 </td>
 <td style="text-align:left;">
 
+water_TWW
+
+</td>
+<td style="text-align:left;">
+
 494083f852e83cc63c86bcc245660768
 
 </td>
@@ -9518,6 +8161,11 @@ Water
 <td style="text-align:left;">
 
 Water
+
+</td>
+<td style="text-align:left;">
+
+water_TWW
 
 </td>
 <td style="text-align:left;">
@@ -9564,6 +8212,11 @@ Water
 </td>
 <td style="text-align:left;">
 
+water_TWW
+
+</td>
+<td style="text-align:left;">
+
 3dd55ccb1cf8e054b12b225c563e5529
 
 </td>
@@ -9602,6 +8255,11 @@ Water
 <td style="text-align:left;">
 
 Water
+
+</td>
+<td style="text-align:left;">
+
+water_TWW
 
 </td>
 <td style="text-align:left;">
@@ -9648,6 +8306,11 @@ Water
 </td>
 <td style="text-align:left;">
 
+water_TWW
+
+</td>
+<td style="text-align:left;">
+
 2a3e2234e257f6b5cfffe8c9b6d202dd
 
 </td>
@@ -9686,6 +8349,11 @@ Particle
 <td style="text-align:left;">
 
 Glass
+
+</td>
+<td style="text-align:left;">
+
+Glass_CON_2
 
 </td>
 <td style="text-align:left;">
@@ -9732,6 +8400,11 @@ Glass
 </td>
 <td style="text-align:left;">
 
+Glass_CON_2
+
+</td>
+<td style="text-align:left;">
+
 68dd3ad6f96b97182118d1641e267d61
 
 </td>
@@ -9770,6 +8443,11 @@ Particle
 <td style="text-align:left;">
 
 Glass
+
+</td>
+<td style="text-align:left;">
+
+Glass_CON_2
 
 </td>
 <td style="text-align:left;">
@@ -9816,6 +8494,11 @@ Glass
 </td>
 <td style="text-align:left;">
 
+Glass_CON_2
+
+</td>
+<td style="text-align:left;">
+
 c3c6b35a7e7fd0a56aab3c29bd47737b
 
 </td>
@@ -9854,6 +8537,11 @@ Water
 <td style="text-align:left;">
 
 Water
+
+</td>
+<td style="text-align:left;">
+
+CON_water
 
 </td>
 <td style="text-align:left;">
@@ -9900,6 +8588,11 @@ Water
 </td>
 <td style="text-align:left;">
 
+CON_water
+
+</td>
+<td style="text-align:left;">
+
 cb3fd4e524abe49fbdfa06ab31c76cb2
 
 </td>
@@ -9938,6 +8631,11 @@ Water
 <td style="text-align:left;">
 
 Water
+
+</td>
+<td style="text-align:left;">
+
+TWW_water
 
 </td>
 <td style="text-align:left;">
@@ -9984,6 +8682,11 @@ Water
 </td>
 <td style="text-align:left;">
 
+TWW_water
+
+</td>
+<td style="text-align:left;">
+
 2304112e9b871e05b0e8a85224fd468c
 
 </td>
@@ -10022,6 +8725,11 @@ Water
 <td style="text-align:left;">
 
 Water
+
+</td>
+<td style="text-align:left;">
+
+TWW_water
 
 </td>
 <td style="text-align:left;">
@@ -10068,6 +8776,11 @@ MP
 </td>
 <td style="text-align:left;">
 
+PP_CON_6
+
+</td>
+<td style="text-align:left;">
+
 fd5b3997d928b185c4d30a836c4c3bff
 
 </td>
@@ -10106,6 +8819,11 @@ Particle
 <td style="text-align:left;">
 
 MP
+
+</td>
+<td style="text-align:left;">
+
+PP_CON_6
 
 </td>
 <td style="text-align:left;">
@@ -10152,6 +8870,11 @@ Glass
 </td>
 <td style="text-align:left;">
 
+Glass_TWW_6
+
+</td>
+<td style="text-align:left;">
+
 d1a3da918723d0765ca375cf72e2b803
 
 </td>
@@ -10190,6 +8913,11 @@ Water
 <td style="text-align:left;">
 
 Water
+
+</td>
+<td style="text-align:left;">
+
+CON_water
 
 </td>
 <td style="text-align:left;">
@@ -10236,6 +8964,11 @@ Water
 </td>
 <td style="text-align:left;">
 
+CON_water
+
+</td>
+<td style="text-align:left;">
+
 8b2279803a49bcb9f005630c9967d4f6
 
 </td>
@@ -10274,6 +9007,11 @@ Water
 <td style="text-align:left;">
 
 Water
+
+</td>
+<td style="text-align:left;">
+
+CON_water
 
 </td>
 <td style="text-align:left;">
@@ -10320,6 +9058,11 @@ Water
 </td>
 <td style="text-align:left;">
 
+CON_water
+
+</td>
+<td style="text-align:left;">
+
 dda9375e51479ea5e751005d287d9e46
 
 </td>
@@ -10358,6 +9101,11 @@ Water
 <td style="text-align:left;">
 
 Water
+
+</td>
+<td style="text-align:left;">
+
+CON_water
 
 </td>
 <td style="text-align:left;">
@@ -10404,6 +9152,11 @@ Water
 </td>
 <td style="text-align:left;">
 
+CON_water
+
+</td>
+<td style="text-align:left;">
+
 71e972284209ad012527608478c001df
 
 </td>
@@ -10442,6 +9195,11 @@ Water
 <td style="text-align:left;">
 
 Water
+
+</td>
+<td style="text-align:left;">
+
+CON_water
 
 </td>
 <td style="text-align:left;">
@@ -10488,6 +9246,11 @@ MP
 </td>
 <td style="text-align:left;">
 
+PP_CON_6
+
+</td>
+<td style="text-align:left;">
+
 7b36db944473d3283a03335cc5f1a4f3
 
 </td>
@@ -10526,6 +9289,11 @@ Particle
 <td style="text-align:left;">
 
 MP
+
+</td>
+<td style="text-align:left;">
+
+LDPE_CON_6
 
 </td>
 <td style="text-align:left;">
@@ -10572,6 +9340,11 @@ MP
 </td>
 <td style="text-align:left;">
 
+LDPE_CON_6
+
+</td>
+<td style="text-align:left;">
+
 645c59a8229f5f3e345532d5044786ca
 
 </td>
@@ -10610,6 +9383,11 @@ Particle
 <td style="text-align:left;">
 
 MP
+
+</td>
+<td style="text-align:left;">
+
+LDPE_TWW_6
 
 </td>
 <td style="text-align:left;">
@@ -10656,6 +9434,11 @@ MP
 </td>
 <td style="text-align:left;">
 
+LDPE_TWW_6
+
+</td>
+<td style="text-align:left;">
+
 479c62bea7e5a57466cccad98bf72e58
 
 </td>
@@ -10694,6 +9477,11 @@ Particle
 <td style="text-align:left;">
 
 MP
+
+</td>
+<td style="text-align:left;">
+
+HDPE_CON_6
 
 </td>
 <td style="text-align:left;">
@@ -10740,6 +9528,11 @@ Water
 </td>
 <td style="text-align:left;">
 
+TWW_water
+
+</td>
+<td style="text-align:left;">
+
 9d9b0f8488f01f1ded32bc2e0b57f953
 
 </td>
@@ -10778,6 +9571,11 @@ Water
 <td style="text-align:left;">
 
 Water
+
+</td>
+<td style="text-align:left;">
+
+TWW_water
 
 </td>
 <td style="text-align:left;">
@@ -10824,6 +9622,11 @@ Water
 </td>
 <td style="text-align:left;">
 
+TWW_water
+
+</td>
+<td style="text-align:left;">
+
 7353aad27634c36c96d733127f4dbdc2
 
 </td>
@@ -10862,6 +9665,11 @@ Water
 <td style="text-align:left;">
 
 Water
+
+</td>
+<td style="text-align:left;">
+
+CON_water
 
 </td>
 <td style="text-align:left;">
@@ -10908,6 +9716,11 @@ Water
 </td>
 <td style="text-align:left;">
 
+CON_water
+
+</td>
+<td style="text-align:left;">
+
 3c17a27e5f5efc271e2c5b8139155d27
 
 </td>
@@ -10946,6 +9759,11 @@ Particle
 <td style="text-align:left;">
 
 MP
+
+</td>
+<td style="text-align:left;">
+
+PS_TWW_6
 
 </td>
 <td style="text-align:left;">
@@ -10992,6 +9810,11 @@ MP
 </td>
 <td style="text-align:left;">
 
+PS_CON_6
+
+</td>
+<td style="text-align:left;">
+
 54ecf83cb907aa38ea47d819b4bcc946
 
 </td>
@@ -11030,6 +9853,11 @@ Particle
 <td style="text-align:left;">
 
 MP
+
+</td>
+<td style="text-align:left;">
+
+PP_TWW_6
 
 </td>
 <td style="text-align:left;">
@@ -11076,6 +9904,11 @@ Glass
 </td>
 <td style="text-align:left;">
 
+Glass_CON_6
+
+</td>
+<td style="text-align:left;">
+
 61cd58eb0632b57766bb21715729fb17
 
 </td>
@@ -11114,6 +9947,11 @@ Particle
 <td style="text-align:left;">
 
 Glass
+
+</td>
+<td style="text-align:left;">
+
+Glass_CON_6
 
 </td>
 <td style="text-align:left;">
@@ -11160,6 +9998,11 @@ Glass
 </td>
 <td style="text-align:left;">
 
+Glass_CON_6
+
+</td>
+<td style="text-align:left;">
+
 3b8a42c16aa5159f7b5f6ccd60079e36
 
 </td>
@@ -11202,6 +10045,11 @@ MP
 </td>
 <td style="text-align:left;">
 
+PP_CON_10
+
+</td>
+<td style="text-align:left;">
+
 630afe4e854c06f7ed5d7c13415e73a5
 
 </td>
@@ -11240,6 +10088,11 @@ Particle
 <td style="text-align:left;">
 
 MP
+
+</td>
+<td style="text-align:left;">
+
+PP_CON_10
 
 </td>
 <td style="text-align:left;">
@@ -11475,7 +10328,7 @@ df_mp_effluent_deseq_filt <- filter(df_mp_effluent_deseq, padj <= 0.05)
 df_mp_effluent_deseq_filt = df_mp_effluent_deseq_filt[order(df_mp_effluent_deseq_filt$padj, na.last=NA), ]
 ```
 
-### 8.3.1 Create bar plot of results - log normalized counts
+### 8.3.1 Create bar plot of results - log normalized counts (Fig. S9)
 
 ``` r
 #Find normalized counts
@@ -11516,8 +10369,7 @@ sig_norm_counts_filt <- sig_norm_counts_filt %>%
 sig_norm_counts_filt$log_normalized_counts <- log(sig_norm_counts_filt$normalized_counts+1)
 
 #Creating a new column that combines both the Class and Species level information
-#so that Species level identifiers that are not unique to one Class (such as Ambiguous_taxa or
-#uncultured bacterium) aren't merged into a single large category when graphed
+#so that Species level identifiers that are not unique to one Class (such as Ambiguous_taxa or uncultured bacterium) aren't merged into a single large category when graphed
 sig_norm_counts_filt$Class_species <- paste(sig_norm_counts_filt$Class, sig_norm_counts_filt$Species, sep="_")
 
 #Ordering the ASV's according to the LFC - checked the df_mp_effluent_deseq_filt 
@@ -11602,6 +10454,86 @@ print(mp_effluent_barplot)
 ```
 
 ![](Analysis_files/figure-gfm/deseq2%20plots-3.png)<!-- -->
+
+### 8.3.2 Create dot plot of results - log2fold change (Fig. 4)
+
+Graphing the log2fold change for each ASV and color coding by Class.
+
+``` r
+#Create color scheme
+fold_change_col = colorRampPalette(brewer.pal(9,"Dark2"))(12)
+```
+
+    ## Warning in brewer.pal(9, "Dark2"): n too large, allowed maximum for palette Dark2 is 8
+    ## Returning the palette you asked for with that many colors
+
+``` r
+#Create a column with the filtered deseq dataframe rownames (as we did above)
+taxa_all <- data.frame(df_mp_effluent_deseq_filt) %>%
+  tibble::rownames_to_column(var = "ASV")
+
+#Ordering the ASV's according to the LFC - checked the df_mp_effluent_deseq_filt 
+#dataframe, sorted the LFC column from highest to lowest, and then listed those
+#ASV's in order below. I'm also changing the names here, since some of them were 
+#the same and resulted in compiled results of individual ASV's.
+taxa_all$ASV <- factor(taxa_all$ASV, 
+    levels = c("f882c09fa8f86b1dacf0e446785efef2", "fb12f0dcfe3e7c59dcdfd8b205764d43", "6c929215c17f0fd84f034a9d95dce8ce",
+"1bbd65d1eaae9bbeb8a62e899f84279f", "b31be1b89bb580e3611089a09fd79e29",
+"f513f17828d5fb1a8a8f372dd0196b20", "29d2ec379830cfcfc5578be97c3dec89",
+"0e8d660cbd4a72352ad4109b2440286e", "f9bd449cffe24a59560af012e7f138e9",
+"fa0218d20cc873b75d9f44d0cf83b289", "9ec9e77a8f648020b9abcdbd083f380c",
+"bcac6add792dd24ab3bf3f6ffbb04fb4", "059fcc1d8c88fd6bfeb5b46f47153e51",
+"dfe1441045b1f7bf092220bb04fe44dd" , "2e443e898dc4bc5a287aa6491d69d932",
+"e4763bb938478b368fd72e9a60aff0a5", "d98b02d9e03f0ebb0f00a0147d720d93",
+"5246be93b22bbff1860fb674ac8fae76", "ae16f3705ee4d4b892616eb6d9a1c133",
+"f85a8d563437c3cea39fc5f2af7e6e63", "003e1af271c8df544128140b451ed817",
+"3c7e95f662321ce2f815e078166c202c", "c78f0af35b685d61df034ab8c3d15c13",
+"cc1842a912c816f43f297d1ec736dc50", "0836b1890d1fb5eaa54f48ccc4542828",
+"7921c20395343a1e79eb8bca4c057597", "95af0bbbf415e44ac7854156b9d705ee",
+"f06e759c41e4de352d45170a911e2eda" , "f29b7d44e1eee8fb456e135e369f884b",
+"389974c99c6715e7c7106d51898c674f", "f62a44b4783d1735155f79805963c684",
+"5dc375716659a1f435f14a8187d63e1c", "d26d64c914d51eba60fac72e280f924b",
+"e787389f8bbfabef66615e5e72558118", "ba0c17748bcff9933f301d83964993b9",
+"cac60cec0955acc359ab0ef9171dd831", "422dfd34b05fa810d62aeb6e3aeb58d6",
+"8fae55cee0eca1189a65b2b220858bb2", "19232e46a609413e5ff35c0a827cbce3"),
+    
+labels = c("Mycobacterium Genus", 
+"HgcI clade Genus", "Nocardioidaceae Family",
+"Uncultured Chryseoglobus bacterium", "Hyphomicrobium Genus", 
+"Uncultured Hyphomicrobiaceae", "Rhizobiaceae Family",
+"Uncultured Rickettsiaceae bacterium", "Sphingorhabdus Genus", 
+"Sphingomonadaceae Family", "Brevundimonas Genus",
+"Uncultured Micavibrionales bacterium", "Uncultured Rhizobiales Genus",
+"Uncultured Rhizobiales ASV 1", "Hyphomicrobium Metagenome",
+"Uncultured Rhizobiales ASV 2", "Uncultured Acanthamoeba",
+"Uncultured Rickettsiales bacterium", "Reyranella Genus", 
+"Flavobacterium_longum", "Pedobacter sp.",
+"Terrimonas Genus", "Pedobacter Genus",
+"AKYH767 Genus", "Uncultured OLB12 bacterium",
+"Tychonema CCAP 1459-11B Genus", "Pseudomonas Genus",
+"Leeia oryzae", "Comamonadaceae Family ASV 3",
+"Comamonadaceae Family", "Aquabacterium Genus",
+"Comamonadaceae Family ASV 2", "Gemmatimonadetes bacterium",
+ "Gracilibacteria Genus", "Uncultured OM190 bacterium",
+"Parcubacteria bacterium", "Pirellula Genus",
+"Haliangium Metagenome", "Luteolibacter Genus"))
+
+#Plot
+log2foldplot <- ggplot(taxa_all, aes(x=log2FoldChange, y=ASV, color=Class)) +  geom_point(size=6) +
+  scale_color_manual(values = fold_change_col) +
+  geom_vline(xintercept = 0, linetype="dashed", color = "black", size=1) +
+  theme_bw() +
+  theme(panel.grid.minor = element_blank()) 
+
+print(log2foldplot)
+```
+
+![](Analysis_files/figure-gfm/deseq%20water%20source%20log2fold%20change-1.png)<!-- -->
+
+``` r
+#Save as an svg file
+ggsave(filename="Fig4_TWW_v_CON_direct_compare_log2foldplot.svg", plot=log2foldplot, width=12, height=6, device=svg)
+```
 
 ## 8.4 MP vs glass, all timepoints, combined water sources
 
@@ -12119,9 +11051,435 @@ print(mp_v_glass_river_barplot)
 ggsave(filename="Microplastics_direct_compare_enriched_barplot.svg", plot=mp_v_glass_river_barplot, width=12, height=6, device=svg)
 ```
 
-## 8.6 Examining changes in bacterial communities on glass beads over time
+## 8.6 TEST - 1 MP type vs glass, all timepoints, river water only
 
-### 8.6.1 Contrasts - 2w, 6w, 10w river water glass only, vs river water
+``` r
+#Create new phyloseq object so that we don't mess up the current one
+ps.taxa.all.filt.test <- ps.taxa.all.filt
+
+#Need to add a column with a treatment and polymer type column to the phyloseq object
+sample_data(ps.taxa.all.filt.test)$polymer_effluent <- paste(sample_data(ps.taxa.all.filt.test)$effluent,sample_data(ps.taxa.all.filt.test)$polymer_type, sep="_")
+
+#Convert phyloseq object from above to a deseq object with the correct category
+ps_v_glass_river_deseq = phyloseq_to_deseq2(ps.taxa.all.filt.test, ~ polymer_effluent)
+```
+
+    ## converting counts to integer mode
+
+    ## Warning in DESeqDataSet(se, design = design, ignoreRank): some variables in
+    ## design formula are characters, converting to factors
+
+``` r
+#Estimate the size factors
+ps_v_glass_river_deseq <- estimateSizeFactors(ps_v_glass_river_deseq, type = "poscounts")
+
+#Make sure that the control is the first level in the sample_type group so that 
+#the default log2 changes are calculated as treatment vs. control instead of 
+#vice versa
+ps_v_glass_river_deseq$polymer_effluent <- relevel(factor(ps_v_glass_river_deseq$polymer_effluent), "CON_Glass")
+
+#Now we can run DESeq
+ps_v_glass_river_deseq = DESeq(ps_v_glass_river_deseq, test="Wald", fitType="parametric")
+```
+
+    ## using pre-existing size factors
+
+    ## estimating dispersions
+
+    ## gene-wise dispersion estimates
+
+    ## mean-dispersion relationship
+
+    ## -- note: fitType='parametric', but the dispersion trend was not well captured by the
+    ##    function: y = a/x + b, and a local regression fit was automatically substituted.
+    ##    specify fitType='local' or 'mean' to avoid this message next time.
+
+    ## final dispersion estimates
+
+    ## fitting model and testing
+
+    ## -- replacing outliers and refitting for 48 genes
+    ## -- DESeq argument 'minReplicatesForReplace' = 7 
+    ## -- original counts are preserved in counts(dds)
+
+    ## estimating dispersions
+
+    ## fitting model and testing
+
+``` r
+#Check which comparisons are contained in the deseq object:
+resultsNames(ps_v_glass_river_deseq)
+```
+
+    ##  [1] "Intercept"                              
+    ##  [2] "polymer_effluent_CON_HDPE_vs_CON_Glass" 
+    ##  [3] "polymer_effluent_CON_LDPE_vs_CON_Glass" 
+    ##  [4] "polymer_effluent_CON_PP_vs_CON_Glass"   
+    ##  [5] "polymer_effluent_CON_PS_vs_CON_Glass"   
+    ##  [6] "polymer_effluent_CON_Water_vs_CON_Glass"
+    ##  [7] "polymer_effluent_TWW_Glass_vs_CON_Glass"
+    ##  [8] "polymer_effluent_TWW_HDPE_vs_CON_Glass" 
+    ##  [9] "polymer_effluent_TWW_LDPE_vs_CON_Glass" 
+    ## [10] "polymer_effluent_TWW_PP_vs_CON_Glass"   
+    ## [11] "polymer_effluent_TWW_PS_vs_CON_Glass"   
+    ## [12] "polymer_effluent_TWW_Water_vs_CON_Glass"
+
+``` r
+#We just want to look at the difference between microplastics and glass in river water
+#Creating a results table with the information we're interested in
+res_ps_v_glass_river <- results(ps_v_glass_river_deseq, contrast=c("polymer_effluent","CON_PS","CON_Glass"), alpha=0.05)
+
+#Show results summary
+summary(res_ps_v_glass_river)
+```
+
+    ## 
+    ## out of 994 with nonzero total read count
+    ## adjusted p-value < 0.05
+    ## LFC > 0 (up)       : 21, 2.1%
+    ## LFC < 0 (down)     : 13, 1.3%
+    ## outliers [1]       : 0, 0%
+    ## low counts [2]     : 0, 0%
+    ## (mean count < 1)
+    ## [1] see 'cooksCutoff' argument of ?results
+    ## [2] see 'independentFiltering' argument of ?results
+
+``` r
+#Log fold change shrinkage on each comparison
+resLFC_ps_v_glass_river <- lfcShrink(ps_v_glass_river_deseq, coef="polymer_effluent_CON_PS_vs_CON_Glass", type="apeglm")
+```
+
+    ## using 'apeglm' for LFC shrinkage. If used in published research, please cite:
+    ##     Zhu, A., Ibrahim, J.G., Love, M.I. (2018) Heavy-tailed prior distributions for
+    ##     sequence count data: removing the noise and preserving large differences.
+    ##     Bioinformatics. https://doi.org/10.1093/bioinformatics/bty895
+
+``` r
+resLFC_ps_v_glass_river
+```
+
+    ## log2 fold change (MAP): polymer effluent CON PS vs CON Glass 
+    ## Wald test p-value: polymer effluent CON PS vs CON Glass 
+    ## DataFrame with 994 rows and 5 columns
+    ##                                   baseMean log2FoldChange     lfcSE    pvalue
+    ##                                  <numeric>      <numeric> <numeric> <numeric>
+    ## 76986812e0cdb639a25c936952004967  43.84147     -0.7317800  1.274167  0.488715
+    ## 143eedc0b2cf4ff8f1ca0448594d1191   8.39989     -0.0161083  1.016321  0.902888
+    ## cdc12d12977ac7193527fac20a6c8711   1.72097      0.1512145  0.956438  0.719393
+    ## 0e8d660cbd4a72352ad4109b2440286e   8.97585     -0.0538897  1.011384  0.878990
+    ## a94d8fee872266a54b1e5706d6bcfbac  20.51734     -0.0222148  0.851953  0.960720
+    ## ...                                    ...            ...       ...       ...
+    ## 3c0d84f8bf9a3a8ea5cc05ad9b99c209   7.92815      0.0325314  0.912995  0.963964
+    ## 2b0dbc8ca8b74471b0029ee9d61a4c60  41.23416      0.1903355  0.933198  0.629448
+    ## 15456227e48f1103584e352c6ba34637  36.36373      0.4363973  0.990190  0.347476
+    ## 6c0bf239702859ae989d886f1985b1e4 440.45002      0.5035034  0.981781  0.324102
+    ## 84bc6ce045f212f439b979e3862bb33e 178.19931      0.3692453  1.013652  0.399527
+    ##                                       padj
+    ##                                  <numeric>
+    ## 76986812e0cdb639a25c936952004967  0.999745
+    ## 143eedc0b2cf4ff8f1ca0448594d1191  0.999745
+    ## cdc12d12977ac7193527fac20a6c8711  0.999745
+    ## 0e8d660cbd4a72352ad4109b2440286e  0.999745
+    ## a94d8fee872266a54b1e5706d6bcfbac  0.999745
+    ## ...                                    ...
+    ## 3c0d84f8bf9a3a8ea5cc05ad9b99c209  0.999745
+    ## 2b0dbc8ca8b74471b0029ee9d61a4c60  0.999745
+    ## 15456227e48f1103584e352c6ba34637  0.999745
+    ## 6c0bf239702859ae989d886f1985b1e4  0.999745
+    ## 84bc6ce045f212f439b979e3862bb33e  0.999745
+
+``` r
+#"It is more useful visualize the MA-plot for the shrunken log2 fold changes, 
+#which remove the noise associated with log2 fold changes from low count genes 
+#without requiring arbitrary filtering thresholds."
+#https://www.bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html#why-un-normalized-counts
+plotMA(resLFC_ps_v_glass_river)
+```
+
+![](Analysis_files/figure-gfm/polymer%20type%20test-1.png)<!-- -->
+
+``` r
+#Add taxonomic information
+sigtab_ps_v_glass_river = cbind(as(res_ps_v_glass_river, "data.frame"), as(tax_table(ps.taxa.all.filt.test)[rownames(res_ps_v_glass_river), ], "matrix"))
+
+#Convert to dataframe
+df_ps_v_glass_river_deseq <- as.data.frame(sigtab_ps_v_glass_river)
+
+#Filter based on adj p-value, removing non-significant values (p>0.05)
+#This also removes p-values that are NA; NA p-values exist because when p-values do not pass the filter threshold (p-values less than 0.1) they are set to NA 
+#More information in vignette("DESeq2") under "Note on p-values set to NA"
+df_ps_v_glass_river_deseq_filt <- filter(df_ps_v_glass_river_deseq, padj <= 0.05)
+
+#Order by adjusted p-value
+df_ps_v_glass_river_deseq_filt = df_ps_v_glass_river_deseq_filt[order(df_ps_v_glass_river_deseq_filt$padj, na.last=NA), ]
+```
+
+## 8.7 MP vs glass, all timepoints, TWW only
+
+``` r
+#Convert phyloseq object from above to a deseq object with the correct category
+mp_v_glass_TWW_deseq = phyloseq_to_deseq2(ps.taxa.all.filt, ~ particle_effluent)
+```
+
+    ## converting counts to integer mode
+
+``` r
+#Estimate the size factors
+mp_v_glass_TWW_deseq <- estimateSizeFactors(mp_v_glass_TWW_deseq, type = "poscounts")
+
+#Make sure that the control is the first level in the sample_type group so that 
+#the default log2 changes are calculated as treatment vs. control instead of 
+#vice versa
+mp_v_glass_TWW_deseq$particle_effluent <- relevel(factor(mp_v_glass_TWW_deseq$particle_effluent), "Glass_TWW")
+
+#Now we can run DESeq
+mp_v_glass_TWW_deseq = DESeq(mp_v_glass_TWW_deseq, test="Wald", fitType="parametric")
+```
+
+    ## using pre-existing size factors
+
+    ## estimating dispersions
+
+    ## gene-wise dispersion estimates
+
+    ## mean-dispersion relationship
+
+    ## -- note: fitType='parametric', but the dispersion trend was not well captured by the
+    ##    function: y = a/x + b, and a local regression fit was automatically substituted.
+    ##    specify fitType='local' or 'mean' to avoid this message next time.
+
+    ## final dispersion estimates
+
+    ## fitting model and testing
+
+    ## -- replacing outliers and refitting for 33 genes
+    ## -- DESeq argument 'minReplicatesForReplace' = 7 
+    ## -- original counts are preserved in counts(dds)
+
+    ## estimating dispersions
+
+    ## fitting model and testing
+
+``` r
+#Check which comparisons are contained in the deseq object:
+resultsNames(mp_v_glass_TWW_deseq)
+```
+
+    ## [1] "Intercept"                               
+    ## [2] "particle_effluent_Glass_CON_vs_Glass_TWW"
+    ## [3] "particle_effluent_MP_CON_vs_Glass_TWW"   
+    ## [4] "particle_effluent_MP_TWW_vs_Glass_TWW"   
+    ## [5] "particle_effluent_water_vs_Glass_TWW"
+
+``` r
+#We just want to look at the difference between microplastics and glass in river water
+#Creating a results table with the information we're interested in
+res_mp_v_glass_TWW <- results(mp_v_glass_TWW_deseq, contrast=c("particle_effluent","MP_TWW","Glass_TWW"), alpha=0.05)
+
+#Show results summary
+summary(res_mp_v_glass_TWW)
+```
+
+    ## 
+    ## out of 994 with nonzero total read count
+    ## adjusted p-value < 0.05
+    ## LFC > 0 (up)       : 38, 3.8%
+    ## LFC < 0 (down)     : 2, 0.2%
+    ## outliers [1]       : 0, 0%
+    ## low counts [2]     : 58, 5.8%
+    ## (mean count < 2)
+    ## [1] see 'cooksCutoff' argument of ?results
+    ## [2] see 'independentFiltering' argument of ?results
+
+``` r
+#Log fold change shrinkage on each comparison
+resLFC_mp_v_glass_TWW <- lfcShrink(mp_v_glass_TWW_deseq, coef="particle_effluent_MP_TWW_vs_Glass_TWW", type="apeglm")
+```
+
+    ## using 'apeglm' for LFC shrinkage. If used in published research, please cite:
+    ##     Zhu, A., Ibrahim, J.G., Love, M.I. (2018) Heavy-tailed prior distributions for
+    ##     sequence count data: removing the noise and preserving large differences.
+    ##     Bioinformatics. https://doi.org/10.1093/bioinformatics/bty895
+
+``` r
+resLFC_mp_v_glass_TWW
+```
+
+    ## log2 fold change (MAP): particle effluent MP TWW vs Glass TWW 
+    ## Wald test p-value: particle effluent MP TWW vs Glass TWW 
+    ## DataFrame with 994 rows and 5 columns
+    ##                                   baseMean log2FoldChange     lfcSE    pvalue
+    ##                                  <numeric>      <numeric> <numeric> <numeric>
+    ## 76986812e0cdb639a25c936952004967  43.84147      0.5344208  1.087177  0.750073
+    ## 143eedc0b2cf4ff8f1ca0448594d1191   8.39989     -0.0350435  1.016543  0.991382
+    ## cdc12d12977ac7193527fac20a6c8711   1.72097      0.0316980  0.886506  0.974768
+    ## 0e8d660cbd4a72352ad4109b2440286e   8.97585      0.2929904  0.976847  0.521398
+    ## a94d8fee872266a54b1e5706d6bcfbac  20.51734     -0.7805908  0.852377  0.199457
+    ## ...                                    ...            ...       ...       ...
+    ## 3c0d84f8bf9a3a8ea5cc05ad9b99c209   7.92815      0.0220376  0.846565  0.975679
+    ## 2b0dbc8ca8b74471b0029ee9d61a4c60  41.23416      0.4341184  0.991382  0.328998
+    ## 15456227e48f1103584e352c6ba34637  36.36373      0.0843407  0.810829  0.879076
+    ## 6c0bf239702859ae989d886f1985b1e4 440.45002      0.4004548  0.859774  0.436000
+    ## 84bc6ce045f212f439b979e3862bb33e 178.19931      0.3799976  0.984281  0.389293
+    ##                                       padj
+    ##                                  <numeric>
+    ## 76986812e0cdb639a25c936952004967  0.999959
+    ## 143eedc0b2cf4ff8f1ca0448594d1191  0.999959
+    ## cdc12d12977ac7193527fac20a6c8711  0.999959
+    ## 0e8d660cbd4a72352ad4109b2440286e  0.999959
+    ## a94d8fee872266a54b1e5706d6bcfbac  0.999959
+    ## ...                                    ...
+    ## 3c0d84f8bf9a3a8ea5cc05ad9b99c209  0.999959
+    ## 2b0dbc8ca8b74471b0029ee9d61a4c60  0.999959
+    ## 15456227e48f1103584e352c6ba34637  0.999959
+    ## 6c0bf239702859ae989d886f1985b1e4  0.999959
+    ## 84bc6ce045f212f439b979e3862bb33e  0.999959
+
+``` r
+#"It is more useful visualize the MA-plot for the shrunken log2 fold changes, 
+#which remove the noise associated with log2 fold changes from low count genes 
+#without requiring arbitrary filtering thresholds."
+#https://www.bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html#why-un-normalized-counts
+plotMA(resLFC_mp_v_glass_TWW)
+```
+
+![](Analysis_files/figure-gfm/finding%20TWW%20water%20plastisphere-1.png)<!-- -->
+
+``` r
+#Add taxonomic information
+sigtab_mp_v_glass_TWW = cbind(as(res_mp_v_glass_TWW, "data.frame"), as(tax_table(MPphyseq)[rownames(res_mp_v_glass_TWW), ], "matrix"))
+
+#Convert to dataframe
+df_mp_v_glass_TWW_deseq <- as.data.frame(sigtab_mp_v_glass_TWW)
+
+#Filter based on adj p-value, removing non-significant values (p>0.05)
+#This also removes p-values that are NA; NA p-values exist because when p-values do not pass the filter threshold (p-values less than 0.1) they are set to NA 
+#More information in vignette("DESeq2") under "Note on p-values set to NA"
+df_mp_v_glass_TWW_deseq_filt <- filter(df_mp_v_glass_TWW_deseq, padj <= 0.05)
+
+#Order by adjusted p-value
+df_mp_v_glass_TWW_deseq_filt = df_mp_v_glass_TWW_deseq_filt[order(df_mp_v_glass_TWW_deseq_filt$padj, na.last=NA), ]
+```
+
+### 8.7.1 Create bar plot of results - log normalized counts
+
+``` r
+#Find normalized counts
+mp_v_glass_TWW_deseq_norm_counts <- as.data.frame(counts(mp_v_glass_TWW_deseq, normalize = TRUE))
+
+#Make the rownames a column
+sig_norm_counts_mp_glass_TWW <- tibble::rownames_to_column(mp_v_glass_TWW_deseq_norm_counts, var = "ASV")
+
+#Gathering the normalized counts into 2 columns
+sig_norm_counts_mp_glass_TWW_a <- gather(sig_norm_counts_mp_glass_TWW, key = "samplename", value = "normalized_counts", -ASV)
+
+#Create a column with the filtered deseq dataframe rownames as well
+taxa_all_mp_glass_TWW <- data.frame(df_mp_v_glass_TWW_deseq_filt) %>%
+  tibble::rownames_to_column(var = "ASV")
+
+#Add normalized counts to the deseq dataframe
+mp_v_glass_TWW_sig_norm_counts_filt <- taxa_all_mp_glass_TWW %>%
+  left_join(sig_norm_counts_mp_glass_TWW_a, by = "ASV") %>%
+  filter(ASV == ASV) 
+
+#Create dataframe out of the phyloseq metadata so that we can ID these samples
+meta <- data.frame(sample_data(MPphyseq)) %>%
+  tibble::rownames_to_column(var = "samplename")
+
+#Merge metadata with sig_norm_counts_filt
+mp_v_glass_TWW_sig_norm_counts_filt <- mp_v_glass_TWW_sig_norm_counts_filt %>%
+  left_join(meta, by = "samplename")
+
+#Filter: Remove deseq results columns that aren't relevant for the following graph,and filter the particle_effluent column so that the dataset includes only the samples contrasted in deseq
+mp_v_glass_TWW_sig_norm_counts_filt <- mp_v_glass_TWW_sig_norm_counts_filt %>%   select(-baseMean, -lfcSE, -stat, -pvalue, -padj) %>%
+  filter(particle_type %in% c("MP", "Glass")) %>%
+  filter(effluent %in% c("TWW"))
+
+#Add 1 to account for 0's and then log transform the count data
+mp_v_glass_TWW_sig_norm_counts_filt$log_normalized_counts <- log(mp_v_glass_TWW_sig_norm_counts_filt$normalized_counts+1)
+
+#Creating a new column that combines both the Class and Species level information
+#so that Species level identifiers that are not unique to one Class (such as Ambiguous_taxa or
+#uncultured bacterium) aren't merged into a single large category when graphed
+mp_v_glass_TWW_sig_norm_counts_filt$Class_species <- paste(mp_v_glass_TWW_sig_norm_counts_filt$Class, mp_v_glass_TWW_sig_norm_counts_filt$Species, sep="_")
+
+
+
+#Ordering the ASV's according to the LFC - checked the dataframe, sorted the LFC column from highest to lowest, and then listed those ASV's in order below. I'm also changing the names here, since some of them were the same and resulted in compiled results of individual ASV's.
+mp_v_glass_river_sig_norm_counts_filt$ASV <- factor(mp_v_glass_river_sig_norm_counts_filt$ASV, 
+    levels = c("e83d3a9ae4b566edc8ec920cc3e8f0f8","403ca22e6c6abcdc7c4cd2a9b200d3ec", "f62a44b4783d1735155f79805963c684", 
+"abd0fbdd7476bd431022c83b9996b932", "2f552815996dfc27273632a1d226abe1",
+"e916bc8b4b153d3d0103159b941ee071", "344290542e48f66d0f4415ffa9a38c5d",
+"dafdc5719dd9462554f050696d57a897", "779c0940f4c6c2ad29bae45118994ae6",
+"9efc4fc95e6bb6462e24fc527a71c2c3", "a91e1037bb22ad2cf89dff794df117aa",
+"3ac5a519014ada35464c1299daf000d2", "a5146a2f02a75661dddcde0b55d011ff",
+""),
+    labels = c("*Comamonadaceae Family", 
+"*Uncultured Parviterribacter", "*Aquabacterium Genus",        
+"*Hyphomicrobium Genus 1", "Comamonadaceae Family ASV 2",
+"*Phytoplasma sp", "Hydrogenophaga Genus ASV 2",
+"Methylotenera Genus", "Saprospiraceae Genus",
+"Uncultured Pirellula Genus bacterium", "*Gaiellales order metagenome",
+"Methylotenera Genus ASV 2", "*Uncultured Candidatus Nomurabacteria bacterium",
+""))
+
+
+
+
+mp_v_glass_river_sig_norm_counts_filt$ASV <- factor(mp_v_glass_river_sig_norm_counts_filt$ASV, 
+    levels = c("abd0fbdd7476bd431022c83b9996b932", 
+"566dcce23831f01974d7faa119d1a04b", "a91e1037bb22ad2cf89dff794df117aa",
+"e83d3a9ae4b566edc8ec920cc3e8f0f8", "9943198d8600ba3300ddd2a55a23ea03",
+"2e443e898dc4bc5a287aa6491d69d932", "a5146a2f02a75661dddcde0b55d011ff",
+"1bf834043265c0accda0413d393b1611", "d445c17d3507ef68861f392e8d3d6fa8",
+"403ca22e6c6abcdc7c4cd2a9b200d3ec", "698efa3367bdfade818ea2c90c4bf0ca",
+"d12afb35d31c7d7e3c581249f11985e7", "25a958acb77cd495c521b56ae500fb64",
+"1906cb6358f38d0ae5aa315ef00a0a71", "a761e859355039395824c375d161e32e",
+"c2b8240fbc0bef85ca5f128c69556a76", "e916bc8b4b153d3d0103159b941ee071",
+"8e41c8dcbd322ea1fb44b4c6fc2509b5", "bcac6add792dd24ab3bf3f6ffbb04fb4",
+"f62a44b4783d1735155f79805963c684", "8b1f74e4b28b736bb08ff78f7225984f",
+"3c7e95f662321ce2f815e078166c202c", "ba14dccaca1ae8d138d8f2f4e29415a0",
+"ae3fb80642ecc01c124115e63a705835", "105c8c20b86e93ee958d1e2a76e39c1a",
+"98d31549e02be1d0545d751e5f065343", "b31be1b89bb580e3611089a09fd79e29"),
+    labels = c("*Hyphomicrobium Genus 1", 
+"Silvanigrella Genus", "*Gaiellales order metagenome",
+"*Comamonadaceae Family", "Rhizobiaceae metagenome",
+"Hyphomicrobium metagenome 1", "*Uncultured Candidatus Nomurabacteria bacterium",
+"Uncultured Rhizobiales Incertae Sedis bacterium", "Hyphomicrobium metagenome 2", 
+"*Uncultured Parviterribacter", "Uncultured Sphingomonadaceae", 
+"Hydrogenophaga Genus", "Candidatus Ovatusbacter Genus", 
+"Uncultured Gemmatimonadaceae genus", "Comamonadaceae Family",
+"Uncultured Haliscomenobacter", "*Phytoplasma sp",
+"Uncultured Gemmatimonadaceae bacterium", "Micavibrionales",
+"*Aquabacterium Genus", "Uncultured Rhodocyclaceae",
+"Terrimonas Genus", "Rheinheimera Genus",
+"Gaiellales metagenome", "Uncultured Truepera Genus bacterium",
+"Pirellula Genus", "Hyphomicrobium Genus 2"))
+
+#Barplot version
+mp_v_glass_river_barplot <- ggplot(mp_v_glass_river_sig_norm_counts_filt, aes(x = ASV, y = log_normalized_counts, fill = particle_type)) +
+  stat_summary(geom = "bar", fun = mean, position = "dodge", colour = "black") +
+  stat_summary(geom = "errorbar", fun.data = mean_se, position = "dodge") +
+  xlab("Species") +
+  ylab("Log transformed normalized counts") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank()) 
+  
+print(mp_v_glass_river_barplot)
+```
+
+![](Analysis_files/figure-gfm/deseq2%20mp%20v%20glass%20tww%20plot-1.png)<!-- -->
+
+``` r
+#Save as an svg file
+ggsave(filename="Microplastics_direct_compare_enriched_barplot.svg", plot=mp_v_glass_river_barplot, width=12, height=6, device=svg)
+```
+
+## 8.8 Examining changes in bacterial communities on glass beads over time
+
+### 8.8.1 Contrasts - 2w, 6w, 10w river water glass only, vs river water
 
 ``` r
 #Convert phyloseq object from above to deseq object with the correct category
@@ -12411,7 +11769,7 @@ df_mp_glass_deseq_CON6_filt = df_mp_glass_deseq_CON6_filt[order(df_mp_glass_dese
 df_mp_glass_deseq_CON10_filt = df_mp_glass_deseq_CON10_filt[order(df_mp_glass_deseq_CON10_filt$padj, na.last=NA), ]
 ```
 
-### 8.6.2 Contrasts - 2w, 6w, 10w TWW Glass only, vs TWW
+### 8.8.2 Contrasts - 2w, 6w, 10w TWW Glass only, vs TWW
 
 ``` r
 #Convert phyloseq object from above to deseq object with the correct category
@@ -12701,7 +12059,7 @@ df_mp_glass_deseq_TWW6_filt = df_mp_glass_deseq_TWW6_filt[order(df_mp_glass_dese
 df_mp_glass_deseq_TWW10_filt = df_mp_glass_deseq_TWW10_filt[order(df_mp_glass_deseq_TWW10_filt$padj, na.last=NA), ]
 ```
 
-### 8.6.3 Venn Diagrams
+### 8.8.3 Venn Diagrams
 
 This section includes the preparation of the DESeq2 glass bead results
 for plotting with the ggVennDiagram package. First, we’ll filter the
@@ -12802,9 +12160,326 @@ ggVennDiagram(glass_time_comparisons_tww, label_alpha = 0) + scale_fill_gradient
 
 ![](Analysis_files/figure-gfm/venn%20glass-2.png)<!-- -->
 
-## 8.7 Examining changes in bacterial communities on microplastics over time
+### 8.8.4 Heatmap
 
-### 8.7.1 Contrasts - 2w, 6w, 10w river water MP’s only, vs river water
+``` r
+#Find normalized counts of the ASV's from the deseq object
+glass_time_deseq_norm_counts <- as.data.frame(counts(mp_effluent_deseq, normalize = TRUE))
+
+#Make the rownames a column
+glass_sig_norm_counts_time <- tibble::rownames_to_column(glass_time_deseq_norm_counts, var = "ASV")
+
+#Gathering the normalized counts into 2 columns
+glass_sig_norm_counts_time_long <- gather(glass_sig_norm_counts_time, key = "samplename", value = "normalized_counts", -ASV)
+
+#Create dataframe out of the phyloseq metadata so that we can ID these samples
+meta_time_heatmap <- data.frame(sample_data(MPphyseq)) %>%
+  tibble::rownames_to_column(var = "samplename")
+
+#Merge metadata with sig_norm_counts_time_long so that it includes metadata
+glass_sig_norm_counts_time_long <- glass_sig_norm_counts_time_long %>%
+  left_join(meta_time_heatmap, by = "samplename")
+
+#Filter: Remove columns that aren't relevant for the following graph, and filter the particle_effluent_time column so that the dataset includes only the samples contrasted in deseq. The last two lines of the code below calculate the average abundance of each ASV for each of the six particle_effluent_time categories (MP_CON_2, MP_CON_6, MP_CON_10, MP_TWW_2, MP_TWW_6, MP_TWW_10).
+glass_sig_norm_counts_time_long_2 <- glass_sig_norm_counts_time_long %>% 
+  filter(particle_effluent_time %in% c("Glass_CON_2", "Glass_CON_6", "Glass_CON_10", "Glass_TWW_2", "Glass_TWW_6", "Glass_TWW_10")) %>%
+  group_by(ASV, particle_effluent_time) %>%
+    dplyr::summarize(Mean = mean(normalized_counts, na.rm=TRUE))
+```
+
+    ## `summarise()` has grouped output by 'ASV'. You can override using the `.groups`
+    ## argument.
+
+``` r
+#Add 1 to the averaged normalized count data to account for 0's and then log transform the count data
+glass_sig_norm_counts_time_long_2$log_normalized_counts <- log(glass_sig_norm_counts_time_long_2$Mean+1)
+
+
+
+#Grab ASV's from the filtered DESeq2 lists (which contain only positive log2FoldChanges). Make sure the new columns created for each of the six sets have the same label for the ASV column so that they can be merged into one dataset later
+taxa_glass_CON2_heatmap <- data.frame(df_mp_glass_deseq_CON2_filt) %>%
+  tibble::rownames_to_column(var = "ASV") %>%
+  select(ASV)
+
+taxa_glass_CON6_heatmap <- data.frame(df_mp_glass_deseq_CON6_filt) %>%
+  tibble::rownames_to_column(var = "ASV") %>%
+  select(ASV)
+
+taxa_glass_CON10_heatmap <- data.frame(df_mp_glass_deseq_CON10_filt) %>%
+  tibble::rownames_to_column(var = "ASV") %>%
+  select(ASV)
+
+
+taxa_glass_TWW2_heatmap <- data.frame(df_mp_glass_deseq_TWW2_filt) %>%
+  tibble::rownames_to_column(var = "ASV") %>%
+  select(ASV)
+
+taxa_glass_TWW6_heatmap <- data.frame(df_mp_glass_deseq_TWW6_filt) %>%
+  tibble::rownames_to_column(var = "ASV") %>%
+  select(ASV)
+
+taxa_glass_TWW10_heatmap <- data.frame(df_mp_glass_deseq_TWW10_filt) %>%
+  tibble::rownames_to_column(var = "ASV") %>%
+  select(ASV)
+
+#Merge these dataframes; note that "all=TRUE" keeps all values from the ASV column, even those that don't match across all dataframes
+DESeq_sig_taxa_glass <- merge(taxa_glass_CON2_heatmap, taxa_glass_CON6_heatmap, by = "ASV", all=TRUE)
+
+DESeq_sig_taxa_glass <- merge(DESeq_sig_taxa_glass, taxa_glass_CON10_heatmap, by = "ASV", all=TRUE)
+
+DESeq_sig_taxa_glass <- merge(DESeq_sig_taxa_glass, taxa_glass_TWW2_heatmap, by = "ASV", all=TRUE)
+
+DESeq_sig_taxa_glass <- merge(DESeq_sig_taxa_glass, taxa_glass_TWW6_heatmap, by = "ASV", all=TRUE)
+
+DESeq_sig_taxa_glass <- merge(DESeq_sig_taxa_glass, taxa_glass_TWW10_heatmap, by = "ASV", all=TRUE)
+
+
+
+#Now we can filter the sig_norm_counts_time_long_2 dataframe (which includes the log normalized count data that we need) based on these ASV's; here we use left_join, which will only include the row names listed in DESeq_sig_taxa_MP.
+glass_sig_norm_counts_time_long_filt <- DESeq_sig_taxa_glass %>%
+  left_join(glass_sig_norm_counts_time_long_2, by = "ASV") 
+
+#Now we can restructure this dataframe so that each group in the particle_effluent_time column is a separate column
+glass_sig_norm_counts_heatmap_format <- glass_sig_norm_counts_time_long_filt %>%
+  select(-Mean) %>% 
+  pivot_wider(names_from = particle_effluent_time, values_from = log_normalized_counts)  
+
+#This dataframe now contains the average log normalized counts (extracted from DESeq2) for each significant ASV in each treatment category. We also need to add taxonomic information to each ASV so that we can ID these ASV's. First, create a dataframe containing the taxonomic information for each ASV:
+tax_tab_df <- data.frame((tax_table(MPphyseq))) %>%
+  tibble::rownames_to_column(var = "ASV")
+
+#And then left_join that taxonomic information with the dataframe containing the DESeq ASV's with log normalized counts:
+glass_sig_norm_counts_time_long_filt_tax <- glass_sig_norm_counts_heatmap_format %>%
+  left_join(tax_tab_df, by = "ASV")
+
+#Finally, order alphabetically by Class:
+glass_sig_norm_counts_time_long_filt_tax <- glass_sig_norm_counts_time_long_filt_tax[order(glass_sig_norm_counts_time_long_filt_tax$Class),]
+```
+
+### 8.8.5 Heatmap at genus level with annotations (Fig. S8)
+
+``` r
+#First, left_join that taxonomic information with the dataframe containing the DESeq ASV's with log normalized counts:
+glass_sig_norm_counts_tax_genus <- glass_sig_norm_counts_time_long_filt %>%
+  left_join(tax_tab_df, by = "ASV")
+
+#Group by family
+glass_sig_norm_counts_time_long_filt_genus <- glass_sig_norm_counts_tax_genus %>% 
+  group_by(particle_effluent_time, 
+           Kingdom, Phylum, Class, Order, Family, Genus) %>%
+  dplyr::summarize(log_normalized_counts = mean(log_normalized_counts, na.rm=TRUE)) %>%
+  arrange(Class)
+```
+
+    ## `summarise()` has grouped output by 'particle_effluent_time', 'Kingdom',
+    ## 'Phylum', 'Class', 'Order', 'Family'. You can override using the `.groups`
+    ## argument.
+
+``` r
+#Now we can restructure this dataframe so that each group in the particle_effluent_time column is a separate column
+glass_sig_norm_counts_heatmap_format_genus <- glass_sig_norm_counts_time_long_filt_genus %>%
+    pivot_wider(names_from = particle_effluent_time, values_from = log_normalized_counts) 
+
+
+#Now create the heatmap
+
+#Pheatmap only takes a matrix that contains numeric values as input - 
+#grab only the columns with the numeric values we want to examine
+glass_matrix_sig_ASVs_genus <- as.matrix(glass_sig_norm_counts_heatmap_format_genus[7:12])
+
+#Make sure the sig_norm_counts_time_long_filt_tax data is a dataframe
+glass_sig_norm_counts_heatmap_format_genus <- as.data.frame(glass_sig_norm_counts_heatmap_format_genus)
+class(glass_sig_norm_counts_heatmap_format_genus)
+```
+
+    ## [1] "data.frame"
+
+``` r
+#Add the Genus level names to the rows
+rownames(glass_matrix_sig_ASVs_genus) <- as.character(glass_sig_norm_counts_heatmap_format_genus[, "Genus"])
+
+#Remove the column names; if you want the heatmap annotated on the bottom, don't run this part
+glass_matrix_sig_ASVs_genus = as.matrix(glass_matrix_sig_ASVs_genus)
+colnames(glass_matrix_sig_ASVs_genus) = NULL
+
+
+#Create a dataframe containing metadata; be sure to label the rows using row.names with the same names as the columns in matrix_sig_ASVs_family
+glass_metadata_sig_ASVs_genus <- data.frame(
+  effluent = c("River", "River", "River", "TWW", "TWW", "TWW"),
+  week = c("10", "2", "6", "10", "2", "6")
+)
+
+row.names(glass_metadata_sig_ASVs_genus) <- c("Glass_CON_10", "Glass_CON_2", "Glass_CON_6", "Glass_TWW_10", "Glass_TWW_2", "Glass_TWW_6")
+
+#Create dataframe
+glass_annotation_col_genus = data.frame(
+  effluent = as.factor(glass_metadata_sig_ASVs_genus$effluent), 
+  week = as.factor(glass_metadata_sig_ASVs_genus$week),
+  check.names = FALSE)
+
+rownames(glass_annotation_col_genus) = rownames(glass_metadata_sig_ASVs_genus)
+
+#Define annotations for row
+glass_annotation_row = data.frame(
+  Class = as.factor(glass_sig_norm_counts_heatmap_format_genus[, "Class"]))
+
+#rownames(annotation_row) = rownames(matrix_sig_ASVs_family)
+
+
+#Define annotations for top
+glass_top_annotation = HeatmapAnnotation(foo = anno_block(gp = gpar(fill = "lightgrey"),
+        labels = c("2", "2", "10", "10", "6", "6"), 
+        labels_gp = gpar(col = "black", fontsize = 10)))
+
+#Choose and assign colors
+#ann_color should be named vectors
+class_col = colorRampPalette(brewer.pal(12,"Set3"))(24)
+names(class_col) = levels(glass_annotation_row$Class)
+ann_colors = list(
+  effluent = c(River = "red", TWW = "blue"),
+  week = c('2' = "red", '6' = "blue", '10' = "yellow"),
+  Class = class_col)
+
+#Make the actual heatmap
+glass_heatmap_sig_ASVs_genus <- ComplexHeatmap::pheatmap(glass_matrix_sig_ASVs_genus,
+                         column_split = glass_annotation_col_genus, 
+                         top_annotation = glass_top_annotation,
+                         annotation_row = glass_annotation_row,
+                         annotation_colors = ann_colors,
+                         cluster_rows = FALSE,
+                         cluster_cols = TRUE,
+                         show_column_dend = TRUE) 
+ 
+print(glass_heatmap_sig_ASVs_genus)
+```
+
+![](Analysis_files/figure-gfm/glass%20MP%20heatmap%20genus%20annotate-1.png)<!-- -->
+
+``` r
+#Save as a pdf file
+pdf("Glass_sig_ASVs_genus.pdf", width=12,height=16.5)
+draw(glass_heatmap_sig_ASVs_genus)
+dev.off()
+```
+
+    ## png 
+    ##   2
+
+### 8.8.6 Heatmap at family level with annotations (Fig. S7)
+
+``` r
+#First, left_join that taxonomic information with the dataframe containing the DESeq ASV's with log normalized counts:
+glass_sig_norm_counts_tax_family <- glass_sig_norm_counts_time_long_filt %>%
+  left_join(tax_tab_df, by = "ASV")
+
+#Group by family
+glass_sig_norm_counts_time_long_filt_family <- glass_sig_norm_counts_tax_family %>% 
+  group_by(particle_effluent_time, 
+           Kingdom, Phylum, Class, Order, Family) %>%
+  dplyr::summarize(log_normalized_counts = mean(log_normalized_counts, na.rm=TRUE)) %>%
+  arrange(Class)
+```
+
+    ## `summarise()` has grouped output by 'particle_effluent_time', 'Kingdom',
+    ## 'Phylum', 'Class', 'Order'. You can override using the `.groups` argument.
+
+``` r
+#Now we can restructure this dataframe so that each group in the particle_effluent_time column is a separate column
+glass_sig_norm_counts_heatmap_format_family <- glass_sig_norm_counts_time_long_filt_family %>%
+    pivot_wider(names_from = particle_effluent_time, values_from = log_normalized_counts) 
+
+
+#Now create the heatmap
+
+#Pheatmap only takes a matrix that contains numeric values as input - 
+#grab only the columns with the numeric values we want to examine
+glass_matrix_sig_ASVs_family <- as.matrix(glass_sig_norm_counts_heatmap_format_family[6:11])
+
+#Make sure the sig_norm_counts_time_long_filt_tax data is a dataframe
+glass_sig_norm_counts_heatmap_format_family <- as.data.frame(glass_sig_norm_counts_heatmap_format_family)
+class(glass_sig_norm_counts_heatmap_format_family)
+```
+
+    ## [1] "data.frame"
+
+``` r
+#Add the Family level names to the rows
+rownames(glass_matrix_sig_ASVs_family) <- as.character(glass_sig_norm_counts_heatmap_format_family[, "Family"])
+
+#Remove the column names; if you want the heatmap annotated on the bottom, don't run this part
+glass_matrix_sig_ASVs_family = as.matrix(glass_matrix_sig_ASVs_family)
+colnames(glass_matrix_sig_ASVs_family) = NULL
+
+
+#Create a dataframe containing metadata; be sure to label the rows using row.names with the same names as the columns in matrix_sig_ASVs_family
+glass_metadata_sig_ASVs_family <- data.frame(
+  effluent = c("River", "River", "River", "TWW", "TWW", "TWW"),
+  week = c("10", "2", "6", "10", "2", "6")
+)
+
+row.names(glass_metadata_sig_ASVs_family) <- c("Glass_CON_10", "Glass_CON_2", "Glass_CON_6", "Glass_TWW_10", "Glass_TWW_2", "Glass_TWW_6")
+
+#Create dataframe
+glass_annotation_col_family = data.frame(
+  effluent = as.factor(glass_metadata_sig_ASVs_family$effluent), 
+  week = as.factor(glass_metadata_sig_ASVs_family$week),
+  check.names = FALSE)
+
+rownames(glass_annotation_col_family) = rownames(glass_metadata_sig_ASVs_family)
+
+#Define annotations for row
+glass_annotation_row = data.frame(
+  Class = as.factor(glass_sig_norm_counts_heatmap_format_family[, "Class"]))
+
+#rownames(annotation_row) = rownames(matrix_sig_ASVs_family)
+
+
+#Define annotations for top
+glass_top_annotation = HeatmapAnnotation(foo = anno_block(gp = gpar(fill = "lightgrey"),
+        labels = c("10", "10", "6", "6", "2", "2"), 
+        labels_gp = gpar(col = "black", fontsize = 10)))
+
+#Choose and assign colors
+#ann_color should be named vectors
+class_col = colorRampPalette(brewer.pal(12,"Set3"))(24)
+names(class_col) = levels(glass_annotation_row$Class)
+ann_colors = list(
+  effluent = c(River = "red", TWW = "blue"),
+  week = c('2' = "red", '6' = "blue", '10' = "yellow"),
+  Class = class_col)
+
+#Make the actual heatmap
+glass_heatmap_sig_ASVs_family <- ComplexHeatmap::pheatmap(glass_matrix_sig_ASVs_family,
+                         column_split = glass_annotation_col_family, 
+                         top_annotation = glass_top_annotation,
+                         annotation_row = glass_annotation_row,
+                         annotation_colors = ann_colors,
+                         cluster_rows = FALSE,
+                         cluster_cols = TRUE,
+                         show_column_dend = TRUE) 
+ 
+print(glass_heatmap_sig_ASVs_family)
+```
+
+![](Analysis_files/figure-gfm/glass%20MP%20heatmap%20family%20annotate-1.png)<!-- -->
+
+``` r
+#Save as a pdf file
+pdf("Glass_sig_ASVs_family.pdf", width=12,height=16.5)
+draw(glass_heatmap_sig_ASVs_family)
+dev.off()
+```
+
+    ## png 
+    ##   2
+
+``` r
+#Create Excel
+```
+
+## 8.9 Examining changes in bacterial communities on microplastics over time
+
+### 8.9.1 Contrasts - 2w, 6w, 10w river water MP’s only, vs river water
 
 ``` r
 #Convert phyloseq object from above to deseq object with the correct category
@@ -13095,7 +12770,7 @@ df_mp_time_deseq_CON6_filt = df_mp_time_deseq_CON6_filt[order(df_mp_time_deseq_C
 df_mp_time_deseq_CON10_filt = df_mp_time_deseq_CON10_filt[order(df_mp_time_deseq_CON10_filt$padj, na.last=NA), ]
 ```
 
-### 8.7.2 Contrasts - 2w, 6w, 10w TWW MP’s only, vs TWW
+### 8.9.2 Contrasts - 2w, 6w, 10w TWW MP’s only, vs TWW
 
 ``` r
 #Estimate the size factors
@@ -13381,7 +13056,7 @@ df_mp_time_deseq_TWW6_filt = df_mp_time_deseq_TWW6_filt[order(df_mp_time_deseq_T
 df_mp_time_deseq_TWW10_filt = df_mp_time_deseq_TWW10_filt[order(df_mp_time_deseq_TWW10_filt$padj, na.last=NA), ]
 ```
 
-### 8.7.3 Venn Diagrams
+### 8.9.3 Venn Diagrams
 
 This section includes the preparation of the DESeq2 MP results for
 plotting with the ggVennDiagram package. First, we’ll filter the DESeq
@@ -13488,7 +13163,7 @@ TWW_Venn <- ggVennDiagram(MP_time_comparisons3, label_alpha = 0) + scale_fill_gr
   theme(legend.position = "bottom", legend.direction = "horizontal")
 ```
 
-### 8.7.4 SuperExactTest
+### 8.9.4 SuperExactTest
 
 ``` r
 #Using the list MP_time_comparisons from ggVennDiagram above 
@@ -13724,7 +13399,7 @@ summary(res)
     ## 111110 054e74172c4bfa7b3f17 ...
     ## 111111 054e74172c4bfa7b3f17 ...
 
-### 8.7.5 Heatmap
+### 8.9.5 Heatmap
 
 This section creates a heatmap of the DESeq2 results for all
 particle_effluent_time categories (MP_CON_2, MP_CON_6, MP_CON_10,
@@ -13772,7 +13447,7 @@ sig_norm_counts_time_long_2$log_normalized_counts <- log(sig_norm_counts_time_lo
 
 
 
-#Grab ASV's from the filtered DESeq2 lists (which contain only positive log2FoldChanges). Make sure the new columns created for each of the six sets have the same label for the ASV column so that they can be merged into one dataset later.
+#Grab ASV's from the filtered DESeq2 lists (which contain only positive log2FoldChanges). Make sure the new columns created for each of the six sets have the same label for the ASV column so that they can be merged into one dataset later
 taxa_MP_CON2_heatmap <- data.frame(df_mp_time_deseq_CON2_filt) %>%
   tibble::rownames_to_column(var = "ASV") %>%
   select(ASV)
@@ -13898,7 +13573,7 @@ print(abundant_heatmap_all_sig_ASVs)
 
 ![](Analysis_files/figure-gfm/MP%20heatmap%20creation-1.png)<!-- -->
 
-### 8.7.6 Heatmap at genus level
+### 8.9.6 Heatmap at genus level
 
 Same heatmap as above, but concatenated by genus level so that trends
 can be more easily discerned.
@@ -13992,9 +13667,87 @@ print(heatmap_sig_ASVs_genus)
 
 ![](Analysis_files/figure-gfm/MP%20heatmap%20genus-1.png)<!-- -->
 
+### 8.9.7 Heatmap at genus level with annotations (Fig. S6)
+
 ``` r
-#Save as a png file
-png("Microplastics_sig_ASVs_genus.png", width=12,height=18,units="in",res=1200)
+#Now create the heatmap
+
+#Pheatmap only takes a matrix that contains numeric values as input - 
+#grab only the columns with the numeric values we want to examine
+matrix_sig_ASVs_genus <- as.matrix(sig_norm_counts_heatmap_format_genus[7:12])
+
+#Make sure the sig_norm_counts_time_long_filt_tax data is a dataframe
+sig_norm_counts_heatmap_format_genus <- as.data.frame(sig_norm_counts_heatmap_format_genus)
+class(sig_norm_counts_heatmap_format_genus)
+```
+
+    ## [1] "data.frame"
+
+``` r
+#Add the Genus level names to the rows
+rownames(matrix_sig_ASVs_genus) <- as.character(sig_norm_counts_heatmap_format_genus[, "Genus"])
+
+#Remove the column names; if you want the heatmap annotated on the bottom, don't run this part
+matrix_sig_ASVs_genus = as.matrix(matrix_sig_ASVs_genus)
+colnames(matrix_sig_ASVs_genus) = NULL
+
+
+#Create a dataframe containing metadata; be sure to label the rows using row.names with the same names as the columns in sig_norm_counts_heatmap_format_genus
+metadata_sig_ASVs_genus <- data.frame(
+  effluent = c("River", "River", "River", "TWW", "TWW", "TWW"),
+  week = c("10", "2", "6", "10", "2", "6")
+)
+
+row.names(metadata_sig_ASVs_genus) <- c("MP_CON_10", "MP_CON_2", "MP_CON_6", 
+                                  "MP_TWW_10", "MP_TWW_2", "MP_TWW_6")
+
+#Create dataframe
+annotation_col_genus = data.frame(
+  effluent = as.factor(metadata_sig_ASVs_genus$effluent), 
+  week = as.factor(metadata_sig_ASVs_genus$week),
+  check.names = FALSE)
+
+rownames(annotation_col_genus) = rownames(metadata_sig_ASVs_genus)
+
+#Define annotations for row
+annotation_row = data.frame(
+  Class = as.factor(sig_norm_counts_heatmap_format_genus[, "Class"]))
+
+#rownames(annotation_row) = rownames(matrix_sig_ASVs_family)
+
+
+#Define annotations for top; these need to be in the same order as they're plotted in the previous graph, otherwise the labels will be incorrect
+top_annotation = HeatmapAnnotation(foo = anno_block(gp = gpar(fill = "lightgrey"),
+        labels = c("10", "10", "6", "6", "2", "2"), 
+        labels_gp = gpar(col = "black", fontsize = 10)))
+
+#Choose and assign colors
+#ann_color should be named vectors
+class_col = colorRampPalette(brewer.pal(12,"Set3"))(31)
+names(class_col) = levels(annotation_row$Class)
+ann_colors = list(
+  effluent = c(River = "red", TWW = "blue"),
+  week = c('2' = "red", '6' = "blue", '10' = "yellow"),
+  Class = class_col)
+
+#Make the actual heatmap
+heatmap_sig_ASVs_genus <- ComplexHeatmap::pheatmap(matrix_sig_ASVs_genus,
+                         column_split = annotation_col_genus, 
+                         top_annotation = top_annotation,
+                         annotation_row = annotation_row,
+                         annotation_colors = ann_colors,
+                         cluster_rows = FALSE,
+                         cluster_cols = TRUE,
+                         show_column_dend = TRUE) 
+ 
+print(heatmap_sig_ASVs_genus)
+```
+
+![](Analysis_files/figure-gfm/MP%20heatmap%20genus%20annotate-1.png)<!-- -->
+
+``` r
+#Save as a pdf file
+pdf("Microplastics_sig_ASVs_genus.pdf", width=12,height=16.5)
 draw(heatmap_sig_ASVs_genus)
 dev.off()
 ```
@@ -14002,7 +13755,7 @@ dev.off()
     ## png 
     ##   2
 
-### 8.7.7 Heatmap at family level
+### 8.9.8 Heatmap at family level
 
 ``` r
 #First, left_join that taxonomic information with the dataframe containing the DESeq ASV's with log normalized counts:
@@ -14093,7 +13846,7 @@ print(heatmap_sig_ASVs_family)
 
 ![](Analysis_files/figure-gfm/MP%20heatmap%20family-1.png)<!-- -->
 
-### 8.7.8 Heatmap at family level with annotations
+### 8.9.9 Heatmap at family level with annotations (Fig. 3)
 
 ``` r
 #Now create the heatmap
@@ -14147,6 +13900,15 @@ top_annotation = HeatmapAnnotation(foo = anno_block(gp = gpar(fill = "lightgrey"
         labels = c("2", "2", "6", "6", "10", "10"), 
         labels_gp = gpar(col = "black", fontsize = 10)))
 
+#Choose and assign colors
+#ann_color should be named vectors
+class_col = colorRampPalette(brewer.pal(12,"Set3"))(31)
+names(class_col) = levels(annotation_row$Class)
+ann_colors = list(
+  effluent = c(River = "red", TWW = "blue"),
+  week = c('2' = "red", '6' = "blue", '10' = "yellow"),
+  Class = class_col)
+
 #Make the actual heatmap
 heatmap_sig_ASVs_family <- ComplexHeatmap::pheatmap(matrix_sig_ASVs_family,
                          column_split = annotation_col_family, 
@@ -14155,7 +13917,7 @@ heatmap_sig_ASVs_family <- ComplexHeatmap::pheatmap(matrix_sig_ASVs_family,
                          annotation_colors = ann_colors,
                          cluster_rows = FALSE,
                          cluster_cols = TRUE,
-                         show_column_dend = FALSE) 
+                         show_column_dend = TRUE) 
  
 print(heatmap_sig_ASVs_family)
 ```
@@ -14163,8 +13925,8 @@ print(heatmap_sig_ASVs_family)
 ![](Analysis_files/figure-gfm/MP%20heatmap%20family%20annotate-1.png)<!-- -->
 
 ``` r
-#Save as a png file
-png("Microplastics_sig_ASVs_family.png", width=12,height=18,units="in",res=1200)
+#Save as a pdf file
+pdf("Microplastics_sig_ASVs_family.pdf", width=12,height=14)
 draw(heatmap_sig_ASVs_family)
 dev.off()
 ```
@@ -14172,7 +13934,7 @@ dev.off()
     ## png 
     ##   2
 
-### 8.7.9 Finding ASV’s enriched on CON MP & TWW MP
+### 8.9.10 Finding ASV’s enriched on CON MP & TWW MP (Fig. S5)
 
 ``` r
 #Combine all river water MP timepoints. To do this, we'll use the dataframes created from the filtered DESeq2 lists above. Note that "all=TRUE" keeps all values from the ASV column, even those that don't match across all dataframes
@@ -14198,9 +13960,18 @@ MP_TWW_CON_comparison <- list(taxa_MP_CON_chr, taxa_MP_TWW_chr) %>%
   setNames(c("CON", "TWW"))
 
 #Make Venn Diagram - TWW vs CON comparison
-ggVennDiagram(MP_TWW_CON_comparison) + scale_fill_gradient(low="blue",high = "red")
+Venn_TWW_CON_compare <- ggVennDiagram(MP_TWW_CON_comparison) + scale_fill_gradient(low="blue",high = "red")
 
+#Save as pdf
+pdf("FigS5_Venn_TWW_CON.pdf", width=10,height=18)
+print(Venn_TWW_CON_compare)
+dev.off()
+```
 
+    ## png 
+    ##   2
+
+``` r
 #Now finding unique TWW ASV's using nVennR; for some reason, you can't extract the intersections from ggVennDiagram plots, but you can easily do it with nVennR plots, so we'll use nVennR here to get the ASV's that we're interested in (the ones only present on TWW MP). 
 nVennR_plot_test_TWW <- plotVenn(list(DESeq_sig_taxa_MP_TWW, DESeq_sig_taxa_MP_CON), sNames=c("TWW", "CON"))
 ```
@@ -14339,7 +14110,7 @@ Venn_TWW_only_tax$ASV <- factor(Venn_TWW_only_tax$ASV,
 "Gaiella Genus", "Opitutus Genus"))
 ```
 
-#### 8.7.9.1 Graphing TWW ASV’s - abundance bar plot
+#### 8.9.10.1 Graphing TWW ASV’s - abundance bar plot
 
 ``` r
 #Below, I use the ggh4x function interaction in the bar plot to get the class level names added to the species 
@@ -14366,7 +14137,7 @@ print(mp_effluent_barplot)
 ggsave(filename="Microplastics_mp_effluent_barplot.svg", plot=mp_effluent_barplot, width=12, height=6, device=svg)
 ```
 
-### 8.7.10 Phylogenetic tree comparing ASVs enriched on CON vs TWW MP’s
+### 8.9.11 Phylogenetic tree comparing ASVs enriched on CON vs TWW MP’s
 
 Attempting to make a dataframe containing heatmap data that specifies
 which ASV’s were enriched in TWW vs River water:
@@ -14440,7 +14211,7 @@ sig.tax.phyloseq <- merge_phyloseq(my_subset, tax_table(ps.taxa.all.filt), sampl
 sample_data(sig.tax.phyloseq)
 ```
 
-    ## Sample Data:        [ 151 samples by 9 sample variables ]:
+    ## Sample Data:        [ 151 samples by 10 sample variables ]:
     ##                effluent week  polymer_type bead_diameter Channel sample_type
     ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
     ##  1 ESF21MP-100 CON      10    HDPE                  3.18 7.1     Particle   
@@ -14454,8 +14225,8 @@ sample_data(sig.tax.phyloseq)
     ##  9 ESF21MP-108 CON      10    LDPE                  3.18 8.2     Particle   
     ## 10 ESF21MP-109 CON      10    PP                    3.18 8.2     Particle   
     ## # ℹ 141 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 sig.tax.phyloseq <- subset_samples(sig.tax.phyloseq, particle_type == "MP")
@@ -14463,7 +14234,7 @@ sig.tax.phyloseq <- subset_samples(sig.tax.phyloseq, particle_type == "MP")
 sample_data(sig.tax.phyloseq)
 ```
 
-    ## Sample Data:        [ 94 samples by 9 sample variables ]:
+    ## Sample Data:        [ 94 samples by 10 sample variables ]:
     ##                effluent week  polymer_type bead_diameter Channel sample_type
     ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
     ##  1 ESF21MP-100 CON      10    HDPE                  3.18 7.1     Particle   
@@ -14477,8 +14248,8 @@ sample_data(sig.tax.phyloseq)
     ##  9 ESF21MP-108 CON      10    LDPE                  3.18 8.2     Particle   
     ## 10 ESF21MP-109 CON      10    PP                    3.18 8.2     Particle   
     ## # ℹ 84 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 #Create color scheme
@@ -14567,13 +14338,6 @@ print(pwithheatmap)
 ![](Analysis_files/figure-gfm/water%20source%20phylo%20heatmap%20plot-2.png)<!-- -->
 
 ``` r
-#Save as an svg file
-ggsave(filename="TWW_MP_phylo_heatmap.svg", plot=pwithheatmap, width=9.5, height=6, device=svg)
-
-
-
-
-
 #Test of the phylogenetic tree with the branches colored by class
 p <- ggtree(sig.tax.phyloseq, layout="circular", branch.length = 'none', aes(color=Class)) + 
   scale_color_manual(values = class_col)
@@ -14588,14 +14352,2462 @@ print(p)
 
 ![](Analysis_files/figure-gfm/water%20source%20phylo%20heatmap%20plot-3.png)<!-- -->
 
-## 8.8 Comparing bacterial community composition between glass and microplastics
+## 8.10 Examining changes in bacterial communities on PS over time
+
+### 8.10.1 Contrasts - 2w, 6w, 10w river water PS only, vs river water
+
+``` r
+#Convert phyloseq object from above to deseq object with the correct category
+ps_time_deseq = phyloseq_to_deseq2(ps.taxa.all.filt, ~ polymer_effluent_time)
+
+#Estimate the size factors
+ps_time_deseq <- estimateSizeFactors(ps_time_deseq, type = "poscounts")
+
+#Make sure that the control is the first level in the sample_type group so that 
+#the default log2 changes are calculated as treatment vs. control instead of 
+#vice versa
+ps_time_deseq$polymer_effluent_time <- relevel(factor(ps_time_deseq$polymer_effluent_time), "CON_water")
+
+#Now we can run DESeq
+ps_time_deseq = DESeq(ps_time_deseq, test="Wald", fitType="parametric")
+
+#Check which comparisons are contained in the deseq object:
+resultsNames(ps_time_deseq)
+```
+
+    ##  [1] "Intercept"                                      
+    ##  [2] "polymer_effluent_time_Glass_CON_10_vs_CON_water"
+    ##  [3] "polymer_effluent_time_Glass_CON_2_vs_CON_water" 
+    ##  [4] "polymer_effluent_time_Glass_CON_6_vs_CON_water" 
+    ##  [5] "polymer_effluent_time_Glass_TWW_10_vs_CON_water"
+    ##  [6] "polymer_effluent_time_Glass_TWW_2_vs_CON_water" 
+    ##  [7] "polymer_effluent_time_Glass_TWW_6_vs_CON_water" 
+    ##  [8] "polymer_effluent_time_HDPE_CON_10_vs_CON_water" 
+    ##  [9] "polymer_effluent_time_HDPE_CON_2_vs_CON_water"  
+    ## [10] "polymer_effluent_time_HDPE_CON_6_vs_CON_water"  
+    ## [11] "polymer_effluent_time_HDPE_TWW_10_vs_CON_water" 
+    ## [12] "polymer_effluent_time_HDPE_TWW_2_vs_CON_water"  
+    ## [13] "polymer_effluent_time_HDPE_TWW_6_vs_CON_water"  
+    ## [14] "polymer_effluent_time_LDPE_CON_10_vs_CON_water" 
+    ## [15] "polymer_effluent_time_LDPE_CON_2_vs_CON_water"  
+    ## [16] "polymer_effluent_time_LDPE_CON_6_vs_CON_water"  
+    ## [17] "polymer_effluent_time_LDPE_TWW_10_vs_CON_water" 
+    ## [18] "polymer_effluent_time_LDPE_TWW_2_vs_CON_water"  
+    ## [19] "polymer_effluent_time_LDPE_TWW_6_vs_CON_water"  
+    ## [20] "polymer_effluent_time_PP_CON_10_vs_CON_water"   
+    ## [21] "polymer_effluent_time_PP_CON_2_vs_CON_water"    
+    ## [22] "polymer_effluent_time_PP_CON_6_vs_CON_water"    
+    ## [23] "polymer_effluent_time_PP_TWW_10_vs_CON_water"   
+    ## [24] "polymer_effluent_time_PP_TWW_2_vs_CON_water"    
+    ## [25] "polymer_effluent_time_PP_TWW_6_vs_CON_water"    
+    ## [26] "polymer_effluent_time_PS_CON_10_vs_CON_water"   
+    ## [27] "polymer_effluent_time_PS_CON_2_vs_CON_water"    
+    ## [28] "polymer_effluent_time_PS_CON_6_vs_CON_water"    
+    ## [29] "polymer_effluent_time_PS_TWW_10_vs_CON_water"   
+    ## [30] "polymer_effluent_time_PS_TWW_2_vs_CON_water"    
+    ## [31] "polymer_effluent_time_PS_TWW_6_vs_CON_water"    
+    ## [32] "polymer_effluent_time_TWW_water_vs_CON_water"   
+    ## [33] "polymer_effluent_time_water_TWW_vs_CON_water"
+
+``` r
+#We just want to look at the difference between microplastics at 2, 6, and 10 weeks compared to water
+#Creating results tables with the information we're interested in
+ps_res_CON_2 <- results(ps_time_deseq, contrast=c("polymer_effluent_time","PS_CON_2","CON_water"), alpha=0.05)
+ps_res_CON_6 <- results(ps_time_deseq, contrast=c("polymer_effluent_time","PS_CON_6","CON_water"), alpha=0.05)
+ps_res_CON_10 <- results(ps_time_deseq, contrast=c("polymer_effluent_time","PS_CON_10","CON_water"), alpha=0.05)
+
+#Show results summary
+summary(ps_res_CON_2)
+```
+
+    ## 
+    ## out of 994 with nonzero total read count
+    ## adjusted p-value < 0.05
+    ## LFC > 0 (up)       : 90, 9.1%
+    ## LFC < 0 (down)     : 107, 11%
+    ## outliers [1]       : 0, 0%
+    ## low counts [2]     : 347, 35%
+    ## (mean count < 6)
+    ## [1] see 'cooksCutoff' argument of ?results
+    ## [2] see 'independentFiltering' argument of ?results
+
+``` r
+summary(ps_res_CON_6)
+```
+
+    ## 
+    ## out of 994 with nonzero total read count
+    ## adjusted p-value < 0.05
+    ## LFC > 0 (up)       : 124, 12%
+    ## LFC < 0 (down)     : 53, 5.3%
+    ## outliers [1]       : 0, 0%
+    ## low counts [2]     : 232, 23%
+    ## (mean count < 4)
+    ## [1] see 'cooksCutoff' argument of ?results
+    ## [2] see 'independentFiltering' argument of ?results
+
+``` r
+summary(ps_res_CON_10)
+```
+
+    ## 
+    ## out of 994 with nonzero total read count
+    ## adjusted p-value < 0.05
+    ## LFC > 0 (up)       : 146, 15%
+    ## LFC < 0 (down)     : 74, 7.4%
+    ## outliers [1]       : 0, 0%
+    ## low counts [2]     : 289, 29%
+    ## (mean count < 5)
+    ## [1] see 'cooksCutoff' argument of ?results
+    ## [2] see 'independentFiltering' argument of ?results
+
+``` r
+#Log fold change shrinkage on each comparison
+ps_resLFC_CON2 <- lfcShrink(ps_time_deseq, coef="polymer_effluent_time_PS_CON_2_vs_CON_water", type="apeglm")
+ps_resLFC_CON2
+```
+
+    ## log2 fold change (MAP): polymer effluent time PS CON 2 vs CON water 
+    ## Wald test p-value: polymer effluent time PS CON 2 vs CON water 
+    ## DataFrame with 994 rows and 5 columns
+    ##                                   baseMean log2FoldChange     lfcSE      pvalue
+    ##                                  <numeric>      <numeric> <numeric>   <numeric>
+    ## 76986812e0cdb639a25c936952004967  43.84147     -0.2093793   1.05270  0.00165826
+    ## 143eedc0b2cf4ff8f1ca0448594d1191   8.39989     -0.0191146   1.02040  0.44024918
+    ## cdc12d12977ac7193527fac20a6c8711   1.72097     -0.0376865   1.01469  0.99748449
+    ## 0e8d660cbd4a72352ad4109b2440286e   8.97585     -0.0292540   1.01582  0.99783110
+    ## a94d8fee872266a54b1e5706d6bcfbac  20.51734      1.5305672   1.71970  0.06704106
+    ## ...                                    ...            ...       ...         ...
+    ## 3c0d84f8bf9a3a8ea5cc05ad9b99c209   7.92815     -0.2011798   1.04696 0.261087216
+    ## 2b0dbc8ca8b74471b0029ee9d61a4c60  41.23416      0.9889026   1.31331 0.170559956
+    ## 15456227e48f1103584e352c6ba34637  36.36373     -0.5255650   1.22957 0.015848408
+    ## 6c0bf239702859ae989d886f1985b1e4 440.45002     -7.2938932   3.46775 0.000109351
+    ## 84bc6ce045f212f439b979e3862bb33e 178.19931     -0.0676464   1.00553 0.993904784
+    ##                                         padj
+    ##                                    <numeric>
+    ## 76986812e0cdb639a25c936952004967  0.00714746
+    ## 143eedc0b2cf4ff8f1ca0448594d1191  0.65576163
+    ## cdc12d12977ac7193527fac20a6c8711          NA
+    ## 0e8d660cbd4a72352ad4109b2440286e  0.99888982
+    ## a94d8fee872266a54b1e5706d6bcfbac  0.15510682
+    ## ...                                      ...
+    ## 3c0d84f8bf9a3a8ea5cc05ad9b99c209 0.452705550
+    ## 2b0dbc8ca8b74471b0029ee9d61a4c60 0.327709793
+    ## 15456227e48f1103584e352c6ba34637 0.051425124
+    ## 6c0bf239702859ae989d886f1985b1e4 0.000633424
+    ## 84bc6ce045f212f439b979e3862bb33e 0.998889820
+
+``` r
+ps_resLFC_CON6 <- lfcShrink(ps_time_deseq, coef="polymer_effluent_time_PS_CON_6_vs_CON_water", type="apeglm")
+ps_resLFC_CON6
+```
+
+    ## log2 fold change (MAP): polymer effluent time PS CON 6 vs CON water 
+    ## Wald test p-value: polymer effluent time PS CON 6 vs CON water 
+    ## DataFrame with 994 rows and 5 columns
+    ##                                   baseMean log2FoldChange     lfcSE      pvalue
+    ##                                  <numeric>      <numeric> <numeric>   <numeric>
+    ## 76986812e0cdb639a25c936952004967  43.84147     -0.1555503   1.03798 7.37924e-03
+    ## 143eedc0b2cf4ff8f1ca0448594d1191   8.39989     -0.0143023   1.02028 5.15167e-01
+    ## cdc12d12977ac7193527fac20a6c8711   1.72097      0.5046913   1.17198 3.12439e-01
+    ## 0e8d660cbd4a72352ad4109b2440286e   8.97585     -0.0195724   1.01669 9.48545e-01
+    ## a94d8fee872266a54b1e5706d6bcfbac  20.51734     -0.3102128   1.08077 1.09445e-09
+    ## ...                                    ...            ...       ...         ...
+    ## 3c0d84f8bf9a3a8ea5cc05ad9b99c209   7.92815       0.677748   1.20535 2.31458e-01
+    ## 2b0dbc8ca8b74471b0029ee9d61a4c60  41.23416      -0.271706   1.07190 8.52283e-02
+    ## 15456227e48f1103584e352c6ba34637  36.36373       0.904922   1.19859 1.95828e-01
+    ## 6c0bf239702859ae989d886f1985b1e4 440.45002       3.466807   1.49767 6.89310e-03
+    ## 84bc6ce045f212f439b979e3862bb33e 178.19931      11.921198   2.43707 1.33387e-07
+    ##                                         padj
+    ##                                    <numeric>
+    ## 76986812e0cdb639a25c936952004967 3.05522e-02
+    ## 143eedc0b2cf4ff8f1ca0448594d1191 7.09360e-01
+    ## cdc12d12977ac7193527fac20a6c8711          NA
+    ## 0e8d660cbd4a72352ad4109b2440286e 9.74816e-01
+    ## a94d8fee872266a54b1e5706d6bcfbac 1.88191e-08
+    ## ...                                      ...
+    ## 3c0d84f8bf9a3a8ea5cc05ad9b99c209 4.13277e-01
+    ## 2b0dbc8ca8b74471b0029ee9d61a4c60 1.97651e-01
+    ## 15456227e48f1103584e352c6ba34637 3.65235e-01
+    ## 6c0bf239702859ae989d886f1985b1e4 2.89264e-02
+    ## 84bc6ce045f212f439b979e3862bb33e 1.69476e-06
+
+``` r
+ps_resLFC_CON10 <- lfcShrink(ps_time_deseq, coef="polymer_effluent_time_PS_CON_10_vs_CON_water", type="apeglm")
+ps_resLFC_CON10
+```
+
+    ## log2 fold change (MAP): polymer effluent time PS CON 10 vs CON water 
+    ## Wald test p-value: polymer effluent time PS CON 10 vs CON water 
+    ## DataFrame with 994 rows and 5 columns
+    ##                                   baseMean log2FoldChange     lfcSE      pvalue
+    ##                                  <numeric>      <numeric> <numeric>   <numeric>
+    ## 76986812e0cdb639a25c936952004967  43.84147     -0.2093711   1.05269 1.80711e-03
+    ## 143eedc0b2cf4ff8f1ca0448594d1191   8.39989     -0.0190887   1.02040 4.45052e-01
+    ## cdc12d12977ac7193527fac20a6c8711   1.72097      0.3282642   1.06207 5.47899e-01
+    ## 0e8d660cbd4a72352ad4109b2440286e   8.97585     -0.0284448   1.01579 9.86296e-01
+    ## a94d8fee872266a54b1e5706d6bcfbac  20.51734     -0.4342528   1.14842 3.46668e-14
+    ## ...                                    ...            ...       ...         ...
+    ## 3c0d84f8bf9a3a8ea5cc05ad9b99c209   7.92815       0.316487  0.989522 4.74231e-01
+    ## 2b0dbc8ca8b74471b0029ee9d61a4c60  41.23416      -0.374647  1.122480 3.85934e-02
+    ## 15456227e48f1103584e352c6ba34637  36.36373       2.551135  1.821093 3.39705e-02
+    ## 6c0bf239702859ae989d886f1985b1e4 440.45002       5.878643  1.389995 1.42034e-05
+    ## 84bc6ce045f212f439b979e3862bb33e 178.19931      14.238807  2.346627 1.59779e-12
+    ##                                         padj
+    ##                                    <numeric>
+    ## 76986812e0cdb639a25c936952004967 8.18033e-03
+    ## 143eedc0b2cf4ff8f1ca0448594d1191 6.94050e-01
+    ## cdc12d12977ac7193527fac20a6c8711          NA
+    ## 0e8d660cbd4a72352ad4109b2440286e 9.97200e-01
+    ## a94d8fee872266a54b1e5706d6bcfbac 7.09400e-13
+    ## ...                                      ...
+    ## 3c0d84f8bf9a3a8ea5cc05ad9b99c209 7.10499e-01
+    ## 2b0dbc8ca8b74471b0029ee9d61a4c60 1.10136e-01
+    ## 15456227e48f1103584e352c6ba34637 9.93491e-02
+    ## 6c0bf239702859ae989d886f1985b1e4 1.04532e-04
+    ## 84bc6ce045f212f439b979e3862bb33e 2.79280e-11
+
+``` r
+#"It is more useful visualize the MA-plot for the shrunken log2 fold changes, 
+#which remove the noise associated with log2 fold changes from low count genes 
+#without requiring arbitrary filtering thresholds."
+#https://www.bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html#why-un-normalized-counts
+plotMA(ps_resLFC_CON2)
+```
+
+![](Analysis_files/figure-gfm/deseq%20ps%20river-1.png)<!-- -->
+
+``` r
+plotMA(ps_resLFC_CON6)
+```
+
+![](Analysis_files/figure-gfm/deseq%20ps%20river-2.png)<!-- -->
+
+``` r
+plotMA(ps_resLFC_CON10)
+```
+
+![](Analysis_files/figure-gfm/deseq%20ps%20river-3.png)<!-- -->
+
+``` r
+#Add taxonomic information
+ps_sigtab_CON2 = cbind(as(ps_res_CON_2, "data.frame"), as(tax_table(MPphyseq)[rownames(ps_res_CON_2), ], "matrix"))
+ps_sigtab_CON6 = cbind(as(ps_res_CON_6, "data.frame"), as(tax_table(MPphyseq)[rownames(ps_res_CON_6), ], "matrix"))
+ps_sigtab_CON10 = cbind(as(ps_res_CON_10, "data.frame"), as(tax_table(MPphyseq)[rownames(ps_res_CON_10), ], "matrix"))
+
+#Convert to dataframe
+df_ps_time_deseq_CON2 <- as.data.frame(ps_sigtab_CON2)
+df_ps_time_deseq_CON6 <- as.data.frame(ps_sigtab_CON6)
+df_ps_time_deseq_CON10 <- as.data.frame(ps_sigtab_CON10)
+
+#Filter based on adj p-value, removing non-significant values (p>0.05)
+#This also removes p-values that are NA; NA p-values exist because when p-values do not pass the filter threshold (p-values less than 0.1) they are set to NA 
+#More information in vignette("DESeq2") under "Note on p-values set to NA"
+df_ps_time_deseq_CON2_filt <- filter(df_ps_time_deseq_CON2, padj <= 0.05)
+df_ps_time_deseq_CON6_filt <- filter(df_ps_time_deseq_CON6, padj <= 0.05)
+df_ps_time_deseq_CON10_filt <- filter(df_ps_time_deseq_CON10, padj <= 0.05)
+
+#Order by adjusted p-value
+df_ps_time_deseq_CON2_filt = df_ps_time_deseq_CON2_filt[order(df_ps_time_deseq_CON2_filt$padj, na.last=NA), ]
+df_ps_time_deseq_CON6_filt = df_ps_time_deseq_CON6_filt[order(df_ps_time_deseq_CON6_filt$padj, na.last=NA), ]
+df_ps_time_deseq_CON10_filt = df_ps_time_deseq_CON10_filt[order(df_ps_time_deseq_CON10_filt$padj, na.last=NA), ]
+```
+
+### 8.10.2 Venn Diagrams - PS River
+
+``` r
+#Filter the river water PS dataframes
+df_ps_time_deseq_CON2_filt <- filter(df_ps_time_deseq_CON2_filt, 
+                                     log2FoldChange > 0)
+df_ps_time_deseq_CON6_filt <- filter(df_ps_time_deseq_CON6_filt, 
+                                     log2FoldChange > 0)
+df_ps_time_deseq_CON10_filt <- filter(df_ps_time_deseq_CON10_filt, 
+                                      log2FoldChange > 0)
+
+#Create a column with the filtered deseq dataframe rownames and then filter to 
+#contain only ASV's
+taxa_PS_CON2 <- data.frame(df_ps_time_deseq_CON2_filt) %>%
+  tibble::rownames_to_column(var = "PS_CON_2") %>%
+  select(PS_CON_2)
+
+taxa_PS_CON6 <- data.frame(df_ps_time_deseq_CON6_filt) %>%
+  tibble::rownames_to_column(var = "PS_CON_6") %>%
+  select(PS_CON_6)
+
+taxa_PS_CON10 <- data.frame(df_ps_time_deseq_CON10_filt) %>%
+  tibble::rownames_to_column(var = "PS_CON_10") %>%
+  select(PS_CON_10)
+
+#Make the dataframe into a list
+list_PS_CON_2 <- list(taxa_PS_CON2$PS_CON_2)
+list_PS_CON_6 <- list(taxa_PS_CON6$PS_CON_6)
+list_PS_CON_10 <- list(taxa_PS_CON10$PS_CON_10)
+
+#Change to characters
+taxa_PS_CON2_chr <- as.character(list_PS_CON_2[[1]])
+taxa_PS_CON6_chr <- as.character(list_PS_CON_6[[1]])
+taxa_PS_CON10_chr <- as.character(list_PS_CON_10[[1]])
+
+#Make list for ggVennDiagram
+PS_time_comparisons <- list(taxa_PS_CON2_chr, taxa_PS_CON6_chr, taxa_PS_CON10_chr) %>%
+  setNames(c("PS_CON_2", "PS_CON_6", "PS_CON_10"))
+
+#Make Venn Diagram - all comparisons
+ggVennDiagram(PS_time_comparisons) + scale_fill_gradient(low="blue",high = "red") +
+  theme(legend.position = "bottom", legend.direction = "horizontal")
+```
+
+![](Analysis_files/figure-gfm/venn%20PS%20time-1.png)<!-- -->
+
+### 8.10.3 Contrasts - 2w, 6w, 10w TWW PS only, vs TWW
+
+``` r
+#Convert phyloseq object from above to deseq object with the correct category
+ps_tww_time_deseq = phyloseq_to_deseq2(ps.taxa.all.filt, ~ polymer_effluent_time)
+
+#Estimate the size factors
+ps_tww_time_deseq <- estimateSizeFactors(ps_tww_time_deseq, type = "poscounts")
+
+#Make sure that the control is the first level in the sample_type group so that 
+#the default log2 changes are calculated as treatment vs. control instead of 
+#vice versa
+ps_tww_time_deseq$polymer_effluent_time <- relevel(factor(ps_tww_time_deseq$polymer_effluent_time), "TWW_water")
+
+#Now we can run DESeq
+ps_tww_time_deseq = DESeq(ps_tww_time_deseq, test="Wald", fitType="parametric")
+
+#Check which comparisons are contained in the deseq object:
+resultsNames(ps_tww_time_deseq)
+```
+
+    ##  [1] "Intercept"                                      
+    ##  [2] "polymer_effluent_time_CON_water_vs_TWW_water"   
+    ##  [3] "polymer_effluent_time_Glass_CON_10_vs_TWW_water"
+    ##  [4] "polymer_effluent_time_Glass_CON_2_vs_TWW_water" 
+    ##  [5] "polymer_effluent_time_Glass_CON_6_vs_TWW_water" 
+    ##  [6] "polymer_effluent_time_Glass_TWW_10_vs_TWW_water"
+    ##  [7] "polymer_effluent_time_Glass_TWW_2_vs_TWW_water" 
+    ##  [8] "polymer_effluent_time_Glass_TWW_6_vs_TWW_water" 
+    ##  [9] "polymer_effluent_time_HDPE_CON_10_vs_TWW_water" 
+    ## [10] "polymer_effluent_time_HDPE_CON_2_vs_TWW_water"  
+    ## [11] "polymer_effluent_time_HDPE_CON_6_vs_TWW_water"  
+    ## [12] "polymer_effluent_time_HDPE_TWW_10_vs_TWW_water" 
+    ## [13] "polymer_effluent_time_HDPE_TWW_2_vs_TWW_water"  
+    ## [14] "polymer_effluent_time_HDPE_TWW_6_vs_TWW_water"  
+    ## [15] "polymer_effluent_time_LDPE_CON_10_vs_TWW_water" 
+    ## [16] "polymer_effluent_time_LDPE_CON_2_vs_TWW_water"  
+    ## [17] "polymer_effluent_time_LDPE_CON_6_vs_TWW_water"  
+    ## [18] "polymer_effluent_time_LDPE_TWW_10_vs_TWW_water" 
+    ## [19] "polymer_effluent_time_LDPE_TWW_2_vs_TWW_water"  
+    ## [20] "polymer_effluent_time_LDPE_TWW_6_vs_TWW_water"  
+    ## [21] "polymer_effluent_time_PP_CON_10_vs_TWW_water"   
+    ## [22] "polymer_effluent_time_PP_CON_2_vs_TWW_water"    
+    ## [23] "polymer_effluent_time_PP_CON_6_vs_TWW_water"    
+    ## [24] "polymer_effluent_time_PP_TWW_10_vs_TWW_water"   
+    ## [25] "polymer_effluent_time_PP_TWW_2_vs_TWW_water"    
+    ## [26] "polymer_effluent_time_PP_TWW_6_vs_TWW_water"    
+    ## [27] "polymer_effluent_time_PS_CON_10_vs_TWW_water"   
+    ## [28] "polymer_effluent_time_PS_CON_2_vs_TWW_water"    
+    ## [29] "polymer_effluent_time_PS_CON_6_vs_TWW_water"    
+    ## [30] "polymer_effluent_time_PS_TWW_10_vs_TWW_water"   
+    ## [31] "polymer_effluent_time_PS_TWW_2_vs_TWW_water"    
+    ## [32] "polymer_effluent_time_PS_TWW_6_vs_TWW_water"    
+    ## [33] "polymer_effluent_time_water_TWW_vs_TWW_water"
+
+``` r
+#We just want to look at the difference between microplastics at 2, 6, and 10 weeks compared to water
+#Creating results tables with the information we're interested in
+ps_res_TWW_2 <- results(ps_tww_time_deseq, contrast=c("polymer_effluent_time","PS_TWW_2","TWW_water"), alpha=0.05)
+ps_res_TWW_6 <- results(ps_tww_time_deseq, contrast=c("polymer_effluent_time","PS_TWW_6","TWW_water"), alpha=0.05)
+ps_res_TWW_10 <- results(ps_tww_time_deseq, contrast=c("polymer_effluent_time","PS_TWW_10","TWW_water"), alpha=0.05)
+
+#Show results summary
+summary(ps_res_TWW_2)
+```
+
+    ## 
+    ## out of 994 with nonzero total read count
+    ## adjusted p-value < 0.05
+    ## LFC > 0 (up)       : 80, 8%
+    ## LFC < 0 (down)     : 65, 6.5%
+    ## outliers [1]       : 0, 0%
+    ## low counts [2]     : 386, 39%
+    ## (mean count < 6)
+    ## [1] see 'cooksCutoff' argument of ?results
+    ## [2] see 'independentFiltering' argument of ?results
+
+``` r
+summary(ps_res_TWW_6)
+```
+
+    ## 
+    ## out of 994 with nonzero total read count
+    ## adjusted p-value < 0.05
+    ## LFC > 0 (up)       : 189, 19%
+    ## LFC < 0 (down)     : 41, 4.1%
+    ## outliers [1]       : 0, 0%
+    ## low counts [2]     : 155, 16%
+    ## (mean count < 3)
+    ## [1] see 'cooksCutoff' argument of ?results
+    ## [2] see 'independentFiltering' argument of ?results
+
+``` r
+summary(ps_res_TWW_10)
+```
+
+    ## 
+    ## out of 994 with nonzero total read count
+    ## adjusted p-value < 0.05
+    ## LFC > 0 (up)       : 131, 13%
+    ## LFC < 0 (down)     : 52, 5.2%
+    ## outliers [1]       : 0, 0%
+    ## low counts [2]     : 135, 14%
+    ## (mean count < 3)
+    ## [1] see 'cooksCutoff' argument of ?results
+    ## [2] see 'independentFiltering' argument of ?results
+
+``` r
+#Log fold change shrinkage on each comparison
+ps_resLFC_TWW2 <- lfcShrink(ps_tww_time_deseq, coef="polymer_effluent_time_PS_TWW_2_vs_TWW_water", type="apeglm")
+ps_resLFC_TWW2
+```
+
+    ## log2 fold change (MAP): polymer effluent time PS TWW 2 vs TWW water 
+    ## Wald test p-value: polymer effluent time PS TWW 2 vs TWW water 
+    ## DataFrame with 994 rows and 5 columns
+    ##                                   baseMean log2FoldChange     lfcSE     pvalue
+    ##                                  <numeric>      <numeric> <numeric>  <numeric>
+    ## 76986812e0cdb639a25c936952004967  43.84147     -0.1555445   1.03798 0.00822132
+    ## 143eedc0b2cf4ff8f1ca0448594d1191   8.39989     -0.0142998   1.02028 0.06419708
+    ## cdc12d12977ac7193527fac20a6c8711   1.72097      0.3142974   1.06239 0.41680929
+    ## 0e8d660cbd4a72352ad4109b2440286e   8.97585      0.3268323   1.07012 0.43760052
+    ## a94d8fee872266a54b1e5706d6bcfbac  20.51734      0.1996337   0.94676 0.63113822
+    ## ...                                    ...            ...       ...        ...
+    ## 3c0d84f8bf9a3a8ea5cc05ad9b99c209   7.92815      0.3464516  1.069686  0.2103780
+    ## 2b0dbc8ca8b74471b0029ee9d61a4c60  41.23416      0.8138204  1.319450  0.1936796
+    ## 15456227e48f1103584e352c6ba34637  36.36373     -0.3671490  1.115633  0.0611504
+    ## 6c0bf239702859ae989d886f1985b1e4 440.45002     -0.0917948  0.906409  0.8538885
+    ## 84bc6ce045f212f439b979e3862bb33e 178.19931     -0.4741873  1.164619  0.1011192
+    ##                                       padj
+    ##                                  <numeric>
+    ## 76986812e0cdb639a25c936952004967 0.0394421
+    ## 143eedc0b2cf4ff8f1ca0448594d1191 0.2018289
+    ## cdc12d12977ac7193527fac20a6c8711        NA
+    ## 0e8d660cbd4a72352ad4109b2440286e 0.7212474
+    ## a94d8fee872266a54b1e5706d6bcfbac 0.8750888
+    ## ...                                    ...
+    ## 3c0d84f8bf9a3a8ea5cc05ad9b99c209  0.458261
+    ## 2b0dbc8ca8b74471b0029ee9d61a4c60  0.432967
+    ## 15456227e48f1103584e352c6ba34637  0.196788
+    ## 6c0bf239702859ae989d886f1985b1e4  0.975137
+    ## 84bc6ce045f212f439b979e3862bb33e  0.277457
+
+``` r
+ps_resLFC_TWW6 <- lfcShrink(ps_tww_time_deseq, coef="polymer_effluent_time_PS_TWW_6_vs_TWW_water", type="apeglm")
+ps_resLFC_TWW6
+```
+
+    ## log2 fold change (MAP): polymer effluent time PS TWW 6 vs TWW water 
+    ## Wald test p-value: polymer effluent time PS TWW 6 vs TWW water 
+    ## DataFrame with 994 rows and 5 columns
+    ##                                   baseMean log2FoldChange     lfcSE     pvalue
+    ##                                  <numeric>      <numeric> <numeric>  <numeric>
+    ## 76986812e0cdb639a25c936952004967  43.84147     -0.2092096  1.052582 0.00483783
+    ## 143eedc0b2cf4ff8f1ca0448594d1191   8.39989     -0.0190704  1.020388 0.04587204
+    ## cdc12d12977ac7193527fac20a6c8711   1.72097      0.3955957  1.103236 0.28179395
+    ## 0e8d660cbd4a72352ad4109b2440286e   8.97585      0.3003976  1.058347 0.46770701
+    ## a94d8fee872266a54b1e5706d6bcfbac  20.51734      0.2305103  0.942977 0.59320075
+    ## ...                                    ...            ...       ...        ...
+    ## 3c0d84f8bf9a3a8ea5cc05ad9b99c209   7.92815       0.494914  1.162042 0.06577198
+    ## 2b0dbc8ca8b74471b0029ee9d61a4c60  41.23416      -0.164092  0.982717 0.54553517
+    ## 15456227e48f1103584e352c6ba34637  36.36373       1.199930  1.744062 0.07397757
+    ## 6c0bf239702859ae989d886f1985b1e4 440.45002       2.850901  1.806485 0.00952419
+    ## 84bc6ce045f212f439b979e3862bb33e 178.19931       3.756216  1.963723 0.00711147
+    ##                                       padj
+    ##                                  <numeric>
+    ## 76986812e0cdb639a25c936952004967 0.0218949
+    ## 143eedc0b2cf4ff8f1ca0448594d1191 0.1385386
+    ## cdc12d12977ac7193527fac20a6c8711        NA
+    ## 0e8d660cbd4a72352ad4109b2440286e 0.7399041
+    ## a94d8fee872266a54b1e5706d6bcfbac 0.7867527
+    ## ...                                    ...
+    ## 3c0d84f8bf9a3a8ea5cc05ad9b99c209 0.1815968
+    ## 2b0dbc8ca8b74471b0029ee9d61a4c60 0.7724464
+    ## 15456227e48f1103584e352c6ba34637 0.1990242
+    ## 6c0bf239702859ae989d886f1985b1e4 0.0374988
+    ## 84bc6ce045f212f439b979e3862bb33e 0.0300186
+
+``` r
+ps_resLFC_TWW10 <- lfcShrink(ps_tww_time_deseq, coef="polymer_effluent_time_PS_TWW_10_vs_TWW_water", type="apeglm")
+ps_resLFC_TWW10
+```
+
+    ## log2 fold change (MAP): polymer effluent time PS TWW 10 vs TWW water 
+    ## Wald test p-value: polymer effluent time PS TWW 10 vs TWW water 
+    ## DataFrame with 994 rows and 5 columns
+    ##                                   baseMean log2FoldChange     lfcSE      pvalue
+    ##                                  <numeric>      <numeric> <numeric>   <numeric>
+    ## 76986812e0cdb639a25c936952004967  43.84147     -0.2091533   1.05254  0.00595932
+    ## 143eedc0b2cf4ff8f1ca0448594d1191   8.39989     -0.0190528   1.02038  0.04940857
+    ## cdc12d12977ac7193527fac20a6c8711   1.72097      0.3050939   1.05811  0.41986233
+    ## 0e8d660cbd4a72352ad4109b2440286e   8.97585     -0.0336782   1.01613  0.97841779
+    ## a94d8fee872266a54b1e5706d6bcfbac  20.51734     -0.0538293   0.93745  0.89005570
+    ## ...                                    ...            ...       ...         ...
+    ## 3c0d84f8bf9a3a8ea5cc05ad9b99c209   7.92815       0.493840  1.161267 6.62940e-02
+    ## 2b0dbc8ca8b74471b0029ee9d61a4c60  41.23416      -0.138308  0.973013 6.06461e-01
+    ## 15456227e48f1103584e352c6ba34637  36.36373       2.993493  2.690741 1.93552e-02
+    ## 6c0bf239702859ae989d886f1985b1e4 440.45002       6.415792  1.628986 1.20180e-05
+    ## 84bc6ce045f212f439b979e3862bb33e 178.19931       7.842253  1.792560 5.83325e-06
+    ##                                         padj
+    ##                                    <numeric>
+    ## 76986812e0cdb639a25c936952004967   0.0234486
+    ## 143eedc0b2cf4ff8f1ca0448594d1191   0.1249847
+    ## cdc12d12977ac7193527fac20a6c8711          NA
+    ## 0e8d660cbd4a72352ad4109b2440286e   0.9945085
+    ## a94d8fee872266a54b1e5706d6bcfbac   0.9945085
+    ## ...                                      ...
+    ## 3c0d84f8bf9a3a8ea5cc05ad9b99c209 1.56268e-01
+    ## 2b0dbc8ca8b74471b0029ee9d61a4c60 7.58338e-01
+    ## 15456227e48f1103584e352c6ba34637 6.09269e-02
+    ## 6c0bf239702859ae989d886f1985b1e4 9.77647e-05
+    ## 84bc6ce045f212f439b979e3862bb33e 5.08828e-05
+
+``` r
+#"It is more useful visualize the MA-plot for the shrunken log2 fold changes, 
+#which remove the noise associated with log2 fold changes from low count genes 
+#without requiring arbitrary filtering thresholds."
+#https://www.bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html#why-un-normalized-counts
+plotMA(ps_resLFC_TWW2)
+```
+
+![](Analysis_files/figure-gfm/deseq%20ps%20tww-1.png)<!-- -->
+
+``` r
+plotMA(ps_resLFC_TWW6)
+```
+
+![](Analysis_files/figure-gfm/deseq%20ps%20tww-2.png)<!-- -->
+
+``` r
+plotMA(ps_resLFC_TWW10)
+```
+
+![](Analysis_files/figure-gfm/deseq%20ps%20tww-3.png)<!-- -->
+
+``` r
+#Add taxonomic information
+ps_sigtab_TWW2 = cbind(as(ps_res_TWW_2, "data.frame"), as(tax_table(MPphyseq)[rownames(ps_res_TWW_2), ], "matrix"))
+ps_sigtab_TWW6 = cbind(as(ps_res_TWW_6, "data.frame"), as(tax_table(MPphyseq)[rownames(ps_res_TWW_6), ], "matrix"))
+ps_sigtab_TWW10 = cbind(as(ps_res_TWW_10, "data.frame"), as(tax_table(MPphyseq)[rownames(ps_res_TWW_10), ], "matrix"))
+
+#Convert to dataframe
+df_ps_time_deseq_TWW2 <- as.data.frame(ps_sigtab_TWW2)
+df_ps_time_deseq_TWW6 <- as.data.frame(ps_sigtab_TWW6)
+df_ps_time_deseq_TWW10 <- as.data.frame(ps_sigtab_TWW10)
+
+#Filter based on adj p-value, removing non-significant values (p>0.05)
+#This also removes p-values that are NA; NA p-values exist because when p-values do not pass the filter threshold (p-values less than 0.1) they are set to NA 
+#More information in vignette("DESeq2") under "Note on p-values set to NA"
+df_ps_time_deseq_TWW2_filt <- filter(df_ps_time_deseq_TWW2, padj <= 0.05)
+df_ps_time_deseq_TWW6_filt <- filter(df_ps_time_deseq_TWW6, padj <= 0.05)
+df_ps_time_deseq_TWW10_filt <- filter(df_ps_time_deseq_TWW10, padj <= 0.05)
+
+#Order by adjusted p-value
+df_ps_time_deseq_TWW2_filt = df_ps_time_deseq_TWW2_filt[order(df_ps_time_deseq_TWW2_filt$padj, na.last=NA), ]
+df_ps_time_deseq_TWW6_filt = df_ps_time_deseq_TWW6_filt[order(df_ps_time_deseq_TWW6_filt$padj, na.last=NA), ]
+df_ps_time_deseq_TWW10_filt = df_ps_time_deseq_TWW10_filt[order(df_ps_time_deseq_TWW10_filt$padj, na.last=NA), ]
+```
+
+### 8.10.4 Venn Diagrams - PS TWW
+
+``` r
+#Filter the river water PS dataframes
+df_ps_time_deseq_TWW2_filt <- filter(df_ps_time_deseq_TWW2_filt, 
+                                     log2FoldChange > 0)
+df_ps_time_deseq_TWW6_filt <- filter(df_ps_time_deseq_TWW6_filt, 
+                                     log2FoldChange > 0)
+df_ps_time_deseq_TWW10_filt <- filter(df_ps_time_deseq_TWW10_filt, 
+                                      log2FoldChange > 0)
+
+#Create a column with the filtered deseq dataframe rownames and then filter to 
+#contain only ASV's
+taxa_PS_TWW2 <- data.frame(df_ps_time_deseq_TWW2_filt) %>%
+  tibble::rownames_to_column(var = "PS_TWW_2") %>%
+  select(PS_TWW_2)
+
+taxa_PS_TWW6 <- data.frame(df_ps_time_deseq_TWW6_filt) %>%
+  tibble::rownames_to_column(var = "PS_TWW_6") %>%
+  select(PS_TWW_6)
+
+taxa_PS_TWW10 <- data.frame(df_ps_time_deseq_TWW10_filt) %>%
+  tibble::rownames_to_column(var = "PS_TWW_10") %>%
+  select(PS_TWW_10)
+
+#Make the dataframe into a list
+list_PS_TWW_2 <- list(taxa_PS_TWW2$PS_TWW_2)
+list_PS_TWW_6 <- list(taxa_PS_TWW6$PS_TWW_6)
+list_PS_TWW_10 <- list(taxa_PS_TWW10$PS_TWW_10)
+
+#Change to characters
+taxa_PS_TWW2_chr <- as.character(list_PS_TWW_2[[1]])
+taxa_PS_TWW6_chr <- as.character(list_PS_TWW_6[[1]])
+taxa_PS_TWW10_chr <- as.character(list_PS_TWW_10[[1]])
+
+#Make list for ggVennDiagram
+PS_tww_time_comparisons <- list(taxa_PS_TWW2_chr, taxa_PS_TWW6_chr, taxa_PS_TWW10_chr) %>%
+  setNames(c("PS_TWW_2", "PS_TWW_6", "PS_TWW_10"))
+
+#Make Venn Diagram - all comparisons
+ggVennDiagram(PS_tww_time_comparisons) + scale_fill_gradient(low="blue",high = "red") +
+  theme(legend.position = "bottom", legend.direction = "horizontal")
+```
+
+![](Analysis_files/figure-gfm/venn%20PS%20tww%20time-1.png)<!-- -->
+
+## 8.11 Examining changes in bacterial communities on LDPE over time
+
+### 8.11.1 Contrasts - 2w, 6w, 10w river water LDPE only, vs river water
+
+``` r
+#Convert phyloseq object from above to deseq object with the correct category
+ldpe_time_deseq = phyloseq_to_deseq2(ps.taxa.all.filt, ~ polymer_effluent_time)
+
+#Estimate the size factors
+ldpe_time_deseq <- estimateSizeFactors(ldpe_time_deseq, type = "poscounts")
+
+#Make sure that the control is the first level in the sample_type group so that 
+#the default log2 changes are calculated as treatment vs. control instead of 
+#vice versa
+ldpe_time_deseq$polymer_effluent_time <- relevel(factor(ldpe_time_deseq$polymer_effluent_time), "CON_water")
+
+#Now we can run DESeq
+ldpe_time_deseq = DESeq(ldpe_time_deseq, test="Wald", fitType="parametric")
+
+#Check which comparisons are contained in the deseq object:
+resultsNames(ldpe_time_deseq)
+```
+
+    ##  [1] "Intercept"                                      
+    ##  [2] "polymer_effluent_time_Glass_CON_10_vs_CON_water"
+    ##  [3] "polymer_effluent_time_Glass_CON_2_vs_CON_water" 
+    ##  [4] "polymer_effluent_time_Glass_CON_6_vs_CON_water" 
+    ##  [5] "polymer_effluent_time_Glass_TWW_10_vs_CON_water"
+    ##  [6] "polymer_effluent_time_Glass_TWW_2_vs_CON_water" 
+    ##  [7] "polymer_effluent_time_Glass_TWW_6_vs_CON_water" 
+    ##  [8] "polymer_effluent_time_HDPE_CON_10_vs_CON_water" 
+    ##  [9] "polymer_effluent_time_HDPE_CON_2_vs_CON_water"  
+    ## [10] "polymer_effluent_time_HDPE_CON_6_vs_CON_water"  
+    ## [11] "polymer_effluent_time_HDPE_TWW_10_vs_CON_water" 
+    ## [12] "polymer_effluent_time_HDPE_TWW_2_vs_CON_water"  
+    ## [13] "polymer_effluent_time_HDPE_TWW_6_vs_CON_water"  
+    ## [14] "polymer_effluent_time_LDPE_CON_10_vs_CON_water" 
+    ## [15] "polymer_effluent_time_LDPE_CON_2_vs_CON_water"  
+    ## [16] "polymer_effluent_time_LDPE_CON_6_vs_CON_water"  
+    ## [17] "polymer_effluent_time_LDPE_TWW_10_vs_CON_water" 
+    ## [18] "polymer_effluent_time_LDPE_TWW_2_vs_CON_water"  
+    ## [19] "polymer_effluent_time_LDPE_TWW_6_vs_CON_water"  
+    ## [20] "polymer_effluent_time_PP_CON_10_vs_CON_water"   
+    ## [21] "polymer_effluent_time_PP_CON_2_vs_CON_water"    
+    ## [22] "polymer_effluent_time_PP_CON_6_vs_CON_water"    
+    ## [23] "polymer_effluent_time_PP_TWW_10_vs_CON_water"   
+    ## [24] "polymer_effluent_time_PP_TWW_2_vs_CON_water"    
+    ## [25] "polymer_effluent_time_PP_TWW_6_vs_CON_water"    
+    ## [26] "polymer_effluent_time_PS_CON_10_vs_CON_water"   
+    ## [27] "polymer_effluent_time_PS_CON_2_vs_CON_water"    
+    ## [28] "polymer_effluent_time_PS_CON_6_vs_CON_water"    
+    ## [29] "polymer_effluent_time_PS_TWW_10_vs_CON_water"   
+    ## [30] "polymer_effluent_time_PS_TWW_2_vs_CON_water"    
+    ## [31] "polymer_effluent_time_PS_TWW_6_vs_CON_water"    
+    ## [32] "polymer_effluent_time_TWW_water_vs_CON_water"   
+    ## [33] "polymer_effluent_time_water_TWW_vs_CON_water"
+
+``` r
+#We just want to look at the difference between microplastics at 2, 6, and 10 weeks compared to water
+#Creating results tables with the information we're interested in
+ldpe_res_CON_2 <- results(ldpe_time_deseq, contrast=c("polymer_effluent_time","LDPE_CON_2","CON_water"), alpha=0.05)
+ldpe_res_CON_6 <- results(ldpe_time_deseq, contrast=c("polymer_effluent_time","LDPE_CON_6","CON_water"), alpha=0.05)
+ldpe_res_CON_10 <- results(ldpe_time_deseq, contrast=c("polymer_effluent_time","LDPE_CON_10","CON_water"), alpha=0.05)
+
+#Show results summary
+summary(ldpe_res_CON_2)
+```
+
+    ## 
+    ## out of 994 with nonzero total read count
+    ## adjusted p-value < 0.05
+    ## LFC > 0 (up)       : 98, 9.9%
+    ## LFC < 0 (down)     : 100, 10%
+    ## outliers [1]       : 0, 0%
+    ## low counts [2]     : 212, 21%
+    ## (mean count < 4)
+    ## [1] see 'cooksCutoff' argument of ?results
+    ## [2] see 'independentFiltering' argument of ?results
+
+``` r
+summary(ldpe_res_CON_6)
+```
+
+    ## 
+    ## out of 994 with nonzero total read count
+    ## adjusted p-value < 0.05
+    ## LFC > 0 (up)       : 173, 17%
+    ## LFC < 0 (down)     : 40, 4%
+    ## outliers [1]       : 0, 0%
+    ## low counts [2]     : 116, 12%
+    ## (mean count < 3)
+    ## [1] see 'cooksCutoff' argument of ?results
+    ## [2] see 'independentFiltering' argument of ?results
+
+``` r
+summary(ldpe_res_CON_10)
+```
+
+    ## 
+    ## out of 994 with nonzero total read count
+    ## adjusted p-value < 0.05
+    ## LFC > 0 (up)       : 136, 14%
+    ## LFC < 0 (down)     : 67, 6.7%
+    ## outliers [1]       : 0, 0%
+    ## low counts [2]     : 97, 9.8%
+    ## (mean count < 2)
+    ## [1] see 'cooksCutoff' argument of ?results
+    ## [2] see 'independentFiltering' argument of ?results
+
+``` r
+#Log fold change shrinkage on each comparison
+ldpe_resLFC_CON2 <- lfcShrink(ldpe_time_deseq, coef="polymer_effluent_time_LDPE_CON_2_vs_CON_water", type="apeglm")
+ldpe_resLFC_CON2
+```
+
+    ## log2 fold change (MAP): polymer effluent time LDPE CON 2 vs CON water 
+    ## Wald test p-value: polymer effluent time LDPE CON 2 vs CON water 
+    ## DataFrame with 994 rows and 5 columns
+    ##                                   baseMean log2FoldChange     lfcSE      pvalue
+    ##                                  <numeric>      <numeric> <numeric>   <numeric>
+    ## 76986812e0cdb639a25c936952004967  43.84147     -0.2093931   1.05271  0.00142739
+    ## 143eedc0b2cf4ff8f1ca0448594d1191   8.39989     -0.0191086   1.02040  0.43202049
+    ## cdc12d12977ac7193527fac20a6c8711   1.72097     -0.0394481   1.01476  0.97964112
+    ## 0e8d660cbd4a72352ad4109b2440286e   8.97585     -0.0305646   1.01587  0.98223842
+    ## a94d8fee872266a54b1e5706d6bcfbac  20.51734      2.3925190   2.01902  0.03245551
+    ## ...                                    ...            ...       ...         ...
+    ## 3c0d84f8bf9a3a8ea5cc05ad9b99c209   7.92815     -0.2020035   1.04747 2.43053e-01
+    ## 2b0dbc8ca8b74471b0029ee9d61a4c60  41.23416      2.6841680   2.11528 4.30366e-02
+    ## 15456227e48f1103584e352c6ba34637  36.36373     -0.3793285   1.07773 1.92050e-01
+    ## 6c0bf239702859ae989d886f1985b1e4 440.45002     -7.4898267   3.46926 7.96044e-05
+    ## 84bc6ce045f212f439b979e3862bb33e 178.19931     -0.0728316   1.00508 9.51424e-01
+    ##                                        padj
+    ##                                   <numeric>
+    ## 76986812e0cdb639a25c936952004967 0.00585281
+    ## 143eedc0b2cf4ff8f1ca0448594d1191 0.59920084
+    ## cdc12d12977ac7193527fac20a6c8711         NA
+    ## 0e8d660cbd4a72352ad4109b2440286e 0.99416454
+    ## a94d8fee872266a54b1e5706d6bcfbac 0.08422146
+    ## ...                                     ...
+    ## 3c0d84f8bf9a3a8ea5cc05ad9b99c209 0.40923417
+    ## 2b0dbc8ca8b74471b0029ee9d61a4c60 0.10351662
+    ## 15456227e48f1103584e352c6ba34637 0.34588124
+    ## 6c0bf239702859ae989d886f1985b1e4 0.00045741
+    ## 84bc6ce045f212f439b979e3862bb33e 0.99416454
+
+``` r
+ldpe_resLFC_CON6 <- lfcShrink(ldpe_time_deseq, coef="polymer_effluent_time_LDPE_CON_6_vs_CON_water", type="apeglm")
+ldpe_resLFC_CON6
+```
+
+    ## log2 fold change (MAP): polymer effluent time LDPE CON 6 vs CON water 
+    ## Wald test p-value: polymer effluent time LDPE CON 6 vs CON water 
+    ## DataFrame with 994 rows and 5 columns
+    ##                                   baseMean log2FoldChange     lfcSE      pvalue
+    ##                                  <numeric>      <numeric> <numeric>   <numeric>
+    ## 76986812e0cdb639a25c936952004967  43.84147     -0.2093293   1.05266  0.00225029
+    ## 143eedc0b2cf4ff8f1ca0448594d1191   8.39989     -0.0190748   1.02040  0.45759919
+    ## cdc12d12977ac7193527fac20a6c8711   1.72097      0.5424793   1.20245  0.24938443
+    ## 0e8d660cbd4a72352ad4109b2440286e   8.97585     -0.0264164   1.01583  0.95651324
+    ## a94d8fee872266a54b1e5706d6bcfbac  20.51734      1.0317866   1.32588  0.12199012
+    ## ...                                    ...            ...       ...         ...
+    ## 3c0d84f8bf9a3a8ea5cc05ad9b99c209   7.92815       0.534932   1.09343 2.89860e-01
+    ## 2b0dbc8ca8b74471b0029ee9d61a4c60  41.23416      -0.372363   1.12034 4.71186e-02
+    ## 15456227e48f1103584e352c6ba34637  36.36373       0.743396   1.08107 2.40081e-01
+    ## 6c0bf239702859ae989d886f1985b1e4 440.45002       3.009932   1.39481 7.51341e-03
+    ## 84bc6ce045f212f439b979e3862bb33e 178.19931      10.819049   2.32115 1.52773e-07
+    ##                                         padj
+    ##                                    <numeric>
+    ## 76986812e0cdb639a25c936952004967   0.0102182
+    ## 143eedc0b2cf4ff8f1ca0448594d1191   0.6751747
+    ## cdc12d12977ac7193527fac20a6c8711          NA
+    ## 0e8d660cbd4a72352ad4109b2440286e   0.9858911
+    ## a94d8fee872266a54b1e5706d6bcfbac   0.2543549
+    ## ...                                      ...
+    ## 3c0d84f8bf9a3a8ea5cc05ad9b99c209 4.99567e-01
+    ## 2b0dbc8ca8b74471b0029ee9d61a4c60 1.24800e-01
+    ## 15456227e48f1103584e352c6ba34637 4.33587e-01
+    ## 6c0bf239702859ae989d886f1985b1e4 2.77146e-02
+    ## 84bc6ce045f212f439b979e3862bb33e 1.75689e-06
+
+``` r
+ldpe_resLFC_CON10 <- lfcShrink(ldpe_time_deseq, coef="polymer_effluent_time_LDPE_CON_10_vs_CON_water", type="apeglm")
+ldpe_resLFC_CON10
+```
+
+    ## log2 fold change (MAP): polymer effluent time LDPE CON 10 vs CON water 
+    ## Wald test p-value: polymer effluent time LDPE CON 10 vs CON water 
+    ## DataFrame with 994 rows and 5 columns
+    ##                                   baseMean log2FoldChange     lfcSE      pvalue
+    ##                                  <numeric>      <numeric> <numeric>   <numeric>
+    ## 76986812e0cdb639a25c936952004967  43.84147     -0.2093503   1.05268  0.00211867
+    ## 143eedc0b2cf4ff8f1ca0448594d1191   8.39989     -0.0190973   1.02040  0.45410912
+    ## cdc12d12977ac7193527fac20a6c8711   1.72097      0.4370417   1.12318  0.37340782
+    ## 0e8d660cbd4a72352ad4109b2440286e   8.97585     -0.0269521   1.01579  0.96474661
+    ## a94d8fee872266a54b1e5706d6bcfbac  20.51734      0.5331339   1.00670  0.29858364
+    ## ...                                    ...            ...       ...         ...
+    ## 3c0d84f8bf9a3a8ea5cc05ad9b99c209   7.92815       0.161195  0.958636 6.78603e-01
+    ## 2b0dbc8ca8b74471b0029ee9d61a4c60  41.23416      -0.373191  1.121107 4.46153e-02
+    ## 15456227e48f1103584e352c6ba34637  36.36373       1.716190  1.664521 7.11219e-02
+    ## 6c0bf239702859ae989d886f1985b1e4 440.45002       5.414681  1.389296 4.91979e-05
+    ## 84bc6ce045f212f439b979e3862bb33e 178.19931      13.791635  2.342833 8.72852e-12
+    ##                                         padj
+    ##                                    <numeric>
+    ## 76986812e0cdb639a25c936952004967  0.00916012
+    ## 143eedc0b2cf4ff8f1ca0448594d1191  0.66746620
+    ## cdc12d12977ac7193527fac20a6c8711          NA
+    ## 0e8d660cbd4a72352ad4109b2440286e  0.99068197
+    ## a94d8fee872266a54b1e5706d6bcfbac  0.49894897
+    ## ...                                      ...
+    ## 3c0d84f8bf9a3a8ea5cc05ad9b99c209 8.25308e-01
+    ## 2b0dbc8ca8b74471b0029ee9d61a4c60 1.18402e-01
+    ## 15456227e48f1103584e352c6ba34637 1.66754e-01
+    ## 6c0bf239702859ae989d886f1985b1e4 3.25990e-04
+    ## 84bc6ce045f212f439b979e3862bb33e 1.44590e-10
+
+``` r
+#"It is more useful visualize the MA-plot for the shrunken log2 fold changes, 
+#which remove the noise associated with log2 fold changes from low count genes 
+#without requiring arbitrary filtering thresholds."
+#https://www.bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html#why-un-normalized-counts
+plotMA(ldpe_resLFC_CON2)
+```
+
+![](Analysis_files/figure-gfm/deseq%20ldpe%20river-1.png)<!-- -->
+
+``` r
+plotMA(ldpe_resLFC_CON6)
+```
+
+![](Analysis_files/figure-gfm/deseq%20ldpe%20river-2.png)<!-- -->
+
+``` r
+plotMA(ldpe_resLFC_CON10)
+```
+
+![](Analysis_files/figure-gfm/deseq%20ldpe%20river-3.png)<!-- -->
+
+``` r
+#Add taxonomic information
+ldpe_sigtab_CON2 = cbind(as(ldpe_res_CON_2, "data.frame"), as(tax_table(MPphyseq)[rownames(ldpe_res_CON_2), ], "matrix"))
+ldpe_sigtab_CON6 = cbind(as(ldpe_res_CON_6, "data.frame"), as(tax_table(MPphyseq)[rownames(ldpe_res_CON_6), ], "matrix"))
+ldpe_sigtab_CON10 = cbind(as(ldpe_res_CON_10, "data.frame"), as(tax_table(MPphyseq)[rownames(ldpe_res_CON_10), ], "matrix"))
+
+#Convert to dataframe
+df_ldpe_time_deseq_CON2 <- as.data.frame(ldpe_sigtab_CON2)
+df_ldpe_time_deseq_CON6 <- as.data.frame(ldpe_sigtab_CON6)
+df_ldpe_time_deseq_CON10 <- as.data.frame(ldpe_sigtab_CON10)
+
+#Filter based on adj p-value, removing non-significant values (p>0.05)
+#This also removes p-values that are NA; NA p-values exist because when p-values do not pass the filter threshold (p-values less than 0.1) they are set to NA 
+#More information in vignette("DESeq2") under "Note on p-values set to NA"
+df_ldpe_time_deseq_CON2_filt <- filter(df_ldpe_time_deseq_CON2, padj <= 0.05)
+df_ldpe_time_deseq_CON6_filt <- filter(df_ldpe_time_deseq_CON6, padj <= 0.05)
+df_ldpe_time_deseq_CON10_filt <- filter(df_ldpe_time_deseq_CON10, padj <= 0.05)
+
+#Order by adjusted p-value
+df_ldpe_time_deseq_CON2_filt = df_ldpe_time_deseq_CON2_filt[order(df_ldpe_time_deseq_CON2_filt$padj, na.last=NA), ]
+df_ldpe_time_deseq_CON6_filt = df_ldpe_time_deseq_CON6_filt[order(df_ldpe_time_deseq_CON6_filt$padj, na.last=NA), ]
+df_ldpe_time_deseq_CON10_filt = df_ldpe_time_deseq_CON10_filt[order(df_ldpe_time_deseq_CON10_filt$padj, na.last=NA), ]
+```
+
+### 8.11.2 Venn Diagrams - LDPE river
+
+``` r
+#Filter the river water PS dataframes
+df_ldpe_time_deseq_CON2_filt <- filter(df_ldpe_time_deseq_CON2_filt, 
+                                     log2FoldChange > 0)
+df_ldpe_time_deseq_CON6_filt <- filter(df_ldpe_time_deseq_CON6_filt, 
+                                     log2FoldChange > 0)
+df_ldpe_time_deseq_CON10_filt <- filter(df_ldpe_time_deseq_CON10_filt, 
+                                      log2FoldChange > 0)
+
+#Create a column with the filtered deseq dataframe rownames and then filter to 
+#contain only ASV's
+taxa_ldpe_CON2 <- data.frame(df_ldpe_time_deseq_CON2_filt) %>%
+  tibble::rownames_to_column(var = "LDPE_CON_2") %>%
+  select(LDPE_CON_2)
+
+taxa_ldpe_CON6 <- data.frame(df_ldpe_time_deseq_CON6_filt) %>%
+  tibble::rownames_to_column(var = "LDPE_CON_6") %>%
+  select(LDPE_CON_6)
+
+taxa_ldpe_CON10 <- data.frame(df_ldpe_time_deseq_CON10_filt) %>%
+  tibble::rownames_to_column(var = "LDPE_CON_10") %>%
+  select(LDPE_CON_10)
+
+#Make the dataframe into a list
+list_ldpe_CON_2 <- list(taxa_ldpe_CON2$LDPE_CON_2)
+list_ldpe_CON_6 <- list(taxa_ldpe_CON6$LDPE_CON_6)
+list_ldpe_CON_10 <- list(taxa_ldpe_CON10$LDPE_CON_10)
+
+#Change to characters
+taxa_ldpe_CON2_chr <- as.character(list_ldpe_CON_2[[1]])
+taxa_ldpe_CON6_chr <- as.character(list_ldpe_CON_6[[1]])
+taxa_ldpe_CON10_chr <- as.character(list_ldpe_CON_10[[1]])
+
+#Make list for ggVennDiagram
+ldpe_time_comparisons <- list(taxa_ldpe_CON2_chr, taxa_ldpe_CON6_chr, taxa_ldpe_CON10_chr) %>%
+  setNames(c("LDPE_CON_2", "LDPE_CON_6", "LDPE_CON_10"))
+
+#Make Venn Diagram - all comparisons
+ggVennDiagram(ldpe_time_comparisons) + scale_fill_gradient(low="blue",high = "red") +
+  theme(legend.position = "bottom", legend.direction = "horizontal")
+```
+
+![](Analysis_files/figure-gfm/venn%20LDPE%20time-1.png)<!-- -->
+
+### 8.11.3 Contrasts - 2w, 6w, 10w TWW LDPE only, vs TWW
+
+``` r
+#Convert phyloseq object from above to deseq object with the correct category
+ldpe_tww_time_deseq = phyloseq_to_deseq2(ps.taxa.all.filt, ~ polymer_effluent_time)
+
+#Estimate the size factors
+ldpe_tww_time_deseq <- estimateSizeFactors(ldpe_tww_time_deseq, type = "poscounts")
+
+#Make sure that the control is the first level in the sample_type group so that 
+#the default log2 changes are calculated as treatment vs. control instead of 
+#vice versa
+ldpe_tww_time_deseq$polymer_effluent_time <- relevel(factor(ldpe_tww_time_deseq$polymer_effluent_time), "TWW_water")
+
+#Now we can run DESeq
+ldpe_tww_time_deseq = DESeq(ldpe_tww_time_deseq, test="Wald", fitType="parametric")
+
+#Check which comparisons are contained in the deseq object:
+resultsNames(ldpe_tww_time_deseq)
+```
+
+    ##  [1] "Intercept"                                      
+    ##  [2] "polymer_effluent_time_CON_water_vs_TWW_water"   
+    ##  [3] "polymer_effluent_time_Glass_CON_10_vs_TWW_water"
+    ##  [4] "polymer_effluent_time_Glass_CON_2_vs_TWW_water" 
+    ##  [5] "polymer_effluent_time_Glass_CON_6_vs_TWW_water" 
+    ##  [6] "polymer_effluent_time_Glass_TWW_10_vs_TWW_water"
+    ##  [7] "polymer_effluent_time_Glass_TWW_2_vs_TWW_water" 
+    ##  [8] "polymer_effluent_time_Glass_TWW_6_vs_TWW_water" 
+    ##  [9] "polymer_effluent_time_HDPE_CON_10_vs_TWW_water" 
+    ## [10] "polymer_effluent_time_HDPE_CON_2_vs_TWW_water"  
+    ## [11] "polymer_effluent_time_HDPE_CON_6_vs_TWW_water"  
+    ## [12] "polymer_effluent_time_HDPE_TWW_10_vs_TWW_water" 
+    ## [13] "polymer_effluent_time_HDPE_TWW_2_vs_TWW_water"  
+    ## [14] "polymer_effluent_time_HDPE_TWW_6_vs_TWW_water"  
+    ## [15] "polymer_effluent_time_LDPE_CON_10_vs_TWW_water" 
+    ## [16] "polymer_effluent_time_LDPE_CON_2_vs_TWW_water"  
+    ## [17] "polymer_effluent_time_LDPE_CON_6_vs_TWW_water"  
+    ## [18] "polymer_effluent_time_LDPE_TWW_10_vs_TWW_water" 
+    ## [19] "polymer_effluent_time_LDPE_TWW_2_vs_TWW_water"  
+    ## [20] "polymer_effluent_time_LDPE_TWW_6_vs_TWW_water"  
+    ## [21] "polymer_effluent_time_PP_CON_10_vs_TWW_water"   
+    ## [22] "polymer_effluent_time_PP_CON_2_vs_TWW_water"    
+    ## [23] "polymer_effluent_time_PP_CON_6_vs_TWW_water"    
+    ## [24] "polymer_effluent_time_PP_TWW_10_vs_TWW_water"   
+    ## [25] "polymer_effluent_time_PP_TWW_2_vs_TWW_water"    
+    ## [26] "polymer_effluent_time_PP_TWW_6_vs_TWW_water"    
+    ## [27] "polymer_effluent_time_PS_CON_10_vs_TWW_water"   
+    ## [28] "polymer_effluent_time_PS_CON_2_vs_TWW_water"    
+    ## [29] "polymer_effluent_time_PS_CON_6_vs_TWW_water"    
+    ## [30] "polymer_effluent_time_PS_TWW_10_vs_TWW_water"   
+    ## [31] "polymer_effluent_time_PS_TWW_2_vs_TWW_water"    
+    ## [32] "polymer_effluent_time_PS_TWW_6_vs_TWW_water"    
+    ## [33] "polymer_effluent_time_water_TWW_vs_TWW_water"
+
+``` r
+#We just want to look at the difference between microplastics at 2, 6, and 10 weeks compared to water
+#Creating results tables with the information we're interested in
+ldpe_res_TWW_2 <- results(ldpe_tww_time_deseq, contrast=c("polymer_effluent_time","LDPE_TWW_2","TWW_water"), alpha=0.05)
+ldpe_res_TWW_6 <- results(ldpe_tww_time_deseq, contrast=c("polymer_effluent_time","LDPE_TWW_6","TWW_water"), alpha=0.05)
+ldpe_res_TWW_10 <- results(ldpe_tww_time_deseq, contrast=c("polymer_effluent_time","LDPE_TWW_10","TWW_water"), alpha=0.05)
+
+#Show results summary
+summary(ldpe_res_TWW_2)
+```
+
+    ## 
+    ## out of 994 with nonzero total read count
+    ## adjusted p-value < 0.05
+    ## LFC > 0 (up)       : 90, 9.1%
+    ## LFC < 0 (down)     : 69, 6.9%
+    ## outliers [1]       : 0, 0%
+    ## low counts [2]     : 174, 18%
+    ## (mean count < 3)
+    ## [1] see 'cooksCutoff' argument of ?results
+    ## [2] see 'independentFiltering' argument of ?results
+
+``` r
+summary(ldpe_res_TWW_6)
+```
+
+    ## 
+    ## out of 994 with nonzero total read count
+    ## adjusted p-value < 0.05
+    ## LFC > 0 (up)       : 168, 17%
+    ## LFC < 0 (down)     : 27, 2.7%
+    ## outliers [1]       : 0, 0%
+    ## low counts [2]     : 193, 19%
+    ## (mean count < 4)
+    ## [1] see 'cooksCutoff' argument of ?results
+    ## [2] see 'independentFiltering' argument of ?results
+
+``` r
+summary(ldpe_res_TWW_10)
+```
+
+    ## 
+    ## out of 994 with nonzero total read count
+    ## adjusted p-value < 0.05
+    ## LFC > 0 (up)       : 127, 13%
+    ## LFC < 0 (down)     : 53, 5.3%
+    ## outliers [1]       : 0, 0%
+    ## low counts [2]     : 135, 14%
+    ## (mean count < 3)
+    ## [1] see 'cooksCutoff' argument of ?results
+    ## [2] see 'independentFiltering' argument of ?results
+
+``` r
+#Log fold change shrinkage on each comparison
+ldpe_resLFC_TWW2 <- lfcShrink(ldpe_tww_time_deseq, coef="polymer_effluent_time_LDPE_TWW_2_vs_TWW_water", type="apeglm")
+ldpe_resLFC_TWW2
+```
+
+    ## log2 fold change (MAP): polymer effluent time LDPE TWW 2 vs TWW water 
+    ## Wald test p-value: polymer effluent time LDPE TWW 2 vs TWW water 
+    ## DataFrame with 994 rows and 5 columns
+    ##                                   baseMean log2FoldChange     lfcSE    pvalue
+    ##                                  <numeric>      <numeric> <numeric> <numeric>
+    ## 76986812e0cdb639a25c936952004967  43.84147      -0.209303   1.05264 0.0033425
+    ## 143eedc0b2cf4ff8f1ca0448594d1191   8.39989      -0.019059   1.02039 0.0398243
+    ## cdc12d12977ac7193527fac20a6c8711   1.72097      -0.052078   1.01617 0.9290001
+    ## 0e8d660cbd4a72352ad4109b2440286e   8.97585       0.471325   1.15365 0.2387366
+    ## a94d8fee872266a54b1e5706d6bcfbac  20.51734       0.255402   0.94861 0.5583191
+    ## ...                                    ...            ...       ...       ...
+    ## 3c0d84f8bf9a3a8ea5cc05ad9b99c209   7.92815      0.2834719  1.040124 0.2883700
+    ## 2b0dbc8ca8b74471b0029ee9d61a4c60  41.23416      1.0038702  1.547557 0.1295530
+    ## 15456227e48f1103584e352c6ba34637  36.36373     -0.5126027  1.213695 0.0369397
+    ## 6c0bf239702859ae989d886f1985b1e4 440.45002     -0.0347855  0.871723 0.9696392
+    ## 84bc6ce045f212f439b979e3862bb33e 178.19931     -0.6701469  1.325470 0.0675469
+    ##                                       padj
+    ##                                  <numeric>
+    ## 76986812e0cdb639a25c936952004967  0.015938
+    ## 143eedc0b2cf4ff8f1ca0448594d1191  0.130304
+    ## cdc12d12977ac7193527fac20a6c8711        NA
+    ## 0e8d660cbd4a72352ad4109b2440286e  0.488723
+    ## a94d8fee872266a54b1e5706d6bcfbac  0.803219
+    ## ...                                    ...
+    ## 3c0d84f8bf9a3a8ea5cc05ad9b99c209  0.552043
+    ## 2b0dbc8ca8b74471b0029ee9d61a4c60  0.300624
+    ## 15456227e48f1103584e352c6ba34637  0.123252
+    ## 6c0bf239702859ae989d886f1985b1e4  0.974624
+    ## 84bc6ce045f212f439b979e3862bb33e  0.187977
+
+``` r
+ldpe_resLFC_TWW6 <- lfcShrink(ldpe_tww_time_deseq, coef="polymer_effluent_time_LDPE_TWW_6_vs_TWW_water", type="apeglm")
+ldpe_resLFC_TWW6
+```
+
+    ## log2 fold change (MAP): polymer effluent time LDPE TWW 6 vs TWW water 
+    ## Wald test p-value: polymer effluent time LDPE TWW 6 vs TWW water 
+    ## DataFrame with 994 rows and 5 columns
+    ##                                   baseMean log2FoldChange     lfcSE     pvalue
+    ##                                  <numeric>      <numeric> <numeric>  <numeric>
+    ## 76986812e0cdb639a25c936952004967  43.84147      -0.209177   1.05256 0.00527105
+    ## 143eedc0b2cf4ff8f1ca0448594d1191   8.39989      -0.019067   1.02039 0.04736014
+    ## cdc12d12977ac7193527fac20a6c8711   1.72097       0.279311   1.04758 0.46803948
+    ## 0e8d660cbd4a72352ad4109b2440286e   8.97585       0.403871   1.11016 0.31223086
+    ## a94d8fee872266a54b1e5706d6bcfbac  20.51734       0.716621   1.21022 0.16923575
+    ## ...                                    ...            ...       ...        ...
+    ## 3c0d84f8bf9a3a8ea5cc05ad9b99c209   7.92815      0.4945426  1.161776  0.0660713
+    ## 2b0dbc8ca8b74471b0029ee9d61a4c60  41.23416      0.0464791  0.935128  0.9908233
+    ## 15456227e48f1103584e352c6ba34637  36.36373      0.2471688  0.938290  0.5898702
+    ## 6c0bf239702859ae989d886f1985b1e4 440.45002      1.7916865  1.734421  0.0337014
+    ## 84bc6ce045f212f439b979e3862bb33e 178.19931     -0.6194474  1.261211  0.1110013
+    ##                                       padj
+    ##                                  <numeric>
+    ## 76986812e0cdb639a25c936952004967 0.0239893
+    ## 143eedc0b2cf4ff8f1ca0448594d1191 0.1447919
+    ## cdc12d12977ac7193527fac20a6c8711        NA
+    ## 0e8d660cbd4a72352ad4109b2440286e 0.5366887
+    ## a94d8fee872266a54b1e5706d6bcfbac 0.3463741
+    ## ...                                    ...
+    ## 3c0d84f8bf9a3a8ea5cc05ad9b99c209  0.183033
+    ## 2b0dbc8ca8b74471b0029ee9d61a4c60  0.998215
+    ## 15456227e48f1103584e352c6ba34637  0.778395
+    ## 6c0bf239702859ae989d886f1985b1e4  0.111783
+    ## 84bc6ce045f212f439b979e3862bb33e  0.254762
+
+``` r
+ldpe_resLFC_TWW10 <- lfcShrink(ldpe_tww_time_deseq, coef="polymer_effluent_time_LDPE_TWW_10_vs_TWW_water", type="apeglm")
+ldpe_resLFC_TWW10
+```
+
+    ## log2 fold change (MAP): polymer effluent time LDPE TWW 10 vs TWW water 
+    ## Wald test p-value: polymer effluent time LDPE TWW 10 vs TWW water 
+    ## DataFrame with 994 rows and 5 columns
+    ##                                   baseMean log2FoldChange     lfcSE      pvalue
+    ##                                  <numeric>      <numeric> <numeric>   <numeric>
+    ## 76986812e0cdb639a25c936952004967  43.84147     -0.2090862   1.05250  0.00698004
+    ## 143eedc0b2cf4ff8f1ca0448594d1191   8.39989     -0.0190375   1.02038  0.05207900
+    ## cdc12d12977ac7193527fac20a6c8711   1.72097     -0.0426180   1.01511  0.94804945
+    ## 0e8d660cbd4a72352ad4109b2440286e   8.97585     -0.0318790   1.01602  0.95476716
+    ## a94d8fee872266a54b1e5706d6bcfbac  20.51734     -0.2543318   1.00951  0.43085679
+    ## ...                                    ...            ...       ...         ...
+    ## 3c0d84f8bf9a3a8ea5cc05ad9b99c209   7.92815      0.5462983  1.203220 4.43669e-02
+    ## 2b0dbc8ca8b74471b0029ee9d61a4c60  41.23416     -0.0970341  0.959785 7.03173e-01
+    ## 15456227e48f1103584e352c6ba34637  36.36373      1.6337756  2.409904 4.58262e-02
+    ## 6c0bf239702859ae989d886f1985b1e4 440.45002      5.5592461  1.647560 8.98139e-05
+    ## 84bc6ce045f212f439b979e3862bb33e 178.19931      6.9376596  1.804909 4.17977e-05
+    ##                                         padj
+    ##                                    <numeric>
+    ## 76986812e0cdb639a25c936952004967   0.0326129
+    ## 143eedc0b2cf4ff8f1ca0448594d1191   0.1638902
+    ## cdc12d12977ac7193527fac20a6c8711          NA
+    ## 0e8d660cbd4a72352ad4109b2440286e   0.9804598
+    ## a94d8fee872266a54b1e5706d6bcfbac   0.7124148
+    ## ...                                      ...
+    ## 3c0d84f8bf9a3a8ea5cc05ad9b99c209 0.145351168
+    ## 2b0dbc8ca8b74471b0029ee9d61a4c60 0.883241086
+    ## 15456227e48f1103584e352c6ba34637 0.148470164
+    ## 6c0bf239702859ae989d886f1985b1e4 0.000751015
+    ## 84bc6ce045f212f439b979e3862bb33e 0.000366984
+
+``` r
+#"It is more useful visualize the MA-plot for the shrunken log2 fold changes, 
+#which remove the noise associated with log2 fold changes from low count genes 
+#without requiring arbitrary filtering thresholds."
+#https://www.bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html#why-un-normalized-counts
+plotMA(ldpe_resLFC_TWW2)
+```
+
+![](Analysis_files/figure-gfm/deseq%20ldpe%20tww-1.png)<!-- -->
+
+``` r
+plotMA(ldpe_resLFC_TWW6)
+```
+
+![](Analysis_files/figure-gfm/deseq%20ldpe%20tww-2.png)<!-- -->
+
+``` r
+plotMA(ldpe_resLFC_TWW10)
+```
+
+![](Analysis_files/figure-gfm/deseq%20ldpe%20tww-3.png)<!-- -->
+
+``` r
+#Add taxonomic information
+ldpe_sigtab_TWW2 = cbind(as(ldpe_res_TWW_2, "data.frame"), as(tax_table(MPphyseq)[rownames(ldpe_res_TWW_2), ], "matrix"))
+ldpe_sigtab_TWW6 = cbind(as(ldpe_res_TWW_6, "data.frame"), as(tax_table(MPphyseq)[rownames(ldpe_res_TWW_6), ], "matrix"))
+ldpe_sigtab_TWW10 = cbind(as(ldpe_res_TWW_10, "data.frame"), as(tax_table(MPphyseq)[rownames(ldpe_res_TWW_10), ], "matrix"))
+
+#Convert to dataframe
+df_ldpe_time_deseq_TWW2 <- as.data.frame(ldpe_sigtab_TWW2)
+df_ldpe_time_deseq_TWW6 <- as.data.frame(ldpe_sigtab_TWW6)
+df_ldpe_time_deseq_TWW10 <- as.data.frame(ldpe_sigtab_TWW10)
+
+#Filter based on adj p-value, removing non-significant values (p>0.05)
+#This also removes p-values that are NA; NA p-values exist because when p-values do not pass the filter threshold (p-values less than 0.1) they are set to NA 
+#More information in vignette("DESeq2") under "Note on p-values set to NA"
+df_ldpe_time_deseq_TWW2_filt <- filter(df_ldpe_time_deseq_TWW2, padj <= 0.05)
+df_ldpe_time_deseq_TWW6_filt <- filter(df_ldpe_time_deseq_TWW6, padj <= 0.05)
+df_ldpe_time_deseq_TWW10_filt <- filter(df_ldpe_time_deseq_TWW10, padj <= 0.05)
+
+#Order by adjusted p-value
+df_ldpe_time_deseq_TWW2_filt = df_ldpe_time_deseq_TWW2_filt[order(df_ldpe_time_deseq_TWW2_filt$padj, na.last=NA), ]
+df_ldpe_time_deseq_TWW6_filt = df_ldpe_time_deseq_TWW6_filt[order(df_ldpe_time_deseq_TWW6_filt$padj, na.last=NA), ]
+df_ldpe_time_deseq_TWW10_filt = df_ldpe_time_deseq_TWW10_filt[order(df_ldpe_time_deseq_TWW10_filt$padj, na.last=NA), ]
+```
+
+### 8.11.4 Venn Diagrams - LDPE TWW
+
+``` r
+#Filter the river water PS dataframes
+df_ldpe_time_deseq_TWW2_filt <- filter(df_ldpe_time_deseq_TWW2_filt, 
+                                     log2FoldChange > 0)
+df_ldpe_time_deseq_TWW6_filt <- filter(df_ldpe_time_deseq_TWW6_filt, 
+                                     log2FoldChange > 0)
+df_ldpe_time_deseq_TWW10_filt <- filter(df_ldpe_time_deseq_TWW10_filt, 
+                                      log2FoldChange > 0)
+
+#Create a column with the filtered deseq dataframe rownames and then filter to 
+#contain only ASV's
+taxa_LDPE_TWW2 <- data.frame(df_ldpe_time_deseq_TWW2_filt) %>%
+  tibble::rownames_to_column(var = "LDPE_TWW_2") %>%
+  select(LDPE_TWW_2)
+
+taxa_LDPE_TWW6 <- data.frame(df_ldpe_time_deseq_TWW6_filt) %>%
+  tibble::rownames_to_column(var = "LDPE_TWW_6") %>%
+  select(LDPE_TWW_6)
+
+taxa_LDPE_TWW10 <- data.frame(df_ldpe_time_deseq_TWW10_filt) %>%
+  tibble::rownames_to_column(var = "LDPE_TWW_10") %>%
+  select(LDPE_TWW_10)
+
+#Make the dataframe into a list
+list_LDPE_TWW_2 <- list(taxa_LDPE_TWW2$LDPE_TWW_2)
+list_LDPE_TWW_6 <- list(taxa_LDPE_TWW6$LDPE_TWW_6)
+list_LDPE_TWW_10 <- list(taxa_LDPE_TWW10$LDPE_TWW_10)
+
+#Change to characters
+taxa_LDPE_TWW2_chr <- as.character(list_LDPE_TWW_2[[1]])
+taxa_LDPE_TWW6_chr <- as.character(list_LDPE_TWW_6[[1]])
+taxa_LDPE_TWW10_chr <- as.character(list_LDPE_TWW_10[[1]])
+
+#Make list for ggVennDiagram
+LDPE_tww_time_comparisons <- list(taxa_LDPE_TWW2_chr, taxa_LDPE_TWW6_chr, taxa_LDPE_TWW10_chr) %>%
+  setNames(c("LDPE_TWW_2", "LDPE_TWW_6", "LDPE_TWW_10"))
+
+#Make Venn Diagram - all comparisons
+ggVennDiagram(LDPE_tww_time_comparisons) + scale_fill_gradient(low="blue",high = "red") +
+  theme(legend.position = "bottom", legend.direction = "horizontal")
+```
+
+![](Analysis_files/figure-gfm/venn%20LDPE%20tww%20time-1.png)<!-- -->
+
+## 8.12 Examining changes in bacterial communities on HDPE over time
+
+### 8.12.1 Contrasts - 2w, 6w, 10w river water HDPE only, vs river water
+
+``` r
+#Convert phyloseq object from above to deseq object with the correct category
+hdpe_time_deseq = phyloseq_to_deseq2(ps.taxa.all.filt, ~ polymer_effluent_time)
+
+#Estimate the size factors
+hdpe_time_deseq <- estimateSizeFactors(hdpe_time_deseq, type = "poscounts")
+
+#Make sure that the control is the first level in the sample_type group so that 
+#the default log2 changes are calculated as treatment vs. control instead of 
+#vice versa
+hdpe_time_deseq$polymer_effluent_time <- relevel(factor(hdpe_time_deseq$polymer_effluent_time), "CON_water")
+
+#Now we can run DESeq
+hdpe_time_deseq = DESeq(hdpe_time_deseq, test="Wald", fitType="parametric")
+
+#Check which comparisons are contained in the deseq object:
+resultsNames(hdpe_time_deseq)
+```
+
+    ##  [1] "Intercept"                                      
+    ##  [2] "polymer_effluent_time_Glass_CON_10_vs_CON_water"
+    ##  [3] "polymer_effluent_time_Glass_CON_2_vs_CON_water" 
+    ##  [4] "polymer_effluent_time_Glass_CON_6_vs_CON_water" 
+    ##  [5] "polymer_effluent_time_Glass_TWW_10_vs_CON_water"
+    ##  [6] "polymer_effluent_time_Glass_TWW_2_vs_CON_water" 
+    ##  [7] "polymer_effluent_time_Glass_TWW_6_vs_CON_water" 
+    ##  [8] "polymer_effluent_time_HDPE_CON_10_vs_CON_water" 
+    ##  [9] "polymer_effluent_time_HDPE_CON_2_vs_CON_water"  
+    ## [10] "polymer_effluent_time_HDPE_CON_6_vs_CON_water"  
+    ## [11] "polymer_effluent_time_HDPE_TWW_10_vs_CON_water" 
+    ## [12] "polymer_effluent_time_HDPE_TWW_2_vs_CON_water"  
+    ## [13] "polymer_effluent_time_HDPE_TWW_6_vs_CON_water"  
+    ## [14] "polymer_effluent_time_LDPE_CON_10_vs_CON_water" 
+    ## [15] "polymer_effluent_time_LDPE_CON_2_vs_CON_water"  
+    ## [16] "polymer_effluent_time_LDPE_CON_6_vs_CON_water"  
+    ## [17] "polymer_effluent_time_LDPE_TWW_10_vs_CON_water" 
+    ## [18] "polymer_effluent_time_LDPE_TWW_2_vs_CON_water"  
+    ## [19] "polymer_effluent_time_LDPE_TWW_6_vs_CON_water"  
+    ## [20] "polymer_effluent_time_PP_CON_10_vs_CON_water"   
+    ## [21] "polymer_effluent_time_PP_CON_2_vs_CON_water"    
+    ## [22] "polymer_effluent_time_PP_CON_6_vs_CON_water"    
+    ## [23] "polymer_effluent_time_PP_TWW_10_vs_CON_water"   
+    ## [24] "polymer_effluent_time_PP_TWW_2_vs_CON_water"    
+    ## [25] "polymer_effluent_time_PP_TWW_6_vs_CON_water"    
+    ## [26] "polymer_effluent_time_PS_CON_10_vs_CON_water"   
+    ## [27] "polymer_effluent_time_PS_CON_2_vs_CON_water"    
+    ## [28] "polymer_effluent_time_PS_CON_6_vs_CON_water"    
+    ## [29] "polymer_effluent_time_PS_TWW_10_vs_CON_water"   
+    ## [30] "polymer_effluent_time_PS_TWW_2_vs_CON_water"    
+    ## [31] "polymer_effluent_time_PS_TWW_6_vs_CON_water"    
+    ## [32] "polymer_effluent_time_TWW_water_vs_CON_water"   
+    ## [33] "polymer_effluent_time_water_TWW_vs_CON_water"
+
+``` r
+#We just want to look at the difference between microplastics at 2, 6, and 10 weeks compared to water
+#Creating results tables with the information we're interested in
+hdpe_res_CON_2 <- results(hdpe_time_deseq, contrast=c("polymer_effluent_time","HDPE_CON_2","CON_water"), alpha=0.05)
+hdpe_res_CON_6 <- results(hdpe_time_deseq, contrast=c("polymer_effluent_time","HDPE_CON_6","CON_water"), alpha=0.05)
+hdpe_res_CON_10 <- results(hdpe_time_deseq, contrast=c("polymer_effluent_time","HDPE_CON_10","CON_water"), alpha=0.05)
+
+#Show results summary
+summary(hdpe_res_CON_2)
+```
+
+    ## 
+    ## out of 994 with nonzero total read count
+    ## adjusted p-value < 0.05
+    ## LFC > 0 (up)       : 92, 9.3%
+    ## LFC < 0 (down)     : 118, 12%
+    ## outliers [1]       : 0, 0%
+    ## low counts [2]     : 135, 14%
+    ## (mean count < 3)
+    ## [1] see 'cooksCutoff' argument of ?results
+    ## [2] see 'independentFiltering' argument of ?results
+
+``` r
+summary(hdpe_res_CON_6)
+```
+
+    ## 
+    ## out of 994 with nonzero total read count
+    ## adjusted p-value < 0.05
+    ## LFC > 0 (up)       : 143, 14%
+    ## LFC < 0 (down)     : 52, 5.2%
+    ## outliers [1]       : 0, 0%
+    ## low counts [2]     : 212, 21%
+    ## (mean count < 4)
+    ## [1] see 'cooksCutoff' argument of ?results
+    ## [2] see 'independentFiltering' argument of ?results
+
+``` r
+summary(hdpe_res_CON_10)
+```
+
+    ## 
+    ## out of 994 with nonzero total read count
+    ## adjusted p-value < 0.05
+    ## LFC > 0 (up)       : 128, 13%
+    ## LFC < 0 (down)     : 64, 6.4%
+    ## outliers [1]       : 0, 0%
+    ## low counts [2]     : 116, 12%
+    ## (mean count < 3)
+    ## [1] see 'cooksCutoff' argument of ?results
+    ## [2] see 'independentFiltering' argument of ?results
+
+``` r
+#Log fold change shrinkage on each comparison
+hdpe_resLFC_CON2 <- lfcShrink(hdpe_time_deseq, coef="polymer_effluent_time_HDPE_CON_2_vs_CON_water", type="apeglm")
+hdpe_resLFC_CON2
+```
+
+    ## log2 fold change (MAP): polymer effluent time HDPE CON 2 vs CON water 
+    ## Wald test p-value: polymer effluent time HDPE CON 2 vs CON water 
+    ## DataFrame with 994 rows and 5 columns
+    ##                                   baseMean log2FoldChange     lfcSE      pvalue
+    ##                                  <numeric>      <numeric> <numeric>   <numeric>
+    ## 76986812e0cdb639a25c936952004967  43.84147     -0.2094810  1.052755 0.000683768
+    ## 143eedc0b2cf4ff8f1ca0448594d1191   8.39989     -0.0191040  1.020403 0.394441993
+    ## cdc12d12977ac7193527fac20a6c8711   1.72097     -0.0474925  1.015720 0.872240475
+    ## 0e8d660cbd4a72352ad4109b2440286e   8.97585     -0.0365667  1.016551 0.888573176
+    ## a94d8fee872266a54b1e5706d6bcfbac  20.51734      0.4985287  0.990334 0.322867477
+    ## ...                                    ...            ...       ...         ...
+    ## 3c0d84f8bf9a3a8ea5cc05ad9b99c209   7.92815      0.0247388  0.962495 9.44516e-01
+    ## 2b0dbc8ca8b74471b0029ee9d61a4c60  41.23416      4.3107759  2.011461 1.15905e-02
+    ## 15456227e48f1103584e352c6ba34637  36.36373     -0.0941512  0.927045 7.90969e-01
+    ## 6c0bf239702859ae989d886f1985b1e4 440.45002     -8.5064320  3.669004 1.60888e-05
+    ## 84bc6ce045f212f439b979e3862bb33e 178.19931     -0.1082590  1.005174 6.99486e-01
+    ##                                         padj
+    ##                                    <numeric>
+    ## 76986812e0cdb639a25c936952004967  0.00335633
+    ## 143eedc0b2cf4ff8f1ca0448594d1191  0.60939869
+    ## cdc12d12977ac7193527fac20a6c8711          NA
+    ## 0e8d660cbd4a72352ad4109b2440286e  0.94980707
+    ## a94d8fee872266a54b1e5706d6bcfbac  0.53957814
+    ## ...                                      ...
+    ## 3c0d84f8bf9a3a8ea5cc05ad9b99c209 0.955641288
+    ## 2b0dbc8ca8b74471b0029ee9d61a4c60 0.039410719
+    ## 15456227e48f1103584e352c6ba34637 0.938696776
+    ## 6c0bf239702859ae989d886f1985b1e4 0.000107971
+    ## 84bc6ce045f212f439b979e3862bb33e 0.874611783
+
+``` r
+hdpe_resLFC_CON6 <- lfcShrink(hdpe_time_deseq, coef="polymer_effluent_time_HDPE_CON_6_vs_CON_water", type="apeglm")
+hdpe_resLFC_CON6
+```
+
+    ## log2 fold change (MAP): polymer effluent time HDPE CON 6 vs CON water 
+    ## Wald test p-value: polymer effluent time HDPE CON 6 vs CON water 
+    ## DataFrame with 994 rows and 5 columns
+    ##                                   baseMean log2FoldChange     lfcSE     pvalue
+    ##                                  <numeric>      <numeric> <numeric>  <numeric>
+    ## 76986812e0cdb639a25c936952004967  43.84147     -0.2093719   1.05269 0.00170012
+    ## 143eedc0b2cf4ff8f1ca0448594d1191   8.39989     -0.0190680   1.02040 0.44163586
+    ## cdc12d12977ac7193527fac20a6c8711   1.72097     -0.0366692   1.01465 0.99365371
+    ## 0e8d660cbd4a72352ad4109b2440286e   8.97585     -0.0289644   1.01582 0.99449340
+    ## a94d8fee872266a54b1e5706d6bcfbac  20.51734      1.0503567   1.34070 0.11851188
+    ## ...                                    ...            ...       ...        ...
+    ## 3c0d84f8bf9a3a8ea5cc05ad9b99c209   7.92815      0.1440939  0.957678  0.7063151
+    ## 2b0dbc8ca8b74471b0029ee9d61a4c60  41.23416     -0.3750774  1.122888  0.0364922
+    ## 15456227e48f1103584e352c6ba34637  36.36373     -0.5251333  1.229028  0.0163096
+    ## 6c0bf239702859ae989d886f1985b1e4 440.45002      1.7108117  1.302226  0.0504790
+    ## 84bc6ce045f212f439b979e3862bb33e 178.19931     -0.0668659  1.005606  0.9847456
+    ##                                        padj
+    ##                                   <numeric>
+    ## 76986812e0cdb639a25c936952004967 0.00703845
+    ## 143eedc0b2cf4ff8f1ca0448594d1191 0.66820847
+    ## cdc12d12977ac7193527fac20a6c8711         NA
+    ## 0e8d660cbd4a72352ad4109b2440286e 0.99925344
+    ## a94d8fee872266a54b1e5706d6bcfbac 0.23876658
+    ## ...                                     ...
+    ## 3c0d84f8bf9a3a8ea5cc05ad9b99c209  0.8593710
+    ## 2b0dbc8ca8b74471b0029ee9d61a4c60  0.0976451
+    ## 15456227e48f1103584e352c6ba34637  0.0519630
+    ## 6c0bf239702859ae989d886f1985b1e4  0.1239359
+    ## 84bc6ce045f212f439b979e3862bb33e  0.9992534
+
+``` r
+hdpe_resLFC_CON10 <- lfcShrink(hdpe_time_deseq, coef="polymer_effluent_time_HDPE_CON_10_vs_CON_water", type="apeglm")
+hdpe_resLFC_CON10
+```
+
+    ## log2 fold change (MAP): polymer effluent time HDPE CON 10 vs CON water 
+    ## Wald test p-value: polymer effluent time HDPE CON 10 vs CON water 
+    ## DataFrame with 994 rows and 5 columns
+    ##                                   baseMean log2FoldChange     lfcSE      pvalue
+    ##                                  <numeric>      <numeric> <numeric>   <numeric>
+    ## 76986812e0cdb639a25c936952004967  43.84147     -0.2093328  1.052667    0.002204
+    ## 143eedc0b2cf4ff8f1ca0448594d1191   8.39989     -0.0190971  1.020398    0.456392
+    ## cdc12d12977ac7193527fac20a6c8711   1.72097      0.4236911  1.114527    0.392789
+    ## 0e8d660cbd4a72352ad4109b2440286e   8.97585     -0.0265450  1.015792    0.959357
+    ## a94d8fee872266a54b1e5706d6bcfbac  20.51734      0.1987009  0.915362    0.623230
+    ## ...                                    ...            ...       ...         ...
+    ## 3c0d84f8bf9a3a8ea5cc05ad9b99c209   7.92815       0.128750   0.95720 7.31897e-01
+    ## 2b0dbc8ca8b74471b0029ee9d61a4c60  41.23416      -0.372783   1.12072 4.62409e-02
+    ## 15456227e48f1103584e352c6ba34637  36.36373       2.522551   1.82055 3.48437e-02
+    ## 6c0bf239702859ae989d886f1985b1e4 440.45002       5.636183   1.38957 2.74988e-05
+    ## 84bc6ce045f212f439b979e3862bb33e 178.19931      14.026716   2.34476 3.59932e-12
+    ##                                         padj
+    ##                                    <numeric>
+    ## 76986812e0cdb639a25c936952004967  0.00935009
+    ## 143eedc0b2cf4ff8f1ca0448594d1191  0.66883472
+    ## cdc12d12977ac7193527fac20a6c8711          NA
+    ## 0e8d660cbd4a72352ad4109b2440286e  0.98695748
+    ## a94d8fee872266a54b1e5706d6bcfbac  0.77956220
+    ## ...                                      ...
+    ## 3c0d84f8bf9a3a8ea5cc05ad9b99c209 8.56378e-01
+    ## 2b0dbc8ca8b74471b0029ee9d61a4c60 1.21403e-01
+    ## 15456227e48f1103584e352c6ba34637 9.76938e-02
+    ## 6c0bf239702859ae989d886f1985b1e4 1.84069e-04
+    ## 84bc6ce045f212f439b979e3862bb33e 6.07794e-11
+
+``` r
+#"It is more useful visualize the MA-plot for the shrunken log2 fold changes, 
+#which remove the noise associated with log2 fold changes from low count genes 
+#without requiring arbitrary filtering thresholds."
+#https://www.bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html#why-un-normalized-counts
+plotMA(hdpe_resLFC_CON2)
+```
+
+![](Analysis_files/figure-gfm/deseq%20hdpe%20river-1.png)<!-- -->
+
+``` r
+plotMA(hdpe_resLFC_CON6)
+```
+
+![](Analysis_files/figure-gfm/deseq%20hdpe%20river-2.png)<!-- -->
+
+``` r
+plotMA(hdpe_resLFC_CON10)
+```
+
+![](Analysis_files/figure-gfm/deseq%20hdpe%20river-3.png)<!-- -->
+
+``` r
+#Add taxonomic information
+hdpe_sigtab_CON2 = cbind(as(hdpe_res_CON_2, "data.frame"), as(tax_table(MPphyseq)[rownames(hdpe_res_CON_2), ], "matrix"))
+hdpe_sigtab_CON6 = cbind(as(hdpe_res_CON_6, "data.frame"), as(tax_table(MPphyseq)[rownames(hdpe_res_CON_6), ], "matrix"))
+hdpe_sigtab_CON10 = cbind(as(hdpe_res_CON_10, "data.frame"), as(tax_table(MPphyseq)[rownames(hdpe_res_CON_10), ], "matrix"))
+
+#Convert to dataframe
+df_hdpe_time_deseq_CON2 <- as.data.frame(hdpe_sigtab_CON2)
+df_hdpe_time_deseq_CON6 <- as.data.frame(hdpe_sigtab_CON6)
+df_hdpe_time_deseq_CON10 <- as.data.frame(hdpe_sigtab_CON10)
+
+#Filter based on adj p-value, removing non-significant values (p>0.05)
+#This also removes p-values that are NA; NA p-values exist because when p-values do not pass the filter threshold (p-values less than 0.1) they are set to NA 
+#More information in vignette("DESeq2") under "Note on p-values set to NA"
+df_hdpe_time_deseq_CON2_filt <- filter(df_hdpe_time_deseq_CON2, padj <= 0.05)
+df_hdpe_time_deseq_CON6_filt <- filter(df_hdpe_time_deseq_CON6, padj <= 0.05)
+df_hdpe_time_deseq_CON10_filt <- filter(df_hdpe_time_deseq_CON10, padj <= 0.05)
+
+#Order by adjusted p-value
+df_hdpe_time_deseq_CON2_filt = df_hdpe_time_deseq_CON2_filt[order(df_hdpe_time_deseq_CON2_filt$padj, na.last=NA), ]
+df_hdpe_time_deseq_CON6_filt = df_hdpe_time_deseq_CON6_filt[order(df_hdpe_time_deseq_CON6_filt$padj, na.last=NA), ]
+df_hdpe_time_deseq_CON10_filt = df_hdpe_time_deseq_CON10_filt[order(df_hdpe_time_deseq_CON10_filt$padj, na.last=NA), ]
+```
+
+### 8.12.2 Venn Diagrams - HDPE river
+
+``` r
+#Filter the river water PS dataframes
+df_hdpe_time_deseq_CON2_filt <- filter(df_hdpe_time_deseq_CON2_filt, 
+                                     log2FoldChange > 0)
+df_hdpe_time_deseq_CON6_filt <- filter(df_hdpe_time_deseq_CON6_filt, 
+                                     log2FoldChange > 0)
+df_hdpe_time_deseq_CON10_filt <- filter(df_hdpe_time_deseq_CON10_filt, 
+                                      log2FoldChange > 0)
+
+#Create a column with the filtered deseq dataframe rownames and then filter to 
+#contain only ASV's
+taxa_hdpe_CON2 <- data.frame(df_hdpe_time_deseq_CON2_filt) %>%
+  tibble::rownames_to_column(var = "HDPE_CON_2") %>%
+  select(HDPE_CON_2)
+
+taxa_hdpe_CON6 <- data.frame(df_hdpe_time_deseq_CON6_filt) %>%
+  tibble::rownames_to_column(var = "HDPE_CON_6") %>%
+  select(HDPE_CON_6)
+
+taxa_hdpe_CON10 <- data.frame(df_hdpe_time_deseq_CON10_filt) %>%
+  tibble::rownames_to_column(var = "HDPE_CON_10") %>%
+  select(HDPE_CON_10)
+
+#Make the dataframe into a list
+list_hdpe_CON_2 <- list(taxa_hdpe_CON2$HDPE_CON_2)
+list_hdpe_CON_6 <- list(taxa_hdpe_CON6$HDPE_CON_6)
+list_hdpe_CON_10 <- list(taxa_hdpe_CON10$HDPE_CON_10)
+
+#Change to characters
+taxa_hdpe_CON2_chr <- as.character(list_hdpe_CON_2[[1]])
+taxa_hdpe_CON6_chr <- as.character(list_hdpe_CON_6[[1]])
+taxa_hdpe_CON10_chr <- as.character(list_hdpe_CON_10[[1]])
+
+#Make list for ggVennDiagram
+hdpe_time_comparisons <- list(taxa_hdpe_CON2_chr, taxa_hdpe_CON6_chr, taxa_hdpe_CON10_chr) %>%
+  setNames(c("HDPE_CON_2", "HDPE_CON_6", "HDPE_CON_10"))
+
+#Make Venn Diagram - all comparisons
+ggVennDiagram(hdpe_time_comparisons) + scale_fill_gradient(low="blue",high = "red") +
+  theme(legend.position = "bottom", legend.direction = "horizontal")
+```
+
+![](Analysis_files/figure-gfm/venn%20HDPE%20time-1.png)<!-- -->
+
+### 8.12.3 Contrasts - 2w, 6w, 10w TWW HDPE only, vs TWW
+
+``` r
+#Convert phyloseq object from above to deseq object with the correct category
+hdpe_tww_time_deseq = phyloseq_to_deseq2(ps.taxa.all.filt, ~ polymer_effluent_time)
+
+#Estimate the size factors
+hdpe_tww_time_deseq <- estimateSizeFactors(hdpe_tww_time_deseq, type = "poscounts")
+
+#Make sure that the control is the first level in the sample_type group so that 
+#the default log2 changes are calculated as treatment vs. control instead of 
+#vice versa
+hdpe_tww_time_deseq$polymer_effluent_time <- relevel(factor(hdpe_tww_time_deseq$polymer_effluent_time), "TWW_water")
+
+#Now we can run DESeq
+hdpe_tww_time_deseq = DESeq(hdpe_tww_time_deseq, test="Wald", fitType="parametric")
+
+#Check which comparisons are contained in the deseq object:
+resultsNames(hdpe_tww_time_deseq)
+```
+
+    ##  [1] "Intercept"                                      
+    ##  [2] "polymer_effluent_time_CON_water_vs_TWW_water"   
+    ##  [3] "polymer_effluent_time_Glass_CON_10_vs_TWW_water"
+    ##  [4] "polymer_effluent_time_Glass_CON_2_vs_TWW_water" 
+    ##  [5] "polymer_effluent_time_Glass_CON_6_vs_TWW_water" 
+    ##  [6] "polymer_effluent_time_Glass_TWW_10_vs_TWW_water"
+    ##  [7] "polymer_effluent_time_Glass_TWW_2_vs_TWW_water" 
+    ##  [8] "polymer_effluent_time_Glass_TWW_6_vs_TWW_water" 
+    ##  [9] "polymer_effluent_time_HDPE_CON_10_vs_TWW_water" 
+    ## [10] "polymer_effluent_time_HDPE_CON_2_vs_TWW_water"  
+    ## [11] "polymer_effluent_time_HDPE_CON_6_vs_TWW_water"  
+    ## [12] "polymer_effluent_time_HDPE_TWW_10_vs_TWW_water" 
+    ## [13] "polymer_effluent_time_HDPE_TWW_2_vs_TWW_water"  
+    ## [14] "polymer_effluent_time_HDPE_TWW_6_vs_TWW_water"  
+    ## [15] "polymer_effluent_time_LDPE_CON_10_vs_TWW_water" 
+    ## [16] "polymer_effluent_time_LDPE_CON_2_vs_TWW_water"  
+    ## [17] "polymer_effluent_time_LDPE_CON_6_vs_TWW_water"  
+    ## [18] "polymer_effluent_time_LDPE_TWW_10_vs_TWW_water" 
+    ## [19] "polymer_effluent_time_LDPE_TWW_2_vs_TWW_water"  
+    ## [20] "polymer_effluent_time_LDPE_TWW_6_vs_TWW_water"  
+    ## [21] "polymer_effluent_time_PP_CON_10_vs_TWW_water"   
+    ## [22] "polymer_effluent_time_PP_CON_2_vs_TWW_water"    
+    ## [23] "polymer_effluent_time_PP_CON_6_vs_TWW_water"    
+    ## [24] "polymer_effluent_time_PP_TWW_10_vs_TWW_water"   
+    ## [25] "polymer_effluent_time_PP_TWW_2_vs_TWW_water"    
+    ## [26] "polymer_effluent_time_PP_TWW_6_vs_TWW_water"    
+    ## [27] "polymer_effluent_time_PS_CON_10_vs_TWW_water"   
+    ## [28] "polymer_effluent_time_PS_CON_2_vs_TWW_water"    
+    ## [29] "polymer_effluent_time_PS_CON_6_vs_TWW_water"    
+    ## [30] "polymer_effluent_time_PS_TWW_10_vs_TWW_water"   
+    ## [31] "polymer_effluent_time_PS_TWW_2_vs_TWW_water"    
+    ## [32] "polymer_effluent_time_PS_TWW_6_vs_TWW_water"    
+    ## [33] "polymer_effluent_time_water_TWW_vs_TWW_water"
+
+``` r
+#We just want to look at the difference between microplastics at 2, 6, and 10 weeks compared to water
+#Creating results tables with the information we're interested in
+hdpe_res_TWW_2 <- results(hdpe_tww_time_deseq, contrast=c("polymer_effluent_time","HDPE_TWW_2","TWW_water"), alpha=0.05)
+hdpe_res_TWW_6 <- results(hdpe_tww_time_deseq, contrast=c("polymer_effluent_time","HDPE_TWW_6","TWW_water"), alpha=0.05)
+hdpe_res_TWW_10 <- results(hdpe_tww_time_deseq, contrast=c("polymer_effluent_time","HDPE_TWW_10","TWW_water"), alpha=0.05)
+
+#Show results summary
+summary(hdpe_res_TWW_2)
+```
+
+    ## 
+    ## out of 994 with nonzero total read count
+    ## adjusted p-value < 0.05
+    ## LFC > 0 (up)       : 84, 8.5%
+    ## LFC < 0 (down)     : 83, 8.4%
+    ## outliers [1]       : 0, 0%
+    ## low counts [2]     : 212, 21%
+    ## (mean count < 4)
+    ## [1] see 'cooksCutoff' argument of ?results
+    ## [2] see 'independentFiltering' argument of ?results
+
+``` r
+summary(hdpe_res_TWW_6)
+```
+
+    ## 
+    ## out of 994 with nonzero total read count
+    ## adjusted p-value < 0.05
+    ## LFC > 0 (up)       : 169, 17%
+    ## LFC < 0 (down)     : 35, 3.5%
+    ## outliers [1]       : 0, 0%
+    ## low counts [2]     : 116, 12%
+    ## (mean count < 3)
+    ## [1] see 'cooksCutoff' argument of ?results
+    ## [2] see 'independentFiltering' argument of ?results
+
+``` r
+summary(hdpe_res_TWW_10)
+```
+
+    ## 
+    ## out of 994 with nonzero total read count
+    ## adjusted p-value < 0.05
+    ## LFC > 0 (up)       : 166, 17%
+    ## LFC < 0 (down)     : 50, 5%
+    ## outliers [1]       : 0, 0%
+    ## low counts [2]     : 135, 14%
+    ## (mean count < 3)
+    ## [1] see 'cooksCutoff' argument of ?results
+    ## [2] see 'independentFiltering' argument of ?results
+
+``` r
+#Log fold change shrinkage on each comparison
+hdpe_resLFC_TWW2 <- lfcShrink(hdpe_tww_time_deseq, coef="polymer_effluent_time_HDPE_TWW_2_vs_TWW_water", type="apeglm")
+hdpe_resLFC_TWW2
+```
+
+    ## log2 fold change (MAP): polymer effluent time HDPE TWW 2 vs TWW water 
+    ## Wald test p-value: polymer effluent time HDPE TWW 2 vs TWW water 
+    ## DataFrame with 994 rows and 5 columns
+    ##                                   baseMean log2FoldChange     lfcSE      pvalue
+    ##                                  <numeric>      <numeric> <numeric>   <numeric>
+    ## 76986812e0cdb639a25c936952004967  43.84147     -0.2093442  1.052672  0.00275539
+    ## 143eedc0b2cf4ff8f1ca0448594d1191   8.39989     -0.0190981  1.020396  0.03769377
+    ## cdc12d12977ac7193527fac20a6c8711   1.72097     -0.0553302  1.016530  0.89825698
+    ## 0e8d660cbd4a72352ad4109b2440286e   8.97585      0.6413924  1.302399  0.12479058
+    ## a94d8fee872266a54b1e5706d6bcfbac  20.51734      0.3744463  0.987699  0.41326137
+    ## ...                                    ...            ...       ...         ...
+    ## 3c0d84f8bf9a3a8ea5cc05ad9b99c209   7.92815       0.348495  1.069851 0.191487453
+    ## 2b0dbc8ca8b74471b0029ee9d61a4c60  41.23416       0.348963  0.983425 0.520745385
+    ## 15456227e48f1103584e352c6ba34637  36.36373      -0.518391  1.220682 0.029841402
+    ## 6c0bf239702859ae989d886f1985b1e4 440.45002      -6.568856  3.621226 0.000706584
+    ## 84bc6ce045f212f439b979e3862bb33e 178.19931      -0.694671  1.359426 0.054293262
+    ##                                        padj
+    ##                                   <numeric>
+    ## 76986812e0cdb639a25c936952004967 0.00966027
+    ## 143eedc0b2cf4ff8f1ca0448594d1191 0.08926463
+    ## cdc12d12977ac7193527fac20a6c8711         NA
+    ## 0e8d660cbd4a72352ad4109b2440286e 0.22892766
+    ## a94d8fee872266a54b1e5706d6bcfbac 0.59368524
+    ## ...                                     ...
+    ## 3c0d84f8bf9a3a8ea5cc05ad9b99c209 0.32132795
+    ## 2b0dbc8ca8b74471b0029ee9d61a4c60 0.70508154
+    ## 15456227e48f1103584e352c6ba34637 0.07479398
+    ## 6c0bf239702859ae989d886f1985b1e4 0.00302766
+    ## 84bc6ce045f212f439b979e3862bb33e 0.11888004
+
+``` r
+hdpe_resLFC_TWW6 <- lfcShrink(hdpe_tww_time_deseq, coef="polymer_effluent_time_HDPE_TWW_6_vs_TWW_water", type="apeglm")
+hdpe_resLFC_TWW6
+```
+
+    ## log2 fold change (MAP): polymer effluent time HDPE TWW 6 vs TWW water 
+    ## Wald test p-value: polymer effluent time HDPE TWW 6 vs TWW water 
+    ## DataFrame with 994 rows and 5 columns
+    ##                                   baseMean log2FoldChange     lfcSE     pvalue
+    ##                                  <numeric>      <numeric> <numeric>  <numeric>
+    ## 76986812e0cdb639a25c936952004967  43.84147     -0.2092050  1.052578 0.00497901
+    ## 143eedc0b2cf4ff8f1ca0448594d1191   8.39989     -0.0190697  1.020388 0.04649099
+    ## cdc12d12977ac7193527fac20a6c8711   1.72097      0.2794321  1.047599 0.46854877
+    ## 0e8d660cbd4a72352ad4109b2440286e   8.97585      0.3316982  1.072170 0.41542749
+    ## a94d8fee872266a54b1e5706d6bcfbac  20.51734      0.3115663  0.964811 0.48521613
+    ## ...                                    ...            ...       ...        ...
+    ## 3c0d84f8bf9a3a8ea5cc05ad9b99c209   7.92815       0.520434   1.18187 0.05463286
+    ## 2b0dbc8ca8b74471b0029ee9d61a4c60  41.23416      -0.376130   1.12390 0.03582045
+    ## 15456227e48f1103584e352c6ba34637  36.36373       0.884996   1.34369 0.12910058
+    ## 6c0bf239702859ae989d886f1985b1e4 440.45002       2.095021   1.80827 0.02358235
+    ## 84bc6ce045f212f439b979e3862bb33e 178.19931       4.180289   1.92275 0.00421118
+    ##                                       padj
+    ##                                  <numeric>
+    ## 76986812e0cdb639a25c936952004967  0.019610
+    ## 143eedc0b2cf4ff8f1ca0448594d1191  0.120945
+    ## cdc12d12977ac7193527fac20a6c8711        NA
+    ## 0e8d660cbd4a72352ad4109b2440286e  0.603886
+    ## a94d8fee872266a54b1e5706d6bcfbac  0.669912
+    ## ...                                    ...
+    ## 3c0d84f8bf9a3a8ea5cc05ad9b99c209 0.1380508
+    ## 2b0dbc8ca8b74471b0029ee9d61a4c60 0.0990330
+    ## 15456227e48f1103584e352c6ba34637 0.2528220
+    ## 6c0bf239702859ae989d886f1985b1e4 0.0692732
+    ## 84bc6ce045f212f439b979e3862bb33e 0.0171612
+
+``` r
+hdpe_resLFC_TWW10 <- lfcShrink(hdpe_tww_time_deseq, coef="polymer_effluent_time_HDPE_TWW_10_vs_TWW_water", type="apeglm")
+hdpe_resLFC_TWW10
+```
+
+    ## log2 fold change (MAP): polymer effluent time HDPE TWW 10 vs TWW water 
+    ## Wald test p-value: polymer effluent time HDPE TWW 10 vs TWW water 
+    ## DataFrame with 994 rows and 5 columns
+    ##                                   baseMean log2FoldChange     lfcSE      pvalue
+    ##                                  <numeric>      <numeric> <numeric>   <numeric>
+    ## 76986812e0cdb639a25c936952004967  43.84147     -0.2091707   1.05255 5.35996e-03
+    ## 143eedc0b2cf4ff8f1ca0448594d1191   8.39989     -0.0190626   1.02039 4.67240e-02
+    ## cdc12d12977ac7193527fac20a6c8711   1.72097      0.1559101   1.01175 7.40240e-01
+    ## 0e8d660cbd4a72352ad4109b2440286e   8.97585     -0.0347469   1.01631 9.94080e-01
+    ## a94d8fee872266a54b1e5706d6bcfbac  20.51734     -0.4600351   1.17551 4.29359e-15
+    ## ...                                    ...            ...       ...         ...
+    ## 3c0d84f8bf9a3a8ea5cc05ad9b99c209   7.92815       0.392246   1.09388 1.40951e-01
+    ## 2b0dbc8ca8b74471b0029ee9d61a4c60  41.23416      -0.374805   1.12267 3.86049e-02
+    ## 15456227e48f1103584e352c6ba34637  36.36373       1.670134   2.46036 4.45523e-02
+    ## 6c0bf239702859ae989d886f1985b1e4 440.45002       6.568087   1.62651 8.17672e-06
+    ## 84bc6ce045f212f439b979e3862bb33e 178.19931       7.856720   1.79236 5.64299e-06
+    ##                                         padj
+    ##                                    <numeric>
+    ## 76986812e0cdb639a25c936952004967 2.11494e-02
+    ## 143eedc0b2cf4ff8f1ca0448594d1191 1.31319e-01
+    ## cdc12d12977ac7193527fac20a6c8711          NA
+    ## 0e8d660cbd4a72352ad4109b2440286e 9.97876e-01
+    ## a94d8fee872266a54b1e5706d6bcfbac 1.56326e-13
+    ## ...                                      ...
+    ## 3c0d84f8bf9a3a8ea5cc05ad9b99c209 2.85106e-01
+    ## 2b0dbc8ca8b74471b0029ee9d61a4c60 1.13269e-01
+    ## 15456227e48f1103584e352c6ba34637 1.26998e-01
+    ## 6c0bf239702859ae989d886f1985b1e4 6.96761e-05
+    ## 84bc6ce045f212f439b979e3862bb33e 5.02226e-05
+
+``` r
+#"It is more useful visualize the MA-plot for the shrunken log2 fold changes, 
+#which remove the noise associated with log2 fold changes from low count genes 
+#without requiring arbitrary filtering thresholds."
+#https://www.bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html#why-un-normalized-counts
+plotMA(hdpe_resLFC_TWW2)
+```
+
+![](Analysis_files/figure-gfm/deseq%20hdpe%20tww-1.png)<!-- -->
+
+``` r
+plotMA(hdpe_resLFC_TWW6)
+```
+
+![](Analysis_files/figure-gfm/deseq%20hdpe%20tww-2.png)<!-- -->
+
+``` r
+plotMA(hdpe_resLFC_TWW10)
+```
+
+![](Analysis_files/figure-gfm/deseq%20hdpe%20tww-3.png)<!-- -->
+
+``` r
+#Add taxonomic information
+hdpe_sigtab_TWW2 = cbind(as(hdpe_res_TWW_2, "data.frame"), as(tax_table(MPphyseq)[rownames(hdpe_res_TWW_2), ], "matrix"))
+hdpe_sigtab_TWW6 = cbind(as(hdpe_res_TWW_6, "data.frame"), as(tax_table(MPphyseq)[rownames(hdpe_res_TWW_6), ], "matrix"))
+hdpe_sigtab_TWW10 = cbind(as(hdpe_res_TWW_10, "data.frame"), as(tax_table(MPphyseq)[rownames(hdpe_res_TWW_10), ], "matrix"))
+
+#Convert to dataframe
+df_hdpe_time_deseq_TWW2 <- as.data.frame(hdpe_sigtab_TWW2)
+df_hdpe_time_deseq_TWW6 <- as.data.frame(hdpe_sigtab_TWW6)
+df_hdpe_time_deseq_TWW10 <- as.data.frame(hdpe_sigtab_TWW10)
+
+#Filter based on adj p-value, removing non-significant values (p>0.05)
+#This also removes p-values that are NA; NA p-values exist because when p-values do not pass the filter threshold (p-values less than 0.1) they are set to NA 
+#More information in vignette("DESeq2") under "Note on p-values set to NA"
+df_hdpe_time_deseq_TWW2_filt <- filter(df_hdpe_time_deseq_TWW2, padj <= 0.05)
+df_hdpe_time_deseq_TWW6_filt <- filter(df_hdpe_time_deseq_TWW6, padj <= 0.05)
+df_hdpe_time_deseq_TWW10_filt <- filter(df_hdpe_time_deseq_TWW10, padj <= 0.05)
+
+#Order by adjusted p-value
+df_hdpe_time_deseq_TWW2_filt = df_hdpe_time_deseq_TWW2_filt[order(df_hdpe_time_deseq_TWW2_filt$padj, na.last=NA), ]
+df_hdpe_time_deseq_TWW6_filt = df_hdpe_time_deseq_TWW6_filt[order(df_hdpe_time_deseq_TWW6_filt$padj, na.last=NA), ]
+df_hdpe_time_deseq_TWW10_filt = df_hdpe_time_deseq_TWW10_filt[order(df_hdpe_time_deseq_TWW10_filt$padj, na.last=NA), ]
+```
+
+### 8.12.4 Venn Diagrams - HDPE TWW
+
+``` r
+#Filter the river water PS dataframes
+df_hdpe_time_deseq_TWW2_filt <- filter(df_hdpe_time_deseq_TWW2_filt, 
+                                     log2FoldChange > 0)
+df_hdpe_time_deseq_TWW6_filt <- filter(df_hdpe_time_deseq_TWW6_filt, 
+                                     log2FoldChange > 0)
+df_hdpe_time_deseq_TWW10_filt <- filter(df_hdpe_time_deseq_TWW10_filt, 
+                                      log2FoldChange > 0)
+
+#Create a column with the filtered deseq dataframe rownames and then filter to 
+#contain only ASV's
+taxa_HDPE_TWW2 <- data.frame(df_hdpe_time_deseq_TWW2_filt) %>%
+  tibble::rownames_to_column(var = "HDPE_TWW_2") %>%
+  select(HDPE_TWW_2)
+
+taxa_HDPE_TWW6 <- data.frame(df_hdpe_time_deseq_TWW6_filt) %>%
+  tibble::rownames_to_column(var = "HDPE_TWW_6") %>%
+  select(HDPE_TWW_6)
+
+taxa_HDPE_TWW10 <- data.frame(df_hdpe_time_deseq_TWW10_filt) %>%
+  tibble::rownames_to_column(var = "HDPE_TWW_10") %>%
+  select(HDPE_TWW_10)
+
+#Make the dataframe into a list
+list_HDPE_TWW_2 <- list(taxa_HDPE_TWW2$HDPE_TWW_2)
+list_HDPE_TWW_6 <- list(taxa_HDPE_TWW6$HDPE_TWW_6)
+list_HDPE_TWW_10 <- list(taxa_HDPE_TWW10$HDPE_TWW_10)
+
+#Change to characters
+taxa_HDPE_TWW2_chr <- as.character(list_HDPE_TWW_2[[1]])
+taxa_HDPE_TWW6_chr <- as.character(list_HDPE_TWW_6[[1]])
+taxa_HDPE_TWW10_chr <- as.character(list_HDPE_TWW_10[[1]])
+
+#Make list for ggVennDiagram
+HDPE_tww_time_comparisons <- list(taxa_HDPE_TWW2_chr, taxa_HDPE_TWW6_chr, taxa_HDPE_TWW10_chr) %>%
+  setNames(c("HDPE_TWW_2", "HDPE_TWW_6", "HDPE_TWW_10"))
+
+#Make Venn Diagram - all comparisons
+ggVennDiagram(HDPE_tww_time_comparisons) + scale_fill_gradient(low="blue",high = "red") +
+  theme(legend.position = "bottom", legend.direction = "horizontal")
+```
+
+![](Analysis_files/figure-gfm/venn%20HDPE%20tww%20time-1.png)<!-- -->
+
+## 8.13 Examining changes in bacterial communities on PP over time
+
+### 8.13.1 Contrasts - 2w, 6w, 10w river water PP only, vs river water
+
+``` r
+#Convert phyloseq object from above to deseq object with the correct category
+pp_time_deseq = phyloseq_to_deseq2(ps.taxa.all.filt, ~ polymer_effluent_time)
+
+#Estimate the size factors
+pp_time_deseq <- estimateSizeFactors(pp_time_deseq, type = "poscounts")
+
+#Make sure that the control is the first level in the sample_type group so that 
+#the default log2 changes are calculated as treatment vs. control instead of 
+#vice versa
+pp_time_deseq$polymer_effluent_time <- relevel(factor(pp_time_deseq$polymer_effluent_time), "CON_water")
+
+#Now we can run DESeq
+pp_time_deseq = DESeq(pp_time_deseq, test="Wald", fitType="parametric")
+
+#Check which comparisons are contained in the deseq object:
+resultsNames(pp_time_deseq)
+```
+
+    ##  [1] "Intercept"                                      
+    ##  [2] "polymer_effluent_time_Glass_CON_10_vs_CON_water"
+    ##  [3] "polymer_effluent_time_Glass_CON_2_vs_CON_water" 
+    ##  [4] "polymer_effluent_time_Glass_CON_6_vs_CON_water" 
+    ##  [5] "polymer_effluent_time_Glass_TWW_10_vs_CON_water"
+    ##  [6] "polymer_effluent_time_Glass_TWW_2_vs_CON_water" 
+    ##  [7] "polymer_effluent_time_Glass_TWW_6_vs_CON_water" 
+    ##  [8] "polymer_effluent_time_HDPE_CON_10_vs_CON_water" 
+    ##  [9] "polymer_effluent_time_HDPE_CON_2_vs_CON_water"  
+    ## [10] "polymer_effluent_time_HDPE_CON_6_vs_CON_water"  
+    ## [11] "polymer_effluent_time_HDPE_TWW_10_vs_CON_water" 
+    ## [12] "polymer_effluent_time_HDPE_TWW_2_vs_CON_water"  
+    ## [13] "polymer_effluent_time_HDPE_TWW_6_vs_CON_water"  
+    ## [14] "polymer_effluent_time_LDPE_CON_10_vs_CON_water" 
+    ## [15] "polymer_effluent_time_LDPE_CON_2_vs_CON_water"  
+    ## [16] "polymer_effluent_time_LDPE_CON_6_vs_CON_water"  
+    ## [17] "polymer_effluent_time_LDPE_TWW_10_vs_CON_water" 
+    ## [18] "polymer_effluent_time_LDPE_TWW_2_vs_CON_water"  
+    ## [19] "polymer_effluent_time_LDPE_TWW_6_vs_CON_water"  
+    ## [20] "polymer_effluent_time_PP_CON_10_vs_CON_water"   
+    ## [21] "polymer_effluent_time_PP_CON_2_vs_CON_water"    
+    ## [22] "polymer_effluent_time_PP_CON_6_vs_CON_water"    
+    ## [23] "polymer_effluent_time_PP_TWW_10_vs_CON_water"   
+    ## [24] "polymer_effluent_time_PP_TWW_2_vs_CON_water"    
+    ## [25] "polymer_effluent_time_PP_TWW_6_vs_CON_water"    
+    ## [26] "polymer_effluent_time_PS_CON_10_vs_CON_water"   
+    ## [27] "polymer_effluent_time_PS_CON_2_vs_CON_water"    
+    ## [28] "polymer_effluent_time_PS_CON_6_vs_CON_water"    
+    ## [29] "polymer_effluent_time_PS_TWW_10_vs_CON_water"   
+    ## [30] "polymer_effluent_time_PS_TWW_2_vs_CON_water"    
+    ## [31] "polymer_effluent_time_PS_TWW_6_vs_CON_water"    
+    ## [32] "polymer_effluent_time_TWW_water_vs_CON_water"   
+    ## [33] "polymer_effluent_time_water_TWW_vs_CON_water"
+
+``` r
+#We just want to look at the difference between microplastics at 2, 6, and 10 weeks compared to water
+#Creating results tables with the information we're interested in
+pp_res_CON_2 <- results(pp_time_deseq, contrast=c("polymer_effluent_time","PP_CON_2","CON_water"), alpha=0.05)
+pp_res_CON_6 <- results(pp_time_deseq, contrast=c("polymer_effluent_time","PP_CON_6","CON_water"), alpha=0.05)
+pp_res_CON_10 <- results(pp_time_deseq, contrast=c("polymer_effluent_time","PP_CON_10","CON_water"), alpha=0.05)
+
+#Show results summary
+summary(pp_res_CON_2)
+```
+
+    ## 
+    ## out of 994 with nonzero total read count
+    ## adjusted p-value < 0.05
+    ## LFC > 0 (up)       : 85, 8.6%
+    ## LFC < 0 (down)     : 103, 10%
+    ## outliers [1]       : 0, 0%
+    ## low counts [2]     : 155, 16%
+    ## (mean count < 3)
+    ## [1] see 'cooksCutoff' argument of ?results
+    ## [2] see 'independentFiltering' argument of ?results
+
+``` r
+summary(pp_res_CON_6)
+```
+
+    ## 
+    ## out of 994 with nonzero total read count
+    ## adjusted p-value < 0.05
+    ## LFC > 0 (up)       : 122, 12%
+    ## LFC < 0 (down)     : 57, 5.7%
+    ## outliers [1]       : 0, 0%
+    ## low counts [2]     : 270, 27%
+    ## (mean count < 4)
+    ## [1] see 'cooksCutoff' argument of ?results
+    ## [2] see 'independentFiltering' argument of ?results
+
+``` r
+summary(pp_res_CON_10)
+```
+
+    ## 
+    ## out of 994 with nonzero total read count
+    ## adjusted p-value < 0.05
+    ## LFC > 0 (up)       : 138, 14%
+    ## LFC < 0 (down)     : 70, 7%
+    ## outliers [1]       : 0, 0%
+    ## low counts [2]     : 251, 25%
+    ## (mean count < 4)
+    ## [1] see 'cooksCutoff' argument of ?results
+    ## [2] see 'independentFiltering' argument of ?results
+
+``` r
+#Log fold change shrinkage on each comparison
+pp_resLFC_CON2 <- lfcShrink(pp_time_deseq, coef="polymer_effluent_time_PP_CON_2_vs_CON_water", type="apeglm")
+pp_resLFC_CON2
+```
+
+    ## log2 fold change (MAP): polymer effluent time PP CON 2 vs CON water 
+    ## Wald test p-value: polymer effluent time PP CON 2 vs CON water 
+    ## DataFrame with 994 rows and 5 columns
+    ##                                   baseMean log2FoldChange     lfcSE      pvalue
+    ##                                  <numeric>      <numeric> <numeric>   <numeric>
+    ## 76986812e0cdb639a25c936952004967  43.84147     -0.2094984   1.05275  0.00100925
+    ## 143eedc0b2cf4ff8f1ca0448594d1191   8.39989     -0.0191213   1.02040  0.41369007
+    ## cdc12d12977ac7193527fac20a6c8711   1.72097     -0.0435382   1.01507  0.92784905
+    ## 0e8d660cbd4a72352ad4109b2440286e   8.97585      0.3181598   1.06253  0.55743153
+    ## a94d8fee872266a54b1e5706d6bcfbac  20.51734      1.7120845   1.83175  0.05671961
+    ## ...                                    ...            ...       ...         ...
+    ## 3c0d84f8bf9a3a8ea5cc05ad9b99c209   7.92815     -0.2034517   1.04840 2.05442e-01
+    ## 2b0dbc8ca8b74471b0029ee9d61a4c60  41.23416      1.4250746   1.68818 1.05322e-01
+    ## 15456227e48f1103584e352c6ba34637  36.36373     -0.5321439   1.23805 8.87552e-03
+    ## 6c0bf239702859ae989d886f1985b1e4 440.45002     -7.9436273   3.50035 3.79451e-05
+    ## 84bc6ce045f212f439b979e3862bb33e 178.19931     -0.0864912   1.00439 8.28660e-01
+    ##                                        padj
+    ##                                   <numeric>
+    ## 76986812e0cdb639a25c936952004967 0.00464609
+    ## 143eedc0b2cf4ff8f1ca0448594d1191 0.62093211
+    ## cdc12d12977ac7193527fac20a6c8711         NA
+    ## 0e8d660cbd4a72352ad4109b2440286e 0.73385766
+    ## a94d8fee872266a54b1e5706d6bcfbac 0.13992031
+    ## ...                                     ...
+    ## 3c0d84f8bf9a3a8ea5cc05ad9b99c209 0.38805681
+    ## 2b0dbc8ca8b74471b0029ee9d61a4c60 0.22503305
+    ## 15456227e48f1103584e352c6ba34637 0.03154845
+    ## 6c0bf239702859ae989d886f1985b1e4 0.00026029
+    ## 84bc6ce045f212f439b979e3862bb33e 0.96574105
+
+``` r
+pp_resLFC_CON6 <- lfcShrink(pp_time_deseq, coef="polymer_effluent_time_PP_CON_6_vs_CON_water", type="apeglm")
+pp_resLFC_CON6
+```
+
+    ## log2 fold change (MAP): polymer effluent time PP CON 6 vs CON water 
+    ## Wald test p-value: polymer effluent time PP CON 6 vs CON water 
+    ## DataFrame with 994 rows and 5 columns
+    ##                                   baseMean log2FoldChange     lfcSE    pvalue
+    ##                                  <numeric>      <numeric> <numeric> <numeric>
+    ## 76986812e0cdb639a25c936952004967  43.84147     -0.2093965   1.05271 0.0014681
+    ## 143eedc0b2cf4ff8f1ca0448594d1191   8.39989     -0.0190908   1.02040 0.4335497
+    ## cdc12d12977ac7193527fac20a6c8711   1.72097      0.3506914   1.07279 0.5141368
+    ## 0e8d660cbd4a72352ad4109b2440286e   8.97585     -0.0303147   1.01584 0.9859583
+    ## a94d8fee872266a54b1e5706d6bcfbac  20.51734      1.5816170   1.75346 0.0638741
+    ## ...                                    ...            ...       ...       ...
+    ## 3c0d84f8bf9a3a8ea5cc05ad9b99c209   7.92815     -0.2019378  1.047419  0.246351
+    ## 2b0dbc8ca8b74471b0029ee9d61a4c60  41.23416     -0.1946353  0.994203  0.494336
+    ## 15456227e48f1103584e352c6ba34637  36.36373      0.3014223  0.913496  0.561258
+    ## 6c0bf239702859ae989d886f1985b1e4 440.45002      0.2598771  0.842684  0.616402
+    ## 84bc6ce045f212f439b979e3862bb33e 178.19931     -0.0714288  1.005169  0.961620
+    ##                                        padj
+    ##                                   <numeric>
+    ## 76986812e0cdb639a25c936952004967 0.00815718
+    ## 143eedc0b2cf4ff8f1ca0448594d1191 0.70575967
+    ## cdc12d12977ac7193527fac20a6c8711         NA
+    ## 0e8d660cbd4a72352ad4109b2440286e 0.99509131
+    ## a94d8fee872266a54b1e5706d6bcfbac 0.17513200
+    ## ...                                     ...
+    ## 3c0d84f8bf9a3a8ea5cc05ad9b99c209   0.492116
+    ## 2b0dbc8ca8b74471b0029ee9d61a4c60   0.744485
+    ## 15456227e48f1103584e352c6ba34637   0.799828
+    ## 6c0bf239702859ae989d886f1985b1e4   0.842465
+    ## 84bc6ce045f212f439b979e3862bb33e   0.995091
+
+``` r
+pp_resLFC_CON10 <- lfcShrink(pp_time_deseq, coef="polymer_effluent_time_PP_CON_10_vs_CON_water", type="apeglm")
+pp_resLFC_CON10
+```
+
+    ## log2 fold change (MAP): polymer effluent time PP CON 10 vs CON water 
+    ## Wald test p-value: polymer effluent time PP CON 10 vs CON water 
+    ## DataFrame with 994 rows and 5 columns
+    ##                                   baseMean log2FoldChange     lfcSE      pvalue
+    ##                                  <numeric>      <numeric> <numeric>   <numeric>
+    ## 76986812e0cdb639a25c936952004967  43.84147     -0.2093791  1.052697  0.00160821
+    ## 143eedc0b2cf4ff8f1ca0448594d1191   8.39989     -0.0190846  1.020399  0.43855182
+    ## cdc12d12977ac7193527fac20a6c8711   1.72097     -0.0380683  1.014775  0.99781697
+    ## 0e8d660cbd4a72352ad4109b2440286e   8.97585     -0.0294627  1.015883  0.99807515
+    ## a94d8fee872266a54b1e5706d6bcfbac  20.51734      0.4975639  0.989876  0.32462108
+    ## ...                                    ...            ...       ...         ...
+    ## 3c0d84f8bf9a3a8ea5cc05ad9b99c209   7.92815       0.228721  0.967778 5.80522e-01
+    ## 2b0dbc8ca8b74471b0029ee9d61a4c60  41.23416      -0.132153  0.966637 6.58349e-01
+    ## 15456227e48f1103584e352c6ba34637  36.36373       0.741135  1.079532 2.41169e-01
+    ## 6c0bf239702859ae989d886f1985b1e4 440.45002       4.863933  1.389284 1.91188e-04
+    ## 84bc6ce045f212f439b979e3862bb33e 178.19931      13.068631  2.337265 1.20247e-10
+    ##                                         padj
+    ##                                    <numeric>
+    ## 76986812e0cdb639a25c936952004967   0.0077778
+    ## 143eedc0b2cf4ff8f1ca0448594d1191   0.7008448
+    ## cdc12d12977ac7193527fac20a6c8711          NA
+    ## 0e8d660cbd4a72352ad4109b2440286e   0.9988878
+    ## a94d8fee872266a54b1e5706d6bcfbac   0.5881410
+    ## ...                                      ...
+    ## 3c0d84f8bf9a3a8ea5cc05ad9b99c209 7.64612e-01
+    ## 2b0dbc8ca8b74471b0029ee9d61a4c60 8.20612e-01
+    ## 15456227e48f1103584e352c6ba34637 4.78112e-01
+    ## 6c0bf239702859ae989d886f1985b1e4 1.24347e-03
+    ## 84bc6ce045f212f439b979e3862bb33e 1.90354e-09
+
+``` r
+#"It is more useful visualize the MA-plot for the shrunken log2 fold changes, 
+#which remove the noise associated with log2 fold changes from low count genes 
+#without requiring arbitrary filtering thresholds."
+#https://www.bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html#why-un-normalized-counts
+plotMA(pp_resLFC_CON2)
+```
+
+![](Analysis_files/figure-gfm/deseq%20pp%20river-1.png)<!-- -->
+
+``` r
+plotMA(pp_resLFC_CON6)
+```
+
+![](Analysis_files/figure-gfm/deseq%20pp%20river-2.png)<!-- -->
+
+``` r
+plotMA(pp_resLFC_CON10)
+```
+
+![](Analysis_files/figure-gfm/deseq%20pp%20river-3.png)<!-- -->
+
+``` r
+#Add taxonomic information
+pp_sigtab_CON2 = cbind(as(pp_res_CON_2, "data.frame"), as(tax_table(MPphyseq)[rownames(pp_res_CON_2), ], "matrix"))
+pp_sigtab_CON6 = cbind(as(pp_res_CON_6, "data.frame"), as(tax_table(MPphyseq)[rownames(pp_res_CON_6), ], "matrix"))
+pp_sigtab_CON10 = cbind(as(pp_res_CON_10, "data.frame"), as(tax_table(MPphyseq)[rownames(pp_res_CON_10), ], "matrix"))
+
+#Convert to dataframe
+df_pp_time_deseq_CON2 <- as.data.frame(pp_sigtab_CON2)
+df_pp_time_deseq_CON6 <- as.data.frame(pp_sigtab_CON6)
+df_pp_time_deseq_CON10 <- as.data.frame(pp_sigtab_CON10)
+
+#Filter based on adj p-value, removing non-significant values (p>0.05)
+#This also removes p-values that are NA; NA p-values exist because when p-values do not pass the filter threshold (p-values less than 0.1) they are set to NA 
+#More information in vignette("DESeq2") under "Note on p-values set to NA"
+df_pp_time_deseq_CON2_filt <- filter(df_pp_time_deseq_CON2, padj <= 0.05)
+df_pp_time_deseq_CON6_filt <- filter(df_pp_time_deseq_CON6, padj <= 0.05)
+df_pp_time_deseq_CON10_filt <- filter(df_pp_time_deseq_CON10, padj <= 0.05)
+
+#Order by adjusted p-value
+df_pp_time_deseq_CON2_filt = df_pp_time_deseq_CON2_filt[order(df_pp_time_deseq_CON2_filt$padj, na.last=NA), ]
+df_pp_time_deseq_CON6_filt = df_pp_time_deseq_CON6_filt[order(df_pp_time_deseq_CON6_filt$padj, na.last=NA), ]
+df_pp_time_deseq_CON10_filt = df_pp_time_deseq_CON10_filt[order(df_pp_time_deseq_CON10_filt$padj, na.last=NA), ]
+```
+
+### 8.13.2 Venn Diagrams - PP river
+
+``` r
+#Filter the river water PS dataframes
+df_pp_time_deseq_CON2_filt <- filter(df_pp_time_deseq_CON2_filt, 
+                                     log2FoldChange > 0)
+df_pp_time_deseq_CON6_filt <- filter(df_pp_time_deseq_CON6_filt, 
+                                     log2FoldChange > 0)
+df_pp_time_deseq_CON10_filt <- filter(df_pp_time_deseq_CON10_filt, 
+                                      log2FoldChange > 0)
+
+#Create a column with the filtered deseq dataframe rownames and then filter to 
+#contain only ASV's
+taxa_pp_CON2 <- data.frame(df_pp_time_deseq_CON2_filt) %>%
+  tibble::rownames_to_column(var = "PP_CON_2") %>%
+  select(PP_CON_2)
+
+taxa_pp_CON6 <- data.frame(df_pp_time_deseq_CON6_filt) %>%
+  tibble::rownames_to_column(var = "PP_CON_6") %>%
+  select(PP_CON_6)
+
+taxa_pp_CON10 <- data.frame(df_pp_time_deseq_CON10_filt) %>%
+  tibble::rownames_to_column(var = "PP_CON_10") %>%
+  select(PP_CON_10)
+
+#Make the dataframe into a list
+list_pp_CON_2 <- list(taxa_pp_CON2$PP_CON_2)
+list_pp_CON_6 <- list(taxa_pp_CON6$PP_CON_6)
+list_pp_CON_10 <- list(taxa_pp_CON10$PP_CON_10)
+
+#Change to characters
+taxa_pp_CON2_chr <- as.character(list_pp_CON_2[[1]])
+taxa_pp_CON6_chr <- as.character(list_pp_CON_6[[1]])
+taxa_pp_CON10_chr <- as.character(list_pp_CON_10[[1]])
+
+#Make list for ggVennDiagram
+pp_time_comparisons <- list(taxa_pp_CON2_chr, taxa_pp_CON6_chr, taxa_pp_CON10_chr) %>%
+  setNames(c("PP_CON_2", "PP_CON_6", "PP_CON_10"))
+
+#Make Venn Diagram - all comparisons
+ggVennDiagram(pp_time_comparisons) + scale_fill_gradient(low="blue",high = "red") +
+  theme(legend.position = "bottom", legend.direction = "horizontal")
+```
+
+![](Analysis_files/figure-gfm/venn%20pp%20time-1.png)<!-- -->
+
+### 8.13.3 Contrasts - 2w, 6w, 10w TWW PP only, vs TWW
+
+``` r
+#Convert phyloseq object from above to deseq object with the correct category
+pp_tww_time_deseq = phyloseq_to_deseq2(ps.taxa.all.filt, ~ polymer_effluent_time)
+
+#Estimate the size factors
+pp_tww_time_deseq <- estimateSizeFactors(pp_tww_time_deseq, type = "poscounts")
+
+#Make sure that the control is the first level in the sample_type group so that 
+#the default log2 changes are calculated as treatment vs. control instead of 
+#vice versa
+pp_tww_time_deseq$polymer_effluent_time <- relevel(factor(pp_tww_time_deseq$polymer_effluent_time), "TWW_water")
+
+#Now we can run DESeq
+pp_tww_time_deseq = DESeq(pp_tww_time_deseq, test="Wald", fitType="parametric")
+
+#Check which comparisons are contained in the deseq object:
+resultsNames(pp_tww_time_deseq)
+```
+
+    ##  [1] "Intercept"                                      
+    ##  [2] "polymer_effluent_time_CON_water_vs_TWW_water"   
+    ##  [3] "polymer_effluent_time_Glass_CON_10_vs_TWW_water"
+    ##  [4] "polymer_effluent_time_Glass_CON_2_vs_TWW_water" 
+    ##  [5] "polymer_effluent_time_Glass_CON_6_vs_TWW_water" 
+    ##  [6] "polymer_effluent_time_Glass_TWW_10_vs_TWW_water"
+    ##  [7] "polymer_effluent_time_Glass_TWW_2_vs_TWW_water" 
+    ##  [8] "polymer_effluent_time_Glass_TWW_6_vs_TWW_water" 
+    ##  [9] "polymer_effluent_time_HDPE_CON_10_vs_TWW_water" 
+    ## [10] "polymer_effluent_time_HDPE_CON_2_vs_TWW_water"  
+    ## [11] "polymer_effluent_time_HDPE_CON_6_vs_TWW_water"  
+    ## [12] "polymer_effluent_time_HDPE_TWW_10_vs_TWW_water" 
+    ## [13] "polymer_effluent_time_HDPE_TWW_2_vs_TWW_water"  
+    ## [14] "polymer_effluent_time_HDPE_TWW_6_vs_TWW_water"  
+    ## [15] "polymer_effluent_time_LDPE_CON_10_vs_TWW_water" 
+    ## [16] "polymer_effluent_time_LDPE_CON_2_vs_TWW_water"  
+    ## [17] "polymer_effluent_time_LDPE_CON_6_vs_TWW_water"  
+    ## [18] "polymer_effluent_time_LDPE_TWW_10_vs_TWW_water" 
+    ## [19] "polymer_effluent_time_LDPE_TWW_2_vs_TWW_water"  
+    ## [20] "polymer_effluent_time_LDPE_TWW_6_vs_TWW_water"  
+    ## [21] "polymer_effluent_time_PP_CON_10_vs_TWW_water"   
+    ## [22] "polymer_effluent_time_PP_CON_2_vs_TWW_water"    
+    ## [23] "polymer_effluent_time_PP_CON_6_vs_TWW_water"    
+    ## [24] "polymer_effluent_time_PP_TWW_10_vs_TWW_water"   
+    ## [25] "polymer_effluent_time_PP_TWW_2_vs_TWW_water"    
+    ## [26] "polymer_effluent_time_PP_TWW_6_vs_TWW_water"    
+    ## [27] "polymer_effluent_time_PS_CON_10_vs_TWW_water"   
+    ## [28] "polymer_effluent_time_PS_CON_2_vs_TWW_water"    
+    ## [29] "polymer_effluent_time_PS_CON_6_vs_TWW_water"    
+    ## [30] "polymer_effluent_time_PS_TWW_10_vs_TWW_water"   
+    ## [31] "polymer_effluent_time_PS_TWW_2_vs_TWW_water"    
+    ## [32] "polymer_effluent_time_PS_TWW_6_vs_TWW_water"    
+    ## [33] "polymer_effluent_time_water_TWW_vs_TWW_water"
+
+``` r
+#We just want to look at the difference between microplastics at 2, 6, and 10 weeks compared to water
+#Creating results tables with the information we're interested in
+pp_res_TWW_2 <- results(pp_tww_time_deseq, contrast=c("polymer_effluent_time","PP_TWW_2","TWW_water"), alpha=0.05)
+pp_res_TWW_6 <- results(pp_tww_time_deseq, contrast=c("polymer_effluent_time","PP_TWW_6","TWW_water"), alpha=0.05)
+pp_res_TWW_10 <- results(pp_tww_time_deseq, contrast=c("polymer_effluent_time","PP_TWW_10","TWW_water"), alpha=0.05)
+
+#Show results summary
+summary(pp_res_TWW_2)
+```
+
+    ## 
+    ## out of 994 with nonzero total read count
+    ## adjusted p-value < 0.05
+    ## LFC > 0 (up)       : 109, 11%
+    ## LFC < 0 (down)     : 62, 6.2%
+    ## outliers [1]       : 0, 0%
+    ## low counts [2]     : 270, 27%
+    ## (mean count < 4)
+    ## [1] see 'cooksCutoff' argument of ?results
+    ## [2] see 'independentFiltering' argument of ?results
+
+``` r
+summary(pp_res_TWW_6)
+```
+
+    ## 
+    ## out of 994 with nonzero total read count
+    ## adjusted p-value < 0.05
+    ## LFC > 0 (up)       : 160, 16%
+    ## LFC < 0 (down)     : 29, 2.9%
+    ## outliers [1]       : 0, 0%
+    ## low counts [2]     : 193, 19%
+    ## (mean count < 4)
+    ## [1] see 'cooksCutoff' argument of ?results
+    ## [2] see 'independentFiltering' argument of ?results
+
+``` r
+summary(pp_res_TWW_10)
+```
+
+    ## 
+    ## out of 994 with nonzero total read count
+    ## adjusted p-value < 0.05
+    ## LFC > 0 (up)       : 174, 18%
+    ## LFC < 0 (down)     : 45, 4.5%
+    ## outliers [1]       : 0, 0%
+    ## low counts [2]     : 251, 25%
+    ## (mean count < 4)
+    ## [1] see 'cooksCutoff' argument of ?results
+    ## [2] see 'independentFiltering' argument of ?results
+
+``` r
+#Log fold change shrinkage on each comparison
+pp_resLFC_TWW2 <- lfcShrink(pp_tww_time_deseq, coef="polymer_effluent_time_PP_TWW_2_vs_TWW_water", type="apeglm")
+pp_resLFC_TWW2
+```
+
+    ## log2 fold change (MAP): polymer effluent time PP TWW 2 vs TWW water 
+    ## Wald test p-value: polymer effluent time PP TWW 2 vs TWW water 
+    ## DataFrame with 994 rows and 5 columns
+    ##                                   baseMean log2FoldChange     lfcSE    pvalue
+    ##                                  <numeric>      <numeric> <numeric> <numeric>
+    ## 76986812e0cdb639a25c936952004967  43.84147     -0.2569433  1.066562 0.0211830
+    ## 143eedc0b2cf4ff8f1ca0448594d1191   8.39989     -0.0238406  1.020538 0.0244394
+    ## cdc12d12977ac7193527fac20a6c8711   1.72097     -0.0620459  1.015460 0.9428792
+    ## 0e8d660cbd4a72352ad4109b2440286e   8.97585      0.5131516  1.184604 0.1869255
+    ## a94d8fee872266a54b1e5706d6bcfbac  20.51734      0.1786705  0.924687 0.6787501
+    ## ...                                    ...            ...       ...       ...
+    ## 3c0d84f8bf9a3a8ea5cc05ad9b99c209   7.92815       0.257443  1.028920 0.3317131
+    ## 2b0dbc8ca8b74471b0029ee9d61a4c60  41.23416       2.491372  3.365560 0.0381708
+    ## 15456227e48f1103584e352c6ba34637  36.36373      -0.293943  0.993529 0.4292456
+    ## 6c0bf239702859ae989d886f1985b1e4 440.45002      -0.701066  1.169232 0.1497104
+    ## 84bc6ce045f212f439b979e3862bb33e 178.19931      -0.912245  1.619444 0.0553543
+    ##                                       padj
+    ##                                  <numeric>
+    ## 76986812e0cdb639a25c936952004967 0.0774944
+    ## 143eedc0b2cf4ff8f1ca0448594d1191 0.0852019
+    ## cdc12d12977ac7193527fac20a6c8711        NA
+    ## 0e8d660cbd4a72352ad4109b2440286e 0.4307627
+    ## a94d8fee872266a54b1e5706d6bcfbac 0.9611977
+    ## ...                                    ...
+    ## 3c0d84f8bf9a3a8ea5cc05ad9b99c209  0.644345
+    ## 2b0dbc8ca8b74471b0029ee9d61a4c60  0.123213
+    ## 15456227e48f1103584e352c6ba34637  0.741885
+    ## 6c0bf239702859ae989d886f1985b1e4  0.366164
+    ## 84bc6ce045f212f439b979e3862bb33e  0.167014
+
+``` r
+pp_resLFC_TWW6 <- lfcShrink(pp_tww_time_deseq, coef="polymer_effluent_time_PP_TWW_6_vs_TWW_water", type="apeglm")
+pp_resLFC_TWW6
+```
+
+    ## log2 fold change (MAP): polymer effluent time PP TWW 6 vs TWW water 
+    ## Wald test p-value: polymer effluent time PP TWW 6 vs TWW water 
+    ## DataFrame with 994 rows and 5 columns
+    ##                                   baseMean log2FoldChange     lfcSE     pvalue
+    ##                                  <numeric>      <numeric> <numeric>  <numeric>
+    ## 76986812e0cdb639a25c936952004967  43.84147     -0.2091872  1.052565 0.00526896
+    ## 143eedc0b2cf4ff8f1ca0448594d1191   8.39989     -0.0190665  1.020387 0.04722014
+    ## cdc12d12977ac7193527fac20a6c8711   1.72097      0.3613667  1.084650 0.32882860
+    ## 0e8d660cbd4a72352ad4109b2440286e   8.97585      0.5867737  1.247972 0.15242382
+    ## a94d8fee872266a54b1e5706d6bcfbac  20.51734     -0.0870008  0.944671 0.81701916
+    ## ...                                    ...            ...       ...        ...
+    ## 3c0d84f8bf9a3a8ea5cc05ad9b99c209   7.92815      0.4766355  1.148569  0.0757873
+    ## 2b0dbc8ca8b74471b0029ee9d61a4c60  41.23416      0.0078677  0.938315  0.9320537
+    ## 15456227e48f1103584e352c6ba34637  36.36373      0.2626397  0.941498  0.5697923
+    ## 6c0bf239702859ae989d886f1985b1e4 440.45002      1.4531265  1.566125  0.0521159
+    ## 84bc6ce045f212f439b979e3862bb33e 178.19931      0.7028450  1.104647  0.2282521
+    ##                                       padj
+    ##                                  <numeric>
+    ## 76986812e0cdb639a25c936952004967 0.0286702
+    ## 143eedc0b2cf4ff8f1ca0448594d1191 0.1744716
+    ## cdc12d12977ac7193527fac20a6c8711 0.6861201
+    ## 0e8d660cbd4a72352ad4109b2440286e 0.4046076
+    ## a94d8fee872266a54b1e5706d6bcfbac 0.9982717
+    ## ...                                    ...
+    ## 3c0d84f8bf9a3a8ea5cc05ad9b99c209  0.249335
+    ## 2b0dbc8ca8b74471b0029ee9d61a4c60  0.998272
+    ## 15456227e48f1103584e352c6ba34637  0.897924
+    ## 6c0bf239702859ae989d886f1985b1e4  0.186621
+    ## 84bc6ce045f212f439b979e3862bb33e  0.532612
+
+``` r
+pp_resLFC_TWW10 <- lfcShrink(pp_tww_time_deseq, coef="polymer_effluent_time_PP_TWW_10_vs_TWW_water", type="apeglm")
+pp_resLFC_TWW10
+```
+
+    ## log2 fold change (MAP): polymer effluent time PP TWW 10 vs TWW water 
+    ## Wald test p-value: polymer effluent time PP TWW 10 vs TWW water 
+    ## DataFrame with 994 rows and 5 columns
+    ##                                   baseMean log2FoldChange     lfcSE      pvalue
+    ##                                  <numeric>      <numeric> <numeric>   <numeric>
+    ## 76986812e0cdb639a25c936952004967  43.84147     -0.2091859   1.05256  0.00535439
+    ## 143eedc0b2cf4ff8f1ca0448594d1191   8.39989     -0.0190666   1.02039  0.04768695
+    ## cdc12d12977ac7193527fac20a6c8711   1.72097      0.1702980   1.01477  0.71220436
+    ## 0e8d660cbd4a72352ad4109b2440286e   8.97585     -0.0348173   1.01621  0.99423275
+    ## a94d8fee872266a54b1e5706d6bcfbac  20.51734      0.6915570   1.18811  0.18022658
+    ## ...                                    ...            ...       ...         ...
+    ## 3c0d84f8bf9a3a8ea5cc05ad9b99c209   7.92815       0.436478   1.12108 1.01140e-01
+    ## 2b0dbc8ca8b74471b0029ee9d61a4c60  41.23416      -0.214527   1.00664 4.17091e-01
+    ## 15456227e48f1103584e352c6ba34637  36.36373       1.249128   1.81689 6.91047e-02
+    ## 6c0bf239702859ae989d886f1985b1e4 440.45002       5.598425   1.64643 8.23854e-05
+    ## 84bc6ce045f212f439b979e3862bb33e 178.19931       6.961256   1.80436 3.98123e-05
+    ##                                         padj
+    ##                                    <numeric>
+    ## 76986812e0cdb639a25c936952004967   0.0212545
+    ## 143eedc0b2cf4ff8f1ca0448594d1191   0.1281214
+    ## cdc12d12977ac7193527fac20a6c8711          NA
+    ## 0e8d660cbd4a72352ad4109b2440286e   0.9974683
+    ## a94d8fee872266a54b1e5706d6bcfbac   0.3347677
+    ## ...                                      ...
+    ## 3c0d84f8bf9a3a8ea5cc05ad9b99c209 0.212041146
+    ## 2b0dbc8ca8b74471b0029ee9d61a4c60 0.621087435
+    ## 15456227e48f1103584e352c6ba34637 0.168886604
+    ## 6c0bf239702859ae989d886f1985b1e4 0.000602106
+    ## 84bc6ce045f212f439b979e3862bb33e 0.000314477
+
+``` r
+#"It is more useful visualize the MA-plot for the shrunken log2 fold changes, 
+#which remove the noise associated with log2 fold changes from low count genes 
+#without requiring arbitrary filtering thresholds."
+#https://www.bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html#why-un-normalized-counts
+plotMA(pp_resLFC_TWW2)
+```
+
+![](Analysis_files/figure-gfm/deseq%20pp%20tww-1.png)<!-- -->
+
+``` r
+plotMA(pp_resLFC_TWW6)
+```
+
+![](Analysis_files/figure-gfm/deseq%20pp%20tww-2.png)<!-- -->
+
+``` r
+plotMA(pp_resLFC_TWW10)
+```
+
+![](Analysis_files/figure-gfm/deseq%20pp%20tww-3.png)<!-- -->
+
+``` r
+#Add taxonomic information
+pp_sigtab_TWW2 = cbind(as(pp_res_TWW_2, "data.frame"), as(tax_table(MPphyseq)[rownames(pp_res_TWW_2), ], "matrix"))
+pp_sigtab_TWW6 = cbind(as(pp_res_TWW_6, "data.frame"), as(tax_table(MPphyseq)[rownames(pp_res_TWW_6), ], "matrix"))
+pp_sigtab_TWW10 = cbind(as(pp_res_TWW_10, "data.frame"), as(tax_table(MPphyseq)[rownames(pp_res_TWW_10), ], "matrix"))
+
+#Convert to dataframe
+df_pp_time_deseq_TWW2 <- as.data.frame(pp_sigtab_TWW2)
+df_pp_time_deseq_TWW6 <- as.data.frame(pp_sigtab_TWW6)
+df_pp_time_deseq_TWW10 <- as.data.frame(pp_sigtab_TWW10)
+
+#Filter based on adj p-value, removing non-significant values (p>0.05)
+#This also removes p-values that are NA; NA p-values exist because when p-values do not pass the filter threshold (p-values less than 0.1) they are set to NA 
+#More information in vignette("DESeq2") under "Note on p-values set to NA"
+df_pp_time_deseq_TWW2_filt <- filter(df_pp_time_deseq_TWW2, padj <= 0.05)
+df_pp_time_deseq_TWW6_filt <- filter(df_pp_time_deseq_TWW6, padj <= 0.05)
+df_pp_time_deseq_TWW10_filt <- filter(df_pp_time_deseq_TWW10, padj <= 0.05)
+
+#Order by adjusted p-value
+df_pp_time_deseq_TWW2_filt = df_pp_time_deseq_TWW2_filt[order(df_pp_time_deseq_TWW2_filt$padj, na.last=NA), ]
+df_pp_time_deseq_TWW6_filt = df_pp_time_deseq_TWW6_filt[order(df_pp_time_deseq_TWW6_filt$padj, na.last=NA), ]
+df_pp_time_deseq_TWW10_filt = df_pp_time_deseq_TWW10_filt[order(df_pp_time_deseq_TWW10_filt$padj, na.last=NA), ]
+```
+
+### 8.13.4 Venn Diagrams - PP TWW
+
+``` r
+#Filter the river water PS dataframes
+df_pp_time_deseq_TWW2_filt <- filter(df_pp_time_deseq_TWW2_filt, 
+                                     log2FoldChange > 0)
+df_pp_time_deseq_TWW6_filt <- filter(df_pp_time_deseq_TWW6_filt, 
+                                     log2FoldChange > 0)
+df_pp_time_deseq_TWW10_filt <- filter(df_pp_time_deseq_TWW10_filt, 
+                                      log2FoldChange > 0)
+
+#Create a column with the filtered deseq dataframe rownames and then filter to 
+#contain only ASV's
+taxa_PP_TWW2 <- data.frame(df_pp_time_deseq_TWW2_filt) %>%
+  tibble::rownames_to_column(var = "PP_TWW_2") %>%
+  select(PP_TWW_2)
+
+taxa_PP_TWW6 <- data.frame(df_pp_time_deseq_TWW6_filt) %>%
+  tibble::rownames_to_column(var = "PP_TWW_6") %>%
+  select(PP_TWW_6)
+
+taxa_PP_TWW10 <- data.frame(df_pp_time_deseq_TWW10_filt) %>%
+  tibble::rownames_to_column(var = "PP_TWW_10") %>%
+  select(PP_TWW_10)
+
+#Make the dataframe into a list
+list_PP_TWW_2 <- list(taxa_PP_TWW2$PP_TWW_2)
+list_PP_TWW_6 <- list(taxa_PP_TWW6$PP_TWW_6)
+list_PP_TWW_10 <- list(taxa_PP_TWW10$PP_TWW_10)
+
+#Change to characters
+taxa_PP_TWW2_chr <- as.character(list_PP_TWW_2[[1]])
+taxa_PP_TWW6_chr <- as.character(list_PP_TWW_6[[1]])
+taxa_PP_TWW10_chr <- as.character(list_PP_TWW_10[[1]])
+
+#Make list for ggVennDiagram
+PP_tww_time_comparisons <- list(taxa_PP_TWW2_chr, taxa_PP_TWW6_chr, taxa_PP_TWW10_chr) %>%
+  setNames(c("PP_TWW_2", "PP_TWW_6", "PP_TWW_10"))
+
+#Make Venn Diagram - all comparisons
+ggVennDiagram(PP_tww_time_comparisons) + scale_fill_gradient(low="blue",high = "red") +
+  theme(legend.position = "bottom", legend.direction = "horizontal")
+```
+
+![](Analysis_files/figure-gfm/venn%20pp%20tww%20time-1.png)<!-- -->
+
+## 8.14 Comparing bacterial community composition between river water glass and MP
 
 The following section examines the similarities between microbial
 communities present on glass beads and those present on MP’s, split by
 effluent type (i.e., river water vs TWW). To do this, we’ll be using the
 results from the DESeq2 tests above.
 
-### 8.8.1 Venn Diagram, river water timepoints
+### 8.14.1 Venn Diagram, river water timepoints
 
 We can use the filtered dataframes created above containing the DESeq2
 results to create a Venn diagram displaying the overlap between the taxa
@@ -14614,7 +16826,7 @@ ggVennDiagram(CON_MP_glass_comparisons) + scale_fill_gradient(low="blue",high = 
 
 ![](Analysis_files/figure-gfm/venn%20glass%20v%20plastic%20river-1.png)<!-- -->
 
-### 8.8.2 Finding ASV’s enriched on MP & glass
+### 8.14.2 Finding ASV’s enriched on MP & glass
 
 Looking specifically at river water MP and glass ASV’s.
 
@@ -14660,10 +16872,6 @@ ggVennDiagram(MP_glass_CON_comparison) + scale_fill_gradient(low="blue",high = "
 
 
 
-
-
-
-
 #Now finding MP ASV's using nVennR; for some reason, you can't extract the intersections from ggVennDiagram plots, but you can easily do it with nVennR plots, so we'll use nVennR here to get the ASV's that we're interested in (the ones only present on TWW MP). 
 nVennR_plot_test_River_MP <- plotVenn(list(DESeq_sig_taxa_glass_CON, DESeq_sig_taxa_MP_CON), sNames=c("Glass", "MP"))
 ```
@@ -14686,7 +16894,7 @@ MP’s, and a dataframe containing the log normalized count data, we’ll
 add the normalized count data to the MP ASV dataframe and rearrange it
 in order to get it into a format suitable for graphing.
 
-#### 8.8.2.1 Prep for graphing MP ASV’s - abundance bar plot
+#### 8.14.2.1 Prep for graphing MP ASVs - abundance bar plot
 
 ``` r
 #Find normalized counts of the ASV's from the deseq object
@@ -14735,7 +16943,7 @@ Venn_MP_only_tax <- Venn_MP_only_counts %>%
 Venn_MP_only_tax <- Venn_MP_only_tax[order(Venn_MP_only_tax$Class),]
 ```
 
-#### 8.8.2.2 Graphing MP ASV’s - abundance bar plot
+#### 8.14.2.2 Graphing MP ASVs - abundance bar plot
 
 Since there’s 204 individual ASV’s, I’ll actually be plotting them at
 the genus level here.
@@ -14765,7 +16973,7 @@ print(mp_plastisphere_only_barplot)
 ggsave(filename="Microplastics_mp_enriched_barplot.svg", plot=mp_plastisphere_only_barplot, width=12, height=6, device=svg)
 ```
 
-#### 8.8.2.3 Creating file for export to Plastic DB
+#### 8.14.2.3 Creating file for export to Plastic DB
 
 Assign taxonomy to the ASV’s enriched on MP’s in river water for export
 to the [Plastic DB](https://plasticdb.org/annotatelist) database.
@@ -14783,7 +16991,7 @@ river_MP_tax_plasticdb <- Venn_River_MP_only %>%
 write.csv(river_MP_tax_plasticdb, "river_MP_tax_plasticdb.csv")
 ```
 
-#### 8.8.2.4 Phylogenetic tree comparing ASVs enriched on river water MP’s vs glass
+#### 8.14.2.4 Phylogenetic tree comparing ASVs enriched on river water MP’s vs glass
 
 ``` r
 #Create dataframe that can be used as a heatmap for the phylogenetic tree
@@ -14882,7 +17090,7 @@ plastisphere.sig.tax.phyloseq <- merge_phyloseq(my_subset2, tax_table(ps.taxa.al
 sample_data(plastisphere.sig.tax.phyloseq)
 ```
 
-    ## Sample Data:        [ 151 samples by 9 sample variables ]:
+    ## Sample Data:        [ 151 samples by 10 sample variables ]:
     ##                effluent week  polymer_type bead_diameter Channel sample_type
     ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
     ##  1 ESF21MP-100 CON      10    HDPE                  3.18 7.1     Particle   
@@ -14896,8 +17104,8 @@ sample_data(plastisphere.sig.tax.phyloseq)
     ##  9 ESF21MP-108 CON      10    LDPE                  3.18 8.2     Particle   
     ## 10 ESF21MP-109 CON      10    PP                    3.18 8.2     Particle   
     ## # ℹ 141 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 plastisphere.sig.tax.phyloseq <- subset_samples(plastisphere.sig.tax.phyloseq, effluent == "CON")
@@ -14941,7 +17149,7 @@ plastisphere.sig.tax.phyloseq <- subset_samples(plastisphere.sig.tax.phyloseq, s
 sample_data(plastisphere.sig.tax.phyloseq)
 ```
 
-    ## Sample Data:        [ 59 samples by 9 sample variables ]:
+    ## Sample Data:        [ 59 samples by 10 sample variables ]:
     ##                effluent week  polymer_type bead_diameter Channel sample_type
     ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
     ##  1 ESF21MP-100 CON      10    HDPE                  3.18 7.1     Particle   
@@ -14955,8 +17163,8 @@ sample_data(plastisphere.sig.tax.phyloseq)
     ##  9 ESF21MP-114 CON      10    PS                    3.18 7.2     Particle   
     ## 10 ESF21MP-117 CON      10    Glass                 3.18 7.1     Particle   
     ## # ℹ 49 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 Now we can create the phylogenetic tree.
 
@@ -15002,15 +17210,6 @@ print(p_plastisphere_withheatmap)
 ![](Analysis_files/figure-gfm/particle%20phylo%20heatmap%20plot-2.png)<!-- -->
 
 ``` r
-#Save as pdf
-#ggsave(filename="plastisphere_phylo_heatmap.pdf", plot=p_plastisphere_withheatmap, width=9.5, height=6, device=cairo_pdf)
-
-#Save as an svg file
-ggsave(filename="plastisphere_phylo_heatmap.svg", plot=p_plastisphere_withheatmap, width=9.5, height=6, device=svg)
-
-
-
-
 #Using test data
 tree <- rtree(50)
 
@@ -15046,7 +17245,7 @@ test + geom_hilight(data=dat, mapping=aes(node=id, fill=type), type = "rect", al
 I’m also going to create a dataframe containing the
 plastisphere_phylo_heatmap_extra data with the phylogenetic data
 
-### 8.8.3 Venn Diagram, TWW
+### 8.14.3 Venn Diagram, TWW
 
 Now we’ll apply the same methods as above to compare TWW glass bead
 communties to TWW MP communities.
@@ -15061,7 +17260,7 @@ ggVennDiagram(TWW_MP_glass_comparisons) + scale_fill_gradient(low="blue",high = 
 
 ![](Analysis_files/figure-gfm/venn%20glass%20v%20plastic%20TWW-1.png)<!-- -->
 
-### 8.8.4 SuperExactTest
+### 8.14.4 SuperExactTest
 
 ``` r
 #Grabbing lists from the Venn diagram sections for MP and glass beads, above in order to create a list with all MP and glass comparisons across water types
@@ -15101,45 +17300,1971 @@ actually see the results.
 res_all_glass_mp_df <- summary(res_all_glass_mp)$Table
 ```
 
-# 9 NMDS plots - filtered dataset
+## 8.15 Comparing bacterial community composition between glass and PS
 
-The NMDS analyses completed above were run on the full phyloseq object,
-which contained all ASV’s, including those with very low abundance and
-minimal presence in the samples. Now we’ll re-run the NMDS analyses on
-the filtered phyloseq object that we imported into DESeq2.
+### 8.15.1 Finding ASVs enriched on PS & glass in river water
+
+``` r
+#Combine all river water MP timepoints. To do this, we'll use the dataframes created from the filtered DESeq2 lists above. Note that "all=TRUE" keeps all values from the ASV column, even those that don't match across all dataframes. This way we get a single dataframe containing all unique ASV's that were enriched on MP's compared to river water over all timepoints.
+
+
+#For the PS ASVs - create a column with the filtered deseq dataframe rownames and then filter to contain only ASVs
+taxa_PS_CON2_heatmap <- data.frame(df_ps_time_deseq_CON2_filt) %>%
+  tibble::rownames_to_column(var = "ASV") %>%
+  select(ASV)
+
+taxa_PS_CON6_heatmap <- data.frame(df_ps_time_deseq_CON6_filt) %>%
+  tibble::rownames_to_column(var = "ASV") %>%
+  select(ASV)
+
+taxa_PS_CON10_heatmap <- data.frame(df_ps_time_deseq_CON10_filt) %>%
+  tibble::rownames_to_column(var = "ASV") %>%
+  select(ASV)
+
+#Now combine all river water PS timepoints
+DESeq_sig_taxa_PS_CON <- merge(taxa_PS_CON2_heatmap, taxa_PS_CON6_heatmap, by = "ASV", all=TRUE)
+
+DESeq_sig_taxa_PS_CON <- merge(DESeq_sig_taxa_PS_CON, taxa_PS_CON10_heatmap, by = "ASV", all=TRUE)
+
+
+#For the glass ASVs - create a column with the filtered deseq dataframe rownames and then filter to contain only ASVs
+taxa_glass_CON2_heatmap <- data.frame(df_mp_glass_deseq_CON2_filt) %>%
+  tibble::rownames_to_column(var = "ASV") %>%
+  select(ASV)
+
+taxa_glass_CON6_heatmap <- data.frame(df_mp_glass_deseq_CON6_filt) %>%
+  tibble::rownames_to_column(var = "ASV") %>%
+  select(ASV)
+
+taxa_glass_CON10_heatmap <- data.frame(df_mp_glass_deseq_CON10_filt) %>%
+  tibble::rownames_to_column(var = "ASV") %>%
+  select(ASV)
+
+#Now combine all river water glass timepoints
+DESeq_sig_taxa_glass_CON <- merge(taxa_glass_CON2_heatmap, taxa_glass_CON6_heatmap, by = "ASV", all=TRUE)
+
+DESeq_sig_taxa_glass_CON <- merge(DESeq_sig_taxa_glass_CON, taxa_glass_CON10_heatmap, by = "ASV", all=TRUE)
+
+
+
+#Make each dataframe into a list
+list_PS_CON_all <- list(DESeq_sig_taxa_PS_CON$ASV)
+list_glass_CON_all <- list(DESeq_sig_taxa_glass_CON$ASV)
+
+#Change to characters
+taxa_PS_CON_chr <- as.character(list_PS_CON_all[[1]])
+taxa_glass_CON_chr <- as.character(list_glass_CON_all[[1]])
+
+#Make list for ggVennDiagram
+PS_glass_CON_comparison <- list(taxa_PS_CON_chr, taxa_glass_CON_chr) %>%
+  setNames(c("PS", "Glass"))
+
+#Make Venn Diagram - PS vs glass in river water comparison
+ggVennDiagram(PS_glass_CON_comparison) + scale_fill_gradient(low="blue",high = "red")
+```
+
+![](Analysis_files/figure-gfm/venn%20glass%20v%20PS%20river%20all%20times-1.png)<!-- -->
+
+### 8.15.2 Finding ASVs enriched on PS & glass in TWW
+
+``` r
+#Combine all river water MP timepoints. To do this, we'll use the dataframes created from the filtered DESeq2 lists above. Note that "all=TRUE" keeps all values from the ASV column, even those that don't match across all dataframes. This way we get a single dataframe containing all unique ASV's that were enriched on MP's compared to river water over all timepoints.
+
+
+#For the PS ASVs - create a column with the filtered deseq dataframe rownames and then filter to contain only ASVs
+taxa_PS_TWW2_heatmap <- data.frame(df_ps_time_deseq_TWW2_filt) %>%
+  tibble::rownames_to_column(var = "ASV") %>%
+  select(ASV)
+
+taxa_PS_TWW6_heatmap <- data.frame(df_ps_time_deseq_TWW6_filt) %>%
+  tibble::rownames_to_column(var = "ASV") %>%
+  select(ASV)
+
+taxa_PS_TWW10_heatmap <- data.frame(df_ps_time_deseq_TWW10_filt) %>%
+  tibble::rownames_to_column(var = "ASV") %>%
+  select(ASV)
+
+#Now combine all river water PS timepoints
+DESeq_sig_taxa_PS_TWW <- merge(taxa_PS_TWW2_heatmap, taxa_PS_TWW6_heatmap, by = "ASV", all=TRUE)
+
+DESeq_sig_taxa_PS_TWW <- merge(DESeq_sig_taxa_PS_TWW, taxa_PS_TWW10_heatmap, by = "ASV", all=TRUE)
+
+
+#For the glass ASVs - create a column with the filtered deseq dataframe rownames and then filter to contain only ASVs
+taxa_glass_TWW2_heatmap <- data.frame(df_mp_glass_deseq_TWW2_filt) %>%
+  tibble::rownames_to_column(var = "ASV") %>%
+  select(ASV)
+
+taxa_glass_TWW6_heatmap <- data.frame(df_mp_glass_deseq_TWW6_filt) %>%
+  tibble::rownames_to_column(var = "ASV") %>%
+  select(ASV)
+
+taxa_glass_TWW10_heatmap <- data.frame(df_mp_glass_deseq_TWW10_filt) %>%
+  tibble::rownames_to_column(var = "ASV") %>%
+  select(ASV)
+
+#Now combine all river water glass timepoints
+DESeq_sig_taxa_glass_TWW <- merge(taxa_glass_TWW2_heatmap, taxa_glass_TWW6_heatmap, by = "ASV", all=TRUE)
+
+DESeq_sig_taxa_glass_TWW <- merge(DESeq_sig_taxa_glass_TWW, taxa_glass_TWW10_heatmap, by = "ASV", all=TRUE)
+
+
+
+#Make each dataframe into a list
+list_PS_TWW_all <- list(DESeq_sig_taxa_PS_TWW$ASV)
+list_glass_TWW_all <- list(DESeq_sig_taxa_glass_TWW$ASV)
+
+#Change to characters
+taxa_PS_TWW_chr <- as.character(list_PS_TWW_all[[1]])
+taxa_glass_TWW_chr <- as.character(list_glass_TWW_all[[1]])
+
+#Make list for ggVennDiagram
+PS_glass_TWW_comparison <- list(taxa_PS_TWW_chr, taxa_glass_TWW_chr) %>%
+  setNames(c("PS", "Glass"))
+
+#Make Venn Diagram - PS vs glass in river water comparison
+ggVennDiagram(PS_glass_TWW_comparison) + scale_fill_gradient(low="blue",high = "red")
+```
+
+![](Analysis_files/figure-gfm/venn%20glass%20v%20PS%20tww%20all%20times-1.png)<!-- -->
+
+## 8.16 Comparing bacterial community composition between river water glass and LDPE
+
+### 8.16.1 Finding ASVs enriched on LDPE & glass
+
+``` r
+#Combine all river water MP timepoints. To do this, we'll use the dataframes created from the filtered DESeq2 lists above. Note that "all=TRUE" keeps all values from the ASV column, even those that don't match across all dataframes. This way we get a single dataframe containing all unique ASV's that were enriched on MP's compared to river water over all timepoints.
+
+
+#For the PS ASVs - create a column with the filtered deseq dataframe rownames and then filter to contain only ASVs
+taxa_ldpe_CON2_heatmap <- data.frame(df_ldpe_time_deseq_CON2_filt) %>%
+  tibble::rownames_to_column(var = "ASV") %>%
+  select(ASV)
+
+taxa_ldpe_CON6_heatmap <- data.frame(df_ldpe_time_deseq_CON6_filt) %>%
+  tibble::rownames_to_column(var = "ASV") %>%
+  select(ASV)
+
+taxa_ldpe_CON10_heatmap <- data.frame(df_ldpe_time_deseq_CON10_filt) %>%
+  tibble::rownames_to_column(var = "ASV") %>%
+  select(ASV)
+
+#Now combine all river water PS timepoints
+DESeq_sig_taxa_ldpe_CON <- merge(taxa_ldpe_CON2_heatmap, taxa_ldpe_CON6_heatmap, by = "ASV", all=TRUE)
+
+DESeq_sig_taxa_ldpe_CON <- merge(DESeq_sig_taxa_ldpe_CON, taxa_ldpe_CON10_heatmap, by = "ASV", all=TRUE)
+
+
+#For the glass ASVs - create a column with the filtered deseq dataframe rownames and then filter to contain only ASVs
+taxa_glass_CON2_heatmap <- data.frame(df_mp_glass_deseq_CON2_filt) %>%
+  tibble::rownames_to_column(var = "ASV") %>%
+  select(ASV)
+
+taxa_glass_CON6_heatmap <- data.frame(df_mp_glass_deseq_CON6_filt) %>%
+  tibble::rownames_to_column(var = "ASV") %>%
+  select(ASV)
+
+taxa_glass_CON10_heatmap <- data.frame(df_mp_glass_deseq_CON10_filt) %>%
+  tibble::rownames_to_column(var = "ASV") %>%
+  select(ASV)
+
+#Now combine all river water glass timepoints
+DESeq_sig_taxa_glass_CON <- merge(taxa_glass_CON2_heatmap, taxa_glass_CON6_heatmap, by = "ASV", all=TRUE)
+
+DESeq_sig_taxa_glass_CON <- merge(DESeq_sig_taxa_glass_CON, taxa_glass_CON10_heatmap, by = "ASV", all=TRUE)
+
+
+
+#Make each dataframe into a list
+list_ldpe_CON_all <- list(DESeq_sig_taxa_ldpe_CON$ASV)
+list_glass_CON_all <- list(DESeq_sig_taxa_glass_CON$ASV)
+
+#Change to characters
+taxa_ldpe_CON_chr <- as.character(list_ldpe_CON_all[[1]])
+taxa_glass_CON_chr <- as.character(list_glass_CON_all[[1]])
+
+#Make list for ggVennDiagram
+ldpe_glass_CON_comparison <- list(taxa_ldpe_CON_chr, taxa_glass_CON_chr) %>%
+  setNames(c("LDPE", "Glass"))
+
+#Make Venn Diagram - PS vs glass in river water comparison
+ggVennDiagram(ldpe_glass_CON_comparison) + scale_fill_gradient(low="blue",high = "red")
+```
+
+![](Analysis_files/figure-gfm/venn%20glass%20v%20LDPE%20river%20all%20times-1.png)<!-- -->
+
+### 8.16.2 Finding ASVs enriched on LDPE & glass in TWW
+
+``` r
+#Combine all river water MP timepoints. To do this, we'll use the dataframes created from the filtered DESeq2 lists above. Note that "all=TRUE" keeps all values from the ASV column, even those that don't match across all dataframes. This way we get a single dataframe containing all unique ASV's that were enriched on MP's compared to river water over all timepoints.
+
+
+#For the PS ASVs - create a column with the filtered deseq dataframe rownames and then filter to contain only ASVs
+taxa_LDPE_TWW2_heatmap <- data.frame(df_ldpe_time_deseq_TWW2_filt) %>%
+  tibble::rownames_to_column(var = "ASV") %>%
+  select(ASV)
+
+taxa_LDPE_TWW6_heatmap <- data.frame(df_ldpe_time_deseq_TWW6_filt) %>%
+  tibble::rownames_to_column(var = "ASV") %>%
+  select(ASV)
+
+taxa_LDPE_TWW10_heatmap <- data.frame(df_ldpe_time_deseq_TWW10_filt) %>%
+  tibble::rownames_to_column(var = "ASV") %>%
+  select(ASV)
+
+#Now combine all river water PS timepoints
+DESeq_sig_taxa_LDPE_TWW <- merge(taxa_LDPE_TWW2_heatmap, taxa_LDPE_TWW6_heatmap, by = "ASV", all=TRUE)
+
+DESeq_sig_taxa_LDPE_TWW <- merge(DESeq_sig_taxa_LDPE_TWW, taxa_LDPE_TWW10_heatmap, by = "ASV", all=TRUE)
+
+
+#For the glass ASVs - create a column with the filtered deseq dataframe rownames and then filter to contain only ASVs
+taxa_glass_TWW2_heatmap <- data.frame(df_mp_glass_deseq_TWW2_filt) %>%
+  tibble::rownames_to_column(var = "ASV") %>%
+  select(ASV)
+
+taxa_glass_TWW6_heatmap <- data.frame(df_mp_glass_deseq_TWW6_filt) %>%
+  tibble::rownames_to_column(var = "ASV") %>%
+  select(ASV)
+
+taxa_glass_TWW10_heatmap <- data.frame(df_mp_glass_deseq_TWW10_filt) %>%
+  tibble::rownames_to_column(var = "ASV") %>%
+  select(ASV)
+
+#Now combine all TWW glass timepoints
+DESeq_sig_taxa_glass_TWW <- merge(taxa_glass_TWW2_heatmap, taxa_glass_TWW6_heatmap, by = "ASV", all=TRUE)
+
+DESeq_sig_taxa_glass_TWW <- merge(DESeq_sig_taxa_glass_TWW, taxa_glass_TWW10_heatmap, by = "ASV", all=TRUE)
+
+
+
+#Make each dataframe into a list
+list_LDPE_TWW_all <- list(DESeq_sig_taxa_LDPE_TWW$ASV)
+list_glass_TWW_all <- list(DESeq_sig_taxa_glass_TWW$ASV)
+
+#Change to characters
+taxa_LDPE_TWW_chr <- as.character(list_LDPE_TWW_all[[1]])
+taxa_glass_TWW_chr <- as.character(list_glass_TWW_all[[1]])
+
+#Make list for ggVennDiagram
+LDPE_glass_TWW_comparison <- list(taxa_LDPE_TWW_chr, taxa_glass_TWW_chr) %>%
+  setNames(c("LDPE", "Glass"))
+
+#Make Venn Diagram - PS vs glass in river water comparison
+ggVennDiagram(LDPE_glass_TWW_comparison) + scale_fill_gradient(low="blue",high = "red")
+```
+
+![](Analysis_files/figure-gfm/venn%20glass%20v%20LDPE%20tww%20all%20times-1.png)<!-- -->
+
+## 8.17 Comparing bacterial community composition between river water glass and HDPE
+
+### 8.17.1 Finding ASVs enriched on HDPE & glass
+
+``` r
+#Combine all river water MP timepoints. To do this, we'll use the dataframes created from the filtered DESeq2 lists above. Note that "all=TRUE" keeps all values from the ASV column, even those that don't match across all dataframes. This way we get a single dataframe containing all unique ASV's that were enriched on MP's compared to river water over all timepoints.
+
+
+#For the PS ASVs - create a column with the filtered deseq dataframe rownames and then filter to contain only ASVs
+taxa_hdpe_CON2_heatmap <- data.frame(df_hdpe_time_deseq_CON2_filt) %>%
+  tibble::rownames_to_column(var = "ASV") %>%
+  select(ASV)
+
+taxa_hdpe_CON6_heatmap <- data.frame(df_hdpe_time_deseq_CON6_filt) %>%
+  tibble::rownames_to_column(var = "ASV") %>%
+  select(ASV)
+
+taxa_hdpe_CON10_heatmap <- data.frame(df_hdpe_time_deseq_CON10_filt) %>%
+  tibble::rownames_to_column(var = "ASV") %>%
+  select(ASV)
+
+#Now combine all river water PS timepoints
+DESeq_sig_taxa_hdpe_CON <- merge(taxa_hdpe_CON2_heatmap, taxa_hdpe_CON6_heatmap, by = "ASV", all=TRUE)
+
+DESeq_sig_taxa_hdpe_CON <- merge(DESeq_sig_taxa_hdpe_CON, taxa_hdpe_CON10_heatmap, by = "ASV", all=TRUE)
+
+
+#For the glass ASVs - create a column with the filtered deseq dataframe rownames and then filter to contain only ASVs
+taxa_glass_CON2_heatmap <- data.frame(df_mp_glass_deseq_CON2_filt) %>%
+  tibble::rownames_to_column(var = "ASV") %>%
+  select(ASV)
+
+taxa_glass_CON6_heatmap <- data.frame(df_mp_glass_deseq_CON6_filt) %>%
+  tibble::rownames_to_column(var = "ASV") %>%
+  select(ASV)
+
+taxa_glass_CON10_heatmap <- data.frame(df_mp_glass_deseq_CON10_filt) %>%
+  tibble::rownames_to_column(var = "ASV") %>%
+  select(ASV)
+
+#Now combine all river water glass timepoints
+DESeq_sig_taxa_glass_CON <- merge(taxa_glass_CON2_heatmap, taxa_glass_CON6_heatmap, by = "ASV", all=TRUE)
+
+DESeq_sig_taxa_glass_CON <- merge(DESeq_sig_taxa_glass_CON, taxa_glass_CON10_heatmap, by = "ASV", all=TRUE)
+
+
+
+#Make each dataframe into a list
+list_hdpe_CON_all <- list(DESeq_sig_taxa_hdpe_CON$ASV)
+list_glass_CON_all <- list(DESeq_sig_taxa_glass_CON$ASV)
+
+#Change to characters
+taxa_hdpe_CON_chr <- as.character(list_hdpe_CON_all[[1]])
+taxa_glass_CON_chr <- as.character(list_glass_CON_all[[1]])
+
+#Make list for ggVennDiagram
+hdpe_glass_CON_comparison <- list(taxa_hdpe_CON_chr, taxa_glass_CON_chr) %>%
+  setNames(c("HDPE", "Glass"))
+
+#Make Venn Diagram - PS vs glass in river water comparison
+ggVennDiagram(hdpe_glass_CON_comparison) + scale_fill_gradient(low="blue",high = "red")
+```
+
+![](Analysis_files/figure-gfm/venn%20glass%20v%20HDPE%20river%20all%20times-1.png)<!-- -->
+
+### 8.17.2 Finding ASVs enriched on HDPE & glass in TWW
+
+``` r
+#Combine all river water MP timepoints. To do this, we'll use the dataframes created from the filtered DESeq2 lists above. Note that "all=TRUE" keeps all values from the ASV column, even those that don't match across all dataframes. This way we get a single dataframe containing all unique ASV's that were enriched on MP's compared to river water over all timepoints.
+
+
+#For the PS ASVs - create a column with the filtered deseq dataframe rownames and then filter to contain only ASVs
+taxa_HDPE_TWW2_heatmap <- data.frame(df_hdpe_time_deseq_TWW2_filt) %>%
+  tibble::rownames_to_column(var = "ASV") %>%
+  select(ASV)
+
+taxa_HDPE_TWW6_heatmap <- data.frame(df_hdpe_time_deseq_TWW6_filt) %>%
+  tibble::rownames_to_column(var = "ASV") %>%
+  select(ASV)
+
+taxa_HDPE_TWW10_heatmap <- data.frame(df_hdpe_time_deseq_TWW10_filt) %>%
+  tibble::rownames_to_column(var = "ASV") %>%
+  select(ASV)
+
+#Now combine all river water PS timepoints
+DESeq_sig_taxa_HDPE_TWW <- merge(taxa_HDPE_TWW2_heatmap, taxa_HDPE_TWW6_heatmap, by = "ASV", all=TRUE)
+
+DESeq_sig_taxa_HDPE_TWW <- merge(DESeq_sig_taxa_HDPE_TWW, taxa_HDPE_TWW10_heatmap, by = "ASV", all=TRUE)
+
+
+#For the glass ASVs - create a column with the filtered deseq dataframe rownames and then filter to contain only ASVs
+taxa_glass_TWW2_heatmap <- data.frame(df_mp_glass_deseq_TWW2_filt) %>%
+  tibble::rownames_to_column(var = "ASV") %>%
+  select(ASV)
+
+taxa_glass_TWW6_heatmap <- data.frame(df_mp_glass_deseq_TWW6_filt) %>%
+  tibble::rownames_to_column(var = "ASV") %>%
+  select(ASV)
+
+taxa_glass_TWW10_heatmap <- data.frame(df_mp_glass_deseq_TWW10_filt) %>%
+  tibble::rownames_to_column(var = "ASV") %>%
+  select(ASV)
+
+#Now combine all TWW glass timepoints
+DESeq_sig_taxa_glass_TWW <- merge(taxa_glass_TWW2_heatmap, taxa_glass_TWW6_heatmap, by = "ASV", all=TRUE)
+
+DESeq_sig_taxa_glass_TWW <- merge(DESeq_sig_taxa_glass_TWW, taxa_glass_TWW10_heatmap, by = "ASV", all=TRUE)
+
+
+
+#Make each dataframe into a list
+list_HDPE_TWW_all <- list(DESeq_sig_taxa_HDPE_TWW$ASV)
+list_glass_TWW_all <- list(DESeq_sig_taxa_glass_TWW$ASV)
+
+#Change to characters
+taxa_HDPE_TWW_chr <- as.character(list_HDPE_TWW_all[[1]])
+taxa_glass_TWW_chr <- as.character(list_glass_TWW_all[[1]])
+
+#Make list for ggVennDiagram
+HDPE_glass_TWW_comparison <- list(taxa_HDPE_TWW_chr, taxa_glass_TWW_chr) %>%
+  setNames(c("HDPE", "Glass"))
+
+#Make Venn Diagram - PS vs glass in river water comparison
+ggVennDiagram(HDPE_glass_TWW_comparison) + scale_fill_gradient(low="blue",high = "red")
+```
+
+![](Analysis_files/figure-gfm/venn%20glass%20v%20HDPE%20tww%20all%20times-1.png)<!-- -->
+
+## 8.18 Comparing bacterial community composition between river water glass and PP
+
+### 8.18.1 Finding ASVs enriched on PP & glass
+
+``` r
+#Combine all river water MP timepoints. To do this, we'll use the dataframes created from the filtered DESeq2 lists above. Note that "all=TRUE" keeps all values from the ASV column, even those that don't match across all dataframes. This way we get a single dataframe containing all unique ASV's that were enriched on MP's compared to river water over all timepoints.
+
+
+#For the PP ASVs - create a column with the filtered deseq dataframe rownames and then filter to contain only ASVs
+taxa_pp_CON2_heatmap <- data.frame(df_pp_time_deseq_CON2_filt) %>%
+  tibble::rownames_to_column(var = "ASV") %>%
+  select(ASV)
+
+taxa_pp_CON6_heatmap <- data.frame(df_pp_time_deseq_CON6_filt) %>%
+  tibble::rownames_to_column(var = "ASV") %>%
+  select(ASV)
+
+taxa_pp_CON10_heatmap <- data.frame(df_pp_time_deseq_CON10_filt) %>%
+  tibble::rownames_to_column(var = "ASV") %>%
+  select(ASV)
+
+#Now combine all river water PS timepoints
+DESeq_sig_taxa_pp_CON <- merge(taxa_pp_CON2_heatmap, taxa_pp_CON6_heatmap, by = "ASV", all=TRUE)
+
+DESeq_sig_taxa_pp_CON <- merge(DESeq_sig_taxa_pp_CON, taxa_pp_CON10_heatmap, by = "ASV", all=TRUE)
+
+
+#For the glass ASVs - create a column with the filtered deseq dataframe rownames and then filter to contain only ASVs
+taxa_glass_CON2_heatmap <- data.frame(df_mp_glass_deseq_CON2_filt) %>%
+  tibble::rownames_to_column(var = "ASV") %>%
+  select(ASV)
+
+taxa_glass_CON6_heatmap <- data.frame(df_mp_glass_deseq_CON6_filt) %>%
+  tibble::rownames_to_column(var = "ASV") %>%
+  select(ASV)
+
+taxa_glass_CON10_heatmap <- data.frame(df_mp_glass_deseq_CON10_filt) %>%
+  tibble::rownames_to_column(var = "ASV") %>%
+  select(ASV)
+
+#Now combine all river water glass timepoints
+DESeq_sig_taxa_glass_CON <- merge(taxa_glass_CON2_heatmap, taxa_glass_CON6_heatmap, by = "ASV", all=TRUE)
+
+DESeq_sig_taxa_glass_CON <- merge(DESeq_sig_taxa_glass_CON, taxa_glass_CON10_heatmap, by = "ASV", all=TRUE)
+
+
+
+#Make each dataframe into a list
+list_pp_CON_all <- list(DESeq_sig_taxa_pp_CON$ASV)
+list_glass_CON_all <- list(DESeq_sig_taxa_glass_CON$ASV)
+
+#Change to characters
+taxa_pp_CON_chr <- as.character(list_pp_CON_all[[1]])
+taxa_glass_CON_chr <- as.character(list_glass_CON_all[[1]])
+
+#Make list for ggVennDiagram
+pp_glass_CON_comparison <- list(taxa_pp_CON_chr, taxa_glass_CON_chr) %>%
+  setNames(c("PP", "Glass"))
+
+#Make Venn Diagram - PP vs glass in river water comparison
+ggVennDiagram(pp_glass_CON_comparison) + scale_fill_gradient(low="blue",high = "red")
+```
+
+![](Analysis_files/figure-gfm/venn%20glass%20v%20PP%20river%20all%20times-1.png)<!-- -->
+
+### 8.18.2 Finding ASVs enriched on PP & glass in TWW
+
+``` r
+#Combine all river water MP timepoints. To do this, we'll use the dataframes created from the filtered DESeq2 lists above. Note that "all=TRUE" keeps all values from the ASV column, even those that don't match across all dataframes. This way we get a single dataframe containing all unique ASV's that were enriched on MP's compared to river water over all timepoints.
+
+
+#For the PP ASVs - create a column with the filtered deseq dataframe rownames and then filter to contain only ASVs
+taxa_PP_TWW2_heatmap <- data.frame(df_pp_time_deseq_TWW2_filt) %>%
+  tibble::rownames_to_column(var = "ASV") %>%
+  select(ASV)
+
+taxa_PP_TWW6_heatmap <- data.frame(df_pp_time_deseq_TWW6_filt) %>%
+  tibble::rownames_to_column(var = "ASV") %>%
+  select(ASV)
+
+taxa_PP_TWW10_heatmap <- data.frame(df_pp_time_deseq_TWW10_filt) %>%
+  tibble::rownames_to_column(var = "ASV") %>%
+  select(ASV)
+
+#Now combine all river water PS timepoints
+DESeq_sig_taxa_PP_TWW <- merge(taxa_PP_TWW2_heatmap, taxa_PP_TWW6_heatmap, by = "ASV", all=TRUE)
+
+DESeq_sig_taxa_PP_TWW <- merge(DESeq_sig_taxa_PP_TWW, taxa_PP_TWW10_heatmap, by = "ASV", all=TRUE)
+
+
+#For the glass ASVs - create a column with the filtered deseq dataframe rownames and then filter to contain only ASVs
+taxa_glass_TWW2_heatmap <- data.frame(df_mp_glass_deseq_TWW2_filt) %>%
+  tibble::rownames_to_column(var = "ASV") %>%
+  select(ASV)
+
+taxa_glass_TWW6_heatmap <- data.frame(df_mp_glass_deseq_TWW6_filt) %>%
+  tibble::rownames_to_column(var = "ASV") %>%
+  select(ASV)
+
+taxa_glass_TWW10_heatmap <- data.frame(df_mp_glass_deseq_TWW10_filt) %>%
+  tibble::rownames_to_column(var = "ASV") %>%
+  select(ASV)
+
+#Now combine all TWW glass timepoints
+DESeq_sig_taxa_glass_TWW <- merge(taxa_glass_TWW2_heatmap, taxa_glass_TWW6_heatmap, by = "ASV", all=TRUE)
+
+DESeq_sig_taxa_glass_TWW <- merge(DESeq_sig_taxa_glass_TWW, taxa_glass_TWW10_heatmap, by = "ASV", all=TRUE)
+
+
+
+#Make each dataframe into a list
+list_PP_TWW_all <- list(DESeq_sig_taxa_PP_TWW$ASV)
+list_glass_TWW_all <- list(DESeq_sig_taxa_glass_TWW$ASV)
+
+#Change to characters
+taxa_PP_TWW_chr <- as.character(list_PP_TWW_all[[1]])
+taxa_glass_TWW_chr <- as.character(list_glass_TWW_all[[1]])
+
+#Make list for ggVennDiagram
+PP_glass_TWW_comparison <- list(taxa_PP_TWW_chr, taxa_glass_TWW_chr) %>%
+  setNames(c("PP", "Glass"))
+
+#Make Venn Diagram - PS vs glass in river water comparison
+ggVennDiagram(PP_glass_TWW_comparison) + scale_fill_gradient(low="blue",high = "red")
+```
+
+![](Analysis_files/figure-gfm/venn%20glass%20v%20PP%20tww%20all%20times-1.png)<!-- -->
+
+## 8.19 Comparing bacterial community composition between all river water polymer types
+
+``` r
+#Make Venn Diagram - glass and MP polymers in river water comparison; using the character lists of the comiled timepoint ASVs above for each polymer type
+CON_MP_polymer_comparisons <- list(taxa_PS_CON_chr, taxa_pp_CON_chr, taxa_ldpe_CON_chr, taxa_hdpe_CON_chr, taxa_glass_CON_chr) %>%
+  setNames(c("PS", "PP", "LDPE", "HDPE", "Glass"))
+
+ggVennDiagram(CON_MP_polymer_comparisons, label_alpha = 0) + scale_fill_gradient(low="blue",high = "red") +
+  theme(legend.position = "bottom", legend.direction = "horizontal")
+```
+
+![](Analysis_files/figure-gfm/venn%20polymer%20type%20comparison-1.png)<!-- -->
+
+## 8.20 Comparing bacterial community composition between all TWW polymer types
+
+``` r
+#Make Venn Diagram - glass and MP polymers in river water comparison; using the character lists of the comiled timepoint ASVs above for each polymer type
+TWW_MP_polymer_comparisons <- list(taxa_PS_TWW_chr, taxa_PP_TWW_chr, taxa_LDPE_TWW_chr, taxa_HDPE_TWW_chr, taxa_glass_TWW_chr) %>%
+  setNames(c("PS", "PP", "LDPE", "HDPE", "Glass"))
+
+ggVennDiagram(TWW_MP_polymer_comparisons, label_alpha = 0) + scale_fill_gradient(low="blue",high = "red") +
+  theme(legend.position = "bottom", legend.direction = "horizontal")
+```
+
+![](Analysis_files/figure-gfm/venn%20polymer%20type%20comparison%20tww-1.png)<!-- -->
+
+# 9 Alpha diversity - filtered dataset
 
 ## 9.1 Preparing the data
 
-Before we can create NMDS plots, we need to transform the filtered
-phyloseq object from counts to relative abundance and then make the
-variables factors.
+Before we can re-run the alpha diversity statistics and create NMDS
+plots, we need to transform the filtered phyloseq object from counts to
+relative abundance.
 
 ``` r
 #Transform to relative abundance. Save as new object.
 MPfiltRA = transform_sample_counts(ps.taxa.all.filt, function(x){x / sum(x)})
 ```
 
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
+## 9.2 Calculate Shannon Diversity per Sample
 
 ``` r
-#Order factors
-sample_data(MPfiltRA)$effluent <- factor(sample_data(MPfiltRA)$effluent, 
+#Calculating richness - Shannon diversity in a new dataframe
+filtrichness <- data.frame(estimate_richness(MPfiltRA, measures = c("Shannon")))
+filtrichness <- setNames(cbind(rownames(filtrichness), filtrichness, row.names = NULL), 
+                     c("sample-id", "Shannon"))
+
+#Add the sample metadata to the dataframe
+filts <- data.frame(sample_data(MPfiltRA))
+filts <- setNames(cbind(rownames(filts), filts, row.names = NULL), 
+              c("sample-id", "effluent", "week", "polymer_type", 
+                "bead_diameter", "Channel", "sample_type", "particle_type",
+                "particle_effluent", "particle_effluent_time", "polymer_effluent_time"))
+
+filtalphadiv <- merge(filts, filtrichness, by = "sample-id")
+
+#Shows the calculated indices
+knitr::kable(head(filtalphadiv)) %>% 
+  kableExtra::kable_styling("striped", 
+                            latex_options="scale_down") %>% 
+  kableExtra::scroll_box(width = "100%")
+```
+
+<div
+style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; ">
+
+<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+
+sample-id
+
+</th>
+<th style="text-align:left;">
+
+effluent
+
+</th>
+<th style="text-align:left;">
+
+week
+
+</th>
+<th style="text-align:left;">
+
+polymer_type
+
+</th>
+<th style="text-align:right;">
+
+bead_diameter
+
+</th>
+<th style="text-align:left;">
+
+Channel
+
+</th>
+<th style="text-align:left;">
+
+sample_type
+
+</th>
+<th style="text-align:left;">
+
+particle_type
+
+</th>
+<th style="text-align:left;">
+
+particle_effluent
+
+</th>
+<th style="text-align:left;">
+
+particle_effluent_time
+
+</th>
+<th style="text-align:left;">
+
+polymer_effluent_time
+
+</th>
+<th style="text-align:right;">
+
+Shannon
+
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-100
+
+</td>
+<td style="text-align:left;">
+
+CON
+
+</td>
+<td style="text-align:left;">
+
+10
+
+</td>
+<td style="text-align:left;">
+
+HDPE
+
+</td>
+<td style="text-align:right;">
+
+3.175
+
+</td>
+<td style="text-align:left;">
+
+7.1
+
+</td>
+<td style="text-align:left;">
+
+Particle
+
+</td>
+<td style="text-align:left;">
+
+MP
+
+</td>
+<td style="text-align:left;">
+
+MP_CON
+
+</td>
+<td style="text-align:left;">
+
+MP_CON_10
+
+</td>
+<td style="text-align:left;">
+
+HDPE_CON_10
+
+</td>
+<td style="text-align:right;">
+
+5.207312
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-101
+
+</td>
+<td style="text-align:left;">
+
+TWW
+
+</td>
+<td style="text-align:left;">
+
+10
+
+</td>
+<td style="text-align:left;">
+
+HDPE
+
+</td>
+<td style="text-align:right;">
+
+3.175
+
+</td>
+<td style="text-align:left;">
+
+5.2
+
+</td>
+<td style="text-align:left;">
+
+Particle
+
+</td>
+<td style="text-align:left;">
+
+MP
+
+</td>
+<td style="text-align:left;">
+
+MP_TWW
+
+</td>
+<td style="text-align:left;">
+
+MP_TWW_10
+
+</td>
+<td style="text-align:left;">
+
+HDPE_TWW_10
+
+</td>
+<td style="text-align:right;">
+
+5.029906
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-102
+
+</td>
+<td style="text-align:left;">
+
+CON
+
+</td>
+<td style="text-align:left;">
+
+10
+
+</td>
+<td style="text-align:left;">
+
+LDPE
+
+</td>
+<td style="text-align:right;">
+
+3.175
+
+</td>
+<td style="text-align:left;">
+
+7.2
+
+</td>
+<td style="text-align:left;">
+
+Particle
+
+</td>
+<td style="text-align:left;">
+
+MP
+
+</td>
+<td style="text-align:left;">
+
+MP_CON
+
+</td>
+<td style="text-align:left;">
+
+MP_CON_10
+
+</td>
+<td style="text-align:left;">
+
+LDPE_CON_10
+
+</td>
+<td style="text-align:right;">
+
+4.862816
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-103
+
+</td>
+<td style="text-align:left;">
+
+TWW
+
+</td>
+<td style="text-align:left;">
+
+10
+
+</td>
+<td style="text-align:left;">
+
+PP
+
+</td>
+<td style="text-align:right;">
+
+3.175
+
+</td>
+<td style="text-align:left;">
+
+5.2
+
+</td>
+<td style="text-align:left;">
+
+Particle
+
+</td>
+<td style="text-align:left;">
+
+MP
+
+</td>
+<td style="text-align:left;">
+
+MP_TWW
+
+</td>
+<td style="text-align:left;">
+
+MP_TWW_10
+
+</td>
+<td style="text-align:left;">
+
+PP_TWW_10
+
+</td>
+<td style="text-align:right;">
+
+4.983486
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-104
+
+</td>
+<td style="text-align:left;">
+
+CON
+
+</td>
+<td style="text-align:left;">
+
+10
+
+</td>
+<td style="text-align:left;">
+
+PP
+
+</td>
+<td style="text-align:right;">
+
+3.175
+
+</td>
+<td style="text-align:left;">
+
+7.2
+
+</td>
+<td style="text-align:left;">
+
+Particle
+
+</td>
+<td style="text-align:left;">
+
+MP
+
+</td>
+<td style="text-align:left;">
+
+MP_CON
+
+</td>
+<td style="text-align:left;">
+
+MP_CON_10
+
+</td>
+<td style="text-align:left;">
+
+PP_CON_10
+
+</td>
+<td style="text-align:right;">
+
+4.960102
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+ESF21MP-105
+
+</td>
+<td style="text-align:left;">
+
+TWW
+
+</td>
+<td style="text-align:left;">
+
+10
+
+</td>
+<td style="text-align:left;">
+
+HDPE
+
+</td>
+<td style="text-align:right;">
+
+3.175
+
+</td>
+<td style="text-align:left;">
+
+8.1
+
+</td>
+<td style="text-align:left;">
+
+Particle
+
+</td>
+<td style="text-align:left;">
+
+MP
+
+</td>
+<td style="text-align:left;">
+
+MP_TWW
+
+</td>
+<td style="text-align:left;">
+
+MP_TWW_10
+
+</td>
+<td style="text-align:left;">
+
+HDPE_TWW_10
+
+</td>
+<td style="text-align:right;">
+
+3.759600
+
+</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+## 9.3 Create Alpha Diversity Boxplots
+
+### 9.3.1 Comparison: particles vs. water (Fig. S1)
+
+``` r
+#Relabel variables
+filtalphadiv$effluent <- factor(filtalphadiv$effluent, 
                                            levels = c("CON", "TWW"),
-                                           labels = c("CON", "TWW"))
+                                           labels = c("River", "TWW"))
+
+#Plot
+filt_alpha_particlesvwater <- ggplot(data=filtalphadiv, aes(x=sample_type, y=Shannon), alpha=0.1) + 
+  geom_boxplot(aes(fill=sample_type)) +
+  geom_point(position=position_dodge(width=0.75),aes(group=sample_type)) +
+  coord_cartesian(ylim = c(2, 6)) +
+  facet_wrap(~effluent, scale="free") + labs(fill = "Sample Type") +
+  theme(legend.position="right",
+        panel.border = element_rect(colour = "black", fill = NA, size = 0.5), 
+        panel.background = element_blank(), axis.title.x = element_blank())
+
+print(filt_alpha_particlesvwater)
+```
+
+![](Analysis_files/figure-gfm/filt%20boxplot1-1.png)<!-- -->
+
+``` r
+#Save as an svg file
+ggsave(filename="FigS1_Alphadiv_particlesvwater.svg", plot=filt_alpha_particlesvwater, width=6, height=4, device=svg)
+```
+
+### 9.3.2 Comparison: sample types (MP, glass, water) between treatments (Fig. S2)
+
+``` r
+#Plot
+filt_alpha_particleseffluent <- ggplot(data=filtalphadiv, aes(x=effluent, y=Shannon), alpha=0.1) + 
+  geom_boxplot(aes(fill=effluent)) +
+  geom_point(position=position_dodge(width=0.75),aes(group=effluent)) +
+  coord_cartesian(ylim = c(2, 6)) +
+  facet_wrap(~particle_type, scale="free") + labs(fill = "Treatment") +
+  theme(legend.position="right",
+        panel.border = element_rect(colour = "black", fill = NA, size = 0.5), 
+        panel.background = element_blank(), axis.title.x = element_blank())
+
+print(filt_alpha_particleseffluent)
+```
+
+![](Analysis_files/figure-gfm/filt%20boxplot2-1.png)<!-- -->
+
+``` r
+#Save as an svg file
+ggsave(filename="FigS2_Alphadiv_sampletype.svg", plot=filt_alpha_particleseffluent, width=7, height=3.5, device=svg)
+```
+
+### 9.3.3 Comparison: polymer types by treatment (Fig. S3)
+
+``` r
+#Plot
+filt_alpha_polymereffluent <- ggplot(data=filtalphadiv, aes(x=polymer_type, y=Shannon), alpha=0.1) + 
+  geom_boxplot(aes(fill=polymer_type)) +
+  geom_point(position=position_dodge(width=0.75),aes(group=polymer_type)) +
+  coord_cartesian(ylim = c(2, 6)) +
+  facet_wrap(~effluent, scale="free") + labs(fill = "Polymer Type") +
+  theme(legend.position="right",
+        panel.border = element_rect(colour = "black", fill = NA, size = 0.5), 
+        panel.background = element_blank(), axis.title.x = element_blank())
+
+print(filt_alpha_polymereffluent)
+```
+
+![](Analysis_files/figure-gfm/filt%20boxplot3-1.png)<!-- -->
+
+``` r
+#Save as an svg file
+ggsave(filename="FigS3_Alphadiv_polymertype.svg", plot=filt_alpha_polymereffluent, width=7, height=4.5, device=svg)
+```
+
+### 9.3.4 Comparison: particle_type (glass vs. MPs) over time (Fig. S4)
+
+``` r
+#Remove Water from particle_type
+filt.alphadiv.particle <- dplyr::filter(filtalphadiv, particle_type != "Water")
+sample_data(filt.alphadiv.particle)
+```
+
+    ## Sample Data:        [ 119 samples by 12 sample variables ]:
+    ##          sample.id effluent week  polymer_type bead_diameter Channel sample_type
+    ##          <chr>     <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
+    ##  1 sa1   ESF21MP-… River    10    HDPE                  3.18 7.1     Particle   
+    ##  2 sa2   ESF21MP-… TWW      10    HDPE                  3.18 5.2     Particle   
+    ##  3 sa3   ESF21MP-… River    10    LDPE                  3.18 7.2     Particle   
+    ##  4 sa4   ESF21MP-… TWW      10    PP                    3.18 5.2     Particle   
+    ##  5 sa5   ESF21MP-… River    10    PP                    3.18 7.2     Particle   
+    ##  6 sa6   ESF21MP-… TWW      10    HDPE                  3.18 8.1     Particle   
+    ##  7 sa7   ESF21MP-… River    10    LDPE                  3.18 7.1     Particle   
+    ##  8 sa8   ESF21MP-… TWW      10    HDPE                  3.18 5.1     Particle   
+    ##  9 sa9   ESF21MP-… River    10    LDPE                  3.18 8.2     Particle   
+    ## 10 sa10  ESF21MP-… River    10    PP                    3.18 8.2     Particle   
+    ## # ℹ 109 more samples
+    ## # ℹ 5 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>, Shannon <dbl>
+
+``` r
+#Plot
+filt_alpha_glassvMP <- ggplot(data=filt.alphadiv.particle, aes(x=week, y=Shannon), alpha=0.1) + 
+  geom_boxplot(aes(fill=particle_type)) +
+  geom_point(position=position_dodge(width=0.75),aes(group=particle_type)) +
+  coord_cartesian(ylim = c(2, 6)) +
+  facet_wrap(~effluent, scale="free") + labs(fill = "Sample Type", x ="Week") +
+  theme(legend.position="right",
+        panel.border = element_rect(colour = "black", fill = NA, size = 0.5), 
+        panel.background = element_blank())
+
+print(filt_alpha_glassvMP)
+```
+
+![](Analysis_files/figure-gfm/filt%20boxplot4-1.png)<!-- -->
+
+``` r
+#Save as an svg file
+ggsave(filename="FigS4_Alphadiv_particletype.svg", plot=filt_alpha_glassvMP, width=6, height=4, device=svg)
+```
+
+### 9.3.5 Comparison: polymer types over time
+
+``` r
+#Plot
+filt_alpha_polymertime <- ggplot(data=filtalphadiv, aes(x=week, y=Shannon), alpha=0.1) + 
+geom_boxplot(aes(fill=polymer_type)) +
+  geom_point(position=position_dodge(width=0.75),aes(group=polymer_type)) +
+  coord_cartesian(ylim = c(2, 6)) +
+  facet_wrap(~effluent, scale="free") + labs(fill = "Polymer Type", x ="Week") +
+  theme(legend.position="right",
+        panel.border = element_rect(colour = "black", fill = NA, size = 0.5), 
+        panel.background = element_blank())
+
+print(filt_alpha_polymertime)
+```
+
+![](Analysis_files/figure-gfm/filt%20boxplot5-1.png)<!-- -->
+
+# 10 Alpha diversity statistics - filtered dataset
+
+``` r
+#Wilcoxon test, where Shannon index is the variable that we are comparing
+#Wilcoxon pairwise test is a non-parametric alternative to paired t-test
+
+#Subset data by water source
+filt.mp.con.shannon <- subset(filtalphadiv, effluent == "River")
+filt.mp.tww.shannon <- subset(filtalphadiv, effluent == "TWW")
+
+#Subset by particle_type; keep glass and MP only
+filt.particle.con.shannon <- subset(filt.mp.con.shannon, particle_type != "Water")
+filt.particle.tww.shannon <- subset(filt.mp.tww.shannon, particle_type != "Water")
+
+#Subset by particle type - microplastics only (particle_type = MP)
+filt.mp.only.shannon <- subset(filtalphadiv, particle_type == "MP")
+
+#Subset MP only dataframe by water source
+filt.mp.only.con.shannon <- subset(filt.mp.only.shannon, effluent == "River")
+filt.mp.only.tww.shannon <- subset(filt.mp.only.shannon, effluent == "TWW")
+
+
+#Test for differences between particles and the surrounding water; separated by water type
+filt_wilcoxon_shannon_particle_con <- wilcox.test(Shannon ~ sample_type, data = filt.mp.con.shannon)
+filt_wilcoxon_shannon_particle_con
+```
+
+    ## 
+    ##  Wilcoxon rank sum test with continuity correction
+    ## 
+    ## data:  Shannon by sample_type
+    ## W = 771, p-value = 0.0001132
+    ## alternative hypothesis: true location shift is not equal to 0
+
+``` r
+#Wilcoxon rank sum test with continuity correction
+#data:  Shannon by sample_type
+#W = 771, p-value = 0.0001132
+#alternative hypothesis: true location shift is not equal to 0
+
+filt_wilcoxon_shannon_particle_tww <- wilcox.test(Shannon ~ sample_type, data = filt.mp.tww.shannon)
+filt_wilcoxon_shannon_particle_tww
+```
+
+    ## 
+    ##  Wilcoxon rank sum test with continuity correction
+    ## 
+    ## data:  Shannon by sample_type
+    ## W = 803, p-value = 3.973e-05
+    ## alternative hypothesis: true location shift is not equal to 0
+
+``` r
+#Wilcoxon rank sum test with continuity correction
+#data:  Shannon by sample_type
+#W = 803, p-value = 3.973e-05
+#alternative hypothesis: true location shift is not equal to 0
+
+
+
+#Test for differences in diversity between MP and glass; separated by water type
+filt_wilcoxon_shannon_glass_v_mp_con <- wilcox.test(Shannon ~ particle_type, data = filt.particle.con.shannon)
+filt_wilcoxon_shannon_glass_v_mp_con
+```
+
+    ## 
+    ##  Wilcoxon rank sum exact test
+    ## 
+    ## data:  Shannon by particle_type
+    ## W = 280, p-value = 0.9778
+    ## alternative hypothesis: true location shift is not equal to 0
+
+``` r
+#Wilcoxon rank sum exact test
+#data:  Shannon by particle_type
+#W = 280, p-value = 0.9778
+#alternative hypothesis: true location shift is not equal to 0
+
+filt_wilcoxon_shannon_glass_v_mp_tww <- wilcox.test(Shannon ~ particle_type, data = filt.particle.tww.shannon)
+filt_wilcoxon_shannon_glass_v_mp_tww
+```
+
+    ## 
+    ##  Wilcoxon rank sum exact test
+    ## 
+    ## data:  Shannon by particle_type
+    ## W = 366, p-value = 0.2854
+    ## alternative hypothesis: true location shift is not equal to 0
+
+``` r
+#Wilcoxon rank sum exact test
+#data:  Shannon by particle_type
+#W = 366, p-value = 0.2854
+#alternative hypothesis: true location shift is not equal to 0
+
+
+
+
+#Test for differences in MP alpha diversity between CON and TWW (does not include glass or water)
+filt_wilcoxon_shannon_effluent <- wilcox.test(Shannon ~ effluent, data = filt.mp.only.shannon)
+filt_wilcoxon_shannon_effluent
+```
+
+    ## 
+    ##  Wilcoxon rank sum exact test
+    ## 
+    ## data:  Shannon by effluent
+    ## W = 823, p-value = 0.03316
+    ## alternative hypothesis: true location shift is not equal to 0
+
+``` r
+#Wilcoxon rank sum exact test
+
+#data:  Shannon by effluent
+#W = 823, p-value = 0.03316
+#alternative hypothesis: true location shift is not equal to 0
+
+
+
+#Wilcoxon pairwise test - CON polymer type
+filt.con.shan.wil <- pairwise.wilcox.test(filt.mp.con.shannon$Shannon, filt.mp.con.shannon$polymer_type, p.adjust.method="fdr", paired=FALSE) 
+filt.con.shan.wil
+```
+
+    ## 
+    ##  Pairwise comparisons using Wilcoxon rank sum exact test 
+    ## 
+    ## data:  filt.mp.con.shannon$Shannon and filt.mp.con.shannon$polymer_type 
+    ## 
+    ##       Glass  HDPE   LDPE   PP     PS    
+    ## HDPE  0.8801 -      -      -      -     
+    ## LDPE  0.8801 0.8801 -      -      -     
+    ## PP    0.5789 0.5176 0.5176 -      -     
+    ## PS    0.8801 0.8801 0.8801 0.5392 -     
+    ## Water 0.0041 0.0041 0.0041 0.1778 0.0857
+    ## 
+    ## P value adjustment method: fdr
+
+``` r
+#Convert output to dataframe
+filt.con.shan.wil <- as.data.frame(filt.con.shan.wil$p.value)
+
+#Create table of p-values
+knitr::kable(filt.con.shan.wil) %>% 
+  kableExtra::kable_styling("striped", 
+                            latex_options="scale_down") %>% 
+  kableExtra::scroll_box(width = "100%")
+```
+
+<div
+style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; ">
+
+<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+
+Glass
+
+</th>
+<th style="text-align:right;">
+
+HDPE
+
+</th>
+<th style="text-align:right;">
+
+LDPE
+
+</th>
+<th style="text-align:right;">
+
+PP
+
+</th>
+<th style="text-align:right;">
+
+PS
+
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+
+HDPE
+
+</td>
+<td style="text-align:right;">
+
+0.8801119
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+LDPE
+
+</td>
+<td style="text-align:right;">
+
+0.8801119
+
+</td>
+<td style="text-align:right;">
+
+0.8801119
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+PP
+
+</td>
+<td style="text-align:right;">
+
+0.5789299
+
+</td>
+<td style="text-align:right;">
+
+0.5175510
+
+</td>
+<td style="text-align:right;">
+
+0.5175510
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+PS
+
+</td>
+<td style="text-align:right;">
+
+0.8801119
+
+</td>
+<td style="text-align:right;">
+
+0.8801119
+
+</td>
+<td style="text-align:right;">
+
+0.8801119
+
+</td>
+<td style="text-align:right;">
+
+0.5391507
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:right;">
+
+0.0041250
+
+</td>
+<td style="text-align:right;">
+
+0.0040525
+
+</td>
+<td style="text-align:right;">
+
+0.0040525
+
+</td>
+<td style="text-align:right;">
+
+0.1777586
+
+</td>
+<td style="text-align:right;">
+
+0.0856875
+
+</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+``` r
+#Wilcoxon pairwise test - TWW polymer type
+filt.tww.shan.wil <- pairwise.wilcox.test(filt.mp.tww.shannon$Shannon, filt.mp.tww.shannon$polymer_type, p.adjust.method="fdr", paired=FALSE) 
+filt.tww.shan.wil
+```
+
+    ## 
+    ##  Pairwise comparisons using Wilcoxon rank sum exact test 
+    ## 
+    ## data:  filt.mp.tww.shannon$Shannon and filt.mp.tww.shannon$polymer_type 
+    ## 
+    ##       Glass  HDPE   LDPE   PP      PS    
+    ## HDPE  0.9323 -      -      -       -     
+    ## LDPE  0.3341 0.6039 -      -       -     
+    ## PP    0.1066 0.3649 0.6422 -       -     
+    ## PS    0.3341 0.5210 0.9323 0.7266  -     
+    ## Water 0.1120 0.2260 0.0011 1.9e-05 0.0011
+    ## 
+    ## P value adjustment method: fdr
+
+``` r
+#Convert output to dataframe
+filt.tww.shan.wil <- as.data.frame(filt.tww.shan.wil$p.value)
+
+#Create table of p-values
+knitr::kable(filt.tww.shan.wil) %>% 
+  kableExtra::kable_styling("striped", 
+                            latex_options="scale_down") %>% 
+  kableExtra::scroll_box(width = "100%")
+```
+
+<div
+style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; ">
+
+<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+
+Glass
+
+</th>
+<th style="text-align:right;">
+
+HDPE
+
+</th>
+<th style="text-align:right;">
+
+LDPE
+
+</th>
+<th style="text-align:right;">
+
+PP
+
+</th>
+<th style="text-align:right;">
+
+PS
+
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+
+HDPE
+
+</td>
+<td style="text-align:right;">
+
+0.9323005
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+LDPE
+
+</td>
+<td style="text-align:right;">
+
+0.3340913
+
+</td>
+<td style="text-align:right;">
+
+0.6038634
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+PP
+
+</td>
+<td style="text-align:right;">
+
+0.1065776
+
+</td>
+<td style="text-align:right;">
+
+0.3648680
+
+</td>
+<td style="text-align:right;">
+
+0.6421532
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+PS
+
+</td>
+<td style="text-align:right;">
+
+0.3340913
+
+</td>
+<td style="text-align:right;">
+
+0.5210369
+
+</td>
+<td style="text-align:right;">
+
+0.9323005
+
+</td>
+<td style="text-align:right;">
+
+0.7266064
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+Water
+
+</td>
+<td style="text-align:right;">
+
+0.1120150
+
+</td>
+<td style="text-align:right;">
+
+0.2260289
+
+</td>
+<td style="text-align:right;">
+
+0.0010824
+
+</td>
+<td style="text-align:right;">
+
+0.0000187
+
+</td>
+<td style="text-align:right;">
+
+0.0010824
+
+</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+``` r
+#Test for differences in MP alpha diversity over time (MPs only, does not include glass or water, separated by water source)
+
+#Wilcoxon pairwise test - CON over time
+filt.con.shan.wil.time <- pairwise.wilcox.test(filt.mp.only.con.shannon$Shannon, filt.mp.only.con.shannon$week, p.adjust.method="fdr", paired=FALSE) 
+filt.con.shan.wil.time
+```
+
+    ## 
+    ##  Pairwise comparisons using Wilcoxon rank sum exact test 
+    ## 
+    ## data:  filt.mp.only.con.shannon$Shannon and filt.mp.only.con.shannon$week 
+    ## 
+    ##    2     6      
+    ## 6  7e-05 -      
+    ## 10 1e-08 0.00031
+    ## 
+    ## P value adjustment method: fdr
+
+``` r
+#Convert output to dataframe
+filt.con.shan.wil.time <- as.data.frame(filt.con.shan.wil.time$p.value)
+
+#Create table of p-values
+knitr::kable(filt.con.shan.wil.time) %>% 
+  kableExtra::kable_styling("striped", 
+                            latex_options="scale_down") %>% 
+  kableExtra::scroll_box(width = "100%")
+```
+
+<div
+style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; ">
+
+<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+
+2
+
+</th>
+<th style="text-align:right;">
+
+6
+
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+
+6
+
+</td>
+<td style="text-align:right;">
+
+7.02e-05
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+10
+
+</td>
+<td style="text-align:right;">
+
+0.00e+00
+
+</td>
+<td style="text-align:right;">
+
+0.0003062
+
+</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+``` r
+#Wilcoxon pairwise test - TWW over time
+filt.tww.shan.wil.time <- pairwise.wilcox.test(filt.mp.only.tww.shannon$Shannon, filt.mp.only.tww.shannon$week, p.adjust.method="fdr", paired=FALSE) 
+filt.tww.shan.wil.time
+```
+
+    ## 
+    ##  Pairwise comparisons using Wilcoxon rank sum exact test 
+    ## 
+    ## data:  filt.mp.only.tww.shannon$Shannon and filt.mp.only.tww.shannon$week 
+    ## 
+    ##    2       6      
+    ## 6  0.00022 -      
+    ## 10 0.00115 0.16274
+    ## 
+    ## P value adjustment method: fdr
+
+``` r
+#Convert output to dataframe
+filt.tww.shan.wil.time <- as.data.frame(filt.tww.shan.wil.time$p.value)
+
+#Create table of p-values
+knitr::kable(filt.tww.shan.wil.time) %>% 
+  kableExtra::kable_styling("striped", 
+                            latex_options="scale_down") %>% 
+  kableExtra::scroll_box(width = "100%")
+```
+
+<div
+style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; ">
+
+<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+
+2
+
+</th>
+<th style="text-align:right;">
+
+6
+
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+
+6
+
+</td>
+<td style="text-align:right;">
+
+0.0002201
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+10
+
+</td>
+<td style="text-align:right;">
+
+0.0011550
+
+</td>
+<td style="text-align:right;">
+
+0.1627404
+
+</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+# 11 NMDS plots - filtered dataset
+
+The NMDS analyses completed above were run on the full phyloseq object,
+which contained all ASV’s, including those with very low abundance and
+minimal presence in the samples. Now we’ll re-run the NMDS analyses on
+the filtered phyloseq object that we imported into DESeq2.
+
+## 11.1 Choose colors
+
+``` r
+plot.colors <- c("steelblue2","purple4","darkorange","firebrick","springgreen4", "gold", "darkblue", "darkred", "steelblue", "yellowgreen","turquoise4", "orange","indianred","darkslategrey", "lightblue","darkgreen","mediumaquamarine","gray48","mediumorchid1", "#5F7FC7","#DA5724", "#508578", "#CBD588","#CD9BCD","#AD6F3B", "#673770","#D14285", "#652926", "#C84248", "#8569D5", "#5E738F","#D1A33D","#8A7C64", "#599861","dodgerblue","darkmagenta", "forestgreen","steelblue1", "cyan","mediumorchid3", "cadetblue3", "yellow")
+```
+
+## 11.2 Label variables
+
+``` r
+#Create a new phyloseq object so that we can relabel variables
+MPfiltRANMDS <- MPfiltRA
+
+#Order factors
+sample_data(MPfiltRANMDS)$effluent <- factor(sample_data(MPfiltRANMDS)$effluent, 
+               levels = c("CON", "TWW"),
+               labels = c("River", "TWW"))
+```
+
+    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
+
+    ## Also defined by 'tidytree'
+
+    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
+
+    ## Also defined by 'tidytree'
+
+    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
+
+    ## Also defined by 'tidytree'
+
+    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
+
+    ## Also defined by 'tidytree'
+
+``` r
+sample_data(MPfiltRANMDS)$polymer_type <- factor(sample_data(MPfiltRANMDS)$polymer_type, 
+               levels = c("Glass", "HDPE", "LDPE", "PP", "PS", "Water"),
+               labels = c("Glass", "HDPE", "LDPE", "PP", "PS", "Water"))
 ```
 
     ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
@@ -15158,9 +19283,9 @@ sample_data(MPfiltRA)$effluent <- factor(sample_data(MPfiltRA)$effluent,
     ## Also defined by 'tidytree'
 
 ``` r
-sample_data(MPfiltRA)$polymer_type <- factor(sample_data(MPfiltRA)$polymer_type, 
-                        levels = c("Glass", "HDPE", "LDPE", "PP", "PS", "Water"),
-                        labels = c("Glass", "HDPE", "LDPE", "PP", "PS", "Water"))
+sample_data(MPfiltRANMDS)$week <- factor(sample_data(MPfiltRANMDS)$week, 
+               levels = c("0", "2", "6", "10"),
+               labels = c("0", "2", "6", "10"))
 ```
 
     ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
@@ -15179,9 +19304,9 @@ sample_data(MPfiltRA)$polymer_type <- factor(sample_data(MPfiltRA)$polymer_type,
     ## Also defined by 'tidytree'
 
 ``` r
-sample_data(MPfiltRA)$week <- factor(sample_data(MPfiltRA)$week, 
-                                       levels = c("0", "2", "6", "10"),
-                                       labels = c("0", "2", "6", "10"))
+sample_data(MPfiltRANMDS)$sample_type <- factor(sample_data(MPfiltRANMDS)$sample_type, 
+               levels = c("Particle", "Water"),
+               labels = c("Particle", "Water"))
 ```
 
     ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
@@ -15200,9 +19325,9 @@ sample_data(MPfiltRA)$week <- factor(sample_data(MPfiltRA)$week,
     ## Also defined by 'tidytree'
 
 ``` r
-sample_data(MPfiltRA)$sample_type <- factor(sample_data(MPfiltRA)$sample_type, 
-                                              levels = c("Particle", "water"),
-                                              labels = c("Particle", "Water"))
+sample_data(MPfiltRANMDS)$particle_type <- factor(sample_data(MPfiltRANMDS)$particle_type, 
+               levels = c("MP", "Glass", "Water"),
+               labels = c("MP", "Glass", "Water"))
 ```
 
     ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
@@ -15220,35 +19345,14 @@ sample_data(MPfiltRA)$sample_type <- factor(sample_data(MPfiltRA)$sample_type,
 
     ## Also defined by 'tidytree'
 
-``` r
-sample_data(MPfiltRA)$particle_type <- factor(sample_data(MPfiltRA)$particle_type, 
-                                              levels = c("MP", "Glass", "water"),
-                                              labels = c("MP", "Glass", "Water"))
-```
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-## 9.2 NMDS of all data
+## 11.3 NMDS of all data (Fig. 1)
 
 Now we can create an NMDS plot using the filtered data that plots all
 sample variables (i.e., effluent type, polymer type, time point, etc.).
 
 ``` r
 filt.nmds.source.ord <- ordinate(
-  physeq = MPfiltRA, 
+  physeq = MPfiltRANMDS, 
   method = "NMDS", 
   distance = "bray"
 )
@@ -15313,7 +19417,7 @@ filt.nmds.source.ord <- ordinate(
 ``` r
 #Plot, color coding by particle type
 filt.nmds.particle_type <- plot_ordination(
-  physeq = MPfiltRA,
+  physeq = MPfiltRANMDS,
   ordination = filt.nmds.source.ord) + 
   scale_fill_manual(values = plot.colors, "Particle Type") +
   scale_shape_manual(values = c("MP" = 21, "Glass" = 21, "Water" = 21), name = "Particle Type") +
@@ -15337,17 +19441,15 @@ filt.nmds.particle_type <- plot_ordination(
 print(filt.nmds.particle_type)
 ```
 
-    ## Warning: Removed 32 rows containing missing values (`geom_point()`).
-
 ![](Analysis_files/figure-gfm/NMDS%20994-1.png)<!-- -->
 
 ``` r
 #Plot, color coding by water source
 filt.nmds.source <- plot_ordination(
-  physeq = MPfiltRA,
+  physeq = MPfiltRANMDS,
   ordination = filt.nmds.source.ord) + 
   scale_fill_manual(values = plot.colors, "Water Source") +
-  scale_shape_manual(values = c("TWW" = 21, "CON" = 21), name = "Water Source") +
+  scale_shape_manual(values = c("TWW" = 21, "River" = 21), name = "Water Source") +
   geom_point(mapping = aes(fill = factor(effluent), shape = effluent, size = 5)) +
   guides(size=FALSE) +
   guides(shape = guide_legend(override.aes = list(size = 3))) +
@@ -15373,7 +19475,7 @@ print(filt.nmds.source)
 ``` r
 #Plot, color coding by week
 filt.nmds.week <- plot_ordination(
-  physeq = MPfiltRA,
+  physeq = MPfiltRANMDS,
   ordination = filt.nmds.source.ord) + 
   scale_fill_manual(values = plot.colors, "Week") +
   scale_shape_manual(values = c("0" = 21, "2" = 21, "6" = 21, "10" = 21), name = "Week") +
@@ -15402,7 +19504,7 @@ print(filt.nmds.week)
 ``` r
 #Plot, color coding by sample type
 filt.nmds.sample.type <- plot_ordination(
-  physeq = MPfiltRA,
+  physeq = MPfiltRANMDS,
   ordination = filt.nmds.source.ord) + 
   scale_fill_manual(values = plot.colors, "Sample Type") +
   scale_shape_manual(values = c("Particle" = 21, "Water" = 21), name = "Sample Type") +
@@ -15426,8 +19528,6 @@ filt.nmds.sample.type <- plot_ordination(
 print(filt.nmds.sample.type)
 ```
 
-    ## Warning: Removed 32 rows containing missing values (`geom_point()`).
-
 ![](Analysis_files/figure-gfm/NMDS%20994-4.png)<!-- -->
 
 ``` r
@@ -15438,73 +19538,51 @@ filt_all_combo <- (filt.nmds.particle_type | filt.nmds.source)/(filt.nmds.week |
 ggsave(filename="Microplastics_filt_NMDS_all_Bray.svg", plot=filt_all_combo, width=12, height=10, device=svg)
 ```
 
-    ## Warning: Removed 32 rows containing missing values (`geom_point()`).
-    ## Removed 32 rows containing missing values (`geom_point()`).
-
-## 9.3 NMDS of particles (glass and MPs) only, no water, Bray-Curtis dissimilarity
+## 11.4 NMDS of particles (glass and MPs) only, no water, Bray-Curtis dissimilarity
 
 ``` r
 #Subset phyloseq object
-sample_data(MPfiltRA)
+sample_data(MPfiltRANMDS)
 ```
 
-    ## Sample Data:        [ 151 samples by 9 sample variables ]:
+    ## Sample Data:        [ 151 samples by 10 sample variables ]:
     ##                effluent week  polymer_type bead_diameter Channel sample_type
     ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
-    ##  1 ESF21MP-100 CON      10    HDPE                  3.18 7.1     Particle   
+    ##  1 ESF21MP-100 River    10    HDPE                  3.18 7.1     Particle   
     ##  2 ESF21MP-101 TWW      10    HDPE                  3.18 5.2     Particle   
-    ##  3 ESF21MP-102 CON      10    LDPE                  3.18 7.2     Particle   
+    ##  3 ESF21MP-102 River    10    LDPE                  3.18 7.2     Particle   
     ##  4 ESF21MP-103 TWW      10    PP                    3.18 5.2     Particle   
-    ##  5 ESF21MP-104 CON      10    PP                    3.18 7.2     Particle   
+    ##  5 ESF21MP-104 River    10    PP                    3.18 7.2     Particle   
     ##  6 ESF21MP-105 TWW      10    HDPE                  3.18 8.1     Particle   
-    ##  7 ESF21MP-106 CON      10    LDPE                  3.18 7.1     Particle   
+    ##  7 ESF21MP-106 River    10    LDPE                  3.18 7.1     Particle   
     ##  8 ESF21MP-107 TWW      10    HDPE                  3.18 5.1     Particle   
-    ##  9 ESF21MP-108 CON      10    LDPE                  3.18 8.2     Particle   
-    ## 10 ESF21MP-109 CON      10    PP                    3.18 8.2     Particle   
+    ##  9 ESF21MP-108 River    10    LDPE                  3.18 8.2     Particle   
+    ## 10 ESF21MP-109 River    10    PP                    3.18 8.2     Particle   
     ## # ℹ 141 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
-mp.filt.particle <- subset_samples(MPfiltRA, sample_type == "Particle")
+mp.filt.particle <- subset_samples(MPfiltRANMDS, sample_type == "Particle")
+sample_data(MPfiltRANMDS)
 ```
 
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-``` r
-sample_data(MPfiltRA)
-```
-
-    ## Sample Data:        [ 151 samples by 9 sample variables ]:
+    ## Sample Data:        [ 151 samples by 10 sample variables ]:
     ##                effluent week  polymer_type bead_diameter Channel sample_type
     ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
-    ##  1 ESF21MP-100 CON      10    HDPE                  3.18 7.1     Particle   
+    ##  1 ESF21MP-100 River    10    HDPE                  3.18 7.1     Particle   
     ##  2 ESF21MP-101 TWW      10    HDPE                  3.18 5.2     Particle   
-    ##  3 ESF21MP-102 CON      10    LDPE                  3.18 7.2     Particle   
+    ##  3 ESF21MP-102 River    10    LDPE                  3.18 7.2     Particle   
     ##  4 ESF21MP-103 TWW      10    PP                    3.18 5.2     Particle   
-    ##  5 ESF21MP-104 CON      10    PP                    3.18 7.2     Particle   
+    ##  5 ESF21MP-104 River    10    PP                    3.18 7.2     Particle   
     ##  6 ESF21MP-105 TWW      10    HDPE                  3.18 8.1     Particle   
-    ##  7 ESF21MP-106 CON      10    LDPE                  3.18 7.1     Particle   
+    ##  7 ESF21MP-106 River    10    LDPE                  3.18 7.1     Particle   
     ##  8 ESF21MP-107 TWW      10    HDPE                  3.18 5.1     Particle   
-    ##  9 ESF21MP-108 CON      10    LDPE                  3.18 8.2     Particle   
-    ## 10 ESF21MP-109 CON      10    PP                    3.18 8.2     Particle   
+    ##  9 ESF21MP-108 River    10    LDPE                  3.18 8.2     Particle   
+    ## 10 ESF21MP-109 River    10    PP                    3.18 8.2     Particle   
     ## # ℹ 141 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 #Create NMDS
@@ -15579,7 +19657,7 @@ particle.nmds.source.filt <- plot_ordination(
   physeq = mp.filt.particle,
   ordination = mp.filt.particle.nmds.ord) + 
   scale_fill_manual(values = plot.colors, "Water Source") +
-  scale_shape_manual(values = c("CON" = 21, "TWW" = 21), name = "Water Source") +
+  scale_shape_manual(values = c("River" = 21, "TWW" = 21), name = "Water Source") +
   geom_point(mapping = aes(fill = factor(effluent), shape = effluent, size = 5)) +
   guides(size=FALSE) +
   guides(shape = guide_legend(override.aes = list(size = 3))) +
@@ -15669,110 +19747,73 @@ particle_combo_filt <- (particle.nmds.type.filt | particle.nmds.source.filt)/(pa
 ggsave(filename="Microplastics_filt_NMDS_particle.svg", plot=particle_combo_filt, width=12, height=10, device=svg)
 ```
 
-## 9.4 NMDS of particles (glass and MPs) only, no water, at 2 weeks, Bray-Curtis dissimilarity
+## 11.5 NMDS of particles (glass and MPs) only, no water, at 2 weeks, Bray-Curtis dissimilarity
 
 ``` r
 #Subset phyloseq object
-sample_data(MPfiltRA)
+sample_data(MPfiltRANMDS)
 ```
 
-    ## Sample Data:        [ 151 samples by 9 sample variables ]:
+    ## Sample Data:        [ 151 samples by 10 sample variables ]:
     ##                effluent week  polymer_type bead_diameter Channel sample_type
     ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
-    ##  1 ESF21MP-100 CON      10    HDPE                  3.18 7.1     Particle   
+    ##  1 ESF21MP-100 River    10    HDPE                  3.18 7.1     Particle   
     ##  2 ESF21MP-101 TWW      10    HDPE                  3.18 5.2     Particle   
-    ##  3 ESF21MP-102 CON      10    LDPE                  3.18 7.2     Particle   
+    ##  3 ESF21MP-102 River    10    LDPE                  3.18 7.2     Particle   
     ##  4 ESF21MP-103 TWW      10    PP                    3.18 5.2     Particle   
-    ##  5 ESF21MP-104 CON      10    PP                    3.18 7.2     Particle   
+    ##  5 ESF21MP-104 River    10    PP                    3.18 7.2     Particle   
     ##  6 ESF21MP-105 TWW      10    HDPE                  3.18 8.1     Particle   
-    ##  7 ESF21MP-106 CON      10    LDPE                  3.18 7.1     Particle   
+    ##  7 ESF21MP-106 River    10    LDPE                  3.18 7.1     Particle   
     ##  8 ESF21MP-107 TWW      10    HDPE                  3.18 5.1     Particle   
-    ##  9 ESF21MP-108 CON      10    LDPE                  3.18 8.2     Particle   
-    ## 10 ESF21MP-109 CON      10    PP                    3.18 8.2     Particle   
+    ##  9 ESF21MP-108 River    10    LDPE                  3.18 8.2     Particle   
+    ## 10 ESF21MP-109 River    10    PP                    3.18 8.2     Particle   
     ## # ℹ 141 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
-mp.count.particle.filt <- subset_samples(MPfiltRA, sample_type == "Particle")
-```
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-``` r
+mp.count.particle.filt <- subset_samples(MPfiltRANMDS, sample_type == "Particle")
 sample_data(mp.count.particle.filt)
 ```
 
-    ## Sample Data:        [ 119 samples by 9 sample variables ]:
+    ## Sample Data:        [ 119 samples by 10 sample variables ]:
     ##                effluent week  polymer_type bead_diameter Channel sample_type
     ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
-    ##  1 ESF21MP-100 CON      10    HDPE                  3.18 7.1     Particle   
+    ##  1 ESF21MP-100 River    10    HDPE                  3.18 7.1     Particle   
     ##  2 ESF21MP-101 TWW      10    HDPE                  3.18 5.2     Particle   
-    ##  3 ESF21MP-102 CON      10    LDPE                  3.18 7.2     Particle   
+    ##  3 ESF21MP-102 River    10    LDPE                  3.18 7.2     Particle   
     ##  4 ESF21MP-103 TWW      10    PP                    3.18 5.2     Particle   
-    ##  5 ESF21MP-104 CON      10    PP                    3.18 7.2     Particle   
+    ##  5 ESF21MP-104 River    10    PP                    3.18 7.2     Particle   
     ##  6 ESF21MP-105 TWW      10    HDPE                  3.18 8.1     Particle   
-    ##  7 ESF21MP-106 CON      10    LDPE                  3.18 7.1     Particle   
+    ##  7 ESF21MP-106 River    10    LDPE                  3.18 7.1     Particle   
     ##  8 ESF21MP-107 TWW      10    HDPE                  3.18 5.1     Particle   
-    ##  9 ESF21MP-108 CON      10    LDPE                  3.18 8.2     Particle   
-    ## 10 ESF21MP-109 CON      10    PP                    3.18 8.2     Particle   
+    ##  9 ESF21MP-108 River    10    LDPE                  3.18 8.2     Particle   
+    ## 10 ESF21MP-109 River    10    PP                    3.18 8.2     Particle   
     ## # ℹ 109 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 mp.count.particle.2.filt <- subset_samples(mp.count.particle.filt, week == "2")
-```
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-``` r
 sample_data(mp.count.particle.2.filt)
 ```
 
-    ## Sample Data:        [ 40 samples by 9 sample variables ]:
+    ## Sample Data:        [ 40 samples by 10 sample variables ]:
     ##               effluent week  polymer_type bead_diameter Channel sample_type
     ##               <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
     ##  1 ESF21MP-13 TWW      2     Glass                 3.18 5.1     Particle   
-    ##  2 ESF21MP-14 CON      2     PP                    3.18 8.2     Particle   
-    ##  3 ESF21MP-15 CON      2     PS                    3.18 7.2     Particle   
+    ##  2 ESF21MP-14 River    2     PP                    3.18 8.2     Particle   
+    ##  3 ESF21MP-15 River    2     PS                    3.18 7.2     Particle   
     ##  4 ESF21MP-16 TWW      2     LDPE                  3.18 8.1     Particle   
-    ##  5 ESF21MP-17 CON      2     PP                    3.18 7.1     Particle   
+    ##  5 ESF21MP-17 River    2     PP                    3.18 7.1     Particle   
     ##  6 ESF21MP-18 TWW      2     HDPE                  3.18 6.2     Particle   
-    ##  7 ESF21MP-19 CON      2     PP                    3.18 7.2     Particle   
-    ##  8 ESF21MP-20 CON      2     PS                    3.18 8.2     Particle   
+    ##  7 ESF21MP-19 River    2     PP                    3.18 7.2     Particle   
+    ##  8 ESF21MP-20 River    2     PS                    3.18 8.2     Particle   
     ##  9 ESF21MP-21 TWW      2     Glass                 3.18 6.2     Particle   
     ## 10 ESF21MP-22 TWW      2     PP                    3.18 5.2     Particle   
     ## # ℹ 30 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 #Create NMDS
@@ -15857,7 +19898,7 @@ filt.particle.nmds.source.2 <- plot_ordination(
   physeq = mp.count.particle.2.filt,
   ordination = filt.particle.nmds.ord.2) + 
   scale_fill_manual(values = plot.colors, "Water Source") +
-  scale_shape_manual(values = c("CON" = 21, "TWW" = 21), name = "Water Source") +
+  scale_shape_manual(values = c("River" = 21, "TWW" = 21), name = "Water Source") +
   geom_point(mapping = aes(fill = factor(effluent), shape = effluent, size = 5)) +
   guides(size=FALSE) +
   guides(shape = guide_legend(override.aes = list(size = 3))) +
@@ -15913,115 +19954,75 @@ print(filt.particle.nmds.polymer.2)
 ``` r
 #Use patchwork to combine these 4 plots
 filt_particle_combo_2 <- (filt.particle.nmds.type.2 | filt.particle.nmds.source.2)/filt.particle.nmds.polymer.2
-
-#Save as an svg file
-ggsave(filename="Microplastics_filt_NMDS_particle_2w.svg", plot=filt_particle_combo_2, width=12, height=10, device=svg)
 ```
 
-## 9.5 NMDS of particles (glass and MPs) only, no water, at 6 weeks, Bray-Curtis dissimilarity
+## 11.6 NMDS of particles (glass and MPs) only, no water, at 6 weeks, Bray-Curtis dissimilarity
 
 ``` r
 #Subset phyloseq object
-sample_data(MPfiltRA)
+sample_data(MPfiltRANMDS)
 ```
 
-    ## Sample Data:        [ 151 samples by 9 sample variables ]:
+    ## Sample Data:        [ 151 samples by 10 sample variables ]:
     ##                effluent week  polymer_type bead_diameter Channel sample_type
     ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
-    ##  1 ESF21MP-100 CON      10    HDPE                  3.18 7.1     Particle   
+    ##  1 ESF21MP-100 River    10    HDPE                  3.18 7.1     Particle   
     ##  2 ESF21MP-101 TWW      10    HDPE                  3.18 5.2     Particle   
-    ##  3 ESF21MP-102 CON      10    LDPE                  3.18 7.2     Particle   
+    ##  3 ESF21MP-102 River    10    LDPE                  3.18 7.2     Particle   
     ##  4 ESF21MP-103 TWW      10    PP                    3.18 5.2     Particle   
-    ##  5 ESF21MP-104 CON      10    PP                    3.18 7.2     Particle   
+    ##  5 ESF21MP-104 River    10    PP                    3.18 7.2     Particle   
     ##  6 ESF21MP-105 TWW      10    HDPE                  3.18 8.1     Particle   
-    ##  7 ESF21MP-106 CON      10    LDPE                  3.18 7.1     Particle   
+    ##  7 ESF21MP-106 River    10    LDPE                  3.18 7.1     Particle   
     ##  8 ESF21MP-107 TWW      10    HDPE                  3.18 5.1     Particle   
-    ##  9 ESF21MP-108 CON      10    LDPE                  3.18 8.2     Particle   
-    ## 10 ESF21MP-109 CON      10    PP                    3.18 8.2     Particle   
+    ##  9 ESF21MP-108 River    10    LDPE                  3.18 8.2     Particle   
+    ## 10 ESF21MP-109 River    10    PP                    3.18 8.2     Particle   
     ## # ℹ 141 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
-mp.count.particle.filt <- subset_samples(MPfiltRA, sample_type == "Particle")
-```
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-``` r
+mp.count.particle.filt <- subset_samples(MPfiltRANMDS, sample_type == "Particle")
 sample_data(mp.count.particle.filt)
 ```
 
-    ## Sample Data:        [ 119 samples by 9 sample variables ]:
+    ## Sample Data:        [ 119 samples by 10 sample variables ]:
     ##                effluent week  polymer_type bead_diameter Channel sample_type
     ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
-    ##  1 ESF21MP-100 CON      10    HDPE                  3.18 7.1     Particle   
+    ##  1 ESF21MP-100 River    10    HDPE                  3.18 7.1     Particle   
     ##  2 ESF21MP-101 TWW      10    HDPE                  3.18 5.2     Particle   
-    ##  3 ESF21MP-102 CON      10    LDPE                  3.18 7.2     Particle   
+    ##  3 ESF21MP-102 River    10    LDPE                  3.18 7.2     Particle   
     ##  4 ESF21MP-103 TWW      10    PP                    3.18 5.2     Particle   
-    ##  5 ESF21MP-104 CON      10    PP                    3.18 7.2     Particle   
+    ##  5 ESF21MP-104 River    10    PP                    3.18 7.2     Particle   
     ##  6 ESF21MP-105 TWW      10    HDPE                  3.18 8.1     Particle   
-    ##  7 ESF21MP-106 CON      10    LDPE                  3.18 7.1     Particle   
+    ##  7 ESF21MP-106 River    10    LDPE                  3.18 7.1     Particle   
     ##  8 ESF21MP-107 TWW      10    HDPE                  3.18 5.1     Particle   
-    ##  9 ESF21MP-108 CON      10    LDPE                  3.18 8.2     Particle   
-    ## 10 ESF21MP-109 CON      10    PP                    3.18 8.2     Particle   
+    ##  9 ESF21MP-108 River    10    LDPE                  3.18 8.2     Particle   
+    ## 10 ESF21MP-109 River    10    PP                    3.18 8.2     Particle   
     ## # ℹ 109 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 mp.count.particle.6.filt <- subset_samples(mp.count.particle.filt, week == "6")
-```
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-``` r
 sample_data(mp.count.particle.6.filt)
 ```
 
-    ## Sample Data:        [ 39 samples by 9 sample variables ]:
+    ## Sample Data:        [ 39 samples by 10 sample variables ]:
     ##               effluent week  polymer_type bead_diameter Channel sample_type
     ##               <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
     ##  1 ESF21MP-56 TWW      6     PS                    3.18 5.1     Particle   
-    ##  2 ESF21MP-57 CON      6     LDPE                  3.18 8.2     Particle   
-    ##  3 ESF21MP-58 CON      6     HDPE                  3.18 8.2     Particle   
-    ##  4 ESF21MP-59 CON      6     PS                    3.18 7.1     Particle   
-    ##  5 ESF21MP-60 CON      6     PP                    3.18 6.1     Particle   
+    ##  2 ESF21MP-57 River    6     LDPE                  3.18 8.2     Particle   
+    ##  3 ESF21MP-58 River    6     HDPE                  3.18 8.2     Particle   
+    ##  4 ESF21MP-59 River    6     PS                    3.18 7.1     Particle   
+    ##  5 ESF21MP-60 River    6     PP                    3.18 6.1     Particle   
     ##  6 ESF21MP-61 TWW      6     Glass                 3.18 8.1     Particle   
     ##  7 ESF21MP-62 TWW      6     PP                    3.18 8.1     Particle   
     ##  8 ESF21MP-63 TWW      6     PP                    3.18 5.2     Particle   
     ##  9 ESF21MP-64 TWW      6     Glass                 3.18 5.2     Particle   
     ## 10 ESF21MP-65 TWW      6     Glass                 3.18 6.2     Particle   
     ## # ℹ 29 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 #Create NMDS
@@ -16109,7 +20110,7 @@ filt.particle.nmds.source.6 <- plot_ordination(
   physeq = mp.count.particle.6.filt,
   ordination = filt.particle.nmds.ord.6) + 
   scale_fill_manual(values = plot.colors, "Water Source") +
-  scale_shape_manual(values = c("CON" = 21, "TWW" = 21), name = "Water Source") +
+  scale_shape_manual(values = c("River" = 21, "TWW" = 21), name = "Water Source") +
   geom_point(mapping = aes(fill = factor(effluent), shape = effluent, size = 5)) +
   guides(size=FALSE) +
   guides(shape = guide_legend(override.aes = list(size = 3))) +
@@ -16165,115 +20166,75 @@ print(filt.particle.nmds.polymer.6)
 ``` r
 #Use patchwork to combine these 4 plots
 filt_particle_combo_6 <- (filt.particle.nmds.type.6 | filt.particle.nmds.source.6)/filt.particle.nmds.polymer.6
-
-#Save as an svg file
-ggsave(filename="Microplastics_filt_NMDS_particle_6w.svg", plot=filt_particle_combo_6, width=12, height=10, device=svg)
 ```
 
-## 9.6 NMDS of particles (glass and MPs) only, no water, at 10 weeks, Bray-Curtis dissimilarity
+## 11.7 NMDS of particles (glass and MPs) only, no water, at 10 weeks, Bray-Curtis dissimilarity
 
 ``` r
 #Subset phyloseq object
-sample_data(MPfiltRA)
+sample_data(MPfiltRANMDS)
 ```
 
-    ## Sample Data:        [ 151 samples by 9 sample variables ]:
+    ## Sample Data:        [ 151 samples by 10 sample variables ]:
     ##                effluent week  polymer_type bead_diameter Channel sample_type
     ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
-    ##  1 ESF21MP-100 CON      10    HDPE                  3.18 7.1     Particle   
+    ##  1 ESF21MP-100 River    10    HDPE                  3.18 7.1     Particle   
     ##  2 ESF21MP-101 TWW      10    HDPE                  3.18 5.2     Particle   
-    ##  3 ESF21MP-102 CON      10    LDPE                  3.18 7.2     Particle   
+    ##  3 ESF21MP-102 River    10    LDPE                  3.18 7.2     Particle   
     ##  4 ESF21MP-103 TWW      10    PP                    3.18 5.2     Particle   
-    ##  5 ESF21MP-104 CON      10    PP                    3.18 7.2     Particle   
+    ##  5 ESF21MP-104 River    10    PP                    3.18 7.2     Particle   
     ##  6 ESF21MP-105 TWW      10    HDPE                  3.18 8.1     Particle   
-    ##  7 ESF21MP-106 CON      10    LDPE                  3.18 7.1     Particle   
+    ##  7 ESF21MP-106 River    10    LDPE                  3.18 7.1     Particle   
     ##  8 ESF21MP-107 TWW      10    HDPE                  3.18 5.1     Particle   
-    ##  9 ESF21MP-108 CON      10    LDPE                  3.18 8.2     Particle   
-    ## 10 ESF21MP-109 CON      10    PP                    3.18 8.2     Particle   
+    ##  9 ESF21MP-108 River    10    LDPE                  3.18 8.2     Particle   
+    ## 10 ESF21MP-109 River    10    PP                    3.18 8.2     Particle   
     ## # ℹ 141 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
-mp.count.particle.filt <- subset_samples(MPfiltRA, sample_type == "Particle")
-```
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-``` r
+mp.count.particle.filt <- subset_samples(MPfiltRANMDS, sample_type == "Particle")
 sample_data(mp.count.particle.filt)
 ```
 
-    ## Sample Data:        [ 119 samples by 9 sample variables ]:
+    ## Sample Data:        [ 119 samples by 10 sample variables ]:
     ##                effluent week  polymer_type bead_diameter Channel sample_type
     ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
-    ##  1 ESF21MP-100 CON      10    HDPE                  3.18 7.1     Particle   
+    ##  1 ESF21MP-100 River    10    HDPE                  3.18 7.1     Particle   
     ##  2 ESF21MP-101 TWW      10    HDPE                  3.18 5.2     Particle   
-    ##  3 ESF21MP-102 CON      10    LDPE                  3.18 7.2     Particle   
+    ##  3 ESF21MP-102 River    10    LDPE                  3.18 7.2     Particle   
     ##  4 ESF21MP-103 TWW      10    PP                    3.18 5.2     Particle   
-    ##  5 ESF21MP-104 CON      10    PP                    3.18 7.2     Particle   
+    ##  5 ESF21MP-104 River    10    PP                    3.18 7.2     Particle   
     ##  6 ESF21MP-105 TWW      10    HDPE                  3.18 8.1     Particle   
-    ##  7 ESF21MP-106 CON      10    LDPE                  3.18 7.1     Particle   
+    ##  7 ESF21MP-106 River    10    LDPE                  3.18 7.1     Particle   
     ##  8 ESF21MP-107 TWW      10    HDPE                  3.18 5.1     Particle   
-    ##  9 ESF21MP-108 CON      10    LDPE                  3.18 8.2     Particle   
-    ## 10 ESF21MP-109 CON      10    PP                    3.18 8.2     Particle   
+    ##  9 ESF21MP-108 River    10    LDPE                  3.18 8.2     Particle   
+    ## 10 ESF21MP-109 River    10    PP                    3.18 8.2     Particle   
     ## # ℹ 109 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 mp.count.particle.10.filt <- subset_samples(mp.count.particle.filt, week == "10")
-```
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-``` r
 sample_data(mp.count.particle.10.filt)
 ```
 
-    ## Sample Data:        [ 40 samples by 9 sample variables ]:
+    ## Sample Data:        [ 40 samples by 10 sample variables ]:
     ##                effluent week  polymer_type bead_diameter Channel sample_type
     ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
-    ##  1 ESF21MP-100 CON      10    HDPE                  3.18 7.1     Particle   
+    ##  1 ESF21MP-100 River    10    HDPE                  3.18 7.1     Particle   
     ##  2 ESF21MP-101 TWW      10    HDPE                  3.18 5.2     Particle   
-    ##  3 ESF21MP-102 CON      10    LDPE                  3.18 7.2     Particle   
+    ##  3 ESF21MP-102 River    10    LDPE                  3.18 7.2     Particle   
     ##  4 ESF21MP-103 TWW      10    PP                    3.18 5.2     Particle   
-    ##  5 ESF21MP-104 CON      10    PP                    3.18 7.2     Particle   
+    ##  5 ESF21MP-104 River    10    PP                    3.18 7.2     Particle   
     ##  6 ESF21MP-105 TWW      10    HDPE                  3.18 8.1     Particle   
-    ##  7 ESF21MP-106 CON      10    LDPE                  3.18 7.1     Particle   
+    ##  7 ESF21MP-106 River    10    LDPE                  3.18 7.1     Particle   
     ##  8 ESF21MP-107 TWW      10    HDPE                  3.18 5.1     Particle   
-    ##  9 ESF21MP-108 CON      10    LDPE                  3.18 8.2     Particle   
-    ## 10 ESF21MP-109 CON      10    PP                    3.18 8.2     Particle   
+    ##  9 ESF21MP-108 River    10    LDPE                  3.18 8.2     Particle   
+    ## 10 ESF21MP-109 River    10    PP                    3.18 8.2     Particle   
     ## # ℹ 30 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 #Create NMDS
@@ -16371,7 +20332,7 @@ filt.particle.nmds.source.10 <- plot_ordination(
   physeq = mp.count.particle.10.filt,
   ordination = filt.particle.nmds.ord.10) + 
   scale_fill_manual(values = plot.colors, "Water Source") +
-  scale_shape_manual(values = c("CON" = 21, "TWW" = 21), name = "Water Source") +
+  scale_shape_manual(values = c("River" = 21, "TWW" = 21), name = "Water Source") +
   geom_point(mapping = aes(fill = factor(effluent), shape = effluent, size = 5)) +
   guides(size=FALSE) +
   guides(shape = guide_legend(override.aes = list(size = 3))) +
@@ -16427,75 +20388,53 @@ print(filt.particle.nmds.polymer.10)
 ``` r
 #Use patchwork to combine these 4 plots
 filt_particle_combo_10 <- (filt.particle.nmds.type.10 | filt.particle.nmds.source.10)/filt.particle.nmds.polymer.10
-
-#Save as an svg file
-ggsave(filename="Microplastics_filt_NMDS_particle_10w.svg", plot=filt_particle_combo_10, width=12, height=10, device=svg)
 ```
 
-## 9.7 NMDS of MP’s only, Bray-Curtis dissimilarity
+## 11.8 NMDS of MP’s only, Bray-Curtis dissimilarity
 
 ``` r
 #Subset phyloseq object
-sample_data(MPfiltRA)
+sample_data(MPfiltRANMDS)
 ```
 
-    ## Sample Data:        [ 151 samples by 9 sample variables ]:
+    ## Sample Data:        [ 151 samples by 10 sample variables ]:
     ##                effluent week  polymer_type bead_diameter Channel sample_type
     ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
-    ##  1 ESF21MP-100 CON      10    HDPE                  3.18 7.1     Particle   
+    ##  1 ESF21MP-100 River    10    HDPE                  3.18 7.1     Particle   
     ##  2 ESF21MP-101 TWW      10    HDPE                  3.18 5.2     Particle   
-    ##  3 ESF21MP-102 CON      10    LDPE                  3.18 7.2     Particle   
+    ##  3 ESF21MP-102 River    10    LDPE                  3.18 7.2     Particle   
     ##  4 ESF21MP-103 TWW      10    PP                    3.18 5.2     Particle   
-    ##  5 ESF21MP-104 CON      10    PP                    3.18 7.2     Particle   
+    ##  5 ESF21MP-104 River    10    PP                    3.18 7.2     Particle   
     ##  6 ESF21MP-105 TWW      10    HDPE                  3.18 8.1     Particle   
-    ##  7 ESF21MP-106 CON      10    LDPE                  3.18 7.1     Particle   
+    ##  7 ESF21MP-106 River    10    LDPE                  3.18 7.1     Particle   
     ##  8 ESF21MP-107 TWW      10    HDPE                  3.18 5.1     Particle   
-    ##  9 ESF21MP-108 CON      10    LDPE                  3.18 8.2     Particle   
-    ## 10 ESF21MP-109 CON      10    PP                    3.18 8.2     Particle   
+    ##  9 ESF21MP-108 River    10    LDPE                  3.18 8.2     Particle   
+    ## 10 ESF21MP-109 River    10    PP                    3.18 8.2     Particle   
     ## # ℹ 141 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
-mp.count.plastics.filt <- subset_samples(MPfiltRA, particle_type == "MP")
-```
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-``` r
+mp.count.plastics.filt <- subset_samples(MPfiltRANMDS, particle_type == "MP")
 sample_data(mp.count.plastics.filt)
 ```
 
-    ## Sample Data:        [ 94 samples by 9 sample variables ]:
+    ## Sample Data:        [ 94 samples by 10 sample variables ]:
     ##                effluent week  polymer_type bead_diameter Channel sample_type
     ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
-    ##  1 ESF21MP-100 CON      10    HDPE                  3.18 7.1     Particle   
+    ##  1 ESF21MP-100 River    10    HDPE                  3.18 7.1     Particle   
     ##  2 ESF21MP-101 TWW      10    HDPE                  3.18 5.2     Particle   
-    ##  3 ESF21MP-102 CON      10    LDPE                  3.18 7.2     Particle   
+    ##  3 ESF21MP-102 River    10    LDPE                  3.18 7.2     Particle   
     ##  4 ESF21MP-103 TWW      10    PP                    3.18 5.2     Particle   
-    ##  5 ESF21MP-104 CON      10    PP                    3.18 7.2     Particle   
+    ##  5 ESF21MP-104 River    10    PP                    3.18 7.2     Particle   
     ##  6 ESF21MP-105 TWW      10    HDPE                  3.18 8.1     Particle   
-    ##  7 ESF21MP-106 CON      10    LDPE                  3.18 7.1     Particle   
+    ##  7 ESF21MP-106 River    10    LDPE                  3.18 7.1     Particle   
     ##  8 ESF21MP-107 TWW      10    HDPE                  3.18 5.1     Particle   
-    ##  9 ESF21MP-108 CON      10    LDPE                  3.18 8.2     Particle   
-    ## 10 ESF21MP-109 CON      10    PP                    3.18 8.2     Particle   
+    ##  9 ESF21MP-108 River    10    LDPE                  3.18 8.2     Particle   
+    ## 10 ESF21MP-109 River    10    PP                    3.18 8.2     Particle   
     ## # ℹ 84 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 #Create NMDS
@@ -16547,7 +20486,7 @@ filt.plastics.nmds.source <- plot_ordination(
   physeq = mp.count.plastics.filt,
   ordination = filt.plastics.nmds.ord) + 
   scale_fill_manual(values = plot.colors, "Water Source") +
-  scale_shape_manual(values = c("CON" = 21, "TWW" = 21), name = "Water Source") +
+  scale_shape_manual(values = c("River" = 21, "TWW" = 21), name = "Water Source") +
   geom_point(mapping = aes(fill = factor(effluent), shape = effluent, size = 5)) +
   guides(size=FALSE) +
   guides(shape = guide_legend(override.aes = list(size = 3))) +
@@ -16632,117 +20571,75 @@ print(filt.plastics.nmds.polymer)
 ``` r
 #Use patchwork to combine these 4 plots
 filt_plastics_combo <- (filt.plastics.nmds.source | filt.plastics.nmds.week)/(filt.plastics.nmds.polymer)
-
-#Save as an svg file
-ggsave(filename="Microplastics_filt_NMDS_particle.svg", plot=filt_plastics_combo, width=12, height=10, device=svg)
 ```
 
-## 9.8 NMDS of MP’s only, at 2 weeks, Bray-Curtis dissimilarity
-
-\*Need to update this section
+## 11.9 NMDS of MP’s only, at 2 weeks, Bray-Curtis dissimilarity
 
 ``` r
 #Subset phyloseq object
-sample_data(MPfiltRA)
+sample_data(MPfiltRANMDS)
 ```
 
-    ## Sample Data:        [ 151 samples by 9 sample variables ]:
+    ## Sample Data:        [ 151 samples by 10 sample variables ]:
     ##                effluent week  polymer_type bead_diameter Channel sample_type
     ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
-    ##  1 ESF21MP-100 CON      10    HDPE                  3.18 7.1     Particle   
+    ##  1 ESF21MP-100 River    10    HDPE                  3.18 7.1     Particle   
     ##  2 ESF21MP-101 TWW      10    HDPE                  3.18 5.2     Particle   
-    ##  3 ESF21MP-102 CON      10    LDPE                  3.18 7.2     Particle   
+    ##  3 ESF21MP-102 River    10    LDPE                  3.18 7.2     Particle   
     ##  4 ESF21MP-103 TWW      10    PP                    3.18 5.2     Particle   
-    ##  5 ESF21MP-104 CON      10    PP                    3.18 7.2     Particle   
+    ##  5 ESF21MP-104 River    10    PP                    3.18 7.2     Particle   
     ##  6 ESF21MP-105 TWW      10    HDPE                  3.18 8.1     Particle   
-    ##  7 ESF21MP-106 CON      10    LDPE                  3.18 7.1     Particle   
+    ##  7 ESF21MP-106 River    10    LDPE                  3.18 7.1     Particle   
     ##  8 ESF21MP-107 TWW      10    HDPE                  3.18 5.1     Particle   
-    ##  9 ESF21MP-108 CON      10    LDPE                  3.18 8.2     Particle   
-    ## 10 ESF21MP-109 CON      10    PP                    3.18 8.2     Particle   
+    ##  9 ESF21MP-108 River    10    LDPE                  3.18 8.2     Particle   
+    ## 10 ESF21MP-109 River    10    PP                    3.18 8.2     Particle   
     ## # ℹ 141 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
-mp.count.plastics.filt <- subset_samples(MPfiltRA, particle_type == "MP")
-```
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-``` r
+mp.count.plastics.filt <- subset_samples(MPfiltRANMDS, particle_type == "MP")
 sample_data(mp.count.plastics.filt)
 ```
 
-    ## Sample Data:        [ 94 samples by 9 sample variables ]:
+    ## Sample Data:        [ 94 samples by 10 sample variables ]:
     ##                effluent week  polymer_type bead_diameter Channel sample_type
     ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
-    ##  1 ESF21MP-100 CON      10    HDPE                  3.18 7.1     Particle   
+    ##  1 ESF21MP-100 River    10    HDPE                  3.18 7.1     Particle   
     ##  2 ESF21MP-101 TWW      10    HDPE                  3.18 5.2     Particle   
-    ##  3 ESF21MP-102 CON      10    LDPE                  3.18 7.2     Particle   
+    ##  3 ESF21MP-102 River    10    LDPE                  3.18 7.2     Particle   
     ##  4 ESF21MP-103 TWW      10    PP                    3.18 5.2     Particle   
-    ##  5 ESF21MP-104 CON      10    PP                    3.18 7.2     Particle   
+    ##  5 ESF21MP-104 River    10    PP                    3.18 7.2     Particle   
     ##  6 ESF21MP-105 TWW      10    HDPE                  3.18 8.1     Particle   
-    ##  7 ESF21MP-106 CON      10    LDPE                  3.18 7.1     Particle   
+    ##  7 ESF21MP-106 River    10    LDPE                  3.18 7.1     Particle   
     ##  8 ESF21MP-107 TWW      10    HDPE                  3.18 5.1     Particle   
-    ##  9 ESF21MP-108 CON      10    LDPE                  3.18 8.2     Particle   
-    ## 10 ESF21MP-109 CON      10    PP                    3.18 8.2     Particle   
+    ##  9 ESF21MP-108 River    10    LDPE                  3.18 8.2     Particle   
+    ## 10 ESF21MP-109 River    10    PP                    3.18 8.2     Particle   
     ## # ℹ 84 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 mp.count.plastics.2.filt <- subset_samples(mp.count.plastics.filt, week == "2")
-```
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-``` r
 sample_data(mp.count.plastics.2.filt)
 ```
 
-    ## Sample Data:        [ 32 samples by 9 sample variables ]:
+    ## Sample Data:        [ 32 samples by 10 sample variables ]:
     ##               effluent week  polymer_type bead_diameter Channel sample_type
     ##               <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
-    ##  1 ESF21MP-14 CON      2     PP                    3.18 8.2     Particle   
-    ##  2 ESF21MP-15 CON      2     PS                    3.18 7.2     Particle   
+    ##  1 ESF21MP-14 River    2     PP                    3.18 8.2     Particle   
+    ##  2 ESF21MP-15 River    2     PS                    3.18 7.2     Particle   
     ##  3 ESF21MP-16 TWW      2     LDPE                  3.18 8.1     Particle   
-    ##  4 ESF21MP-17 CON      2     PP                    3.18 7.1     Particle   
+    ##  4 ESF21MP-17 River    2     PP                    3.18 7.1     Particle   
     ##  5 ESF21MP-18 TWW      2     HDPE                  3.18 6.2     Particle   
-    ##  6 ESF21MP-19 CON      2     PP                    3.18 7.2     Particle   
-    ##  7 ESF21MP-20 CON      2     PS                    3.18 8.2     Particle   
+    ##  6 ESF21MP-19 River    2     PP                    3.18 7.2     Particle   
+    ##  7 ESF21MP-20 River    2     PS                    3.18 8.2     Particle   
     ##  8 ESF21MP-22 TWW      2     PP                    3.18 5.2     Particle   
     ##  9 ESF21MP-23 TWW      2     PP                    3.18 5.1     Particle   
-    ## 10 ESF21MP-24 CON      2     LDPE                  3.18 7.1     Particle   
+    ## 10 ESF21MP-24 River    2     LDPE                  3.18 7.1     Particle   
     ## # ℹ 22 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 #Create NMDS
@@ -16798,7 +20695,7 @@ filt.plastics.nmds.source.2 <- plot_ordination(
   physeq = mp.count.plastics.2.filt,
   ordination = filt.plastics.nmds.ord.2) + 
   scale_fill_manual(values = plot.colors, "Water Source") +
-  scale_shape_manual(values = c("CON" = 21, "TWW" = 21), name = "Water Source") +
+  scale_shape_manual(values = c("River" = 21, "TWW" = 21), name = "Water Source") +
   geom_point(mapping = aes(fill = factor(effluent), shape = effluent, size = 5)) +
   guides(size=FALSE) +
   guides(shape = guide_legend(override.aes = list(size = 3))) +
@@ -16852,117 +20749,77 @@ print(filt.plastics.nmds.polymer.2)
 ![](Analysis_files/figure-gfm/NMDS%20994%207-2.png)<!-- -->
 
 ``` r
-#Use patchwork to combine these 4 plots
+#Use patchwork to combine these 2 plots
 filt_plastics_combo_2 <- (filt.plastics.nmds.source.2 | filt.plastics.nmds.polymer.2)
-
-#Save as an svg file
-ggsave(filename="Microplastics_filt_NMDS_plastics_2w.svg", plot=filt_plastics_combo_2, width=12, height=6, device=svg)
 ```
 
-## 9.9 NMDS of MP’s only, at 6 weeks, Bray-Curtis dissimilarity
+## 11.10 NMDS of MP’s only, at 6 weeks, Bray-Curtis dissimilarity
 
 ``` r
 #Subset phyloseq object
-sample_data(MPfiltRA)
+sample_data(MPfiltRANMDS)
 ```
 
-    ## Sample Data:        [ 151 samples by 9 sample variables ]:
+    ## Sample Data:        [ 151 samples by 10 sample variables ]:
     ##                effluent week  polymer_type bead_diameter Channel sample_type
     ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
-    ##  1 ESF21MP-100 CON      10    HDPE                  3.18 7.1     Particle   
+    ##  1 ESF21MP-100 River    10    HDPE                  3.18 7.1     Particle   
     ##  2 ESF21MP-101 TWW      10    HDPE                  3.18 5.2     Particle   
-    ##  3 ESF21MP-102 CON      10    LDPE                  3.18 7.2     Particle   
+    ##  3 ESF21MP-102 River    10    LDPE                  3.18 7.2     Particle   
     ##  4 ESF21MP-103 TWW      10    PP                    3.18 5.2     Particle   
-    ##  5 ESF21MP-104 CON      10    PP                    3.18 7.2     Particle   
+    ##  5 ESF21MP-104 River    10    PP                    3.18 7.2     Particle   
     ##  6 ESF21MP-105 TWW      10    HDPE                  3.18 8.1     Particle   
-    ##  7 ESF21MP-106 CON      10    LDPE                  3.18 7.1     Particle   
+    ##  7 ESF21MP-106 River    10    LDPE                  3.18 7.1     Particle   
     ##  8 ESF21MP-107 TWW      10    HDPE                  3.18 5.1     Particle   
-    ##  9 ESF21MP-108 CON      10    LDPE                  3.18 8.2     Particle   
-    ## 10 ESF21MP-109 CON      10    PP                    3.18 8.2     Particle   
+    ##  9 ESF21MP-108 River    10    LDPE                  3.18 8.2     Particle   
+    ## 10 ESF21MP-109 River    10    PP                    3.18 8.2     Particle   
     ## # ℹ 141 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
-mp.count.plastics.filt <- subset_samples(MPfiltRA, particle_type == "MP")
-```
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-``` r
+mp.count.plastics.filt <- subset_samples(MPfiltRANMDS, particle_type == "MP")
 sample_data(mp.count.plastics.filt)
 ```
 
-    ## Sample Data:        [ 94 samples by 9 sample variables ]:
+    ## Sample Data:        [ 94 samples by 10 sample variables ]:
     ##                effluent week  polymer_type bead_diameter Channel sample_type
     ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
-    ##  1 ESF21MP-100 CON      10    HDPE                  3.18 7.1     Particle   
+    ##  1 ESF21MP-100 River    10    HDPE                  3.18 7.1     Particle   
     ##  2 ESF21MP-101 TWW      10    HDPE                  3.18 5.2     Particle   
-    ##  3 ESF21MP-102 CON      10    LDPE                  3.18 7.2     Particle   
+    ##  3 ESF21MP-102 River    10    LDPE                  3.18 7.2     Particle   
     ##  4 ESF21MP-103 TWW      10    PP                    3.18 5.2     Particle   
-    ##  5 ESF21MP-104 CON      10    PP                    3.18 7.2     Particle   
+    ##  5 ESF21MP-104 River    10    PP                    3.18 7.2     Particle   
     ##  6 ESF21MP-105 TWW      10    HDPE                  3.18 8.1     Particle   
-    ##  7 ESF21MP-106 CON      10    LDPE                  3.18 7.1     Particle   
+    ##  7 ESF21MP-106 River    10    LDPE                  3.18 7.1     Particle   
     ##  8 ESF21MP-107 TWW      10    HDPE                  3.18 5.1     Particle   
-    ##  9 ESF21MP-108 CON      10    LDPE                  3.18 8.2     Particle   
-    ## 10 ESF21MP-109 CON      10    PP                    3.18 8.2     Particle   
+    ##  9 ESF21MP-108 River    10    LDPE                  3.18 8.2     Particle   
+    ## 10 ESF21MP-109 River    10    PP                    3.18 8.2     Particle   
     ## # ℹ 84 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 mp.count.plastics.6.filt <- subset_samples(mp.count.plastics.filt, week == "6")
-```
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-``` r
 sample_data(mp.count.plastics.6.filt)
 ```
 
-    ## Sample Data:        [ 30 samples by 9 sample variables ]:
+    ## Sample Data:        [ 30 samples by 10 sample variables ]:
     ##               effluent week  polymer_type bead_diameter Channel sample_type
     ##               <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
     ##  1 ESF21MP-56 TWW      6     PS                    3.18 5.1     Particle   
-    ##  2 ESF21MP-57 CON      6     LDPE                  3.18 8.2     Particle   
-    ##  3 ESF21MP-58 CON      6     HDPE                  3.18 8.2     Particle   
-    ##  4 ESF21MP-59 CON      6     PS                    3.18 7.1     Particle   
-    ##  5 ESF21MP-60 CON      6     PP                    3.18 6.1     Particle   
+    ##  2 ESF21MP-57 River    6     LDPE                  3.18 8.2     Particle   
+    ##  3 ESF21MP-58 River    6     HDPE                  3.18 8.2     Particle   
+    ##  4 ESF21MP-59 River    6     PS                    3.18 7.1     Particle   
+    ##  5 ESF21MP-60 River    6     PP                    3.18 6.1     Particle   
     ##  6 ESF21MP-62 TWW      6     PP                    3.18 8.1     Particle   
     ##  7 ESF21MP-63 TWW      6     PP                    3.18 5.2     Particle   
-    ##  8 ESF21MP-66 CON      6     HDPE                  3.18 6.1     Particle   
-    ##  9 ESF21MP-70 CON      6     PP                    3.18 7.1     Particle   
-    ## 10 ESF21MP-71 CON      6     PP                    3.18 8.2     Particle   
+    ##  8 ESF21MP-66 River    6     HDPE                  3.18 6.1     Particle   
+    ##  9 ESF21MP-70 River    6     PP                    3.18 7.1     Particle   
+    ## 10 ESF21MP-71 River    6     PP                    3.18 8.2     Particle   
     ## # ℹ 20 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 #Create NMDS
@@ -17021,7 +20878,7 @@ filt.plastics.nmds.source.6 <- plot_ordination(
   physeq = mp.count.plastics.6.filt,
   ordination = filt.plastics.nmds.ord.6) + 
   scale_fill_manual(values = plot.colors, "Water Source") +
-  scale_shape_manual(values = c("CON" = 21, "TWW" = 21), name = "Water Source") +
+  scale_shape_manual(values = c("River" = 21, "TWW" = 21), name = "Water Source") +
   geom_point(mapping = aes(fill = factor(effluent), shape = effluent, size = 5)) +
   guides(size=FALSE) +
   guides(shape = guide_legend(override.aes = list(size = 3))) +
@@ -17077,115 +20934,75 @@ print(filt.plastics.nmds.polymer.6)
 ``` r
 #Use patchwork to combine these 4 plots
 filt_plastics_combo_6 <- (filt.plastics.nmds.source.6 | filt.plastics.nmds.polymer.6)
-
-#Save as an svg file
-ggsave(filename="Microplastics_filt_NMDS_plastics_6w.svg", plot=filt_plastics_combo_6, width=12, height=6, device=svg)
 ```
 
-## 9.10 NMDS of MP’s only, at 10 weeks, Bray-Curtis dissimilarity
+## 11.11 NMDS of MP’s only, at 10 weeks, Bray-Curtis dissimilarity
 
 ``` r
 #Subset phyloseq object
-sample_data(MPfiltRA)
+sample_data(MPfiltRANMDS)
 ```
 
-    ## Sample Data:        [ 151 samples by 9 sample variables ]:
+    ## Sample Data:        [ 151 samples by 10 sample variables ]:
     ##                effluent week  polymer_type bead_diameter Channel sample_type
     ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
-    ##  1 ESF21MP-100 CON      10    HDPE                  3.18 7.1     Particle   
+    ##  1 ESF21MP-100 River    10    HDPE                  3.18 7.1     Particle   
     ##  2 ESF21MP-101 TWW      10    HDPE                  3.18 5.2     Particle   
-    ##  3 ESF21MP-102 CON      10    LDPE                  3.18 7.2     Particle   
+    ##  3 ESF21MP-102 River    10    LDPE                  3.18 7.2     Particle   
     ##  4 ESF21MP-103 TWW      10    PP                    3.18 5.2     Particle   
-    ##  5 ESF21MP-104 CON      10    PP                    3.18 7.2     Particle   
+    ##  5 ESF21MP-104 River    10    PP                    3.18 7.2     Particle   
     ##  6 ESF21MP-105 TWW      10    HDPE                  3.18 8.1     Particle   
-    ##  7 ESF21MP-106 CON      10    LDPE                  3.18 7.1     Particle   
+    ##  7 ESF21MP-106 River    10    LDPE                  3.18 7.1     Particle   
     ##  8 ESF21MP-107 TWW      10    HDPE                  3.18 5.1     Particle   
-    ##  9 ESF21MP-108 CON      10    LDPE                  3.18 8.2     Particle   
-    ## 10 ESF21MP-109 CON      10    PP                    3.18 8.2     Particle   
+    ##  9 ESF21MP-108 River    10    LDPE                  3.18 8.2     Particle   
+    ## 10 ESF21MP-109 River    10    PP                    3.18 8.2     Particle   
     ## # ℹ 141 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
-mp.count.plastics.filt <- subset_samples(MPfiltRA, particle_type == "MP")
-```
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-``` r
+mp.count.plastics.filt <- subset_samples(MPfiltRANMDS, particle_type == "MP")
 sample_data(mp.count.plastics.filt)
 ```
 
-    ## Sample Data:        [ 94 samples by 9 sample variables ]:
+    ## Sample Data:        [ 94 samples by 10 sample variables ]:
     ##                effluent week  polymer_type bead_diameter Channel sample_type
     ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
-    ##  1 ESF21MP-100 CON      10    HDPE                  3.18 7.1     Particle   
+    ##  1 ESF21MP-100 River    10    HDPE                  3.18 7.1     Particle   
     ##  2 ESF21MP-101 TWW      10    HDPE                  3.18 5.2     Particle   
-    ##  3 ESF21MP-102 CON      10    LDPE                  3.18 7.2     Particle   
+    ##  3 ESF21MP-102 River    10    LDPE                  3.18 7.2     Particle   
     ##  4 ESF21MP-103 TWW      10    PP                    3.18 5.2     Particle   
-    ##  5 ESF21MP-104 CON      10    PP                    3.18 7.2     Particle   
+    ##  5 ESF21MP-104 River    10    PP                    3.18 7.2     Particle   
     ##  6 ESF21MP-105 TWW      10    HDPE                  3.18 8.1     Particle   
-    ##  7 ESF21MP-106 CON      10    LDPE                  3.18 7.1     Particle   
+    ##  7 ESF21MP-106 River    10    LDPE                  3.18 7.1     Particle   
     ##  8 ESF21MP-107 TWW      10    HDPE                  3.18 5.1     Particle   
-    ##  9 ESF21MP-108 CON      10    LDPE                  3.18 8.2     Particle   
-    ## 10 ESF21MP-109 CON      10    PP                    3.18 8.2     Particle   
+    ##  9 ESF21MP-108 River    10    LDPE                  3.18 8.2     Particle   
+    ## 10 ESF21MP-109 River    10    PP                    3.18 8.2     Particle   
     ## # ℹ 84 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 mp.count.plastics.10.filt <- subset_samples(mp.count.plastics.filt, week == "10")
-```
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-``` r
 sample_data(mp.count.plastics.10.filt)
 ```
 
-    ## Sample Data:        [ 32 samples by 9 sample variables ]:
+    ## Sample Data:        [ 32 samples by 10 sample variables ]:
     ##                effluent week  polymer_type bead_diameter Channel sample_type
     ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
-    ##  1 ESF21MP-100 CON      10    HDPE                  3.18 7.1     Particle   
+    ##  1 ESF21MP-100 River    10    HDPE                  3.18 7.1     Particle   
     ##  2 ESF21MP-101 TWW      10    HDPE                  3.18 5.2     Particle   
-    ##  3 ESF21MP-102 CON      10    LDPE                  3.18 7.2     Particle   
+    ##  3 ESF21MP-102 River    10    LDPE                  3.18 7.2     Particle   
     ##  4 ESF21MP-103 TWW      10    PP                    3.18 5.2     Particle   
-    ##  5 ESF21MP-104 CON      10    PP                    3.18 7.2     Particle   
+    ##  5 ESF21MP-104 River    10    PP                    3.18 7.2     Particle   
     ##  6 ESF21MP-105 TWW      10    HDPE                  3.18 8.1     Particle   
-    ##  7 ESF21MP-106 CON      10    LDPE                  3.18 7.1     Particle   
+    ##  7 ESF21MP-106 River    10    LDPE                  3.18 7.1     Particle   
     ##  8 ESF21MP-107 TWW      10    HDPE                  3.18 5.1     Particle   
-    ##  9 ESF21MP-108 CON      10    LDPE                  3.18 8.2     Particle   
-    ## 10 ESF21MP-109 CON      10    PP                    3.18 8.2     Particle   
+    ##  9 ESF21MP-108 River    10    LDPE                  3.18 8.2     Particle   
+    ## 10 ESF21MP-109 River    10    PP                    3.18 8.2     Particle   
     ## # ℹ 22 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 #Create NMDS
@@ -17237,7 +21054,7 @@ filt.plastics.nmds.source.10 <- plot_ordination(
   physeq = mp.count.plastics.10.filt,
   ordination = filt.plastics.nmds.ord.10) + 
   scale_fill_manual(values = plot.colors, "Water Source") +
-  scale_shape_manual(values = c("CON" = 21, "TWW" = 21), name = "Water Source") +
+  scale_shape_manual(values = c("River" = 21, "TWW" = 21), name = "Water Source") +
   geom_point(mapping = aes(fill = factor(effluent), shape = effluent, size = 5)) +
   guides(size=FALSE) +
   guides(shape = guide_legend(override.aes = list(size = 3))) +
@@ -17266,7 +21083,7 @@ filt.plastics.nmds.polymer.10 <- plot_ordination(
   physeq = mp.count.plastics.10.filt,
   ordination = filt.plastics.nmds.ord.10) + 
   scale_fill_manual(values = plot.colors, "Polymer Type") +
-  scale_shape_manual(values = c("Glass" = 21, "HDPE" = 21, "LDPE" = 21, "PP" = 21,
+  scale_shape_manual(values = c("HDPE" = 21, "LDPE" = 21, "PP" = 21,
   "PS" = 21), name = "Polymer Type") +
   geom_point(mapping = aes(fill = factor(polymer_type), shape = polymer_type, size = 5)) +
   guides(size=FALSE) +
@@ -17288,70 +21105,737 @@ filt.plastics.nmds.polymer.10 <- plot_ordination(
 print(filt.plastics.nmds.polymer.10)
 ```
 
-    ## Warning in MASS::cov.trob(data[, vars]): Probable convergence failure
-
 ![](Analysis_files/figure-gfm/NMDS%20994%209-2.png)<!-- -->
 
 ``` r
 #Use patchwork to combine these 2 plots
 filt_plastics_combo_10 <- (filt.plastics.nmds.source.10 | filt.plastics.nmds.polymer.10)
+```
 
-#Save as an svg file
-ggsave(filename="Microplastics_filt_NMDS_plastics_10w.svg", plot=filt_plastics_combo_10, width=12, height=6, device=svg)
+## 11.12 Combine NMDS plots for Fig. 2
+
+``` r
+#Combine above figures using patchwork
+
+fig2 <- filt_plastics_combo_2/filt_plastics_combo_6/filt_plastics_combo_10
+
+print(fig2)
 ```
 
     ## Warning in MASS::cov.trob(data[, vars]): Probable convergence failure
 
-# 10 PERMANOVA Analysis - filtered dataset
-
-## 10.1 PERMANOVA analysis of particles (glass and MPs) only, no water, bray and unifrac
+![](Analysis_files/figure-gfm/patchwork%20combine%20fig%202-1.png)<!-- -->
 
 ``` r
-#Transform to relative abundance. Save as new object.
-MPfiltRA = transform_sample_counts(ps.taxa.all.filt, function(x){x / sum(x)})
+#Save as an svg file
+ggsave(filename="Microplastics_filt_NMDS_fig2.svg", plot=fig2, width=9, height=10, device=svg)
 ```
 
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
+    ## Warning in MASS::cov.trob(data[, vars]): Probable convergence failure
 
-    ## Also defined by 'tidytree'
+## 11.13 NMDS of river water particles (glass and MPs only), at 10 weeks, Bray-Curtis dissimilarity
 
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
+Here, I’m checking to see if there are more obvious differences between
+different polymer types if I separate them by water source; for now, I’m
+just doing the river water particles.
 
-    ## Also defined by 'tidytree'
+``` r
+#Subset phyloseq object
+sample_data(MPfiltRANMDS)
+```
 
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
+    ## Sample Data:        [ 151 samples by 10 sample variables ]:
+    ##                effluent week  polymer_type bead_diameter Channel sample_type
+    ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
+    ##  1 ESF21MP-100 River    10    HDPE                  3.18 7.1     Particle   
+    ##  2 ESF21MP-101 TWW      10    HDPE                  3.18 5.2     Particle   
+    ##  3 ESF21MP-102 River    10    LDPE                  3.18 7.2     Particle   
+    ##  4 ESF21MP-103 TWW      10    PP                    3.18 5.2     Particle   
+    ##  5 ESF21MP-104 River    10    PP                    3.18 7.2     Particle   
+    ##  6 ESF21MP-105 TWW      10    HDPE                  3.18 8.1     Particle   
+    ##  7 ESF21MP-106 River    10    LDPE                  3.18 7.1     Particle   
+    ##  8 ESF21MP-107 TWW      10    HDPE                  3.18 5.1     Particle   
+    ##  9 ESF21MP-108 River    10    LDPE                  3.18 8.2     Particle   
+    ## 10 ESF21MP-109 River    10    PP                    3.18 8.2     Particle   
+    ## # ℹ 141 more samples
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
-    ## Also defined by 'tidytree'
+``` r
+mp.count.plastics.river.filt <- subset_samples(MPfiltRANMDS, effluent == "River")
+sample_data(mp.count.plastics.river.filt)
+```
 
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
+    ## Sample Data:        [ 75 samples by 10 sample variables ]:
+    ##                effluent week  polymer_type bead_diameter Channel sample_type
+    ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
+    ##  1 ESF21MP-100 River    10    HDPE                  3.18 7.1     Particle   
+    ##  2 ESF21MP-102 River    10    LDPE                  3.18 7.2     Particle   
+    ##  3 ESF21MP-104 River    10    PP                    3.18 7.2     Particle   
+    ##  4 ESF21MP-106 River    10    LDPE                  3.18 7.1     Particle   
+    ##  5 ESF21MP-108 River    10    LDPE                  3.18 8.2     Particle   
+    ##  6 ESF21MP-109 River    10    PP                    3.18 8.2     Particle   
+    ##  7 ESF21MP-111 River    10    HDPE                  3.18 6.1     Particle   
+    ##  8 ESF21MP-112 River    10    Glass                 3.18 8.2     Particle   
+    ##  9 ESF21MP-114 River    10    PS                    3.18 7.2     Particle   
+    ## 10 ESF21MP-117 River    10    Glass                 3.18 7.1     Particle   
+    ## # ℹ 65 more samples
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
-    ## Also defined by 'tidytree'
+``` r
+mp.count.plastics.river.filt <- subset_samples(mp.count.plastics.river.filt, sample_type == "Particle")
+sample_data(mp.count.plastics.river.filt)
+```
+
+    ## Sample Data:        [ 59 samples by 10 sample variables ]:
+    ##                effluent week  polymer_type bead_diameter Channel sample_type
+    ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
+    ##  1 ESF21MP-100 River    10    HDPE                  3.18 7.1     Particle   
+    ##  2 ESF21MP-102 River    10    LDPE                  3.18 7.2     Particle   
+    ##  3 ESF21MP-104 River    10    PP                    3.18 7.2     Particle   
+    ##  4 ESF21MP-106 River    10    LDPE                  3.18 7.1     Particle   
+    ##  5 ESF21MP-108 River    10    LDPE                  3.18 8.2     Particle   
+    ##  6 ESF21MP-109 River    10    PP                    3.18 8.2     Particle   
+    ##  7 ESF21MP-111 River    10    HDPE                  3.18 6.1     Particle   
+    ##  8 ESF21MP-112 River    10    Glass                 3.18 8.2     Particle   
+    ##  9 ESF21MP-114 River    10    PS                    3.18 7.2     Particle   
+    ## 10 ESF21MP-117 River    10    Glass                 3.18 7.1     Particle   
+    ## # ℹ 49 more samples
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
+
+``` r
+mp.count.plastics.river.10.filt <- subset_samples(mp.count.plastics.river.filt, week == "10")
+sample_data(mp.count.plastics.river.10.filt)
+```
+
+    ## Sample Data:        [ 20 samples by 10 sample variables ]:
+    ##                effluent week  polymer_type bead_diameter Channel sample_type
+    ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
+    ##  1 ESF21MP-100 River    10    HDPE                  3.18 7.1     Particle   
+    ##  2 ESF21MP-102 River    10    LDPE                  3.18 7.2     Particle   
+    ##  3 ESF21MP-104 River    10    PP                    3.18 7.2     Particle   
+    ##  4 ESF21MP-106 River    10    LDPE                  3.18 7.1     Particle   
+    ##  5 ESF21MP-108 River    10    LDPE                  3.18 8.2     Particle   
+    ##  6 ESF21MP-109 River    10    PP                    3.18 8.2     Particle   
+    ##  7 ESF21MP-111 River    10    HDPE                  3.18 6.1     Particle   
+    ##  8 ESF21MP-112 River    10    Glass                 3.18 8.2     Particle   
+    ##  9 ESF21MP-114 River    10    PS                    3.18 7.2     Particle   
+    ## 10 ESF21MP-117 River    10    Glass                 3.18 7.1     Particle   
+    ## 11 ESF21MP-118 River    10    PS                    3.18 7.1     Particle   
+    ## 12 ESF21MP-119 River    10    HDPE                  3.18 7.2     Particle   
+    ## 13 ESF21MP-120 River    10    Glass                 3.18 6.1     Particle   
+    ## 14 ESF21MP-121 River    10    HDPE                  3.18 8.2     Particle   
+    ## 15 ESF21MP-122 River    10    LDPE                  3.18 6.1     Particle   
+    ## 16 ESF21MP-124 River    10    Glass                 3.18 7.2     Particle   
+    ## 17 ESF21MP-125 River    10    PS                    3.18 8.2     Particle   
+    ## 18 ESF21MP-129 River    10    PP                    3.18 6.1     Particle   
+    ## 19 ESF21MP-96  River    10    PP                    3.18 7.1     Particle   
+    ## 20 ESF21MP-99  River    10    PS                    3.18 6.1     Particle   
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
+
+``` r
+#Create NMDS
+filt.plastics.river.nmds.ord.10 <- ordinate(
+  physeq = mp.count.plastics.river.10.filt, 
+  method = "NMDS", 
+  distance = "bray"
+)
+```
+
+    ## Run 0 stress 0.104781 
+    ## Run 1 stress 0.1068145 
+    ## Run 2 stress 0.1047813 
+    ## ... Procrustes: rmse 0.0003697528  max resid 0.00113208 
+    ## ... Similar to previous best
+    ## Run 3 stress 0.1068145 
+    ## Run 4 stress 0.1047812 
+    ## ... Procrustes: rmse 0.0003460762  max resid 0.001065962 
+    ## ... Similar to previous best
+    ## Run 5 stress 0.104781 
+    ## ... Procrustes: rmse 0.000156153  max resid 0.0005153738 
+    ## ... Similar to previous best
+    ## Run 6 stress 0.1068146 
+    ## Run 7 stress 0.1047812 
+    ## ... Procrustes: rmse 0.0003352982  max resid 0.001080436 
+    ## ... Similar to previous best
+    ## Run 8 stress 0.1047812 
+    ## ... Procrustes: rmse 0.0003507488  max resid 0.001084607 
+    ## ... Similar to previous best
+    ## Run 9 stress 0.1068145 
+    ## Run 10 stress 0.104781 
+    ## ... Procrustes: rmse 0.0001263219  max resid 0.0003812938 
+    ## ... Similar to previous best
+    ## Run 11 stress 0.1471256 
+    ## Run 12 stress 0.1047812 
+    ## ... Procrustes: rmse 0.0003444038  max resid 0.001025555 
+    ## ... Similar to previous best
+    ## Run 13 stress 0.1068145 
+    ## Run 14 stress 0.1047813 
+    ## ... Procrustes: rmse 0.0003829674  max resid 0.001191548 
+    ## ... Similar to previous best
+    ## Run 15 stress 0.1047811 
+    ## ... Procrustes: rmse 0.000258038  max resid 0.0007710668 
+    ## ... Similar to previous best
+    ## Run 16 stress 0.1068145 
+    ## Run 17 stress 0.104781 
+    ## ... Procrustes: rmse 0.0001106233  max resid 0.0003265695 
+    ## ... Similar to previous best
+    ## Run 18 stress 0.1056352 
+    ## Run 19 stress 0.1068145 
+    ## Run 20 stress 0.104781 
+    ## ... Procrustes: rmse 0.0001206635  max resid 0.0003525193 
+    ## ... Similar to previous best
+    ## *** Best solution repeated 11 times
+
+``` r
+#Plot, color coding by polymer type
+filt.plastics.river.nmds.polymer.10 <- plot_ordination(
+  physeq = mp.count.plastics.river.10.filt,
+  ordination = filt.plastics.river.nmds.ord.10) + 
+  scale_fill_manual(values = plot.colors, "Polymer Type") +
+  scale_shape_manual(values = c("Glass" = 21, "HDPE" = 21, "LDPE" = 21, "PP" = 21,
+  "PS" = 21), name = "Polymer Type") +
+  geom_point(mapping = aes(fill = factor(polymer_type), shape = polymer_type, size = 5)) +
+  guides(size=FALSE) +
+  guides(shape = guide_legend(override.aes = list(size = 3))) +
+  theme(plot.title = element_text(size = 18),
+        text = element_text(size = 18), 
+        axis.title = element_text(size = 15),
+        panel.spacing = unit(1, "lines"), 
+        panel.border = element_rect(colour = "black", fill = NA, size = 0.5), 
+        panel.background = element_blank(), 
+        legend.text = element_text(size = 12),
+        legend.title = element_text(size = 13),
+        legend.position = c(.26, .3),
+        legend.justification = c("right", "top"),
+        legend.box.just = "right",
+        legend.margin = margin(6, 6, 6, 6)) + 
+  stat_ellipse(aes(group=polymer_type))
+
+print(filt.plastics.river.nmds.polymer.10)
+```
+
+![](Analysis_files/figure-gfm/NMDS%20994%2010-1.png)<!-- -->
+
+``` r
+#The stress on this NMDS plot is 0.104 and it doesn't look great; when I tried to run it without glass it did not look good.
+```
+
+# 12 PERMANOVA Analysis - filtered dataset
+
+## 12.1 PERMANOVA analysis of all data, bray
+
+``` r
+#Run PERMANOVA with Bray-Curtis dissimilarity
+filt_complete_bray <- phyloseq::distance(MPfiltRA, method = "bray")
+filt_complete_bray_df <- data.frame(sample_data(MPfiltRA))
+filt_complete <- adonis2(filt_complete_bray ~ sample_type*effluent*week*polymer_type, data = filt_complete_bray_df)
+filt_complete
+```
+
+    ## Permutation test for adonis under reduced model
+    ## Terms added sequentially (first to last)
+    ## Permutation: free
+    ## Number of permutations: 999
+    ## 
+    ## adonis2(formula = filt_complete_bray ~ sample_type * effluent * week * polymer_type, data = filt_complete_bray_df)
+    ##                             Df SumOfSqs      R2       F Pr(>F)    
+    ## sample_type                  1    8.435 0.18011 71.8966  0.001 ***
+    ## effluent                     1    1.068 0.02281  9.1050  0.001 ***
+    ## week                         3   15.118 0.32284 42.9565  0.001 ***
+    ## polymer_type                 4    1.242 0.02653  2.6477  0.001 ***
+    ## sample_type:effluent         1    0.120 0.00256  1.0203  0.368    
+    ## sample_type:week             2    2.409 0.05144 10.2658  0.001 ***
+    ## effluent:week                3    1.107 0.02363  3.1440  0.001 ***
+    ## effluent:polymer_type        4    0.819 0.01750  1.7463  0.004 ** 
+    ## week:polymer_type            8    1.494 0.03189  1.5914  0.005 ** 
+    ## sample_type:effluent:week    2    0.160 0.00342  0.6829  0.857    
+    ## effluent:week:polymer_type   8    1.601 0.03419  1.7059  0.002 ** 
+    ## Residual                   113   13.257 0.28308                   
+    ## Total                      150   46.830 1.00000                   
+    ## ---
+    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+``` r
+#Convert output to dataframe
+filt.complete.pvalue <- as.data.frame(filt_complete)
+
+#Create table of p-values
+knitr::kable(filt.complete.pvalue, row.names = NA) %>% 
+  kableExtra::kable_styling("striped", 
+                            latex_options="scale_down") %>% 
+  kableExtra::scroll_box(width = "100%")
+```
+
+<div
+style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; ">
+
+<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+
+Df
+
+</th>
+<th style="text-align:right;">
+
+SumOfSqs
+
+</th>
+<th style="text-align:right;">
+
+R2
+
+</th>
+<th style="text-align:right;">
+
+F
+
+</th>
+<th style="text-align:right;">
+
+Pr(\>F)
+
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+
+sample_type
+
+</td>
+<td style="text-align:right;">
+
+1
+
+</td>
+<td style="text-align:right;">
+
+8.4346267
+
+</td>
+<td style="text-align:right;">
+
+0.1801130
+
+</td>
+<td style="text-align:right;">
+
+71.8965627
+
+</td>
+<td style="text-align:right;">
+
+0.001
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+effluent
+
+</td>
+<td style="text-align:right;">
+
+1
+
+</td>
+<td style="text-align:right;">
+
+1.0681690
+
+</td>
+<td style="text-align:right;">
+
+0.0228097
+
+</td>
+<td style="text-align:right;">
+
+9.1050478
+
+</td>
+<td style="text-align:right;">
+
+0.001
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+week
+
+</td>
+<td style="text-align:right;">
+
+3
+
+</td>
+<td style="text-align:right;">
+
+15.1184627
+
+</td>
+<td style="text-align:right;">
+
+0.3228397
+
+</td>
+<td style="text-align:right;">
+
+42.9564751
+
+</td>
+<td style="text-align:right;">
+
+0.001
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+polymer_type
+
+</td>
+<td style="text-align:right;">
+
+4
+
+</td>
+<td style="text-align:right;">
+
+1.2424572
+
+</td>
+<td style="text-align:right;">
+
+0.0265314
+
+</td>
+<td style="text-align:right;">
+
+2.6476690
+
+</td>
+<td style="text-align:right;">
+
+0.001
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+sample_type:effluent
+
+</td>
+<td style="text-align:right;">
+
+1
+
+</td>
+<td style="text-align:right;">
+
+0.1196927
+
+</td>
+<td style="text-align:right;">
+
+0.0025559
+
+</td>
+<td style="text-align:right;">
+
+1.0202581
+
+</td>
+<td style="text-align:right;">
+
+0.368
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+sample_type:week
+
+</td>
+<td style="text-align:right;">
+
+2
+
+</td>
+<td style="text-align:right;">
+
+2.4086848
+
+</td>
+<td style="text-align:right;">
+
+0.0514351
+
+</td>
+<td style="text-align:right;">
+
+10.2657867
+
+</td>
+<td style="text-align:right;">
+
+0.001
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+effluent:week
+
+</td>
+<td style="text-align:right;">
+
+3
+
+</td>
+<td style="text-align:right;">
+
+1.1065309
+
+</td>
+<td style="text-align:right;">
+
+0.0236289
+
+</td>
+<td style="text-align:right;">
+
+3.1440146
+
+</td>
+<td style="text-align:right;">
+
+0.001
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+effluent:polymer_type
+
+</td>
+<td style="text-align:right;">
+
+4
+
+</td>
+<td style="text-align:right;">
+
+0.8194698
+
+</td>
+<td style="text-align:right;">
+
+0.0174990
+
+</td>
+<td style="text-align:right;">
+
+1.7462855
+
+</td>
+<td style="text-align:right;">
+
+0.004
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+week:polymer_type
+
+</td>
+<td style="text-align:right;">
+
+8
+
+</td>
+<td style="text-align:right;">
+
+1.4935566
+
+</td>
+<td style="text-align:right;">
+
+0.0318934
+
+</td>
+<td style="text-align:right;">
+
+1.5913802
+
+</td>
+<td style="text-align:right;">
+
+0.005
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+sample_type:effluent:week
+
+</td>
+<td style="text-align:right;">
+
+2
+
+</td>
+<td style="text-align:right;">
+
+0.1602202
+
+</td>
+<td style="text-align:right;">
+
+0.0034213
+
+</td>
+<td style="text-align:right;">
+
+0.6828564
+
+</td>
+<td style="text-align:right;">
+
+0.857
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+effluent:week:polymer_type
+
+</td>
+<td style="text-align:right;">
+
+8
+
+</td>
+<td style="text-align:right;">
+
+1.6010402
+
+</td>
+<td style="text-align:right;">
+
+0.0341886
+
+</td>
+<td style="text-align:right;">
+
+1.7059037
+
+</td>
+<td style="text-align:right;">
+
+0.002
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+Residual
+
+</td>
+<td style="text-align:right;">
+
+113
+
+</td>
+<td style="text-align:right;">
+
+13.2567231
+
+</td>
+<td style="text-align:right;">
+
+0.2830841
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+Total
+
+</td>
+<td style="text-align:right;">
+
+150
+
+</td>
+<td style="text-align:right;">
+
+46.8296339
+
+</td>
+<td style="text-align:right;">
+
+1.0000000
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+## 12.2 PERMANOVA analysis of particles (glass and MPs) only, no water, bray and unifrac
 
 ``` r
 #Subset phyloseq object
 filt.mp.particle.RA <- subset_samples(MPfiltRA, sample_type == "Particle")
-```
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-``` r
 sample_data(filt.mp.particle.RA)
 ```
 
-    ## Sample Data:        [ 119 samples by 9 sample variables ]:
+    ## Sample Data:        [ 119 samples by 10 sample variables ]:
     ##                effluent week  polymer_type bead_diameter Channel sample_type
     ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
     ##  1 ESF21MP-100 CON      10    HDPE                  3.18 7.1     Particle   
@@ -17365,25 +21849,46 @@ sample_data(filt.mp.particle.RA)
     ##  9 ESF21MP-108 CON      10    LDPE                  3.18 8.2     Particle   
     ## 10 ESF21MP-109 CON      10    PP                    3.18 8.2     Particle   
     ## # ℹ 109 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 #Run PERMANOVA with Bray-Curtis dissimilarity
 filt_particle_bray <- phyloseq::distance(filt.mp.particle.RA, method = "bray")
 filt_particle_bray_df <- data.frame(sample_data(filt.mp.particle.RA))
 filt_all <- adonis2(filt_particle_bray ~ particle_type*effluent*week*polymer_type, data = filt_particle_bray_df)
-filt_all$aov.tab
+filt_all
 ```
 
-    ## NULL
+    ## Permutation test for adonis under reduced model
+    ## Terms added sequentially (first to last)
+    ## Permutation: free
+    ## Number of permutations: 999
+    ## 
+    ## adonis2(formula = filt_particle_bray ~ particle_type * effluent * week * polymer_type, data = filt_particle_bray_df)
+    ##                              Df SumOfSqs      R2       F Pr(>F)    
+    ## particle_type                 1   0.5637 0.01789  4.2960  0.004 ** 
+    ## effluent                      1   1.0583 0.03358  8.0651  0.001 ***
+    ## week                          2  12.6265 0.40068 48.1140  0.001 ***
+    ## polymer_type                  4   0.8288 0.02630  1.5791  0.019 *  
+    ## particle_type:effluent        1   0.2115 0.00671  1.6116  0.131    
+    ## particle_type:week            2   0.6381 0.02025  2.4315  0.008 ** 
+    ## effluent:week                 2   0.9590 0.03043  3.6545  0.001 ***
+    ## effluent:polymer_type         3   0.6044 0.01918  1.5355  0.083 .  
+    ## week:polymer_type             6   0.8654 0.02746  1.0992  0.276    
+    ## particle_type:effluent:week   2   0.4126 0.01309  1.5723  0.102    
+    ## effluent:week:polymer_type    6   1.1979 0.03801  1.5215  0.021 *  
+    ## Residual                     88  11.5469 0.36642                   
+    ## Total                       118  31.5130 1.00000                   
+    ## ---
+    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 ``` r
 #Convert output to dataframe
-filt.all.pvalue <- as.data.frame(filt_all$aov.tab)
+filt.all.pvalue <- as.data.frame(filt_all)
 
 #Create table of p-values
-knitr::kable(filt.all.pvalue) %>% 
+knitr::kable(filt.all.pvalue, row.names = NA) %>% 
   kableExtra::kable_styling("striped", 
                             latex_options="scale_down") %>% 
   kableExtra::scroll_box(width = "100%")
@@ -17393,8 +21898,453 @@ knitr::kable(filt.all.pvalue) %>%
 style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; ">
 
 <table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+
+Df
+
+</th>
+<th style="text-align:right;">
+
+SumOfSqs
+
+</th>
+<th style="text-align:right;">
+
+R2
+
+</th>
+<th style="text-align:right;">
+
+F
+
+</th>
+<th style="text-align:right;">
+
+Pr(\>F)
+
+</th>
+</tr>
+</thead>
 <tbody>
 <tr>
+<td style="text-align:left;">
+
+particle_type
+
+</td>
+<td style="text-align:right;">
+
+1
+
+</td>
+<td style="text-align:right;">
+
+0.5637007
+
+</td>
+<td style="text-align:right;">
+
+0.0178879
+
+</td>
+<td style="text-align:right;">
+
+4.296021
+
+</td>
+<td style="text-align:right;">
+
+0.004
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+effluent
+
+</td>
+<td style="text-align:right;">
+
+1
+
+</td>
+<td style="text-align:right;">
+
+1.0582585
+
+</td>
+<td style="text-align:right;">
+
+0.0335816
+
+</td>
+<td style="text-align:right;">
+
+8.065098
+
+</td>
+<td style="text-align:right;">
+
+0.001
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+week
+
+</td>
+<td style="text-align:right;">
+
+2
+
+</td>
+<td style="text-align:right;">
+
+12.6265116
+
+</td>
+<td style="text-align:right;">
+
+0.4006760
+
+</td>
+<td style="text-align:right;">
+
+48.113974
+
+</td>
+<td style="text-align:right;">
+
+0.001
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+polymer_type
+
+</td>
+<td style="text-align:right;">
+
+4
+
+</td>
+<td style="text-align:right;">
+
+0.8287908
+
+</td>
+<td style="text-align:right;">
+
+0.0263000
+
+</td>
+<td style="text-align:right;">
+
+1.579075
+
+</td>
+<td style="text-align:right;">
+
+0.019
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+particle_type:effluent
+
+</td>
+<td style="text-align:right;">
+
+1
+
+</td>
+<td style="text-align:right;">
+
+0.2114688
+
+</td>
+<td style="text-align:right;">
+
+0.0067105
+
+</td>
+<td style="text-align:right;">
+
+1.611626
+
+</td>
+<td style="text-align:right;">
+
+0.131
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+particle_type:week
+
+</td>
+<td style="text-align:right;">
+
+2
+
+</td>
+<td style="text-align:right;">
+
+0.6380945
+
+</td>
+<td style="text-align:right;">
+
+0.0202486
+
+</td>
+<td style="text-align:right;">
+
+2.431492
+
+</td>
+<td style="text-align:right;">
+
+0.008
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+effluent:week
+
+</td>
+<td style="text-align:right;">
+
+2
+
+</td>
+<td style="text-align:right;">
+
+0.9590346
+
+</td>
+<td style="text-align:right;">
+
+0.0304330
+
+</td>
+<td style="text-align:right;">
+
+3.654451
+
+</td>
+<td style="text-align:right;">
+
+0.001
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+effluent:polymer_type
+
+</td>
+<td style="text-align:right;">
+
+3
+
+</td>
+<td style="text-align:right;">
+
+0.6044481
+
+</td>
+<td style="text-align:right;">
+
+0.0191809
+
+</td>
+<td style="text-align:right;">
+
+1.535521
+
+</td>
+<td style="text-align:right;">
+
+0.083
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+week:polymer_type
+
+</td>
+<td style="text-align:right;">
+
+6
+
+</td>
+<td style="text-align:right;">
+
+0.8653519
+
+</td>
+<td style="text-align:right;">
+
+0.0274601
+
+</td>
+<td style="text-align:right;">
+
+1.099156
+
+</td>
+<td style="text-align:right;">
+
+0.276
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+particle_type:effluent:week
+
+</td>
+<td style="text-align:right;">
+
+2
+
+</td>
+<td style="text-align:right;">
+
+0.4126235
+
+</td>
+<td style="text-align:right;">
+
+0.0130937
+
+</td>
+<td style="text-align:right;">
+
+1.572323
+
+</td>
+<td style="text-align:right;">
+
+0.102
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+effluent:week:polymer_type
+
+</td>
+<td style="text-align:right;">
+
+6
+
+</td>
+<td style="text-align:right;">
+
+1.1978515
+
+</td>
+<td style="text-align:right;">
+
+0.0380113
+
+</td>
+<td style="text-align:right;">
+
+1.521492
+
+</td>
+<td style="text-align:right;">
+
+0.021
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+Residual
+
+</td>
+<td style="text-align:right;">
+
+88
+
+</td>
+<td style="text-align:right;">
+
+11.5468847
+
+</td>
+<td style="text-align:right;">
+
+0.3664163
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+Total
+
+</td>
+<td style="text-align:right;">
+
+118
+
+</td>
+<td style="text-align:right;">
+
+31.5130193
+
+</td>
+<td style="text-align:right;">
+
+1.0000000
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
 </tr>
 </tbody>
 </table>
@@ -17406,17 +22356,28 @@ style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; ">
 filt_particle_only_bray <- phyloseq::distance(filt.mp.particle.RA, method = "bray")
 filt_particle_only_bray_df <- data.frame(sample_data(filt.mp.particle.RA))
 filt_only_particle <- adonis2(filt_particle_only_bray ~ particle_type, data = filt_particle_only_bray_df)
-filt_only_particle$aov.tab
+filt_only_particle
 ```
 
-    ## NULL
+    ## Permutation test for adonis under reduced model
+    ## Terms added sequentially (first to last)
+    ## Permutation: free
+    ## Number of permutations: 999
+    ## 
+    ## adonis2(formula = filt_particle_only_bray ~ particle_type, data = filt_particle_only_bray_df)
+    ##                Df SumOfSqs      R2     F Pr(>F)  
+    ## particle_type   1   0.5637 0.01789 2.131  0.047 *
+    ## Residual      117  30.9493 0.98211               
+    ## Total         118  31.5130 1.00000               
+    ## ---
+    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 ``` r
 #Convert output to dataframe
-filt.only.particle.pvalue <- as.data.frame(filt_only_particle$aov.tab)
+filt.only.particle.pvalue <- as.data.frame(filt_only_particle)
 
 #Create table of p-values
-knitr::kable(filt.only.particle.pvalue) %>% 
+knitr::kable(filt.only.particle.pvalue, row.names = NA) %>% 
   kableExtra::kable_styling("striped", 
                             latex_options="scale_down") %>% 
   kableExtra::scroll_box(width = "100%")
@@ -17426,8 +22387,133 @@ knitr::kable(filt.only.particle.pvalue) %>%
 style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; ">
 
 <table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+
+Df
+
+</th>
+<th style="text-align:right;">
+
+SumOfSqs
+
+</th>
+<th style="text-align:right;">
+
+R2
+
+</th>
+<th style="text-align:right;">
+
+F
+
+</th>
+<th style="text-align:right;">
+
+Pr(\>F)
+
+</th>
+</tr>
+</thead>
 <tbody>
 <tr>
+<td style="text-align:left;">
+
+particle_type
+
+</td>
+<td style="text-align:right;">
+
+1
+
+</td>
+<td style="text-align:right;">
+
+0.5637007
+
+</td>
+<td style="text-align:right;">
+
+0.0178879
+
+</td>
+<td style="text-align:right;">
+
+2.131
+
+</td>
+<td style="text-align:right;">
+
+0.047
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+Residual
+
+</td>
+<td style="text-align:right;">
+
+117
+
+</td>
+<td style="text-align:right;">
+
+30.9493186
+
+</td>
+<td style="text-align:right;">
+
+0.9821121
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+Total
+
+</td>
+<td style="text-align:right;">
+
+118
+
+</td>
+<td style="text-align:right;">
+
+31.5130193
+
+</td>
+<td style="text-align:right;">
+
+1.0000000
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
 </tr>
 </tbody>
 </table>
@@ -17437,25 +22523,40 @@ style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; ">
 ``` r
 #Run PERMANOVA with Unifrac dissimilarity
 filt_particle_unifrac <- phyloseq::distance(filt.mp.particle.RA, method = "unifrac")
-```
-
-    ## Warning in matrix(tree$edge[order(tree$edge[, 1]), ][, 2], byrow = TRUE, : data
-    ## length [1985] is not a sub-multiple or multiple of the number of rows [993]
-
-``` r
 filt_particle_unifrac_df <- data.frame(sample_data(filt.mp.particle.RA))
 filt_all_unifrac <- adonis2(filt_particle_unifrac ~ particle_type*effluent*week*polymer_type, data = filt_particle_unifrac_df)
-filt_all_unifrac$aov.tab
+filt_all_unifrac
 ```
 
-    ## NULL
+    ## Permutation test for adonis under reduced model
+    ## Terms added sequentially (first to last)
+    ## Permutation: free
+    ## Number of permutations: 999
+    ## 
+    ## adonis2(formula = filt_particle_unifrac ~ particle_type * effluent * week * polymer_type, data = filt_particle_unifrac_df)
+    ##                              Df SumOfSqs      R2       F Pr(>F)    
+    ## particle_type                 1   0.4706 0.01656  2.8676  0.006 ** 
+    ## effluent                      1   0.6532 0.02299  3.9799  0.003 ** 
+    ## week                          2   8.0317 0.28266 24.4701  0.001 ***
+    ## polymer_type                  4   0.7920 0.02787  1.2064  0.129    
+    ## particle_type:effluent        1   0.1609 0.00566  0.9805  0.393    
+    ## particle_type:week            2   0.4484 0.01578  1.3660  0.080 .  
+    ## effluent:week                 2   0.6267 0.02206  1.9094  0.019 *  
+    ## effluent:polymer_type         3   0.5373 0.01891  1.0913  0.262    
+    ## week:polymer_type             6   0.9592 0.03376  0.9742  0.500    
+    ## particle_type:effluent:week   2   0.2779 0.00978  0.8465  0.691    
+    ## effluent:week:polymer_type    6   1.0145 0.03570  1.0303  0.379    
+    ## Residual                     88  14.4420 0.50826                   
+    ## Total                       118  28.4143 1.00000                   
+    ## ---
+    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 ``` r
 #Convert output to dataframe
-filt.all.unifrac.pvalue <- as.data.frame(filt_all_unifrac$aov.tab)
+filt.all.unifrac.pvalue <- as.data.frame(filt_all_unifrac)
 
 #Create table of p-values
-knitr::kable(filt.all.unifrac.pvalue) %>% 
+knitr::kable(filt.all.unifrac.pvalue, row.names = NA) %>% 
   kableExtra::kable_styling("striped", 
                             latex_options="scale_down") %>% 
   kableExtra::scroll_box(width = "100%")
@@ -17465,42 +22566,468 @@ knitr::kable(filt.all.unifrac.pvalue) %>%
 style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; ">
 
 <table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+
+Df
+
+</th>
+<th style="text-align:right;">
+
+SumOfSqs
+
+</th>
+<th style="text-align:right;">
+
+R2
+
+</th>
+<th style="text-align:right;">
+
+F
+
+</th>
+<th style="text-align:right;">
+
+Pr(\>F)
+
+</th>
+</tr>
+</thead>
 <tbody>
 <tr>
+<td style="text-align:left;">
+
+particle_type
+
+</td>
+<td style="text-align:right;">
+
+1
+
+</td>
+<td style="text-align:right;">
+
+0.4706161
+
+</td>
+<td style="text-align:right;">
+
+0.0165627
+
+</td>
+<td style="text-align:right;">
+
+2.8676320
+
+</td>
+<td style="text-align:right;">
+
+0.006
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+effluent
+
+</td>
+<td style="text-align:right;">
+
+1
+
+</td>
+<td style="text-align:right;">
+
+0.6531518
+
+</td>
+<td style="text-align:right;">
+
+0.0229868
+
+</td>
+<td style="text-align:right;">
+
+3.9798870
+
+</td>
+<td style="text-align:right;">
+
+0.003
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+week
+
+</td>
+<td style="text-align:right;">
+
+2
+
+</td>
+<td style="text-align:right;">
+
+8.0317156
+
+</td>
+<td style="text-align:right;">
+
+0.2826650
+
+</td>
+<td style="text-align:right;">
+
+24.4700540
+
+</td>
+<td style="text-align:right;">
+
+0.001
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+polymer_type
+
+</td>
+<td style="text-align:right;">
+
+4
+
+</td>
+<td style="text-align:right;">
+
+0.7919537
+
+</td>
+<td style="text-align:right;">
+
+0.0278717
+
+</td>
+<td style="text-align:right;">
+
+1.2064141
+
+</td>
+<td style="text-align:right;">
+
+0.129
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+particle_type:effluent
+
+</td>
+<td style="text-align:right;">
+
+1
+
+</td>
+<td style="text-align:right;">
+
+0.1609060
+
+</td>
+<td style="text-align:right;">
+
+0.0056629
+
+</td>
+<td style="text-align:right;">
+
+0.9804579
+
+</td>
+<td style="text-align:right;">
+
+0.393
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+particle_type:week
+
+</td>
+<td style="text-align:right;">
+
+2
+
+</td>
+<td style="text-align:right;">
+
+0.4483707
+
+</td>
+<td style="text-align:right;">
+
+0.0157798
+
+</td>
+<td style="text-align:right;">
+
+1.3660412
+
+</td>
+<td style="text-align:right;">
+
+0.080
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+effluent:week
+
+</td>
+<td style="text-align:right;">
+
+2
+
+</td>
+<td style="text-align:right;">
+
+0.6267022
+
+</td>
+<td style="text-align:right;">
+
+0.0220559
+
+</td>
+<td style="text-align:right;">
+
+1.9093602
+
+</td>
+<td style="text-align:right;">
+
+0.019
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+effluent:polymer_type
+
+</td>
+<td style="text-align:right;">
+
+3
+
+</td>
+<td style="text-align:right;">
+
+0.5372737
+
+</td>
+<td style="text-align:right;">
+
+0.0189086
+
+</td>
+<td style="text-align:right;">
+
+1.0912668
+
+</td>
+<td style="text-align:right;">
+
+0.262
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+week:polymer_type
+
+</td>
+<td style="text-align:right;">
+
+6
+
+</td>
+<td style="text-align:right;">
+
+0.9592485
+
+</td>
+<td style="text-align:right;">
+
+0.0337594
+
+</td>
+<td style="text-align:right;">
+
+0.9741739
+
+</td>
+<td style="text-align:right;">
+
+0.500
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+particle_type:effluent:week
+
+</td>
+<td style="text-align:right;">
+
+2
+
+</td>
+<td style="text-align:right;">
+
+0.2778582
+
+</td>
+<td style="text-align:right;">
+
+0.0097788
+
+</td>
+<td style="text-align:right;">
+
+0.8465446
+
+</td>
+<td style="text-align:right;">
+
+0.691
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+effluent:week:polymer_type
+
+</td>
+<td style="text-align:right;">
+
+6
+
+</td>
+<td style="text-align:right;">
+
+1.0145047
+
+</td>
+<td style="text-align:right;">
+
+0.0357041
+
+</td>
+<td style="text-align:right;">
+
+1.0302898
+
+</td>
+<td style="text-align:right;">
+
+0.379
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+Residual
+
+</td>
+<td style="text-align:right;">
+
+88
+
+</td>
+<td style="text-align:right;">
+
+14.4419577
+
+</td>
+<td style="text-align:right;">
+
+0.5082644
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+Total
+
+</td>
+<td style="text-align:right;">
+
+118
+
+</td>
+<td style="text-align:right;">
+
+28.4142590
+
+</td>
+<td style="text-align:right;">
+
+1.0000000
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
 </tr>
 </tbody>
 </table>
 
 </div>
 
-## 10.2 PERMANOVA analysis of particles (glass and MPs) only, no water at 2 weeks, bray
+## 12.3 PERMANOVA analysis of particles (glass and MPs) only, no water at 2 weeks, bray
 
 ``` r
 #Subset phyloseq object
 filt.mp.particle.RA <- subset_samples(MPfiltRA, sample_type == "Particle")
-```
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-``` r
 sample_data(filt.mp.particle.RA)
 ```
 
-    ## Sample Data:        [ 119 samples by 9 sample variables ]:
+    ## Sample Data:        [ 119 samples by 10 sample variables ]:
     ##                effluent week  polymer_type bead_diameter Channel sample_type
     ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
     ##  1 ESF21MP-100 CON      10    HDPE                  3.18 7.1     Particle   
@@ -17514,33 +23041,15 @@ sample_data(filt.mp.particle.RA)
     ##  9 ESF21MP-108 CON      10    LDPE                  3.18 8.2     Particle   
     ## 10 ESF21MP-109 CON      10    PP                    3.18 8.2     Particle   
     ## # ℹ 109 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 filt.mp.particle.RA.2 <- subset_samples(filt.mp.particle.RA, week == "2")
-```
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-``` r
 sample_data(filt.mp.particle.RA.2)
 ```
 
-    ## Sample Data:        [ 40 samples by 9 sample variables ]:
+    ## Sample Data:        [ 40 samples by 10 sample variables ]:
     ##               effluent week  polymer_type bead_diameter Channel sample_type
     ##               <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
     ##  1 ESF21MP-13 TWW      2     Glass                 3.18 5.1     Particle   
@@ -17554,25 +23063,40 @@ sample_data(filt.mp.particle.RA.2)
     ##  9 ESF21MP-21 TWW      2     Glass                 3.18 6.2     Particle   
     ## 10 ESF21MP-22 TWW      2     PP                    3.18 5.2     Particle   
     ## # ℹ 30 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 #Run PERMANOVA with bray-curtis dissimilarity
 filt_particle_bray_2 <- phyloseq::distance(filt.mp.particle.RA.2, method = "bray")
 filt_particle_bray_2_df <- data.frame(sample_data(filt.mp.particle.RA.2))
 filt.particle.2.adonis <- adonis2(filt_particle_bray_2 ~ particle_type*effluent*polymer_type, data = filt_particle_bray_2_df)
-filt.particle.2.adonis$aov.tab
+filt.particle.2.adonis
 ```
 
-    ## NULL
+    ## Permutation test for adonis under reduced model
+    ## Terms added sequentially (first to last)
+    ## Permutation: free
+    ## Number of permutations: 999
+    ## 
+    ## adonis2(formula = filt_particle_bray_2 ~ particle_type * effluent * polymer_type, data = filt_particle_bray_2_df)
+    ##                        Df SumOfSqs      R2      F Pr(>F)    
+    ## particle_type           1   0.5829 0.08523 4.4997  0.001 ***
+    ## effluent                1   0.5766 0.08430 4.4508  0.002 ** 
+    ## polymer_type            3   0.5517 0.08067 1.4196  0.107    
+    ## particle_type:effluent  1   0.3630 0.05307 2.8020  0.014 *  
+    ## effluent:polymer_type   3   0.8788 0.12849 2.2612  0.006 ** 
+    ## Residual               30   3.8864 0.56824                  
+    ## Total                  39   6.8394 1.00000                  
+    ## ---
+    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 ``` r
 #Convert output to dataframe
-filt.particle.2.pvalue <- as.data.frame(filt.particle.2.adonis$aov.tab)
+filt.particle.2.pvalue <- as.data.frame(filt.particle.2.adonis)
 
 #Create table of p-values
-knitr::kable(filt.particle.2.pvalue) %>% 
+knitr::kable(filt.particle.2.pvalue, row.names = NA) %>% 
   kableExtra::kable_styling("striped", 
                             latex_options="scale_down") %>% 
   kableExtra::scroll_box(width = "100%")
@@ -17582,42 +23106,276 @@ knitr::kable(filt.particle.2.pvalue) %>%
 style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; ">
 
 <table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+
+Df
+
+</th>
+<th style="text-align:right;">
+
+SumOfSqs
+
+</th>
+<th style="text-align:right;">
+
+R2
+
+</th>
+<th style="text-align:right;">
+
+F
+
+</th>
+<th style="text-align:right;">
+
+Pr(\>F)
+
+</th>
+</tr>
+</thead>
 <tbody>
 <tr>
+<td style="text-align:left;">
+
+particle_type
+
+</td>
+<td style="text-align:right;">
+
+1
+
+</td>
+<td style="text-align:right;">
+
+0.5829256
+
+</td>
+<td style="text-align:right;">
+
+0.0852300
+
+</td>
+<td style="text-align:right;">
+
+4.499717
+
+</td>
+<td style="text-align:right;">
+
+0.001
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+effluent
+
+</td>
+<td style="text-align:right;">
+
+1
+
+</td>
+<td style="text-align:right;">
+
+0.5765879
+
+</td>
+<td style="text-align:right;">
+
+0.0843033
+
+</td>
+<td style="text-align:right;">
+
+4.450794
+
+</td>
+<td style="text-align:right;">
+
+0.002
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+polymer_type
+
+</td>
+<td style="text-align:right;">
+
+3
+
+</td>
+<td style="text-align:right;">
+
+0.5517298
+
+</td>
+<td style="text-align:right;">
+
+0.0806688
+
+</td>
+<td style="text-align:right;">
+
+1.419637
+
+</td>
+<td style="text-align:right;">
+
+0.107
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+particle_type:effluent
+
+</td>
+<td style="text-align:right;">
+
+1
+
+</td>
+<td style="text-align:right;">
+
+0.3629887
+
+</td>
+<td style="text-align:right;">
+
+0.0530729
+
+</td>
+<td style="text-align:right;">
+
+2.801981
+
+</td>
+<td style="text-align:right;">
+
+0.014
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+effluent:polymer_type
+
+</td>
+<td style="text-align:right;">
+
+3
+
+</td>
+<td style="text-align:right;">
+
+0.8787945
+
+</td>
+<td style="text-align:right;">
+
+0.1284892
+
+</td>
+<td style="text-align:right;">
+
+2.261195
+
+</td>
+<td style="text-align:right;">
+
+0.006
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+Residual
+
+</td>
+<td style="text-align:right;">
+
+30
+
+</td>
+<td style="text-align:right;">
+
+3.8864156
+
+</td>
+<td style="text-align:right;">
+
+0.5682358
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+Total
+
+</td>
+<td style="text-align:right;">
+
+39
+
+</td>
+<td style="text-align:right;">
+
+6.8394421
+
+</td>
+<td style="text-align:right;">
+
+1.0000000
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
 </tr>
 </tbody>
 </table>
 
 </div>
 
-## 10.3 PERMANOVA analysis of particles (glass and MPs) only, no water at 6 weeks, bray
+## 12.4 PERMANOVA analysis of particles (glass and MPs) only, no water at 6 weeks, bray
 
 ``` r
 #Subset phyloseq object
 filt.mp.particle.RA <- subset_samples(MPfiltRA, sample_type == "Particle")
-```
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-``` r
 sample_data(filt.mp.particle.RA)
 ```
 
-    ## Sample Data:        [ 119 samples by 9 sample variables ]:
+    ## Sample Data:        [ 119 samples by 10 sample variables ]:
     ##                effluent week  polymer_type bead_diameter Channel sample_type
     ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
     ##  1 ESF21MP-100 CON      10    HDPE                  3.18 7.1     Particle   
@@ -17631,33 +23389,15 @@ sample_data(filt.mp.particle.RA)
     ##  9 ESF21MP-108 CON      10    LDPE                  3.18 8.2     Particle   
     ## 10 ESF21MP-109 CON      10    PP                    3.18 8.2     Particle   
     ## # ℹ 109 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 filt.mp.particle.RA.6 <- subset_samples(filt.mp.particle.RA, week == "6")
-```
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-``` r
 sample_data(filt.mp.particle.RA.6)
 ```
 
-    ## Sample Data:        [ 39 samples by 9 sample variables ]:
+    ## Sample Data:        [ 39 samples by 10 sample variables ]:
     ##               effluent week  polymer_type bead_diameter Channel sample_type
     ##               <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
     ##  1 ESF21MP-56 TWW      6     PS                    3.18 5.1     Particle   
@@ -17671,25 +23411,40 @@ sample_data(filt.mp.particle.RA.6)
     ##  9 ESF21MP-64 TWW      6     Glass                 3.18 5.2     Particle   
     ## 10 ESF21MP-65 TWW      6     Glass                 3.18 6.2     Particle   
     ## # ℹ 29 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 #Run PERMANOVA with bray-curtis dissimilarity
 filt_particle_bray_6 <- phyloseq::distance(filt.mp.particle.RA.6, method = "bray")
 filt_particle_bray_6_df <- data.frame(sample_data(filt.mp.particle.RA.6))
 filt.particle.6.adonis <- adonis2(filt_particle_bray_6 ~ particle_type*effluent*polymer_type, data = filt_particle_bray_6_df)
-filt.particle.6.adonis$aov.tab
+filt.particle.6.adonis
 ```
 
-    ## NULL
+    ## Permutation test for adonis under reduced model
+    ## Terms added sequentially (first to last)
+    ## Permutation: free
+    ## Number of permutations: 999
+    ## 
+    ## adonis2(formula = filt_particle_bray_6 ~ particle_type * effluent * polymer_type, data = filt_particle_bray_6_df)
+    ##                        Df SumOfSqs      R2      F Pr(>F)    
+    ## particle_type           1   0.3633 0.04924 2.1626  0.021 *  
+    ## effluent                1   0.7935 0.10754 4.7228  0.001 ***
+    ## polymer_type            4   0.7105 0.09629 1.0572  0.357    
+    ## particle_type:effluent  1   0.1610 0.02182 0.9581  0.419    
+    ## effluent:polymer_type   3   0.6458 0.08753 1.2813  0.145    
+    ## Residual               28   4.7045 0.63758                  
+    ## Total                  38   7.3787 1.00000                  
+    ## ---
+    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 ``` r
 #Convert output to dataframe
-filt.particle.6.pvalue <- as.data.frame(filt.particle.6.adonis$aov.tab)
+filt.particle.6.pvalue <- as.data.frame(filt.particle.6.adonis)
 
 #Create table of p-values
-knitr::kable(filt.particle.6.pvalue) %>% 
+knitr::kable(filt.particle.6.pvalue, row.names = NA) %>% 
   kableExtra::kable_styling("striped", 
                             latex_options="scale_down") %>% 
   kableExtra::scroll_box(width = "100%")
@@ -17699,42 +23454,276 @@ knitr::kable(filt.particle.6.pvalue) %>%
 style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; ">
 
 <table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+
+Df
+
+</th>
+<th style="text-align:right;">
+
+SumOfSqs
+
+</th>
+<th style="text-align:right;">
+
+R2
+
+</th>
+<th style="text-align:right;">
+
+F
+
+</th>
+<th style="text-align:right;">
+
+Pr(\>F)
+
+</th>
+</tr>
+</thead>
 <tbody>
 <tr>
+<td style="text-align:left;">
+
+particle_type
+
+</td>
+<td style="text-align:right;">
+
+1
+
+</td>
+<td style="text-align:right;">
+
+0.3633495
+
+</td>
+<td style="text-align:right;">
+
+0.0492432
+
+</td>
+<td style="text-align:right;">
+
+2.1625669
+
+</td>
+<td style="text-align:right;">
+
+0.021
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+effluent
+
+</td>
+<td style="text-align:right;">
+
+1
+
+</td>
+<td style="text-align:right;">
+
+0.7935156
+
+</td>
+<td style="text-align:right;">
+
+0.1075418
+
+</td>
+<td style="text-align:right;">
+
+4.7228104
+
+</td>
+<td style="text-align:right;">
+
+0.001
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+polymer_type
+
+</td>
+<td style="text-align:right;">
+
+4
+
+</td>
+<td style="text-align:right;">
+
+0.7105017
+
+</td>
+<td style="text-align:right;">
+
+0.0962912
+
+</td>
+<td style="text-align:right;">
+
+1.0571829
+
+</td>
+<td style="text-align:right;">
+
+0.357
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+particle_type:effluent
+
+</td>
+<td style="text-align:right;">
+
+1
+
+</td>
+<td style="text-align:right;">
+
+0.1609810
+
+</td>
+<td style="text-align:right;">
+
+0.0218171
+
+</td>
+<td style="text-align:right;">
+
+0.9581192
+
+</td>
+<td style="text-align:right;">
+
+0.419
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+effluent:polymer_type
+
+</td>
+<td style="text-align:right;">
+
+3
+
+</td>
+<td style="text-align:right;">
+
+0.6458323
+
+</td>
+<td style="text-align:right;">
+
+0.0875269
+
+</td>
+<td style="text-align:right;">
+
+1.2812785
+
+</td>
+<td style="text-align:right;">
+
+0.145
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+Residual
+
+</td>
+<td style="text-align:right;">
+
+28
+
+</td>
+<td style="text-align:right;">
+
+4.7044949
+
+</td>
+<td style="text-align:right;">
+
+0.6375799
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+Total
+
+</td>
+<td style="text-align:right;">
+
+38
+
+</td>
+<td style="text-align:right;">
+
+7.3786749
+
+</td>
+<td style="text-align:right;">
+
+1.0000000
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
 </tr>
 </tbody>
 </table>
 
 </div>
 
-## 10.4 PERMANOVA analysis of particles (glass and MPs) only, no water at 10 weeks, bray
+## 12.5 PERMANOVA analysis of particles (glass and MPs) only, no water at 10 weeks, bray
 
 ``` r
 #Subset phyloseq object
 filt.mp.particle.RA <- subset_samples(MPfiltRA, sample_type == "Particle")
-```
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-``` r
 sample_data(filt.mp.particle.RA)
 ```
 
-    ## Sample Data:        [ 119 samples by 9 sample variables ]:
+    ## Sample Data:        [ 119 samples by 10 sample variables ]:
     ##                effluent week  polymer_type bead_diameter Channel sample_type
     ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
     ##  1 ESF21MP-100 CON      10    HDPE                  3.18 7.1     Particle   
@@ -17748,33 +23737,15 @@ sample_data(filt.mp.particle.RA)
     ##  9 ESF21MP-108 CON      10    LDPE                  3.18 8.2     Particle   
     ## 10 ESF21MP-109 CON      10    PP                    3.18 8.2     Particle   
     ## # ℹ 109 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 filt.mp.particle.RA.10 <- subset_samples(filt.mp.particle.RA, week == "10")
-```
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-``` r
 sample_data(filt.mp.particle.RA.10)
 ```
 
-    ## Sample Data:        [ 40 samples by 9 sample variables ]:
+    ## Sample Data:        [ 40 samples by 10 sample variables ]:
     ##                effluent week  polymer_type bead_diameter Channel sample_type
     ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
     ##  1 ESF21MP-100 CON      10    HDPE                  3.18 7.1     Particle   
@@ -17788,25 +23759,40 @@ sample_data(filt.mp.particle.RA.10)
     ##  9 ESF21MP-108 CON      10    LDPE                  3.18 8.2     Particle   
     ## 10 ESF21MP-109 CON      10    PP                    3.18 8.2     Particle   
     ## # ℹ 30 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 #Run PERMANOVA with bray-curtis dissimilarity
 filt_particle_bray_10 <- phyloseq::distance(filt.mp.particle.RA.10, method = "bray")
 filt_particle_bray_10_df <- data.frame(sample_data(filt.mp.particle.RA.10))
 filt.particle.10.adonis <- adonis2(filt_particle_bray_10 ~ particle_type*effluent*polymer_type, data = filt_particle_bray_10_df)
-filt.particle.10.adonis$aov.tab
+filt.particle.10.adonis
 ```
 
-    ## NULL
+    ## Permutation test for adonis under reduced model
+    ## Terms added sequentially (first to last)
+    ## Permutation: free
+    ## Number of permutations: 999
+    ## 
+    ## adonis2(formula = filt_particle_bray_10 ~ particle_type * effluent * polymer_type, data = filt_particle_bray_10_df)
+    ##                        Df SumOfSqs      R2      F Pr(>F)    
+    ## particle_type           1   0.2724 0.05841 2.7642  0.003 ** 
+    ## effluent                1   0.6513 0.13968 6.6097  0.001 ***
+    ## polymer_type            3   0.4083 0.08757 1.3812  0.049 *  
+    ## particle_type:effluent  1   0.1000 0.02145 1.0149  0.436    
+    ## effluent:polymer_type   3   0.2747 0.05892 0.9293  0.598    
+    ## Residual               30   2.9560 0.63398                  
+    ## Total                  39   4.6626 1.00000                  
+    ## ---
+    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 ``` r
 #Convert output to dataframe
-filt.particle.10.pvalue <- as.data.frame(filt.particle.10.adonis$aov.tab)
+filt.particle.10.pvalue <- as.data.frame(filt.particle.10.adonis)
 
 #Create table of p-values
-knitr::kable(filt.particle.10.pvalue) %>% 
+knitr::kable(filt.particle.10.pvalue, row.names = NA) %>% 
   kableExtra::kable_styling("striped", 
                             latex_options="scale_down") %>% 
   kableExtra::scroll_box(width = "100%")
@@ -17816,42 +23802,276 @@ knitr::kable(filt.particle.10.pvalue) %>%
 style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; ">
 
 <table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+
+Df
+
+</th>
+<th style="text-align:right;">
+
+SumOfSqs
+
+</th>
+<th style="text-align:right;">
+
+R2
+
+</th>
+<th style="text-align:right;">
+
+F
+
+</th>
+<th style="text-align:right;">
+
+Pr(\>F)
+
+</th>
+</tr>
+</thead>
 <tbody>
 <tr>
+<td style="text-align:left;">
+
+particle_type
+
+</td>
+<td style="text-align:right;">
+
+1
+
+</td>
+<td style="text-align:right;">
+
+0.2723654
+
+</td>
+<td style="text-align:right;">
+
+0.0584149
+
+</td>
+<td style="text-align:right;">
+
+2.7642194
+
+</td>
+<td style="text-align:right;">
+
+0.003
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+effluent
+
+</td>
+<td style="text-align:right;">
+
+1
+
+</td>
+<td style="text-align:right;">
+
+0.6512729
+
+</td>
+<td style="text-align:right;">
+
+0.1396801
+
+</td>
+<td style="text-align:right;">
+
+6.6097289
+
+</td>
+<td style="text-align:right;">
+
+0.001
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+polymer_type
+
+</td>
+<td style="text-align:right;">
+
+3
+
+</td>
+<td style="text-align:right;">
+
+0.4082831
+
+</td>
+<td style="text-align:right;">
+
+0.0875655
+
+</td>
+<td style="text-align:right;">
+
+1.3812133
+
+</td>
+<td style="text-align:right;">
+
+0.049
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+particle_type:effluent
+
+</td>
+<td style="text-align:right;">
+
+1
+
+</td>
+<td style="text-align:right;">
+
+0.1000032
+
+</td>
+<td style="text-align:right;">
+
+0.0214479
+
+</td>
+<td style="text-align:right;">
+
+1.0149262
+
+</td>
+<td style="text-align:right;">
+
+0.436
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+effluent:polymer_type
+
+</td>
+<td style="text-align:right;">
+
+3
+
+</td>
+<td style="text-align:right;">
+
+0.2747036
+
+</td>
+<td style="text-align:right;">
+
+0.0589164
+
+</td>
+<td style="text-align:right;">
+
+0.9293167
+
+</td>
+<td style="text-align:right;">
+
+0.598
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+Residual
+
+</td>
+<td style="text-align:right;">
+
+30
+
+</td>
+<td style="text-align:right;">
+
+2.9559743
+
+</td>
+<td style="text-align:right;">
+
+0.6339752
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+Total
+
+</td>
+<td style="text-align:right;">
+
+39
+
+</td>
+<td style="text-align:right;">
+
+4.6626025
+
+</td>
+<td style="text-align:right;">
+
+1.0000000
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
 </tr>
 </tbody>
 </table>
 
 </div>
 
-## 10.5 PERMANOVA analysis of MP’s only, bray
+## 12.6 PERMANOVA analysis of MP’s only, bray
 
 ``` r
 #Subset phyloseq object
 filt.mp.plastics.only.RA <- subset_samples(MPfiltRA, particle_type == "MP")
-```
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-``` r
 sample_data(filt.mp.plastics.only.RA)
 ```
 
-    ## Sample Data:        [ 94 samples by 9 sample variables ]:
+    ## Sample Data:        [ 94 samples by 10 sample variables ]:
     ##                effluent week  polymer_type bead_diameter Channel sample_type
     ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
     ##  1 ESF21MP-100 CON      10    HDPE                  3.18 7.1     Particle   
@@ -17865,25 +24085,42 @@ sample_data(filt.mp.plastics.only.RA)
     ##  9 ESF21MP-108 CON      10    LDPE                  3.18 8.2     Particle   
     ## 10 ESF21MP-109 CON      10    PP                    3.18 8.2     Particle   
     ## # ℹ 84 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 #Run PERMANOVA with Bray-Curtis dissimilarity
 filt_mp_plastics_only_bray <- phyloseq::distance(filt.mp.plastics.only.RA, method = "bray")
 filt_mp_plastics_only_bray_df <- data.frame(sample_data(filt.mp.plastics.only.RA))
 plastics_filt_all <- adonis2(filt_mp_plastics_only_bray ~ effluent*week*polymer_type, data = filt_mp_plastics_only_bray_df)
-plastics_filt_all$aov.tab
+plastics_filt_all
 ```
 
-    ## NULL
+    ## Permutation test for adonis under reduced model
+    ## Terms added sequentially (first to last)
+    ## Permutation: free
+    ## Number of permutations: 999
+    ## 
+    ## adonis2(formula = filt_mp_plastics_only_bray ~ effluent * week * polymer_type, data = filt_mp_plastics_only_bray_df)
+    ##                            Df SumOfSqs      R2       F Pr(>F)    
+    ## effluent                    1   0.9227 0.03798  7.3415  0.001 ***
+    ## week                        2  10.3441 0.42583 41.1534  0.001 ***
+    ## polymer_type                3   0.6742 0.02775  1.7881  0.031 *  
+    ## effluent:week               2   0.8855 0.03645  3.5227  0.001 ***
+    ## effluent:polymer_type       3   0.6030 0.02482  1.5993  0.049 *  
+    ## week:polymer_type           6   0.8670 0.03569  1.1498  0.252    
+    ## effluent:week:polymer_type  6   1.1979 0.04931  1.5885  0.026 *  
+    ## Residual                   70   8.7975 0.36216                   
+    ## Total                      93  24.2917 1.00000                   
+    ## ---
+    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 ``` r
 #Convert output to dataframe
-plastics.filt.all.pvalue <- as.data.frame(plastics_filt_all$aov.tab)
+plastics.filt.all.pvalue <- as.data.frame(plastics_filt_all)
 
 #Create table of p-values
-knitr::kable(plastics.filt.all.pvalue) %>% 
+knitr::kable(plastics.filt.all.pvalue, row.names = NA) %>% 
   kableExtra::kable_styling("striped", 
                             latex_options="scale_down") %>% 
   kableExtra::scroll_box(width = "100%")
@@ -17893,8 +24130,325 @@ knitr::kable(plastics.filt.all.pvalue) %>%
 style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; ">
 
 <table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+
+Df
+
+</th>
+<th style="text-align:right;">
+
+SumOfSqs
+
+</th>
+<th style="text-align:right;">
+
+R2
+
+</th>
+<th style="text-align:right;">
+
+F
+
+</th>
+<th style="text-align:right;">
+
+Pr(\>F)
+
+</th>
+</tr>
+</thead>
 <tbody>
 <tr>
+<td style="text-align:left;">
+
+effluent
+
+</td>
+<td style="text-align:right;">
+
+1
+
+</td>
+<td style="text-align:right;">
+
+0.9226587
+
+</td>
+<td style="text-align:right;">
+
+0.0379824
+
+</td>
+<td style="text-align:right;">
+
+7.341451
+
+</td>
+<td style="text-align:right;">
+
+0.001
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+week
+
+</td>
+<td style="text-align:right;">
+
+2
+
+</td>
+<td style="text-align:right;">
+
+10.3441480
+
+</td>
+<td style="text-align:right;">
+
+0.4258300
+
+</td>
+<td style="text-align:right;">
+
+41.153385
+
+</td>
+<td style="text-align:right;">
+
+0.001
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+polymer_type
+
+</td>
+<td style="text-align:right;">
+
+3
+
+</td>
+<td style="text-align:right;">
+
+0.6741841
+
+</td>
+<td style="text-align:right;">
+
+0.0277536
+
+</td>
+<td style="text-align:right;">
+
+1.788126
+
+</td>
+<td style="text-align:right;">
+
+0.031
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+effluent:week
+
+</td>
+<td style="text-align:right;">
+
+2
+
+</td>
+<td style="text-align:right;">
+
+0.8854532
+
+</td>
+<td style="text-align:right;">
+
+0.0364508
+
+</td>
+<td style="text-align:right;">
+
+3.522706
+
+</td>
+<td style="text-align:right;">
+
+0.001
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+effluent:polymer_type
+
+</td>
+<td style="text-align:right;">
+
+3
+
+</td>
+<td style="text-align:right;">
+
+0.6029770
+
+</td>
+<td style="text-align:right;">
+
+0.0248223
+
+</td>
+<td style="text-align:right;">
+
+1.599265
+
+</td>
+<td style="text-align:right;">
+
+0.049
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+week:polymer_type
+
+</td>
+<td style="text-align:right;">
+
+6
+
+</td>
+<td style="text-align:right;">
+
+0.8670020
+
+</td>
+<td style="text-align:right;">
+
+0.0356912
+
+</td>
+<td style="text-align:right;">
+
+1.149766
+
+</td>
+<td style="text-align:right;">
+
+0.252
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+effluent:week:polymer_type
+
+</td>
+<td style="text-align:right;">
+
+6
+
+</td>
+<td style="text-align:right;">
+
+1.1978515
+
+</td>
+<td style="text-align:right;">
+
+0.0493111
+
+</td>
+<td style="text-align:right;">
+
+1.588520
+
+</td>
+<td style="text-align:right;">
+
+0.026
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+Residual
+
+</td>
+<td style="text-align:right;">
+
+70
+
+</td>
+<td style="text-align:right;">
+
+8.7974580
+
+</td>
+<td style="text-align:right;">
+
+0.3621585
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+Total
+
+</td>
+<td style="text-align:right;">
+
+93
+
+</td>
+<td style="text-align:right;">
+
+24.2917325
+
+</td>
+<td style="text-align:right;">
+
+1.0000000
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
 </tr>
 </tbody>
 </table>
@@ -17906,17 +24460,26 @@ style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; ">
 filt_plastics_only_bray <- phyloseq::distance(filt.mp.plastics.only.RA, method = "bray")
 filt_plastics_only_bray_df <- data.frame(sample_data(filt.mp.plastics.only.RA))
 filt_only_plastics <- adonis2(filt_plastics_only_bray ~ polymer_type, data = filt_plastics_only_bray_df)
-filt_only_plastics$aov.tab
+filt_only_plastics
 ```
 
-    ## NULL
+    ## Permutation test for adonis under reduced model
+    ## Terms added sequentially (first to last)
+    ## Permutation: free
+    ## Number of permutations: 999
+    ## 
+    ## adonis2(formula = filt_plastics_only_bray ~ polymer_type, data = filt_plastics_only_bray_df)
+    ##              Df SumOfSqs     R2     F Pr(>F)
+    ## polymer_type  3   0.6754 0.0278 0.858  0.614
+    ## Residual     90  23.6163 0.9722             
+    ## Total        93  24.2917 1.0000
 
 ``` r
 #Convert output to dataframe
-filt.only.plastics.pvalue <- as.data.frame(filt_only_plastics$aov.tab)
+filt.only.plastics.pvalue <- as.data.frame(filt_only_plastics)
 
 #Create table of p-values
-knitr::kable(filt.only.plastics.pvalue) %>% 
+knitr::kable(filt.only.plastics.pvalue, row.names = NA) %>% 
   kableExtra::kable_styling("striped", 
                             latex_options="scale_down") %>% 
   kableExtra::scroll_box(width = "100%")
@@ -17926,42 +24489,148 @@ knitr::kable(filt.only.plastics.pvalue) %>%
 style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; ">
 
 <table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+
+Df
+
+</th>
+<th style="text-align:right;">
+
+SumOfSqs
+
+</th>
+<th style="text-align:right;">
+
+R2
+
+</th>
+<th style="text-align:right;">
+
+F
+
+</th>
+<th style="text-align:right;">
+
+Pr(\>F)
+
+</th>
+</tr>
+</thead>
 <tbody>
 <tr>
+<td style="text-align:left;">
+
+polymer_type
+
+</td>
+<td style="text-align:right;">
+
+3
+
+</td>
+<td style="text-align:right;">
+
+0.675402
+
+</td>
+<td style="text-align:right;">
+
+0.0278038
+
+</td>
+<td style="text-align:right;">
+
+0.8579682
+
+</td>
+<td style="text-align:right;">
+
+0.614
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+Residual
+
+</td>
+<td style="text-align:right;">
+
+90
+
+</td>
+<td style="text-align:right;">
+
+23.616331
+
+</td>
+<td style="text-align:right;">
+
+0.9721962
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+Total
+
+</td>
+<td style="text-align:right;">
+
+93
+
+</td>
+<td style="text-align:right;">
+
+24.291732
+
+</td>
+<td style="text-align:right;">
+
+1.0000000
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
 </tr>
 </tbody>
 </table>
 
 </div>
 
-## 10.6 PERMANOVA analysis of plastics only, no water, no glass, at 2 weeks, bray
+## 12.7 PERMANOVA analysis of plastics only, no water, no glass, at 2 weeks, bray
 
 ``` r
 #Subset phyloseq object
 filt.mp.count.plastics <- subset_samples(MPfiltRA, particle_type == "MP")
-```
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-``` r
 sample_data(filt.mp.count.plastics)
 ```
 
-    ## Sample Data:        [ 94 samples by 9 sample variables ]:
+    ## Sample Data:        [ 94 samples by 10 sample variables ]:
     ##                effluent week  polymer_type bead_diameter Channel sample_type
     ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
     ##  1 ESF21MP-100 CON      10    HDPE                  3.18 7.1     Particle   
@@ -17975,33 +24644,15 @@ sample_data(filt.mp.count.plastics)
     ##  9 ESF21MP-108 CON      10    LDPE                  3.18 8.2     Particle   
     ## 10 ESF21MP-109 CON      10    PP                    3.18 8.2     Particle   
     ## # ℹ 84 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 filt.mp.count.plastics.2 <- subset_samples(filt.mp.count.plastics, week == "2")
-```
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-``` r
 sample_data(filt.mp.count.plastics.2)
 ```
 
-    ## Sample Data:        [ 32 samples by 9 sample variables ]:
+    ## Sample Data:        [ 32 samples by 10 sample variables ]:
     ##               effluent week  polymer_type bead_diameter Channel sample_type
     ##               <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
     ##  1 ESF21MP-14 CON      2     PP                    3.18 8.2     Particle   
@@ -18015,25 +24666,38 @@ sample_data(filt.mp.count.plastics.2)
     ##  9 ESF21MP-23 TWW      2     PP                    3.18 5.1     Particle   
     ## 10 ESF21MP-24 CON      2     LDPE                  3.18 7.1     Particle   
     ## # ℹ 22 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 #Run PERMANOVA with bray-curtis dissimilarity
 filt_plastics_bray_2 <- phyloseq::distance(filt.mp.count.plastics.2, method = "bray")
 filt_plastics_bray_2_df <- data.frame(sample_data(filt.mp.count.plastics.2))
 filt.plastics.2.adonis <- adonis2(filt_plastics_bray_2 ~ effluent*polymer_type, data = filt_plastics_bray_2_df)
-filt.plastics.2.adonis$aov.tab
+filt.plastics.2.adonis
 ```
 
-    ## NULL
+    ## Permutation test for adonis under reduced model
+    ## Terms added sequentially (first to last)
+    ## Permutation: free
+    ## Number of permutations: 999
+    ## 
+    ## adonis2(formula = filt_plastics_bray_2 ~ effluent * polymer_type, data = filt_plastics_bray_2_df)
+    ##                       Df SumOfSqs      R2      F Pr(>F)   
+    ## effluent               1   0.6131 0.11785 4.6580  0.007 **
+    ## polymer_type           3   0.5517 0.10604 1.3972  0.164   
+    ## effluent:polymer_type  3   0.8788 0.16891 2.2254  0.029 * 
+    ## Residual              24   3.1592 0.60720                 
+    ## Total                 31   5.2028 1.00000                 
+    ## ---
+    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 ``` r
 #Convert output to dataframe
-filt.plastics.2.pvalue <- as.data.frame(filt.plastics.2.adonis$aov.tab)
+filt.plastics.2.pvalue <- as.data.frame(filt.plastics.2.adonis)
 
 #Create table of p-values
-knitr::kable(filt.plastics.2.pvalue) %>% 
+knitr::kable(filt.plastics.2.pvalue, row.names = NA) %>% 
   kableExtra::kable_styling("striped", 
                             latex_options="scale_down") %>% 
   kableExtra::scroll_box(width = "100%")
@@ -18043,42 +24707,212 @@ knitr::kable(filt.plastics.2.pvalue) %>%
 style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; ">
 
 <table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+
+Df
+
+</th>
+<th style="text-align:right;">
+
+SumOfSqs
+
+</th>
+<th style="text-align:right;">
+
+R2
+
+</th>
+<th style="text-align:right;">
+
+F
+
+</th>
+<th style="text-align:right;">
+
+Pr(\>F)
+
+</th>
+</tr>
+</thead>
 <tbody>
 <tr>
+<td style="text-align:left;">
+
+effluent
+
+</td>
+<td style="text-align:right;">
+
+1
+
+</td>
+<td style="text-align:right;">
+
+0.6131413
+
+</td>
+<td style="text-align:right;">
+
+0.1178480
+
+</td>
+<td style="text-align:right;">
+
+4.658021
+
+</td>
+<td style="text-align:right;">
+
+0.007
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+polymer_type
+
+</td>
+<td style="text-align:right;">
+
+3
+
+</td>
+<td style="text-align:right;">
+
+0.5517298
+
+</td>
+<td style="text-align:right;">
+
+0.1060444
+
+</td>
+<td style="text-align:right;">
+
+1.397160
+
+</td>
+<td style="text-align:right;">
+
+0.164
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+effluent:polymer_type
+
+</td>
+<td style="text-align:right;">
+
+3
+
+</td>
+<td style="text-align:right;">
+
+0.8787945
+
+</td>
+<td style="text-align:right;">
+
+0.1689075
+
+</td>
+<td style="text-align:right;">
+
+2.225394
+
+</td>
+<td style="text-align:right;">
+
+0.029
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+Residual
+
+</td>
+<td style="text-align:right;">
+
+24
+
+</td>
+<td style="text-align:right;">
+
+3.1591512
+
+</td>
+<td style="text-align:right;">
+
+0.6072001
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+Total
+
+</td>
+<td style="text-align:right;">
+
+31
+
+</td>
+<td style="text-align:right;">
+
+5.2028169
+
+</td>
+<td style="text-align:right;">
+
+1.0000000
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
 </tr>
 </tbody>
 </table>
 
 </div>
 
-## 10.7 PERMANOVA analysis of plastics only, no water, no glass, at 6 weeks, bray
+## 12.8 PERMANOVA analysis of plastics only, no water, no glass, at 6 weeks, bray
 
 ``` r
 #Subset phyloseq object
 filt.mp.count.plastics <- subset_samples(MPfiltRA, particle_type == "MP")
-```
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-``` r
 sample_data(filt.mp.count.plastics)
 ```
 
-    ## Sample Data:        [ 94 samples by 9 sample variables ]:
+    ## Sample Data:        [ 94 samples by 10 sample variables ]:
     ##                effluent week  polymer_type bead_diameter Channel sample_type
     ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
     ##  1 ESF21MP-100 CON      10    HDPE                  3.18 7.1     Particle   
@@ -18092,33 +24926,15 @@ sample_data(filt.mp.count.plastics)
     ##  9 ESF21MP-108 CON      10    LDPE                  3.18 8.2     Particle   
     ## 10 ESF21MP-109 CON      10    PP                    3.18 8.2     Particle   
     ## # ℹ 84 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 filt.mp.count.plastics.6 <- subset_samples(filt.mp.count.plastics, week == "6")
-```
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-``` r
 sample_data(filt.mp.count.plastics.6)
 ```
 
-    ## Sample Data:        [ 30 samples by 9 sample variables ]:
+    ## Sample Data:        [ 30 samples by 10 sample variables ]:
     ##               effluent week  polymer_type bead_diameter Channel sample_type
     ##               <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
     ##  1 ESF21MP-56 TWW      6     PS                    3.18 5.1     Particle   
@@ -18132,25 +24948,38 @@ sample_data(filt.mp.count.plastics.6)
     ##  9 ESF21MP-70 CON      6     PP                    3.18 7.1     Particle   
     ## 10 ESF21MP-71 CON      6     PP                    3.18 8.2     Particle   
     ## # ℹ 20 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 #Run PERMANOVA with bray-curtis dissimilarity
 filt_plastics_bray_6 <- phyloseq::distance(filt.mp.count.plastics.6, method = "bray")
 filt_plastics_bray_6_df <- data.frame(sample_data(filt.mp.count.plastics.6))
 filt.plastics.6.adonis <- adonis2(filt_plastics_bray_6 ~ effluent*polymer_type, data = filt_plastics_bray_6_df)
-filt.plastics.6.adonis$aov.tab
+filt.plastics.6.adonis
 ```
 
-    ## NULL
+    ## Permutation test for adonis under reduced model
+    ## Terms added sequentially (first to last)
+    ## Permutation: free
+    ## Number of permutations: 999
+    ## 
+    ## adonis2(formula = filt_plastics_bray_6 ~ effluent * polymer_type, data = filt_plastics_bray_6_df)
+    ##                       Df SumOfSqs      R2      F Pr(>F)   
+    ## effluent               1   0.6480 0.12363 4.2310  0.003 **
+    ## polymer_type           3   0.5782 0.11031 1.2583  0.184   
+    ## effluent:polymer_type  3   0.6458 0.12322 1.4056  0.100 . 
+    ## Residual              22   3.3694 0.64284                 
+    ## Total                 29   5.2414 1.00000                 
+    ## ---
+    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 ``` r
 #Convert output to dataframe
-filt.plastics.6.pvalue <- as.data.frame(filt.plastics.6.adonis$aov.tab)
+filt.plastics.6.pvalue <- as.data.frame(filt.plastics.6.adonis)
 
 #Create table of p-values
-knitr::kable(filt.plastics.6.pvalue) %>% 
+knitr::kable(filt.plastics.6.pvalue, row.names = NA) %>% 
   kableExtra::kable_styling("striped", 
                             latex_options="scale_down") %>% 
   kableExtra::scroll_box(width = "100%")
@@ -18160,42 +24989,212 @@ knitr::kable(filt.plastics.6.pvalue) %>%
 style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; ">
 
 <table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+
+Df
+
+</th>
+<th style="text-align:right;">
+
+SumOfSqs
+
+</th>
+<th style="text-align:right;">
+
+R2
+
+</th>
+<th style="text-align:right;">
+
+F
+
+</th>
+<th style="text-align:right;">
+
+Pr(\>F)
+
+</th>
+</tr>
+</thead>
 <tbody>
 <tr>
+<td style="text-align:left;">
+
+effluent
+
+</td>
+<td style="text-align:right;">
+
+1
+
+</td>
+<td style="text-align:right;">
+
+0.6479952
+
+</td>
+<td style="text-align:right;">
+
+0.1236314
+
+</td>
+<td style="text-align:right;">
+
+4.231029
+
+</td>
+<td style="text-align:right;">
+
+0.003
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+polymer_type
+
+</td>
+<td style="text-align:right;">
+
+3
+
+</td>
+<td style="text-align:right;">
+
+0.5781543
+
+</td>
+<td style="text-align:right;">
+
+0.1103064
+
+</td>
+<td style="text-align:right;">
+
+1.258336
+
+</td>
+<td style="text-align:right;">
+
+0.184
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+effluent:polymer_type
+
+</td>
+<td style="text-align:right;">
+
+3
+
+</td>
+<td style="text-align:right;">
+
+0.6458323
+
+</td>
+<td style="text-align:right;">
+
+0.1232187
+
+</td>
+<td style="text-align:right;">
+
+1.405636
+
+</td>
+<td style="text-align:right;">
+
+0.100
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+Residual
+
+</td>
+<td style="text-align:right;">
+
+22
+
+</td>
+<td style="text-align:right;">
+
+3.3693682
+
+</td>
+<td style="text-align:right;">
+
+0.6428436
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+Total
+
+</td>
+<td style="text-align:right;">
+
+29
+
+</td>
+<td style="text-align:right;">
+
+5.2413500
+
+</td>
+<td style="text-align:right;">
+
+1.0000000
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
 </tr>
 </tbody>
 </table>
 
 </div>
 
-## 10.8 PERMANOVA analysis of plastics only, no water, no glass, at 10 weeks, bray
+## 12.9 PERMANOVA analysis of plastics only, no water, no glass, at 10 weeks, bray
 
 ``` r
 #Subset phyloseq object
 filt.mp.count.plastics <- subset_samples(MPfiltRA, particle_type == "MP")
-```
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-``` r
 sample_data(filt.mp.count.plastics)
 ```
 
-    ## Sample Data:        [ 94 samples by 9 sample variables ]:
+    ## Sample Data:        [ 94 samples by 10 sample variables ]:
     ##                effluent week  polymer_type bead_diameter Channel sample_type
     ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
     ##  1 ESF21MP-100 CON      10    HDPE                  3.18 7.1     Particle   
@@ -18209,33 +25208,15 @@ sample_data(filt.mp.count.plastics)
     ##  9 ESF21MP-108 CON      10    LDPE                  3.18 8.2     Particle   
     ## 10 ESF21MP-109 CON      10    PP                    3.18 8.2     Particle   
     ## # ℹ 84 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 filt.mp.count.plastics.10 <- subset_samples(filt.mp.count.plastics, week == "10")
-```
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-    ## Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
-
-    ## Also defined by 'tidytree'
-
-``` r
 sample_data(filt.mp.count.plastics.10)
 ```
 
-    ## Sample Data:        [ 32 samples by 9 sample variables ]:
+    ## Sample Data:        [ 32 samples by 10 sample variables ]:
     ##                effluent week  polymer_type bead_diameter Channel sample_type
     ##                <fct>    <fct> <fct>                <dbl> <fct>   <fct>      
     ##  1 ESF21MP-100 CON      10    HDPE                  3.18 7.1     Particle   
@@ -18249,25 +25230,38 @@ sample_data(filt.mp.count.plastics.10)
     ##  9 ESF21MP-108 CON      10    LDPE                  3.18 8.2     Particle   
     ## 10 ESF21MP-109 CON      10    PP                    3.18 8.2     Particle   
     ## # ℹ 22 more samples
-    ## # ℹ 3 more variables: particle_type <fct>, particle_effluent <fct>,
-    ## #   particle_effluent_time <fct>
+    ## # ℹ 4 more variables: particle_type <fct>, particle_effluent <fct>,
+    ## #   particle_effluent_time <fct>, polymer_effluent_time <fct>
 
 ``` r
 #Run PERMANOVA with bray-curtis dissimilarity
 filt_plastics_bray_10 <- phyloseq::distance(filt.mp.count.plastics.10, method = "bray")
 filt_plastics_bray_10_df <- data.frame(sample_data(filt.mp.count.plastics.10))
 filt.plastics.10.adonis <- adonis2(filt_plastics_bray_10 ~ effluent*polymer_type, data = filt_plastics_bray_10_df)
-filt.plastics.10.adonis$aov.tab
+filt.plastics.10.adonis
 ```
 
-    ## NULL
+    ## Permutation test for adonis under reduced model
+    ## Terms added sequentially (first to last)
+    ## Permutation: free
+    ## Number of permutations: 999
+    ## 
+    ## adonis2(formula = filt_plastics_bray_10 ~ effluent * polymer_type, data = filt_plastics_bray_10_df)
+    ##                       Df SumOfSqs      R2      F Pr(>F)    
+    ## effluent               1   0.5515 0.15742 5.8335  0.001 ***
+    ## polymer_type           3   0.4083 0.11654 1.4396  0.047 *  
+    ## effluent:polymer_type  3   0.2747 0.07841 0.9686  0.530    
+    ## Residual              24   2.2689 0.64764                  
+    ## Total                 31   3.5034 1.00000                  
+    ## ---
+    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 ``` r
 #Convert output to dataframe
-filt.plastics.10.pvalue <- as.data.frame(filt.plastics.10.adonis$aov.tab)
+filt.plastics.10.pvalue <- as.data.frame(filt.plastics.10.adonis)
 
 #Create table of p-values
-knitr::kable(filt.plastics.10.pvalue) %>% 
+knitr::kable(filt.plastics.10.pvalue, row.names = NA) %>% 
   kableExtra::kable_styling("striped", 
                             latex_options="scale_down") %>% 
   kableExtra::scroll_box(width = "100%")
@@ -18277,15 +25271,530 @@ knitr::kable(filt.plastics.10.pvalue) %>%
 style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; ">
 
 <table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+
+Df
+
+</th>
+<th style="text-align:right;">
+
+SumOfSqs
+
+</th>
+<th style="text-align:right;">
+
+R2
+
+</th>
+<th style="text-align:right;">
+
+F
+
+</th>
+<th style="text-align:right;">
+
+Pr(\>F)
+
+</th>
+</tr>
+</thead>
 <tbody>
 <tr>
+<td style="text-align:left;">
+
+effluent
+
+</td>
+<td style="text-align:right;">
+
+1
+
+</td>
+<td style="text-align:right;">
+
+0.5514922
+
+</td>
+<td style="text-align:right;">
+
+0.1574155
+
+</td>
+<td style="text-align:right;">
+
+5.8334822
+
+</td>
+<td style="text-align:right;">
+
+0.001
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+polymer_type
+
+</td>
+<td style="text-align:right;">
+
+3
+
+</td>
+<td style="text-align:right;">
+
+0.4082831
+
+</td>
+<td style="text-align:right;">
+
+0.1165385
+
+</td>
+<td style="text-align:right;">
+
+1.4395562
+
+</td>
+<td style="text-align:right;">
+
+0.047
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+effluent:polymer_type
+
+</td>
+<td style="text-align:right;">
+
+3
+
+</td>
+<td style="text-align:right;">
+
+0.2747036
+
+</td>
+<td style="text-align:right;">
+
+0.0784102
+
+</td>
+<td style="text-align:right;">
+
+0.9685713
+
+</td>
+<td style="text-align:right;">
+
+0.530
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+Residual
+
+</td>
+<td style="text-align:right;">
+
+24
+
+</td>
+<td style="text-align:right;">
+
+2.2689387
+
+</td>
+<td style="text-align:right;">
+
+0.6476358
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+Total
+
+</td>
+<td style="text-align:right;">
+
+31
+
+</td>
+<td style="text-align:right;">
+
+3.5034176
+
+</td>
+<td style="text-align:right;">
+
+1.0000000
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
+<td style="text-align:right;">
+
+NA
+
+</td>
 </tr>
 </tbody>
 </table>
 
 </div>
 
-# 11 Session Info
+## 12.10 Pairwise PERMANOVA analysis of plastics only, no water, no glass, at 10 weeks, bray
+
+Running a pairwise PERMANOVA using the pairwiseAdonis package to
+determine which polymer type is driving the differences we see between
+polymer types.
+
+``` r
+library(pairwiseAdonis)
+
+#Run pairwise PERMANOVA with bray-curtis dissimilarity
+filt_plastics_bray_10_df <- data.frame(sample_data(filt.mp.count.plastics.10))
+
+filt_plastics_bray_10_pairwise <- phyloseq::distance(filt.mp.count.plastics.10, method = "bray")
+
+filt.plastics.10.pairwise <- pairwise.adonis(filt_plastics_bray_10_pairwise, filt_plastics_bray_10_df$polymer_type, p.adjust.m='BH')
+
+filt.plastics.10.pairwise
+```
+
+    ##          pairs Df SumsOfSqs   F.Model         R2 p.value p.adjusted sig
+    ## 1 HDPE vs LDPE  1 0.1555560 1.4059383 0.09125950   0.124     0.3120    
+    ## 2   HDPE vs PP  1 0.1663468 1.2992013 0.08491955   0.183     0.3120    
+    ## 3   HDPE vs PS  1 0.1006874 1.0576927 0.07024268   0.397     0.4764    
+    ## 4   LDPE vs PP  1 0.1161571 0.9227188 0.06183316   0.545     0.5450    
+    ## 5   LDPE vs PS  1 0.1158128 1.2447198 0.08164924   0.208     0.3120    
+    ## 6     PP vs PS  1 0.1620060 1.4669288 0.09484293   0.105     0.3120
+
+``` r
+#Convert output to dataframe
+filt.plastics.10.pairwise.pvalue <- as.data.frame(filt.plastics.10.pairwise)
+
+#Create table of p-values
+knitr::kable(filt.plastics.10.pairwise.pvalue, row.names = NA) %>% 
+  kableExtra::kable_styling("striped", 
+                            latex_options="scale_down") %>% 
+  kableExtra::scroll_box(width = "100%")
+```
+
+<div
+style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; ">
+
+<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+
+pairs
+
+</th>
+<th style="text-align:right;">
+
+Df
+
+</th>
+<th style="text-align:right;">
+
+SumsOfSqs
+
+</th>
+<th style="text-align:right;">
+
+F.Model
+
+</th>
+<th style="text-align:right;">
+
+R2
+
+</th>
+<th style="text-align:right;">
+
+p.value
+
+</th>
+<th style="text-align:right;">
+
+p.adjusted
+
+</th>
+<th style="text-align:left;">
+
+sig
+
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+
+HDPE vs LDPE
+
+</td>
+<td style="text-align:right;">
+
+1
+
+</td>
+<td style="text-align:right;">
+
+0.1555560
+
+</td>
+<td style="text-align:right;">
+
+1.4059383
+
+</td>
+<td style="text-align:right;">
+
+0.0912595
+
+</td>
+<td style="text-align:right;">
+
+0.124
+
+</td>
+<td style="text-align:right;">
+
+0.3120
+
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+HDPE vs PP
+
+</td>
+<td style="text-align:right;">
+
+1
+
+</td>
+<td style="text-align:right;">
+
+0.1663468
+
+</td>
+<td style="text-align:right;">
+
+1.2992013
+
+</td>
+<td style="text-align:right;">
+
+0.0849196
+
+</td>
+<td style="text-align:right;">
+
+0.183
+
+</td>
+<td style="text-align:right;">
+
+0.3120
+
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+HDPE vs PS
+
+</td>
+<td style="text-align:right;">
+
+1
+
+</td>
+<td style="text-align:right;">
+
+0.1006874
+
+</td>
+<td style="text-align:right;">
+
+1.0576927
+
+</td>
+<td style="text-align:right;">
+
+0.0702427
+
+</td>
+<td style="text-align:right;">
+
+0.397
+
+</td>
+<td style="text-align:right;">
+
+0.4764
+
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+LDPE vs PP
+
+</td>
+<td style="text-align:right;">
+
+1
+
+</td>
+<td style="text-align:right;">
+
+0.1161571
+
+</td>
+<td style="text-align:right;">
+
+0.9227188
+
+</td>
+<td style="text-align:right;">
+
+0.0618332
+
+</td>
+<td style="text-align:right;">
+
+0.545
+
+</td>
+<td style="text-align:right;">
+
+0.5450
+
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+LDPE vs PS
+
+</td>
+<td style="text-align:right;">
+
+1
+
+</td>
+<td style="text-align:right;">
+
+0.1158128
+
+</td>
+<td style="text-align:right;">
+
+1.2447198
+
+</td>
+<td style="text-align:right;">
+
+0.0816492
+
+</td>
+<td style="text-align:right;">
+
+0.208
+
+</td>
+<td style="text-align:right;">
+
+0.3120
+
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+
+PP vs PS
+
+</td>
+<td style="text-align:right;">
+
+1
+
+</td>
+<td style="text-align:right;">
+
+0.1620060
+
+</td>
+<td style="text-align:right;">
+
+1.4669288
+
+</td>
+<td style="text-align:right;">
+
+0.0948429
+
+</td>
+<td style="text-align:right;">
+
+0.105
+
+</td>
+<td style="text-align:right;">
+
+0.3120
+
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+# 13 Session Info
 
 ``` r
 devtools::session_info()
@@ -18301,7 +25810,7 @@ devtools::session_info()
     ##  collate  English_United States.utf8
     ##  ctype    English_United States.utf8
     ##  tz       America/New_York
-    ##  date     2023-08-17
+    ##  date     2023-11-08
     ##  pandoc   2.18 @ C:/Program Files/RStudio/bin/quarto/bin/tools/ (via rmarkdown)
     ## 
     ## ─ Packages ───────────────────────────────────────────────────────────────────
@@ -18333,7 +25842,7 @@ devtools::session_info()
     ##    classInt               0.4-9      2023-02-28 [1] CRAN (R 4.2.3)
     ##    cli                    3.6.1      2023-03-23 [1] CRAN (R 4.2.3)
     ##    clue                   0.3-64     2023-01-31 [1] CRAN (R 4.2.3)
-    ##    cluster                2.1.4      2022-08-22 [1] CRAN (R 4.2.3)
+    ##    cluster              * 2.1.4      2022-08-22 [1] CRAN (R 4.2.3)
     ##    coda                   0.19-4     2020-09-30 [1] CRAN (R 4.2.3)
     ##    codetools              0.2-19     2023-02-01 [1] CRAN (R 4.2.2)
     ##    colorspace             2.1-0      2023-01-23 [1] CRAN (R 4.2.3)
@@ -18355,6 +25864,7 @@ devtools::session_info()
     ##    fansi                  1.0.4      2023-01-22 [1] CRAN (R 4.2.3)
     ##    farver                 2.1.1      2022-07-06 [1] CRAN (R 4.2.3)
     ##    fastmap                1.1.1      2023-02-24 [1] CRAN (R 4.2.3)
+    ##    forcats              * 1.0.0      2023-01-29 [1] CRAN (R 4.2.3)
     ##    foreach                1.5.2      2022-02-02 [1] CRAN (R 4.2.3)
     ##    foreign                0.8-84     2022-12-06 [1] CRAN (R 4.2.2)
     ##    Formula                1.2-5      2023-02-24 [1] CRAN (R 4.2.2)
@@ -18376,19 +25886,20 @@ devtools::session_info()
     ##    gridExtra              2.3        2017-09-09 [1] CRAN (R 4.2.3)
     ##    gridGraphics           0.5-1      2020-12-13 [1] CRAN (R 4.2.3)
     ##    grImport2              0.2-0      2019-11-25 [1] CRAN (R 4.2.3)
-    ##    gtable                 0.3.3      2023-03-21 [1] CRAN (R 4.2.3)
+    ##    gtable                 0.3.4      2023-08-21 [1] CRAN (R 4.2.1)
     ##    highr                  0.10       2022-12-22 [1] CRAN (R 4.2.3)
     ##    Hmisc                  5.1-0      2023-05-08 [1] CRAN (R 4.2.3)
+    ##    hms                    1.1.3      2023-03-21 [1] CRAN (R 4.2.3)
     ##    htmlTable              2.4.1      2022-07-07 [1] CRAN (R 4.2.3)
     ##    htmltools              0.5.5      2023-03-23 [1] CRAN (R 4.2.3)
     ##    htmlwidgets            1.6.2      2023-03-17 [1] CRAN (R 4.2.3)
     ##    httpuv                 1.6.11     2023-05-11 [1] CRAN (R 4.2.3)
-    ##    httr                   1.4.6      2023-05-08 [1] CRAN (R 4.2.3)
+    ##    httr                   1.4.7      2023-08-15 [1] CRAN (R 4.2.3)
     ##    igraph                 1.4.3      2023-05-22 [1] CRAN (R 4.2.3)
     ##    IRanges              * 2.32.0     2022-11-01 [1] Bioconductor
     ##    iterators              1.0.14     2022-02-05 [1] CRAN (R 4.2.3)
     ##    jpeg                   0.1-10     2022-11-29 [1] CRAN (R 4.2.2)
-    ##    jsonlite               1.8.5      2023-06-05 [1] CRAN (R 4.2.3)
+    ##    jsonlite               1.8.7      2023-06-29 [1] CRAN (R 4.2.3)
     ##    kableExtra             1.3.4      2021-02-20 [1] CRAN (R 4.2.3)
     ##    KEGGREST               1.38.0     2022-11-01 [1] Bioconductor
     ##    KernSmooth             2.23-22    2023-07-10 [1] CRAN (R 4.2.3)
@@ -18399,6 +25910,7 @@ devtools::session_info()
     ##    lazyeval               0.2.2      2019-03-15 [1] CRAN (R 4.2.3)
     ##    lifecycle              1.0.3      2022-10-07 [1] CRAN (R 4.2.3)
     ##    locfit                 1.5-9.8    2023-06-11 [1] CRAN (R 4.2.3)
+    ##    lubridate            * 1.9.2      2023-02-10 [1] CRAN (R 4.2.3)
     ##    magick                 2.7.5      2023-08-07 [1] CRAN (R 4.2.3)
     ##    magrittr               2.0.3      2022-03-30 [1] CRAN (R 4.2.3)
     ##    MASS                   7.3-60     2023-05-04 [1] CRAN (R 4.2.3)
@@ -18418,6 +25930,7 @@ devtools::session_info()
     ##    nnet                   7.3-19     2023-05-03 [1] CRAN (R 4.2.3)
     ##    numDeriv               2016.8-1.1 2019-06-06 [1] CRAN (R 4.2.0)
     ##    nVennR               * 0.2.3      2023-06-21 [1] Github (vqf/nVennR@9821db4)
+    ##    pairwiseAdonis       * 0.4.1      2023-08-21 [1] Github (pmartinezarbizu/pairwiseAdonis@cb190f7)
     ##    patchwork            * 1.1.2.9000 2023-04-24 [1] Github (thomasp85/patchwork@c14c960)
     ##    permute              * 0.9-7      2022-01-27 [1] CRAN (R 4.2.3)
     ##    phyloseq             * 1.42.0     2022-11-01 [1] Bioconductor
@@ -18428,18 +25941,19 @@ devtools::session_info()
     ##    pkgload                1.3.2.1    2023-07-08 [1] CRAN (R 4.2.3)
     ##    plyr                 * 1.8.8      2022-11-11 [1] CRAN (R 4.2.3)
     ##    png                    0.1-8      2022-11-29 [1] CRAN (R 4.2.2)
-    ##    prettyunits            1.1.1      2020-01-24 [1] CRAN (R 4.2.3)
+    ##    prettyunits            1.2.0      2023-09-24 [1] CRAN (R 4.2.3)
     ##    processx               3.8.1      2023-04-18 [1] CRAN (R 4.2.1)
     ##    profvis                0.3.8      2023-05-02 [1] CRAN (R 4.2.3)
     ##    promises               1.2.0.1    2021-02-11 [1] CRAN (R 4.2.3)
     ##    proxy                  0.4-27     2022-06-09 [1] CRAN (R 4.2.3)
     ##    ps                     1.7.5      2023-04-18 [1] CRAN (R 4.2.3)
-    ##    purrr                  1.0.1      2023-01-10 [1] CRAN (R 4.2.3)
+    ##    purrr                * 1.0.1      2023-01-10 [1] CRAN (R 4.2.3)
     ##    qiime2R              * 0.99.6     2023-04-07 [1] Github (jbisanz/qiime2R@2a3cee1)
     ##    R6                     2.5.1      2021-08-19 [1] CRAN (R 4.2.3)
     ##    RColorBrewer         * 1.1-3      2022-04-03 [1] CRAN (R 4.2.0)
     ##    Rcpp                   1.0.10     2023-01-22 [1] CRAN (R 4.2.3)
     ##    RCurl                  1.98-1.12  2023-03-27 [1] CRAN (R 4.2.3)
+    ##    readr                * 2.1.4      2023-02-10 [1] CRAN (R 4.2.3)
     ##    remotes                2.4.2.1    2023-07-18 [1] CRAN (R 4.2.1)
     ##    reshape2             * 1.4.4      2020-04-09 [1] CRAN (R 4.2.3)
     ##    rhdf5                  2.42.0     2022-11-01 [1] Bioconductor
@@ -18447,7 +25961,7 @@ devtools::session_info()
     ##    Rhdf5lib               1.20.0     2022-11-01 [1] Bioconductor
     ##    rjson                  0.2.21     2022-01-09 [1] CRAN (R 4.2.0)
     ##    rlang                  1.1.1      2023-04-28 [1] CRAN (R 4.2.3)
-    ##    rmarkdown              2.23       2023-07-01 [1] CRAN (R 4.2.1)
+    ##    rmarkdown              2.24       2023-08-14 [1] CRAN (R 4.2.3)
     ##    rpart                  4.1.19     2022-10-21 [1] CRAN (R 4.2.3)
     ##    RSQLite                2.3.1      2023-04-03 [1] CRAN (R 4.2.3)
     ##    rstudioapi             0.15.0     2023-07-07 [1] CRAN (R 4.2.3)
@@ -18462,7 +25976,7 @@ devtools::session_info()
     ##    shiny                  1.7.4.1    2023-07-06 [1] CRAN (R 4.2.3)
     ##    speedyseq            * 0.5.3.9018 2023-05-01 [1] Github (mikemc/speedyseq@ceb941f)
     ##    stringi                1.7.12     2023-01-11 [1] CRAN (R 4.2.2)
-    ##    stringr                1.5.0      2022-12-02 [1] CRAN (R 4.2.3)
+    ##    stringr              * 1.5.0      2022-12-02 [1] CRAN (R 4.2.3)
     ##    SummarizedExperiment * 1.28.0     2022-11-01 [1] Bioconductor
     ##    SuperExactTest       * 1.1.0      2022-03-23 [1] CRAN (R 4.2.3)
     ##    survival               3.5-5      2023-03-12 [1] CRAN (R 4.2.3)
@@ -18472,8 +25986,11 @@ devtools::session_info()
     ##    tidyr                * 1.3.0      2023-01-24 [1] CRAN (R 4.2.3)
     ##    tidyselect             1.2.0      2022-10-10 [1] CRAN (R 4.2.3)
     ##    tidytree               0.4.4      2023-07-15 [1] CRAN (R 4.2.3)
+    ##    tidyverse            * 2.0.0      2023-02-22 [1] CRAN (R 4.2.3)
+    ##    timechange             0.2.0      2023-01-11 [1] CRAN (R 4.2.3)
     ##    treeio                 1.22.0     2022-11-01 [1] Bioconductor
     ##    truncnorm              1.0-9      2023-03-20 [1] CRAN (R 4.2.3)
+    ##    tzdb                   0.4.0      2023-05-12 [1] CRAN (R 4.2.3)
     ##    units                  0.8-2      2023-04-27 [1] CRAN (R 4.2.3)
     ##    urlchecker             1.0.1      2021-11-30 [1] CRAN (R 4.2.3)
     ##    usethis                2.2.2      2023-07-06 [1] CRAN (R 4.2.3)
@@ -18483,10 +26000,10 @@ devtools::session_info()
     ##    viridis              * 0.6.3      2023-05-03 [1] CRAN (R 4.2.3)
     ##    viridisLite          * 0.4.2      2023-05-02 [1] CRAN (R 4.2.3)
     ##    webshot                0.5.5      2023-06-26 [1] CRAN (R 4.2.1)
-    ##    withr                  2.5.0      2022-03-03 [1] CRAN (R 4.2.3)
+    ##    withr                  2.5.1      2023-09-26 [1] CRAN (R 4.2.3)
     ##    xfun                   0.39       2023-04-20 [1] CRAN (R 4.2.3)
     ##    XML                    3.99-0.14  2023-03-19 [1] CRAN (R 4.2.3)
-    ##    xml2                   1.3.4      2023-04-27 [1] CRAN (R 4.2.3)
+    ##    xml2                   1.3.5      2023-07-06 [1] CRAN (R 4.2.3)
     ##    xtable                 1.8-4      2019-04-21 [1] CRAN (R 4.2.3)
     ##    XVector                0.38.0     2022-11-01 [1] Bioconductor
     ##    yaml                   2.3.7      2023-01-23 [1] CRAN (R 4.2.3)
