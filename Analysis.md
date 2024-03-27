@@ -387,46 +387,49 @@ Sarah Brown
         colors</a>
     -   <a href="#112-label-variables" id="toc-112-label-variables">11.2 Label
         variables</a>
-    -   <a href="#113-nmds-of-all-data-fig-1"
-        id="toc-113-nmds-of-all-data-fig-1">11.3 NMDS of all data (Fig. 1)</a>
+    -   <a href="#113-nmds-of-all-data" id="toc-113-nmds-of-all-data">11.3 NMDS
+        of all data</a>
     -   <a
         href="#114-nmds-of-particles-glass-and-mps-only-no-water-bray-curtis-dissimilarity"
         id="toc-114-nmds-of-particles-glass-and-mps-only-no-water-bray-curtis-dissimilarity">11.4
         NMDS of particles (glass and MPs) only, no water, Bray-Curtis
         dissimilarity</a>
+    -   <a href="#115-combine-nmds-plots-for-fig-1"
+        id="toc-115-combine-nmds-plots-for-fig-1">11.5 Combine NMDS plots for
+        Fig. 1</a>
     -   <a
-        href="#115-nmds-of-particles-glass-and-mps-only-no-water-at-2-weeks-bray-curtis-dissimilarity"
-        id="toc-115-nmds-of-particles-glass-and-mps-only-no-water-at-2-weeks-bray-curtis-dissimilarity">11.5
+        href="#116-nmds-of-particles-glass-and-mps-only-no-water-at-2-weeks-bray-curtis-dissimilarity"
+        id="toc-116-nmds-of-particles-glass-and-mps-only-no-water-at-2-weeks-bray-curtis-dissimilarity">11.6
         NMDS of particles (glass and MPs) only, no water, at 2 weeks,
         Bray-Curtis dissimilarity</a>
     -   <a
-        href="#116-nmds-of-particles-glass-and-mps-only-no-water-at-6-weeks-bray-curtis-dissimilarity"
-        id="toc-116-nmds-of-particles-glass-and-mps-only-no-water-at-6-weeks-bray-curtis-dissimilarity">11.6
+        href="#117-nmds-of-particles-glass-and-mps-only-no-water-at-6-weeks-bray-curtis-dissimilarity"
+        id="toc-117-nmds-of-particles-glass-and-mps-only-no-water-at-6-weeks-bray-curtis-dissimilarity">11.7
         NMDS of particles (glass and MPs) only, no water, at 6 weeks,
         Bray-Curtis dissimilarity</a>
     -   <a
-        href="#117-nmds-of-particles-glass-and-mps-only-no-water-at-10-weeks-bray-curtis-dissimilarity"
-        id="toc-117-nmds-of-particles-glass-and-mps-only-no-water-at-10-weeks-bray-curtis-dissimilarity">11.7
+        href="#118-nmds-of-particles-glass-and-mps-only-no-water-at-10-weeks-bray-curtis-dissimilarity"
+        id="toc-118-nmds-of-particles-glass-and-mps-only-no-water-at-10-weeks-bray-curtis-dissimilarity">11.8
         NMDS of particles (glass and MPs) only, no water, at 10 weeks,
         Bray-Curtis dissimilarity</a>
-    -   <a href="#118-nmds-of-mps-only-bray-curtis-dissimilarity"
-        id="toc-118-nmds-of-mps-only-bray-curtis-dissimilarity">11.8 NMDS of
+    -   <a href="#119-nmds-of-mps-only-bray-curtis-dissimilarity"
+        id="toc-119-nmds-of-mps-only-bray-curtis-dissimilarity">11.9 NMDS of
         MP’s only, Bray-Curtis dissimilarity</a>
-    -   <a href="#119-nmds-of-mps-only-at-2-weeks-bray-curtis-dissimilarity"
-        id="toc-119-nmds-of-mps-only-at-2-weeks-bray-curtis-dissimilarity">11.9
+    -   <a href="#1110-nmds-of-mps-only-at-2-weeks-bray-curtis-dissimilarity"
+        id="toc-1110-nmds-of-mps-only-at-2-weeks-bray-curtis-dissimilarity">11.10
         NMDS of MP’s only, at 2 weeks, Bray-Curtis dissimilarity</a>
-    -   <a href="#1110-nmds-of-mps-only-at-6-weeks-bray-curtis-dissimilarity"
-        id="toc-1110-nmds-of-mps-only-at-6-weeks-bray-curtis-dissimilarity">11.10
+    -   <a href="#1111-nmds-of-mps-only-at-6-weeks-bray-curtis-dissimilarity"
+        id="toc-1111-nmds-of-mps-only-at-6-weeks-bray-curtis-dissimilarity">11.11
         NMDS of MP’s only, at 6 weeks, Bray-Curtis dissimilarity</a>
-    -   <a href="#1111-nmds-of-mps-only-at-10-weeks-bray-curtis-dissimilarity"
-        id="toc-1111-nmds-of-mps-only-at-10-weeks-bray-curtis-dissimilarity">11.11
+    -   <a href="#1112-nmds-of-mps-only-at-10-weeks-bray-curtis-dissimilarity"
+        id="toc-1112-nmds-of-mps-only-at-10-weeks-bray-curtis-dissimilarity">11.12
         NMDS of MP’s only, at 10 weeks, Bray-Curtis dissimilarity</a>
-    -   <a href="#1112-combine-nmds-plots-for-fig-2"
-        id="toc-1112-combine-nmds-plots-for-fig-2">11.12 Combine NMDS plots for
+    -   <a href="#1113-combine-nmds-plots-for-fig-2"
+        id="toc-1113-combine-nmds-plots-for-fig-2">11.13 Combine NMDS plots for
         Fig. 2</a>
     -   <a
-        href="#1113-nmds-of-river-water-particles-glass-and-mps-only-at-10-weeks-bray-curtis-dissimilarity"
-        id="toc-1113-nmds-of-river-water-particles-glass-and-mps-only-at-10-weeks-bray-curtis-dissimilarity">11.13
+        href="#1114-nmds-of-river-water-particles-glass-and-mps-only-at-10-weeks-bray-curtis-dissimilarity"
+        id="toc-1114-nmds-of-river-water-particles-glass-and-mps-only-at-10-weeks-bray-curtis-dissimilarity">11.14
         NMDS of river water particles (glass and MPs only), at 10 weeks,
         Bray-Curtis dissimilarity</a>
 -   <a href="#12-permanova-analysis---filtered-dataset"
@@ -626,7 +629,7 @@ system.time(rarecurve(mat, step = 100, sample = raremax, col = "blue", label = F
 ![](Analysis_files/figure-gfm/rarefaction%20curve-1.png)<!-- -->
 
     ##    user  system elapsed 
-    ##   63.80    3.83   75.83
+    ##   30.34    1.99   79.90
 
 ## 2.3 Label variables and transform to relative abundance
 
@@ -19345,7 +19348,7 @@ sample_data(MPfiltRANMDS)$particle_type <- factor(sample_data(MPfiltRANMDS)$part
 
     ## Also defined by 'tidytree'
 
-## 11.3 NMDS of all data (Fig. 1)
+## 11.3 NMDS of all data
 
 Now we can create an NMDS plot using the filtered data that plots all
 sample variables (i.e., effluent type, polymer type, time point, etc.).
@@ -19430,8 +19433,8 @@ filt.nmds.particle_type <- plot_ordination(
         panel.spacing = unit(1, "lines"), 
         panel.border = element_rect(colour = "black", fill = NA, size = 0.5), 
         panel.background = element_blank(), 
-        legend.text = element_text(size = 15),
-        legend.title = element_text(size = 15),
+        legend.text = element_text(size = 12),
+        legend.title = element_text(size = 13),
         legend.position = c(.99, .99),
         legend.justification = c("right", "top"),
         legend.box.just = "right",
@@ -19459,8 +19462,8 @@ filt.nmds.source <- plot_ordination(
         panel.spacing = unit(1, "lines"), 
         panel.border = element_rect(colour = "black", fill = NA, size = 0.5), 
         panel.background = element_blank(), 
-        legend.text = element_text(size = 15),
-        legend.title = element_text(size = 15),
+        legend.text = element_text(size = 12),
+        legend.title = element_text(size = 13),
         legend.position = c(.99, .99),
         legend.justification = c("right", "top"),
         legend.box.just = "right",
@@ -19488,8 +19491,8 @@ filt.nmds.week <- plot_ordination(
         panel.spacing = unit(1, "lines"), 
         panel.border = element_rect(colour = "black", fill = NA, size = 0.5), 
         panel.background = element_blank(), 
-        legend.text = element_text(size = 15),
-        legend.title = element_text(size = 15),
+        legend.text = element_text(size = 12),
+        legend.title = element_text(size = 13),
         legend.position = c(.99, .99),
         legend.justification = c("right", "top"),
         legend.box.just = "right",
@@ -19517,8 +19520,8 @@ filt.nmds.sample.type <- plot_ordination(
         panel.spacing = unit(1, "lines"), 
         panel.border = element_rect(colour = "black", fill = NA, size = 0.5), 
         panel.background = element_blank(), 
-        legend.text = element_text(size = 15),
-        legend.title = element_text(size = 15),
+        legend.text = element_text(size = 12),
+        legend.title = element_text(size = 13),
         legend.position = c(.99, .99),
         legend.justification = c("right", "top"),
         legend.box.just = "right",
@@ -19640,7 +19643,7 @@ particle.nmds.type.filt <- plot_ordination(
         panel.background = element_blank(), 
         legend.text = element_text(size = 12),
         legend.title = element_text(size = 13),
-        legend.position = c(.25, .23),
+        legend.position = c(.99, .99),
         legend.justification = c("right", "top"),
         legend.box.just = "right",
         legend.margin = margin(6, 6, 6, 6)) +
@@ -19747,7 +19750,23 @@ particle_combo_filt <- (particle.nmds.type.filt | particle.nmds.source.filt)/(pa
 ggsave(filename="Microplastics_filt_NMDS_particle.svg", plot=particle_combo_filt, width=12, height=10, device=svg)
 ```
 
-## 11.5 NMDS of particles (glass and MPs) only, no water, at 2 weeks, Bray-Curtis dissimilarity
+## 11.5 Combine NMDS plots for Fig. 1
+
+``` r
+#Use pathwork to combine these 4 plots
+fig1 <- (filt.nmds.particle_type | filt.nmds.source)/(filt.nmds.week | particle.nmds.type.filt)
+
+print(fig1)
+```
+
+![](Analysis_files/figure-gfm/patchwork%20combine%20fig%201-1.png)<!-- -->
+
+``` r
+#Save as an svg file
+ggsave(filename="Microplastics_filt_NMDS_fig1.svg", plot=fig1, width=10, height=9, device=svg)
+```
+
+## 11.6 NMDS of particles (glass and MPs) only, no water, at 2 weeks, Bray-Curtis dissimilarity
 
 ``` r
 #Subset phyloseq object
@@ -19956,7 +19975,7 @@ print(filt.particle.nmds.polymer.2)
 filt_particle_combo_2 <- (filt.particle.nmds.type.2 | filt.particle.nmds.source.2)/filt.particle.nmds.polymer.2
 ```
 
-## 11.6 NMDS of particles (glass and MPs) only, no water, at 6 weeks, Bray-Curtis dissimilarity
+## 11.7 NMDS of particles (glass and MPs) only, no water, at 6 weeks, Bray-Curtis dissimilarity
 
 ``` r
 #Subset phyloseq object
@@ -20168,7 +20187,7 @@ print(filt.particle.nmds.polymer.6)
 filt_particle_combo_6 <- (filt.particle.nmds.type.6 | filt.particle.nmds.source.6)/filt.particle.nmds.polymer.6
 ```
 
-## 11.7 NMDS of particles (glass and MPs) only, no water, at 10 weeks, Bray-Curtis dissimilarity
+## 11.8 NMDS of particles (glass and MPs) only, no water, at 10 weeks, Bray-Curtis dissimilarity
 
 ``` r
 #Subset phyloseq object
@@ -20390,7 +20409,7 @@ print(filt.particle.nmds.polymer.10)
 filt_particle_combo_10 <- (filt.particle.nmds.type.10 | filt.particle.nmds.source.10)/filt.particle.nmds.polymer.10
 ```
 
-## 11.8 NMDS of MP’s only, Bray-Curtis dissimilarity
+## 11.9 NMDS of MP’s only, Bray-Curtis dissimilarity
 
 ``` r
 #Subset phyloseq object
@@ -20573,7 +20592,7 @@ print(filt.plastics.nmds.polymer)
 filt_plastics_combo <- (filt.plastics.nmds.source | filt.plastics.nmds.week)/(filt.plastics.nmds.polymer)
 ```
 
-## 11.9 NMDS of MP’s only, at 2 weeks, Bray-Curtis dissimilarity
+## 11.10 NMDS of MP’s only, at 2 weeks, Bray-Curtis dissimilarity
 
 ``` r
 #Subset phyloseq object
@@ -20753,7 +20772,7 @@ print(filt.plastics.nmds.polymer.2)
 filt_plastics_combo_2 <- (filt.plastics.nmds.source.2 | filt.plastics.nmds.polymer.2)
 ```
 
-## 11.10 NMDS of MP’s only, at 6 weeks, Bray-Curtis dissimilarity
+## 11.11 NMDS of MP’s only, at 6 weeks, Bray-Curtis dissimilarity
 
 ``` r
 #Subset phyloseq object
@@ -20936,7 +20955,7 @@ print(filt.plastics.nmds.polymer.6)
 filt_plastics_combo_6 <- (filt.plastics.nmds.source.6 | filt.plastics.nmds.polymer.6)
 ```
 
-## 11.11 NMDS of MP’s only, at 10 weeks, Bray-Curtis dissimilarity
+## 11.12 NMDS of MP’s only, at 10 weeks, Bray-Curtis dissimilarity
 
 ``` r
 #Subset phyloseq object
@@ -21112,7 +21131,7 @@ print(filt.plastics.nmds.polymer.10)
 filt_plastics_combo_10 <- (filt.plastics.nmds.source.10 | filt.plastics.nmds.polymer.10)
 ```
 
-## 11.12 Combine NMDS plots for Fig. 2
+## 11.13 Combine NMDS plots for Fig. 2
 
 ``` r
 #Combine above figures using patchwork
@@ -21133,7 +21152,7 @@ ggsave(filename="Microplastics_filt_NMDS_fig2.svg", plot=fig2, width=9, height=1
 
     ## Warning in MASS::cov.trob(data[, vars]): Probable convergence failure
 
-## 11.13 NMDS of river water particles (glass and MPs only), at 10 weeks, Bray-Curtis dissimilarity
+## 11.14 NMDS of river water particles (glass and MPs only), at 10 weeks, Bray-Curtis dissimilarity
 
 Here, I’m checking to see if there are more obvious differences between
 different polymer types if I separate them by water source; for now, I’m
@@ -25803,14 +25822,14 @@ devtools::session_info()
     ## ─ Session info ───────────────────────────────────────────────────────────────
     ##  setting  value
     ##  version  R version 4.2.1 (2022-06-23 ucrt)
-    ##  os       Windows 10 x64 (build 22000)
+    ##  os       Windows 10 x64 (build 22621)
     ##  system   x86_64, mingw32
     ##  ui       RTerm
     ##  language (EN)
     ##  collate  English_United States.utf8
     ##  ctype    English_United States.utf8
     ##  tz       America/New_York
-    ##  date     2023-11-08
+    ##  date     2024-03-24
     ##  pandoc   2.18 @ C:/Program Files/RStudio/bin/quarto/bin/tools/ (via rmarkdown)
     ## 
     ## ─ Packages ───────────────────────────────────────────────────────────────────
@@ -25841,27 +25860,27 @@ devtools::session_info()
     ##    class                  7.3-22     2023-05-03 [1] CRAN (R 4.2.3)
     ##    classInt               0.4-9      2023-02-28 [1] CRAN (R 4.2.3)
     ##    cli                    3.6.1      2023-03-23 [1] CRAN (R 4.2.3)
-    ##    clue                   0.3-64     2023-01-31 [1] CRAN (R 4.2.3)
+    ##    clue                   0.3-65     2023-09-23 [1] CRAN (R 4.2.3)
     ##    cluster              * 2.1.4      2022-08-22 [1] CRAN (R 4.2.3)
     ##    coda                   0.19-4     2020-09-30 [1] CRAN (R 4.2.3)
     ##    codetools              0.2-19     2023-02-01 [1] CRAN (R 4.2.2)
     ##    colorspace             2.1-0      2023-01-23 [1] CRAN (R 4.2.3)
     ##    ComplexHeatmap       * 2.14.0     2022-11-01 [1] Bioconductor
     ##    crayon                 1.5.2      2022-09-29 [1] CRAN (R 4.2.3)
-    ##    data.table             1.14.8     2023-02-17 [1] CRAN (R 4.2.3)
+    ##    data.table             1.14.10    2023-12-08 [1] CRAN (R 4.2.3)
     ##    DBI                    1.1.3      2022-06-18 [1] CRAN (R 4.2.3)
     ##    DelayedArray           0.24.0     2022-11-01 [1] Bioconductor
     ##    DESeq2               * 1.38.3     2023-01-19 [1] Bioconductor
     ##    devtools               2.4.5      2022-10-11 [1] CRAN (R 4.2.3)
     ##    digest                 0.6.31     2022-12-11 [1] CRAN (R 4.2.3)
     ##    doParallel             1.0.17     2022-02-07 [1] CRAN (R 4.2.3)
-    ##    dplyr                * 1.1.2      2023-04-20 [1] CRAN (R 4.2.3)
+    ##    dplyr                * 1.1.4      2023-11-17 [1] CRAN (R 4.2.3)
     ##    DT                     0.28       2023-05-18 [1] CRAN (R 4.2.3)
     ##    e1071                  1.7-13     2023-02-01 [1] CRAN (R 4.2.3)
     ##    ellipsis               0.3.2      2021-04-29 [1] CRAN (R 4.2.3)
     ##    emdbook                1.3.13     2023-07-03 [1] CRAN (R 4.2.1)
-    ##    evaluate               0.21       2023-05-05 [1] CRAN (R 4.2.3)
-    ##    fansi                  1.0.4      2023-01-22 [1] CRAN (R 4.2.3)
+    ##    evaluate               0.23       2023-11-01 [1] CRAN (R 4.2.3)
+    ##    fansi                  1.0.6      2023-12-08 [1] CRAN (R 4.2.3)
     ##    farver                 2.1.1      2022-07-06 [1] CRAN (R 4.2.3)
     ##    fastmap                1.1.1      2023-02-24 [1] CRAN (R 4.2.3)
     ##    forcats              * 1.0.0      2023-01-29 [1] CRAN (R 4.2.3)
@@ -25877,7 +25896,7 @@ devtools::session_info()
     ##    GetoptLong             1.0.5      2020-12-15 [1] CRAN (R 4.2.3)
     ##    ggfun                  0.1.1      2023-06-24 [1] CRAN (R 4.2.3)
     ##    ggh4x                * 0.2.5      2023-07-15 [1] CRAN (R 4.2.3)
-    ##    ggplot2              * 3.4.2      2023-04-03 [1] CRAN (R 4.2.3)
+    ##    ggplot2              * 3.4.4      2023-10-12 [1] CRAN (R 4.2.3)
     ##    ggplotify              0.1.1      2023-06-27 [1] CRAN (R 4.2.3)
     ##    ggtree               * 3.6.2      2022-11-13 [1] Bioconductor
     ##    ggVennDiagram        * 1.2.2      2023-06-16 [1] Github (gaospecial/ggVennDiagram@2c5ef0d)
@@ -25891,24 +25910,24 @@ devtools::session_info()
     ##    Hmisc                  5.1-0      2023-05-08 [1] CRAN (R 4.2.3)
     ##    hms                    1.1.3      2023-03-21 [1] CRAN (R 4.2.3)
     ##    htmlTable              2.4.1      2022-07-07 [1] CRAN (R 4.2.3)
-    ##    htmltools              0.5.5      2023-03-23 [1] CRAN (R 4.2.3)
-    ##    htmlwidgets            1.6.2      2023-03-17 [1] CRAN (R 4.2.3)
+    ##    htmltools              0.5.7      2023-11-03 [1] CRAN (R 4.2.3)
+    ##    htmlwidgets            1.6.4      2023-12-06 [1] CRAN (R 4.2.3)
     ##    httpuv                 1.6.11     2023-05-11 [1] CRAN (R 4.2.3)
     ##    httr                   1.4.7      2023-08-15 [1] CRAN (R 4.2.3)
-    ##    igraph                 1.4.3      2023-05-22 [1] CRAN (R 4.2.3)
+    ##    igraph                 1.6.0      2023-12-11 [1] CRAN (R 4.2.3)
     ##    IRanges              * 2.32.0     2022-11-01 [1] Bioconductor
     ##    iterators              1.0.14     2022-02-05 [1] CRAN (R 4.2.3)
     ##    jpeg                   0.1-10     2022-11-29 [1] CRAN (R 4.2.2)
-    ##    jsonlite               1.8.7      2023-06-29 [1] CRAN (R 4.2.3)
+    ##    jsonlite               1.8.8      2023-12-04 [1] CRAN (R 4.2.3)
     ##    kableExtra             1.3.4      2021-02-20 [1] CRAN (R 4.2.3)
     ##    KEGGREST               1.38.0     2022-11-01 [1] Bioconductor
     ##    KernSmooth             2.23-22    2023-07-10 [1] CRAN (R 4.2.3)
-    ##    knitr                  1.43       2023-05-25 [1] CRAN (R 4.2.3)
-    ##    labeling               0.4.2      2020-10-20 [1] CRAN (R 4.2.0)
+    ##    knitr                  1.45       2023-10-30 [1] CRAN (R 4.2.3)
+    ##    labeling               0.4.3      2023-08-29 [1] CRAN (R 4.2.3)
     ##    later                  1.3.1      2023-05-02 [1] CRAN (R 4.2.3)
     ##    lattice              * 0.21-8     2023-04-05 [1] CRAN (R 4.2.3)
     ##    lazyeval               0.2.2      2019-03-15 [1] CRAN (R 4.2.3)
-    ##    lifecycle              1.0.3      2022-10-07 [1] CRAN (R 4.2.3)
+    ##    lifecycle              1.0.4      2023-11-07 [1] CRAN (R 4.2.3)
     ##    locfit                 1.5-9.8    2023-06-11 [1] CRAN (R 4.2.3)
     ##    lubridate            * 1.9.2      2023-02-10 [1] CRAN (R 4.2.3)
     ##    magick                 2.7.5      2023-08-07 [1] CRAN (R 4.2.3)
@@ -25916,7 +25935,7 @@ devtools::session_info()
     ##    MASS                   7.3-60     2023-05-04 [1] CRAN (R 4.2.3)
     ##    Matrix                 1.5-4.1    2023-05-18 [1] CRAN (R 4.2.3)
     ##    MatrixGenerics       * 1.10.0     2022-11-01 [1] Bioconductor
-    ##    matrixStats          * 1.0.0      2023-06-02 [1] CRAN (R 4.2.3)
+    ##    matrixStats          * 1.2.0      2023-12-11 [1] CRAN (R 4.2.3)
     ##    memoise                2.0.1      2021-11-26 [1] CRAN (R 4.2.3)
     ##    mgcv                   1.8-42     2023-03-02 [1] CRAN (R 4.2.3)
     ##    microViz             * 0.10.8     2023-05-01 [1] Github (david-barnett/microViz@f37d835)
@@ -25952,16 +25971,16 @@ devtools::session_info()
     ##    R6                     2.5.1      2021-08-19 [1] CRAN (R 4.2.3)
     ##    RColorBrewer         * 1.1-3      2022-04-03 [1] CRAN (R 4.2.0)
     ##    Rcpp                   1.0.10     2023-01-22 [1] CRAN (R 4.2.3)
-    ##    RCurl                  1.98-1.12  2023-03-27 [1] CRAN (R 4.2.3)
+    ##    RCurl                  1.98-1.13  2023-11-02 [1] CRAN (R 4.2.3)
     ##    readr                * 2.1.4      2023-02-10 [1] CRAN (R 4.2.3)
     ##    remotes                2.4.2.1    2023-07-18 [1] CRAN (R 4.2.1)
     ##    reshape2             * 1.4.4      2020-04-09 [1] CRAN (R 4.2.3)
-    ##    rhdf5                  2.42.0     2022-11-01 [1] Bioconductor
+    ##    rhdf5                  2.42.1     2023-04-07 [1] Bioconductor
     ##  D rhdf5filters           1.10.1     2023-03-24 [1] Bioconductor
     ##    Rhdf5lib               1.20.0     2022-11-01 [1] Bioconductor
     ##    rjson                  0.2.21     2022-01-09 [1] CRAN (R 4.2.0)
     ##    rlang                  1.1.1      2023-04-28 [1] CRAN (R 4.2.3)
-    ##    rmarkdown              2.24       2023-08-14 [1] CRAN (R 4.2.3)
+    ##    rmarkdown              2.25       2023-09-18 [1] CRAN (R 4.2.3)
     ##    rpart                  4.1.19     2022-10-21 [1] CRAN (R 4.2.3)
     ##    RSQLite                2.3.1      2023-04-03 [1] CRAN (R 4.2.3)
     ##    rstudioapi             0.15.0     2023-07-07 [1] CRAN (R 4.2.3)
@@ -25969,14 +25988,14 @@ devtools::session_info()
     ##    RVenn                  1.1.0      2019-07-18 [1] CRAN (R 4.2.3)
     ##    rvest                  1.0.3      2022-08-19 [1] CRAN (R 4.2.3)
     ##    S4Vectors            * 0.36.2     2023-02-26 [1] Bioconductor
-    ##    scales               * 1.2.1      2022-08-20 [1] CRAN (R 4.2.3)
+    ##    scales               * 1.3.0      2023-11-28 [1] CRAN (R 4.2.3)
     ##    sessioninfo            1.2.2      2021-12-06 [1] CRAN (R 4.2.3)
-    ##    sf                     1.0-14     2023-07-11 [1] CRAN (R 4.2.3)
+    ##    sf                     1.0-15     2023-12-18 [1] CRAN (R 4.2.3)
     ##    shape                  1.4.6      2021-05-19 [1] CRAN (R 4.2.0)
-    ##    shiny                  1.7.4.1    2023-07-06 [1] CRAN (R 4.2.3)
+    ##    shiny                  1.8.0      2023-11-17 [1] CRAN (R 4.2.3)
     ##    speedyseq            * 0.5.3.9018 2023-05-01 [1] Github (mikemc/speedyseq@ceb941f)
     ##    stringi                1.7.12     2023-01-11 [1] CRAN (R 4.2.2)
-    ##    stringr              * 1.5.0      2022-12-02 [1] CRAN (R 4.2.3)
+    ##    stringr              * 1.5.1      2023-11-14 [1] CRAN (R 4.2.3)
     ##    SummarizedExperiment * 1.28.0     2022-11-01 [1] Bioconductor
     ##    SuperExactTest       * 1.1.0      2022-03-23 [1] CRAN (R 4.2.3)
     ##    survival               3.5-5      2023-03-12 [1] CRAN (R 4.2.3)
@@ -25994,13 +26013,13 @@ devtools::session_info()
     ##    units                  0.8-2      2023-04-27 [1] CRAN (R 4.2.3)
     ##    urlchecker             1.0.1      2021-11-30 [1] CRAN (R 4.2.3)
     ##    usethis                2.2.2      2023-07-06 [1] CRAN (R 4.2.3)
-    ##    utf8                   1.2.3      2023-01-31 [1] CRAN (R 4.2.3)
-    ##    vctrs                  0.6.2      2023-04-19 [1] CRAN (R 4.2.3)
+    ##    utf8                   1.2.4      2023-10-22 [1] CRAN (R 4.2.3)
+    ##    vctrs                  0.6.5      2023-12-01 [1] CRAN (R 4.2.3)
     ##    vegan                * 2.6-4      2022-10-11 [1] CRAN (R 4.2.3)
     ##    viridis              * 0.6.3      2023-05-03 [1] CRAN (R 4.2.3)
     ##    viridisLite          * 0.4.2      2023-05-02 [1] CRAN (R 4.2.3)
     ##    webshot                0.5.5      2023-06-26 [1] CRAN (R 4.2.1)
-    ##    withr                  2.5.1      2023-09-26 [1] CRAN (R 4.2.3)
+    ##    withr                  2.5.2      2023-10-30 [1] CRAN (R 4.2.3)
     ##    xfun                   0.39       2023-04-20 [1] CRAN (R 4.2.3)
     ##    XML                    3.99-0.14  2023-03-19 [1] CRAN (R 4.2.3)
     ##    xml2                   1.3.5      2023-07-06 [1] CRAN (R 4.2.3)

@@ -6429,7 +6429,7 @@ sample_data(MPfiltRANMDS)$particle_type <- factor(sample_data(MPfiltRANMDS)$part
 
 ```
 
-## NMDS of all data (Fig. 1)
+## NMDS of all data
 
 Now we can create an NMDS plot using the filtered data that plots all sample variables (i.e., effluent type, polymer type, time point, etc.).
 
@@ -6456,8 +6456,8 @@ filt.nmds.particle_type <- plot_ordination(
         panel.spacing = unit(1, "lines"), 
         panel.border = element_rect(colour = "black", fill = NA, size = 0.5), 
         panel.background = element_blank(), 
-        legend.text = element_text(size = 15),
-        legend.title = element_text(size = 15),
+        legend.text = element_text(size = 12),
+        legend.title = element_text(size = 13),
         legend.position = c(.99, .99),
         legend.justification = c("right", "top"),
         legend.box.just = "right",
@@ -6481,8 +6481,8 @@ filt.nmds.source <- plot_ordination(
         panel.spacing = unit(1, "lines"), 
         panel.border = element_rect(colour = "black", fill = NA, size = 0.5), 
         panel.background = element_blank(), 
-        legend.text = element_text(size = 15),
-        legend.title = element_text(size = 15),
+        legend.text = element_text(size = 12),
+        legend.title = element_text(size = 13),
         legend.position = c(.99, .99),
         legend.justification = c("right", "top"),
         legend.box.just = "right",
@@ -6506,8 +6506,8 @@ filt.nmds.week <- plot_ordination(
         panel.spacing = unit(1, "lines"), 
         panel.border = element_rect(colour = "black", fill = NA, size = 0.5), 
         panel.background = element_blank(), 
-        legend.text = element_text(size = 15),
-        legend.title = element_text(size = 15),
+        legend.text = element_text(size = 12),
+        legend.title = element_text(size = 13),
         legend.position = c(.99, .99),
         legend.justification = c("right", "top"),
         legend.box.just = "right",
@@ -6531,8 +6531,8 @@ filt.nmds.sample.type <- plot_ordination(
         panel.spacing = unit(1, "lines"), 
         panel.border = element_rect(colour = "black", fill = NA, size = 0.5), 
         panel.background = element_blank(), 
-        legend.text = element_text(size = 15),
-        legend.title = element_text(size = 15),
+        legend.text = element_text(size = 12),
+        legend.title = element_text(size = 13),
         legend.position = c(.99, .99),
         legend.justification = c("right", "top"),
         legend.box.just = "right",
@@ -6583,7 +6583,7 @@ particle.nmds.type.filt <- plot_ordination(
         panel.background = element_blank(), 
         legend.text = element_text(size = 12),
         legend.title = element_text(size = 13),
-        legend.position = c(.25, .23),
+        legend.position = c(.99, .99),
         legend.justification = c("right", "top"),
         legend.box.just = "right",
         legend.margin = margin(6, 6, 6, 6)) +
@@ -6672,6 +6672,20 @@ particle_combo_filt <- (particle.nmds.type.filt | particle.nmds.source.filt)/(pa
 
 #Save as an svg file
 ggsave(filename="Microplastics_filt_NMDS_particle.svg", plot=particle_combo_filt, width=12, height=10, device=svg)
+
+```
+
+## Combine NMDS plots for Fig. 1
+
+```{r patchwork combine fig 1}
+
+#Use pathwork to combine these 4 plots
+fig1 <- (filt.nmds.particle_type | filt.nmds.source)/(filt.nmds.week | particle.nmds.type.filt)
+
+print(fig1)
+
+#Save as an svg file
+ggsave(filename="Microplastics_filt_NMDS_fig1.svg", plot=fig1, width=10, height=9, device=svg)
 
 ```
 
